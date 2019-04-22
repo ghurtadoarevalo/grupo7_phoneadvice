@@ -25,24 +25,28 @@ public class ActorService {
     @ResponseBody
     public List<Actor> getActorsByMovies(@PathVariable Long id)
     {
-        System.out.println("holaaa");
-        return this.repository.findActorsByFilms(id);
+        return this.repository.findByFilms_FilmId(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Actor> getActors()
     {
-        System.out.println("holaaa");
         return this.repository.findAll();
     }
 
-    @RequestMapping(value = "/actor/{id_actor}/film/{id_film}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id_actor}/film/{id_film}", method = RequestMethod.GET)
     @ResponseBody
     public void postActorInMovie(@PathVariable Long id_actor, @PathVariable Long id_film) {
-        if (this.repository.existsById(id_actor) && this.repository2.existsById(id_film)) {
-            Actor actor = repository.findActorByActorId(id_actor);
-            Film film = repository2.findFilmByFilmId((id_film));
+
+        if (this.repository.existsById(id_actor) && this.repository2.existsById(id_film))
+        {
+            Actor actor = this.repository.findActorByActorId(id_actor);
+            Film film = this.repository2.findFilmByFilmId((id_film));
+            System.out.println("Existe el actor " + actor.getFirstName() + " " + actor.getLastName());
+            System.out.println("Existe la película " + film.getTitle());
+            film.getActors().add(actor);
+            this.repository2.save(film);
         }
     }
 }

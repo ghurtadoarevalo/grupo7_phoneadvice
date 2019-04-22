@@ -27,6 +27,14 @@ public class Actor implements Serializable {
     @ManyToMany(mappedBy = "actors")
     private Set<Film> films = new HashSet<>();
 
+    public Set<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(Set<Film> films) {
+        this.films = films;
+    }
+
     public Long getActorId() {
         return this.actorId;
     }

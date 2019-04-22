@@ -43,6 +43,12 @@ public class Film implements Serializable{
     public Film() {
     }
 
+    public Set<Actor> getActors()
+    {
+        return actors;
+    }
+
+
     public Long getFilmId() {
         return filmId;
     }
