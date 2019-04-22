@@ -35,6 +35,7 @@ public class Film implements Serializable{
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
+    @JsonIgnore
     @JoinTable(name = "film_actor",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id"))

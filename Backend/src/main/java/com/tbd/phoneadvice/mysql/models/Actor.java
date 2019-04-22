@@ -1,5 +1,7 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -24,6 +26,7 @@ public class Actor implements Serializable {
     @Column(name = "last_update", nullable = false)
     private Timestamp lastUpdate;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "actors")
     private Set<Film> films = new HashSet<>();
 
