@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/actor")
+@CrossOrigin(origins = "localhost:8080", methods= {RequestMethod.GET,RequestMethod.POST})
 public class ActorService {
 
     @Autowired
