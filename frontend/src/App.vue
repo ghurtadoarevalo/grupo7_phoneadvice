@@ -1,13 +1,32 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <v-container>
+      <v-layout>
+        <v-flex>
+          <a href="/"><v-btn :class="['text-white']">Home</v-btn></a>
+        </v-flex>
+        <v-flex>
+          <a href="http://localhost:8080/actors/"><v-btn :class="['text-white']">Actors</v-btn></a>
+        </v-flex>
+      </v-layout>
+
+      <router-view></router-view>
+    </v-container>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data: () => ({
+      drawer: null,
+      drawerRight: null,
+      right: false,
+      left: false
+    }),
+    props: {   
+      source: String
+    }
 }
 </script>
 

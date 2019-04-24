@@ -13,8 +13,8 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/actor")
-@CrossOrigin(origins = "localhost:8080", methods= {RequestMethod.GET,RequestMethod.POST})
+@RequestMapping(value = "/actors")
+@CrossOrigin(origins = "*")
 public class ActorService {
 
     @Autowired
@@ -24,10 +24,11 @@ public class ActorService {
 
     @RequestMapping(value = "/{id}/films", method = RequestMethod.GET)
     @ResponseBody
-    public List<Actor> getActorsByMovies(@PathVariable Long id)
+    public List<Film> getFilmsByActor(@PathVariable Long id)
     {
-        return this.repository.findByFilms_FilmId(id);
+        return this.repository2.findByActors_ActorId(id);
     }
+
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
