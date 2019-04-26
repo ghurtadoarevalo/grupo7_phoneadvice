@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import Actors from '@/components/Actors.vue'
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -16,7 +15,7 @@ export default new Router({
     {
       path: '/actors',
       name: 'Actors',
-      component: Actors,
+      component: Actors
     }
   ],
   mode: 'history'

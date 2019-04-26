@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.tbd.phoneadvice.mysql.repositories.ActorRepository;
 import com.tbd.phoneadvice.mysql.repositories.FilmRepository;
 
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.*;
 
 
 @RestController
@@ -29,12 +30,19 @@ public class ActorService {
         return this.repository2.findByActors_ActorId(id);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Actor getActorById(@PathVariable Long id)
+    {
+        return this.repository.findActorByActorId(id);
+    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Actor> getActors()
     {
-        return this.repository.findAll();
+        List<Actor> actors = this.repository.findAll();
+        return actors;
     }
 
     @RequestMapping(value = "/{id_actor}/film/{id_film}", method = RequestMethod.GET)
@@ -50,5 +58,16 @@ public class ActorService {
             film.getActors().add(actor);
             this.repository2.save(film);
         }
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public Actor addActor(@RequestBody Actor newActor)
+    {
+        System.out.println(newActor.getFirstName());
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        newActor.setLastUpdate(timestamp);
+        return repository.save(newActor);
+
     }
 }

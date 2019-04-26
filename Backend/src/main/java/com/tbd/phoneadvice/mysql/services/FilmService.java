@@ -29,7 +29,7 @@ public class FilmService {
         return this.repository2.findByFilms_FilmId(id);
     }
 
-    @RequestMapping(value = "/films", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Film> getActors(){
         return this.repository.findAll();

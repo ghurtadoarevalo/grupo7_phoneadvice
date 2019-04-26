@@ -26,12 +26,11 @@ public class Actor implements Serializable {
     @Column(name = "last_update", nullable = false)
     private Timestamp lastUpdate;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "actors")
     private Set<Film> films = new HashSet<>();
 
     public Set<Film> getFilms() {
-        return films;
+        return this.films;
     }
 
     public void setFilms(Set<Film> films) {
@@ -61,7 +60,6 @@ public class Actor implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public Timestamp getLastUpdate() {
         return this.lastUpdate;
     }

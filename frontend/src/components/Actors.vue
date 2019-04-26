@@ -1,77 +1,50 @@
+
 <template>
   <v-container id="Actors">
-    <v-layout>
-      <v-flex>
-        <v-btn :class="['text-white',background]" @click="count">{{total}}</v-btn>
-      </v-flex>
-      <v-flex>
-        <v-btn :class="['text-white',background]" @click="getData">{{total}}</v-btn>
-      </v-flex>
-    </v-layout>
-    <v-layout>
-      <ol>
-        <li v-for="actor in actors" :class="['mt-5']">
-          id = {{actor.actorId}}
-          <br>
-          name = {{actor.firstName}}
-          <br>
-          apellido = {{actor.lastName}}
-          <br>
-          lastUpdate = {{actor.lastUpdate}}
-        </li>
-      </ol>
-    </v-layout>
+    <addActor v-bind:actorsList="actors"></addActor>
+    <show-actors v-bind:actorsList="actors" :class="['mt-5']"></show-actors>
   </v-container>
 </template>
 
 <script>
-/* eslint-disable */
-export default {
-  data() {
-    return {
-      items: [1, 2, 3],
-      total: 0, 
-      background: 'yellow',
-      actors: [],
-      actorId: 1
-    }
-  },
-  methods: {
-    count: function() {
-      return this.total = this.items.length * 10,
-             this.background = 'red'
-    },
-    getData: function() 
-    {
-      let self = this
-      fetch('http://localhost:8081/actors/all')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        for (var variable of myJson) {
-          self.actors.push(variable);
-        }
-        console.log(myJson)
-      });
-    } 
-  },
 
-  created:
-    function() 
+import AddActor from './AddActor.vue'
+import ShowActors from './ShowActors.vue'
+
+/* eslint-disable */
+  export default {
+    data() {
+      return {
+        urlBase: 'http://localhost:8081/',
+        actors: [{info:{},films:{}}]
+      }
+    },
+    components:
+    {
+      AddActor, ShowActors
+    },
+    methods: 
+    {
+      getActors: function()
       {
-        let self = this
-        fetch('http://localhost:8081/actors/all')
+        this.actors = [];
+        let self = this;
+        fetch(this.urlBase+'actors/all')
         .then(function(response) {
           return response.json();
         })
-        .then(function(myJson) {
-          for (var variable of myJson) {
-            self.actors.push(variable);
+        .then(function(actors) {
+          console.log(actors)
+          for (var actor of actors) {
+            self.actors.push(actor);
           }
-          console.log(myJson)
         });
-      } 
-}
-</script>
+      }
+    },
+    created: function()
+    {
+      this.getActors()
+    }
+  }
+  </script>
 
