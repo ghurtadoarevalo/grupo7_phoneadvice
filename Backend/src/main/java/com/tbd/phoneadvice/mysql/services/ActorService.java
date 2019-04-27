@@ -41,7 +41,9 @@ public class ActorService {
     @ResponseBody
     public List<Actor> getActors()
     {
+
         List<Actor> actors = this.repository.findAll();
+        System.out.println(actors);
         return actors;
     }
 

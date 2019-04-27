@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "actor",schema = "phoneadvice")
+@Table(name = "actor",schema = "sakila")
 public class Actor implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id", unique = true, nullable = false)
     private Long actorId;
 
@@ -26,6 +26,7 @@ public class Actor implements Serializable {
     @Column(name = "last_update", nullable = false)
     private Timestamp lastUpdate;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "actors")
     private Set<Film> films = new HashSet<>();
 

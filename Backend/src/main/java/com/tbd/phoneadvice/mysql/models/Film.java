@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "film",schema = "phoneadvice")
+@Table(name = "film",schema = "sakila")
 public class Film implements Serializable{
 
     @Id
@@ -22,10 +22,10 @@ public class Film implements Serializable{
     @Column(name="title", nullable=false, length=45)
     private String title;
 
-    @Column(name="year", nullable=false, length=45)
+    @Column(name="description", nullable=false, length=45)
     private String year;
 
-    @Column(name="genre", nullable=false)
+    @Column(name="release_year", nullable=false)
     private String genre;
 
     @Column(name="last_update", nullable=false)
