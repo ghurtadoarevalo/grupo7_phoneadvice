@@ -15,7 +15,7 @@ import java.util.Set;
 public class Film implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="film_id", unique=true, nullable=false)
     private Long filmId;
 
@@ -23,9 +23,9 @@ public class Film implements Serializable{
     private String title;
 
     @Column(name="description", nullable=false, length=45)
-    private String year;
+    private String description;
 
-    @Column(name="release_year", nullable=false)
+    @Column(name="genre", nullable=false)
     private String genre;
 
     @Column(name="last_update", nullable=false)
@@ -61,10 +61,6 @@ public class Film implements Serializable{
         return title;
     }
 
-    public String getYear() {
-        return year;
-    }
-
     public Timestamp getLastUpdate() {
         return lastUpdate;
     }
@@ -85,8 +81,11 @@ public class Film implements Serializable{
         this.title = title;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public String getDescription() {
+        return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -14,7 +14,7 @@
                 <v-card-text>
                     <div v-for="(film,i) in films" :key="i" >
                         Título: {{film.title}}
-                        Género: {{film.genre}}
+                        Descripción: {{film.description}}
                     </div>
                     <div v-if="films.length === 0">No se encontraron películas de este actor</div>
 
