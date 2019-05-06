@@ -14,7 +14,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar app>
+    <v-toolbar dense dark color="purple" app>
       <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="sidebar = !sidebar">
         </v-toolbar-side-icon>
@@ -54,7 +54,7 @@ export default {
       menuItems: [
           { title: 'Home', path: '/', icon: 'home' },
           { title: 'Celulares', path: '/actores', icon: 'phone_iphone' },
-          { title: 'Sign Up', path: '/signup', icon: 'face' },
+          { title: 'Tareas', path: '/tareas', icon: 'note_add' },
           { title: 'Sign In', path: '/signin', icon: 'lock_open' }
      ]
     }
