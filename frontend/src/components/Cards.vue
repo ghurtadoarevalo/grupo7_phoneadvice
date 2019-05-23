@@ -1,13 +1,13 @@
 <template>
-  <v-container grid-list-md>
-    <VLayout row wrap>
-      <v-flex xs12 md6>
+  <v-container grid-list-xl>
+    <VLayout row wrap class="mt-5">
+      <v-flex xs12 md4>
         <v-card>
           <v-img src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg">
 
           </v-img>
           <v-card-title>
-            <h2>Lorem, ipsum dolor.</h2>
+            <h2>Busqueda por especificacion</h2>
           </v-card-title>
           <v-card-text>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>
@@ -18,7 +18,7 @@
         </v-card>
       </v-flex>
 
-      <v-flex xs12 md6>
+      <v-flex xs12 md4>
         <v-card>
           <v-img src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg">
             <v-container>
@@ -32,7 +32,32 @@
             </v-container>  
           </v-img>
           <v-card-title>
-            <h2>Lorem, ipsum dolor.</h2>
+            <h2>Busqueda por marca</h2>
+          </v-card-title>
+          <v-card-text>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>
+          </v-card-text>
+          <v-card-actions>
+            <VBtn dark color="purple" @click="dialog=true">Accion</VBtn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+
+      <v-flex xs12 md4>
+        <v-card>
+          <v-img src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg">
+            <v-container>
+              <v-layout >
+                <v-flex>
+                  <span class="headline white--text">Avengers Infinity</span>
+                </v-flex>
+                
+              </v-layout>
+              
+            </v-container>  
+          </v-img>
+          <v-card-title>
+            <h2>Busqueda por equipo(?)</h2>
           </v-card-title>
           <v-card-text>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>

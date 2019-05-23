@@ -18,7 +18,7 @@
 
             <v-flex xs12 md6 v-if="addForm">
                 <v-card class="mb-3 pa-3">
-                    <v-form @submit.prevent="editarTarea">
+                    <v-form @submit.prevent="agregarTarea">
                         <v-text-field
                             v-model="titulo"
                             label="Titulo de la tarea"
