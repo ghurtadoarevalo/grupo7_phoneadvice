@@ -26,29 +26,14 @@
         </v-card>
       </v-flex>
       <v-flex md4>
-          <h1>Filtrar Búsqueda</h1>
-          <v-checkbox
-              v-model="ex4"
-              label="indigo darken-3"
-              color="indigo darken-3"
-              value="indigo darken-3"
-              hide-details
-            ></v-checkbox>
-             <v-checkbox
-              v-model="ex4"
-              label="indigo darken-3"
-              color="indigo darken-3"
-              value="indigo darken-3"
-              hide-details
-            ></v-checkbox>
-             <v-checkbox
-              v-model="ex4"
-              label="indigo darken-3"
-              color="indigo darken-3"
-              value="indigo darken-3"
-              hide-details
-            ></v-checkbox>
-          
+        <VBtn fab dark color="purple" @click="allGamma">
+          <v-icon large color="white">monetization_on</v-icon>
+        </VBtn> Gama
+        
+        <v-switch v-model="baja" label="Baja" color="purple"></v-switch>
+        <v-switch v-model="media" label="Media" color="purple"></v-switch>
+        <v-switch v-model="alta" label="Alta" color="purple"></v-switch>
+    
       </v-flex>
 
     </VLayout>
@@ -58,8 +43,17 @@
 <script>
   export default {
     data: () => ({
-      ex4: ['red', 'indigo', 'orange', 'primary', 'secondary', 'success', 'info', 'warning', 'error', 'red darken-3', 'indigo darken-3', 'orange darken-3']
-    })
+      baja: true,
+      media: true,
+      alta: true
+    }),
+    methods: {
+      allGamma(){
+        this.baja = true;
+        this.media = true;
+        this.alta = true;
+      }
+    },
   }
 </script>
 
