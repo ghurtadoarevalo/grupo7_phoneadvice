@@ -1,6 +1,11 @@
 <template>
   <v-app>
    <v-navigation-drawer v-model="sidebar" app>
+     <v-text-field
+        hide-details
+        prepend-icon="search"
+        single-line
+      ></v-text-field>
       <v-list>
         <v-list-tile
           v-for="item in menuItems"
@@ -34,6 +39,11 @@
           <v-icon left dark>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
+        <v-text-field
+        hide-details
+        prepend-icon="search"
+        single-line
+      ></v-text-field>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -53,9 +63,8 @@ export default {
       sidebar: false,
       menuItems: [
           { title: 'Home', path: '/', icon: 'home' },
-          { title: 'Celulares', path: '/actores', icon: 'phone_iphone' },
-          { title: 'Tareas', path: '/tareas', icon: 'note_add' },
-          { title: 'Sign In', path: '/signin', icon: 'lock_open' }
+          { title: 'Celulares', path: '/searchForDevices', icon: 'phone_iphone' },
+          { title: 'Tareas', path: '/tareas', icon: 'note_add' }
      ]
     }
   }

@@ -19,6 +19,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "servicios" */ './views/Tareas.vue')
     },
     {
+      path: '/searchForDevices',
+      name: 'searchForDevices',
+      component: () => import(/* webpackChunkName: "search devices" */ './views/SearchDevices.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
