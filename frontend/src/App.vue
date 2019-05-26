@@ -1,6 +1,8 @@
 <template>
   <v-app>
    <v-navigation-drawer v-model="sidebar" app>
+    <v-img class="mt-3 mr-2" :src="require('./assets/logo.png')"> 
+          </v-img>
      <v-text-field
         hide-details
         prepend-icon="search"
@@ -19,15 +21,18 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar dense dark color="purple" app>
-      <span class="hidden-sm-and-up">
+    <v-toolbar dense dark color="#0E318A" app>
+    
+      <span >
         <v-toolbar-side-icon @click="sidebar = !sidebar">
         </v-toolbar-side-icon>
       </span>
       <v-toolbar-title>
+        
         <router-link to="/" tag="span" style="cursor: pointer">
-          {{ appTitle }}
+        Phone Advice
         </router-link>
+
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
