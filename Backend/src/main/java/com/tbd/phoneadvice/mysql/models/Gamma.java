@@ -1,16 +1,17 @@
 package com.tbd.phoneadvice.mysql.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "gama",schema = "phoneadvice")
-public class Gama {
+@Table(name = "gamma",schema = "phoneadvice")
+public class Gamma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "gama_id", unique = true, nullable = false)
-    private int gama_id;
+    @Column(name = "gamma_id", unique = true, nullable = false)
+    private int gamma_id;
 
     @Column(name = "name", nullable = false, length = 30)
     private String name;
@@ -21,12 +22,19 @@ public class Gama {
     @Column(name = "max_price", nullable = false)
     private int max_price;
 
+    @OneToMany(mappedBy = "gamma", cascade = CascadeType.ALL)
+    private Set<Phone> phones;
+
     public String getName() {
         return name;
     }
 
-    public int getGama_id() {
-        return gama_id;
+    public int getMin_price() {
+        return min_price;
+    }
+
+    public int getGamma_id() {
+        return gamma_id;
     }
 
     public int getMax_price() {
@@ -37,8 +45,8 @@ public class Gama {
         this.name = name;
     }
 
-    public void setGama_id(int gama_id) {
-        this.gama_id = gama_id;
+    public void setGamma_id(int gamma_id) {
+        this.gamma_id = gamma_id;
     }
 
     public void setMax_price(int max_price) {

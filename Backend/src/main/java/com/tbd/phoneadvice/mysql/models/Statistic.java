@@ -1,6 +1,7 @@
 package com.tbd.phoneadvice.mysql.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -20,6 +21,16 @@ public class Statistic {
 
     @Column(name = "negative_density", nullable = false)
     private int negative_density;
+
+    @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
+    private Set<Phone> phones;
+
+    @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
+    private Set<Specification> specifications;
+
+    @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
+    private Set<Brand> brands;
+
 
     public int getNegative_density() {
         return negative_density;

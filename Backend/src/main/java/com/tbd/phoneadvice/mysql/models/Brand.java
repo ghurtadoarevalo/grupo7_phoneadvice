@@ -1,6 +1,7 @@
 package com.tbd.phoneadvice.mysql.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -18,15 +19,26 @@ public class Brand {
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
-    @Column(name = "assesstment", nullable = false)
-    private int assesstment;
+    @Column(name = "assessment", nullable = false)
+    private int assessment;
+
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    private Set<Phone> phones;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
+    private Statistic statistic;
+
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    private Set<Word> words;
+
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setAssesstment(int assesstment) {
-        this.assesstment = assesstment;
+    public void setAssessment(int assessment) {
+        this.assessment = assessment;
     }
 
     public void setName(String name) {
@@ -45,8 +57,8 @@ public class Brand {
         return name;
     }
 
-    public int getAssesstment() {
-        return assesstment;
+    public int getAssessment() {
+        return assessment;
     }
 
     public int getBrand_id() {

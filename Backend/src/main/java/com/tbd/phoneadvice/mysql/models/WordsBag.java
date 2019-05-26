@@ -1,6 +1,7 @@
 package com.tbd.phoneadvice.mysql.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -14,6 +15,9 @@ public class WordsBag {
 
     @Column(name = "type", nullable = false, length = 30)
     private String type;
+
+    @OneToMany(mappedBy = "words_bag", cascade = CascadeType.ALL)
+    private Set<Word> words;
 
     public int getWords_bag_id() {
         return words_bag_id;

@@ -1,6 +1,10 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -17,6 +21,16 @@ public class Specification {
 
     @Column(name = "assessment", nullable = false)
     private int assessment;
+
+    @ManyToMany(mappedBy = "specifications")
+    private Set<Phone> phones = new HashSet<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
+    private Statistic statistic;
+
+    @OneToMany(mappedBy = "specification", cascade = CascadeType.ALL)
+    private Set<Word> words;
 
     public int getAssessment() {
         return assessment;

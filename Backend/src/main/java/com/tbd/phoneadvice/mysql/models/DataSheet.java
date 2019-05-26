@@ -38,6 +38,9 @@ public class DataSheet {
     @Column(name = "batery", nullable = false, length = 100)
     private String batery;
 
+    @OneToOne(mappedBy = "data_sheet")
+    private Phone phone;
+
     public int getData_sheet_id() {
         return data_sheet_id;
     }
