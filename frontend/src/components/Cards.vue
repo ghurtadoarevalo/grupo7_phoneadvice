@@ -115,9 +115,11 @@
 
 <script>
   export default {
-    data: () => ({
+    data(){
+      return{
       dialog:false
-    })
+      }
+    }
   }
 </script>
 

@@ -14,11 +14,6 @@ export default new Router({
       component: Home
     },
     {
-      path: '/tareas',
-      name: 'tareas',
-      component: () => import(/* webpackChunkName: "servicios" */ './views/Tareas.vue')
-    },
-    {
       path: '/searchForDevices',
       name: 'searchForDevices',
       component: () => import(/* webpackChunkName: "search devices" */ './views/SearchDevices.vue')
