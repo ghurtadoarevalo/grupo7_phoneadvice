@@ -66,8 +66,10 @@ export default {
       appTitle: 'Phone Advice',
       sidebar: false,
       menuItems: [
-          { title: 'Home', path: '/', icon: 'home' },
+          { title: 'Inicio', path: '/', icon: 'home' },
           { title: 'Celulares', path: '/searchForDevices', icon: 'phone_iphone' },
+          { title: 'Especificaciones', path: '/searchForSpecifications', icon: 'settings' },
+
      ]
     }
   }
