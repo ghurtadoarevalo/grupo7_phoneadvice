@@ -1,22 +1,35 @@
 <template>
 <v-container grid-list-xl>
   <ChangeToolbar/>
-  <Charts/>
-  <Graph/>
+  <Charts v-if="activo ==='graph'"/>
+  <PhoneList v-if="activo ==='graph'"/>
+  <Twitteros v-if="activo ==='twitter'"/>
+  <Maps v-if="activo ==='maps'"/>
   </v-container>
 </template>
 
 <script>
-  import Graph from '../components/Graph'
+  import PhoneList from '../components/PhoneList'
   import Charts from '../components/Charts'
   import ChangeToolbar from '../components/ChangeToolbar'
-  import{mapState} from 'vuex'
+  import Twitteros from '../components/Twitteros'
+  import Maps from '../components/Maps'
+  import {mapState} from 'vuex';
    
   export default {
+    data() {
+      return {
+      }
+    },
     components: {
-      Graph,
+      PhoneList,
       ChangeToolbar,
-      Charts
-    }
+      Charts,
+      Twitteros,
+      Maps
+    },
+    computed:{
+      ...mapState(['activo'])
+    },
   }
 </script>

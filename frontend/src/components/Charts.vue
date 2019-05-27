@@ -37,15 +37,20 @@ export default {
       xAxis: {
         categories: ['Huawei p30 Pro ', 'Samsung A5 ', 'Iphone X ', 'Huawei mate 20 Pro ',
         ' Xiaomi redmi note 7 ', 'Motorola moto z3 play ', 'LG g7 Thinq ', 'Samsung Galaxy s10 ',],
-        title: {
-          text: 'Celulares'
-        }
+   
       },
       yAxis:{
         title: {
           text: 'Numero de Tweets'
         }
 
+      },
+      legend: {
+        align: 'top',
+        verticalAlign: 'top',
+        layout: 'horizontal',
+        x: 0,
+        y: 0
       },
       plotOptions: {
         column:{

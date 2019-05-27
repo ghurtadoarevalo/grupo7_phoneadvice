@@ -1,12 +1,11 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout row wrap>
-      <v-flex xs12 md1 v-for="(equipo, index) in listaEquipos" :key="index">
+    <v-layout row wrap class="lista" style="margin-top:-5%; margin-left:6.5%">
+      <v-flex class="ml-3" xs12 md1 v-for="(equipo, index) in listaEquipos" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='equipo.img'>
           </v-img>
       </v-flex>
     </v-layout>
-
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <VCardTitle>
@@ -41,9 +40,7 @@
                 {id:5,nombre:'Xiaomi redmi note 7',img:'https://www.movilzona.es/app/uploads/2019/01/redmi-note-7-300.png'},
                 {id:6,nombre:'Motorola moto z3 play',img:'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6246/6246960_sd.jpg'},
                 {id:7,nombre:'LG g7 Thinq',img:'https://www.ukunlocks.com/wp-content/uploads/2018/03/unlock-lg-g7-thinq-orange.png'},
-                {id:8,nombre:'Samsung Galaxy s10',img:'https://www.att.com/catalog/en/idse/Samsung/Samsung%20Galaxy%20S10/Prism%20Black-hero-zoom.png'},
-                {id:9,nombre:'LG g7 Thinq',img:'https://www.ukunlocks.com/wp-content/uploads/2018/03/unlock-lg-g7-thinq-orange.png'},
-                {id:10,nombre:'Samsung Galaxy s10',img:'https://www.att.com/catalog/en/idse/Samsung/Samsung%20Galaxy%20S10/Prism%20Black-hero-zoom.png'}
+                {id:8,nombre:'Samsung Galaxy s10',img:'https://www.att.com/catalog/en/idse/Samsung/Samsung%20Galaxy%20S10/Prism%20Black-hero-zoom.png'}
             ]
     }),
     methods: {
