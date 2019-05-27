@@ -1,4 +1,3 @@
-
 <template>
 <v-bottom-nav
       :active.sync="bottomNav"
@@ -6,27 +5,27 @@
       color="transparent"
     >
       <v-btn
-        color="teal"
+        color="#0E318A"
         flat
-        value="recent"
+        value="graph"
       >
         <span>Gráficos</span>
         <chart-icon/>
       </v-btn>
 
       <v-btn
-        color="teal"
+        color="#0E318A"
         flat
-        value="favorites"
+        value="twitter"
       >
         <span>Twitteros</span>
         <twitter-icon/>
       </v-btn>
 
       <v-btn
-        color="teal"
+        color="#0E318A"
         flat
-        value="nearby"
+        value="maps"
       >
         <span>Mapas</span>
         <v-icon>place</v-icon>
@@ -45,7 +44,7 @@
     },
     data () {
       return {
-        bottomNav: 'recent'
+        bottomNav: 'graph'
       }
     }
   }
