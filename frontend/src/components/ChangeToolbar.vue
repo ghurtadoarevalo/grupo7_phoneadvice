@@ -43,8 +43,8 @@
 
   export default { 
     components:{
-        TwitterIcon,
-        ChartIcon
+      TwitterIcon,
+      ChartIcon
     },
     data () {
       return {

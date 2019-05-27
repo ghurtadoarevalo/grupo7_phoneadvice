@@ -52,10 +52,12 @@
 import TwitterIcon from "vue-material-design-icons/Twitter.vue"
   export default {
     components:{
-        TwitterIcon,
+      TwitterIcon,
     },
-    data: () => ({
-        listaaux:[1,2,3,4,5]
-    })
+    data(){
+			return{
+			listaaux:[1,2,3,4,5]
+			}
+    }
   }
 </script>
