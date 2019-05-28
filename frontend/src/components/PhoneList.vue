@@ -1,15 +1,65 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout row wrap class="lista" style="margin-top:-5%; margin-left:6.5%">
-      <v-flex class="ml-3" xs12 md1 v-for="(equipo, index) in listaEquipos" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='equipo.img'>
+    <v-layout v-if="imgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
           </v-img>
       </v-flex>
     </v-layout>
+
+    <v-layout v-else-if="imgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="imgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="imgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="imgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="imgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="imgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <VCardTitle>
-          {{listaEquipos[indice].name}}
+          {{names[indice]}}
         </VCardTitle>
         <v-card-text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, repellendus!
@@ -19,8 +69,8 @@
           <v-btn dark color="#0E318A" @click="dialog=false">Cerrar</v-btn>
         </v-card-actions>
       </v-card>
-      
     </v-dialog>
+    
   </v-container>
 </template>
 
@@ -34,7 +84,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['listaEquipos'])
+      ...mapState(['imgList','names'])
     }
   }
 </script>

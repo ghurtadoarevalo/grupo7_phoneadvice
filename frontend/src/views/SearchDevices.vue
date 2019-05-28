@@ -31,5 +31,8 @@
     computed:{
       ...mapState(['activo'])
     },
+    beforeMount(){
+    this.$store.dispatch('getAll')
+    },
   }
 </script>

@@ -1,8 +1,9 @@
+
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
       <v-flex md10>
-        <highcharts :options="chartOptions"></highcharts>
+        <highcharts :options="getData()"></highcharts>
       </v-flex>
       <v-flex md2>
         <VBtn fab dark color="#0E318A" @click="allGamma">
@@ -24,25 +25,17 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP']),
+    ...mapState(['evalP','evalN','listaEquipos','names']),
   },
   methods: {
     ...mapMutations(['filterByGama']),
     allGamma(){
       this.gamas = [true,true,true]
-    },
-    hola(){
-      //this.$store.dispatch('get')
-    },
-  },
-    mounted(){
-    this.$store.dispatch('getAll')
+      this.filterByGama(this.gamas);
 
-  },
-  data () {
-    return{
-      gamas: [true,true,true],
-      chartOptions: {
+    },
+    getData(){
+      var chartOptions = {
         chart: {
           //styledMode: true,
           renderTo: 'cointainer',
@@ -52,7 +45,7 @@ export default {
           text: 'Evaluación de Celulares'
         },
         xAxis: {
-          categories: this.$store.state.names,
+          categories: this.names,
     
         },
         yAxis:{
@@ -78,16 +71,25 @@ export default {
         },
         series: [
           {
-          data: this.$store.state.evalP,
+          data: this.evalP,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
           {
-          data: this.$store.state.evalN,
+          data: this.evalN,
           name:'Evaluación Negativa',
           color: 'Red'
         }]
       }
+      return chartOptions;
+    },
+  },
+  /*mounted(){
+    this.$store.dispatch('getAll')
+  },*/
+  data () {
+    return{
+      gamas: [true,true,true],
     }
   }
   
