@@ -9,9 +9,9 @@
           <v-icon large color="white">monetization_on</v-icon>
         </VBtn> Gama
         
-        <v-switch v-model="baja" label="Baja" color="#0E318A"></v-switch>
-        <v-switch v-model="media" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="alta" label="Alta" color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>
     
       </v-flex>
     </v-layout>
@@ -21,36 +21,27 @@
 <script>
 import { mapState,mapMutations, Store } from 'vuex';
 
-function funcion(){
-  return [9,12,4,10,8,12,15,11];
-}
-
-
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP'])
+    ...mapState(['evalP']),
   },
   methods: {
+    ...mapMutations(['filterByGama']),
     allGamma(){
-      this.baja = true;
-      this.media = true;
-      this.alta = true;
+      this.gamas = [true,true,true]
     },
     hola(){
       //this.$store.dispatch('get')
     },
   },
-  mounted(){
-    this.$store.dispatch('getEval');
+    mounted(){
+    this.$store.dispatch('getAll')
 
   },
   data () {
     return{
-      baja: true,
-      media: true,
-      alta: true,
-      
+      gamas: [true,true,true],
       chartOptions: {
         chart: {
           //styledMode: true,
@@ -61,8 +52,7 @@ export default {
           text: 'Evaluación de Celulares'
         },
         xAxis: {
-          categories: ['Huawei p30 Pro ', 'Samsung A5 ', 'Iphone X ', 'Huawei mate 20 Pro ',
-          ' Xiaomi redmi note 7 ', 'Motorola moto z3 play ', 'LG g7 Thinq ', 'Samsung Galaxy s10 ',],
+          categories: this.$store.state.names,
     
         },
         yAxis:{
@@ -80,7 +70,7 @@ export default {
         },
         plotOptions: {
           column:{
-            borderRadius: 5
+            borderRadius: 4
           },
           series: {
               //stacking: 'normal'
@@ -88,12 +78,12 @@ export default {
         },
         series: [
           {
-          data: this.$store.state.evalPP,
+          data: this.$store.state.evalP,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
           {
-          data:[2,5,8,1,6,10,3,11],
+          data: this.$store.state.evalN,
           name:'Evaluación Negativa',
           color: 'Red'
         }]
