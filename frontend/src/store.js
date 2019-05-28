@@ -28,13 +28,22 @@ export default new Vuex.Store({
     },
     //Devices Evaluation
     getAll(state){
+      var evalP = []
+      var evalN = []
+      var names = []
+      var imgList = []
+
       for(var item of state.listaEquipos ){
-        state.evalP.push(item.evalP)
-        state.evalN.push(item.evalN)
-        state.names.push(item.name)
-        state.names.push(item.name)
-        state.imgList.push(item.img)
+        evalP.push(item.evalP)
+        evalN.push(item.evalN)
+        names.push(item.name)
+        imgList.push(item.img)
       }
+
+      state.evalP = evalP
+      state.evalN = evalN
+      state.names = names
+      state.imgList = imgList
     },
     filterByGama(state,gamas){
       var evalP = []
