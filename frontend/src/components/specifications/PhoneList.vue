@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap class="lista" style="margin-top:-5%; margin-left:6.5%">
-      <v-flex class="ml-3" xs12 md1 v-for="(equipo, index) in listaEquipos" :key="index">
+      <v-flex class="ml-3" xs1 md1 v-for="(equipo, index) in listaEquipos" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='equipo.img'>
           </v-img>
       </v-flex>

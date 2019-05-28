@@ -1,10 +1,10 @@
 <template>
-<v-container grid-list-xl class="mt-5">
-  <specificationsList v-if="activo ==='graph'"/>
-  <Charts v-if="activo ==='graph'"/>
-  <PhoneList v-if="activo ==='graph'"/>
-  <Twitteros v-if="activo ==='twitter'"/>
-  <Maps v-if="activo ==='maps'"/>
+  <v-container grid-list-xl class="mt-5">
+      <!--<specificationsList v-if="activo ==='graph'"/>-->
+      <Charts v-if="activo ==='graph'"/>
+      <PhoneList v-if="activo ==='graph'"/>
+      <Twitteros v-if="activo ==='twitter'"/>
+      <Maps v-if="activo ==='maps'"/>
   </v-container>
 </template>
 

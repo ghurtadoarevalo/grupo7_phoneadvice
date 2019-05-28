@@ -1,18 +1,31 @@
 <template>
-  <v-container grid-list-xl>
+  <v-container grid-list-xs>
+
+    <v-layout row wrap style="margin-top:-5%;" md10 >
+        <v-flex xs4 md1 style="margin-right:5%;" v-for="(equipo, index) in listaEquipos" :key="index" >
+            <v-btn flat color="rgb(14, 49, 138)" class="">
+                <v-icon large>{{equipo.icon}}</v-icon>
+                <span>{{equipo.nombre}}</span>
+            </v-btn>
+        </v-flex>
+    </v-layout>
+    
     <v-layout row wrap>
-      <v-flex md10>
+
+      <v-flex md10 xs12>
         <highcharts :options="chartOptions"></highcharts>
       </v-flex>
       <v-flex md2>
-        <VBtn fab dark color="#0E318A" @click="allGamma">
-          <v-icon large color="white">monetization_on</v-icon>
-        </VBtn> Gama
-        
-        <v-switch v-model="baja" label="Baja" color="#0E318A"></v-switch>
-        <v-switch v-model="media" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="alta" label="Alta" color="#0E318A"></v-switch>
-    
+        <v-flex>
+          <VBtn fab dark color="#0E318A" @click="allGamma">
+            <v-icon large color="white">monetization_on</v-icon>
+          </VBtn> Gama
+        </v-flex> 
+        <v-flex> 
+          <v-switch v-model="baja" label="Baja" color="#0E318A"></v-switch>
+          <v-switch v-model="media" label="Media" color="#0E318A"></v-switch>
+          <v-switch v-model="alta" label="Alta" color="#0E318A"></v-switch>
+        </v-flex>
       </v-flex>
     </v-layout>
   </v-container>
@@ -33,7 +46,14 @@ export default {
       baja: true,
       media: true,
       alta: true,
-      
+      listaEquipos: [
+        {id:1,nombre:'Batería',icon:'battery_charging_full'},
+        {id:2,nombre:'Pantalla',icon:'stay_current_portrait'},
+        {id:3,nombre:'Cámara',icon:'camera_alt'},
+        {id:4,nombre:'Capacidad',icon:'sd_storage'},
+        {id:5,nombre:'Diseño',icon:'brush'},
+        {id:6,nombre:'Rendimiento',icon:'trending_up'},
+      ],
       chartOptions: {
         chart: {
           //styledMode: true,
@@ -41,7 +61,7 @@ export default {
           type: 'column'
         },
         title: {
-          text: 'Evaluación de Celulares'
+          text: '.'
         },
         xAxis: {
           categories: ['Huawei p30 Pro ', 'Samsung A5 ', 'Iphone X ', 'Huawei mate 20 Pro ',
