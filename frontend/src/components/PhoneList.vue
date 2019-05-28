@@ -52,6 +52,15 @@
     <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+            <v-expand-transition>
+            <div
+            v-if="hover"
+            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+            style="height: 100%;"
+            >
+            $14.99
+            </div>
+        </v-expand-transition>
           </v-img>
       </v-flex>
     </v-layout>
