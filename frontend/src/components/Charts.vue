@@ -19,15 +19,32 @@
 </template>
 
 <script>
+import { mapState,mapMutations, Store } from 'vuex';
+
+function funcion(){
+  return [9,12,4,10,8,12,15,11];
+}
+
 
 export default {
+  name: 'Charts',
+  computed:{
+    ...mapState(['evalP'])
+  },
   methods: {
     allGamma(){
       this.baja = true;
       this.media = true;
       this.alta = true;
-      }
     },
+    hola(){
+      //this.$store.dispatch('get')
+    },
+  },
+  mounted(){
+    this.$store.dispatch('getEval');
+
+  },
   data () {
     return{
       baja: true,
@@ -71,7 +88,7 @@ export default {
         },
         series: [
           {
-          data: [9,12,4,10,8,12,15,11],
+          data: this.$store.state.evalPP,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
