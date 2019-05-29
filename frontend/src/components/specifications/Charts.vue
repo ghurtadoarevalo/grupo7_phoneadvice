@@ -2,70 +2,57 @@
   <v-container grid-list-xs>
 
     <v-layout row wrap style="margin-top:-5%;" md10 >
-        <v-flex xs4 md1 style="margin-right:5%;" v-for="(equipo, index) in listaEquipos" :key="index" >
+        <v-flex xs4 md1 style="margin-right:5%;" v-for="(specification, index) in specificationsList" :key="index" >
             <v-btn flat color="rgb(14, 49, 138)" class="">
-                <v-icon large>{{equipo.icon}}</v-icon>
-                <span>{{equipo.nombre}}</span>
+                <v-icon @click="filterBySpecification(specification.id)" large>{{specification.icon}}</v-icon>
+                <span>{{specification.name}}</span>
             </v-btn>
         </v-flex>
     </v-layout>
-    
     <v-layout row wrap>
-
-      <v-flex md10 xs12>
-        <highcharts :options="chartOptions"></highcharts>
+      <v-flex md10>
+        <highcharts :options="getData()"></highcharts>
       </v-flex>
       <v-flex md2>
-        <v-flex>
-          <VBtn fab dark color="#0E318A" @click="allGamma">
-            <v-icon large color="white">monetization_on</v-icon>
-          </VBtn> Gama
-        </v-flex> 
-        <v-flex> 
-          <v-switch v-model="baja" label="Baja" color="#0E318A"></v-switch>
-          <v-switch v-model="media" label="Media" color="#0E318A"></v-switch>
-          <v-switch v-model="alta" label="Alta" color="#0E318A"></v-switch>
-        </v-flex>
+        <VBtn fab dark color="#0E318A" @click="allGamma">
+          <v-icon large color="white">monetization_on</v-icon>
+        </VBtn> Gama
+        
+        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>
+    
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import { mapState,mapMutations, Store } from 'vuex';
 
 export default {
+  name: 'Charts',
+  computed:{
+    ...mapState(['evalP','evalN','listaEquipos','names']),
+  },
   methods: {
+    ...mapMutations(['filterByGama','filterBySpecification']),
     allGamma(){
-      this.baja = true;
-      this.media = true;
-      this.alta = true;
-      }
+      this.gamas = [true,true,true]
+      this.filterByGama(this.gamas);
     },
-  data () {
-    return{
-      baja: true,
-      media: true,
-      alta: true,
-      listaEquipos: [
-        {id:1,nombre:'Batería',icon:'battery_charging_full'},
-        {id:2,nombre:'Pantalla',icon:'stay_current_portrait'},
-        {id:3,nombre:'Cámara',icon:'camera_alt'},
-        {id:4,nombre:'Capacidad',icon:'sd_storage'},
-        {id:5,nombre:'Diseño',icon:'brush'},
-        {id:6,nombre:'Rendimiento',icon:'trending_up'},
-      ],
-      chartOptions: {
+    getData(){
+      var chartOptions = {
         chart: {
           //styledMode: true,
           renderTo: 'cointainer',
           type: 'column'
         },
         title: {
-          text: '.'
+          text: 'Evaluación de Celulares'
         },
         xAxis: {
-          categories: ['Huawei p30 Pro ', 'Samsung A5 ', 'Iphone X ', 'Huawei mate 20 Pro ',
-          ' Xiaomi redmi note 7 ', 'Motorola moto z3 play ', 'LG g7 Thinq ', 'Samsung Galaxy s10 ',],
+          categories: this.names,
     
         },
         yAxis:{
@@ -83,7 +70,7 @@ export default {
         },
         plotOptions: {
           column:{
-            borderRadius: 5
+            borderRadius: 4
           },
           series: {
               //stacking: 'normal'
@@ -91,16 +78,34 @@ export default {
         },
         series: [
           {
-          data: [9,12,4,10,8,12,15,11],
+          data: this.evalP,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
           {
-          data:[2,5,8,1,6,10,3,11],
+          data: this.evalN,
           name:'Evaluación Negativa',
           color: 'Red'
         }]
       }
+      return chartOptions;
+    },
+  },
+  /*mounted(){
+    this.$store.dispatch('getAll')
+  },*/
+  data () {
+    return{
+      gamas: [true,true,true],
+      specificationsList: [
+          {id:1,name:'Batería',icon:'battery_charging_full'},
+          {id:2,name:'Pantalla',icon:'stay_current_portrait'},
+          {id:3,name:'Cámara',icon:'camera_alt'},
+          {id:4,name:'Capacidad',icon:'sd_storage'},
+          {id:5,name:'Diseño',icon:'brush'},
+          {id:6,name:'Rendimiento',icon:'trending_up'},
+        ],
+      
     }
   }
   

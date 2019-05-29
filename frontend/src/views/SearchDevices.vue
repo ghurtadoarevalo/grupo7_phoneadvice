@@ -1,10 +1,10 @@
 <template>
 <v-container grid-list-xl>
   <ChangeToolbar/>
-  <Charts v-if="activo ==='graph'"/>
-  <PhoneList v-if="activo ==='graph'"/>
-  <Twitteros v-if="activo ==='twitter'"/>
-  <Maps v-if="activo ==='maps'"/>
+  <Charts v-if="active ==='graph'"/>
+  <PhoneList v-if="active ==='graph'"/>
+  <Twitteros v-if="active ==='twitter'"/>
+  <Maps v-if="active ==='maps'"/>
   </v-container>
 </template>
 
@@ -29,10 +29,10 @@
       Maps
     },
     computed:{
-      ...mapState(['activo'])
+      ...mapState(['active'])
     },
     beforeMount(){
-    this.$store.dispatch('getAll')
+      this.$store.dispatch('getAll')
     },
   }
 </script>

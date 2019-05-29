@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    activo: 'graph',
+    active: 'graph',
     evalP: [],
     evalN: [],
     names:[],
@@ -24,7 +24,13 @@ export default new Vuex.Store({
   mutations: {
     //Button bar
     changeActive(state, newStatus){
-      state.activo = newStatus
+      state.active = newStatus,
+      console.log(newStatus)
+
+    },
+    resetActive(state)
+    {
+        state.active = 'graph'
     },
     //Devices Evaluation
     getAll(state){
@@ -69,5 +75,9 @@ export default new Vuex.Store({
     getAll (context){
       context.commit('getAll')
     },
+    resetActive (context)
+    {
+        context.commit('resetActive')
+    }
   },
 })
