@@ -12,8 +12,6 @@ import com.twitter.hbc.core.processor.StringDelimitedProcessor;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
 
-
-
 import com.tbd.phoneadvice.config.KafkaConfiguration;
 import com.tbd.phoneadvice.config.TwitterConfiguration;
 import com.tbd.phoneadvice.mongo.models.Tweet;
@@ -37,7 +35,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Configurable
 @RequestMapping(value = "/kafkaProducer")
 public class TwitterKafkaProducer {
-
 
     private Client client;
     private BlockingQueue<String> queue;
@@ -68,18 +65,22 @@ public class TwitterKafkaProducer {
         return new KafkaProducer<>(properties);
     }
 
-    public void run(TweetRepository tweetRepository, DataTweetRepository dataRepository, List<String> hashtags) {
+    public void run(TweetRepository tweetRepository, List<String> hashtags) {
 
         StatusesFilterEndpoint endpoint = new StatusesFilterEndpoint();
         endpoint.trackTerms(hashtags);
+
         client = new ClientBuilder()
                 .hosts(Constants.STREAM_HOST)
                 .authentication(authentication)
                 .endpoint(endpoint)
+                .gzipEnabled(true)
                 .processor(new StringDelimitedProcessor(queue))
                 .build();
 
+
         client.connect();
+
 
         try (Producer<Long, String> producer = getProducer()) {
             while (true) {
@@ -89,7 +90,6 @@ public class TwitterKafkaProducer {
                 if(tweetA.getLang().equals("es"))
                 {
                     tweetRepository.save(tweetA);
-                    dataRepository.save(tweetA);
                 }
                 String keyLong = tweet.getId();
                 long key = Long.parseLong(keyLong);

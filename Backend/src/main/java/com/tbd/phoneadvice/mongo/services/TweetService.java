@@ -1,7 +1,8 @@
 package com.tbd.phoneadvice.mongo.services;
 
-import com.tbd.phoneadvice.elasticsearch.repositories.DataTweetRepository;
 import com.tbd.phoneadvice.kafka.TwitterKafkaProducer;
+//import com.tbd.phoneadvice.kafka.KafkaConsumer;
+//import com.tbd.phoneadvice.kafka.TwitterListener;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,19 +18,24 @@ import java.util.List;
 
 
 @RestController
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/tweet")
 public class TweetService {
 
     @Autowired
     private TweetRepository tweetRepository;
 
-    @Autowired
-    private DataTweetRepository dataRepository;
 
     @Autowired
     private TwitterKafkaProducer producer;
 
+    /*
+    @Autowired
+    private TwitterListener listener;
+
+    @Autowired
+    private KafkaConsumer consumer;
+    */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Tweet getTweetbyId(@PathVariable String id)
@@ -44,6 +50,7 @@ public class TweetService {
         return this.tweetRepository.findAll();
     }
 
+
     @RequestMapping(value = "/startKafka", method = RequestMethod.GET)
     public void startGet(){
 
@@ -52,12 +59,12 @@ public class TweetService {
 
         List<String> hashtags = new ArrayList<>();
 
-        hashtags.add("#huawei");
-        hashtags.add("#samsung");
-        hashtags.add("#apple");
-        hashtags.add("#sony");
+        hashtags.add("huawei");
+        hashtags.add("samsung");
+        hashtags.add("apple");
+        hashtags.add("sony");
 
-        this.producer.run(this.tweetRepository,this.dataRepository,hashtags);
+        this.producer.run(this.tweetRepository,hashtags);
     }
 
     @RequestMapping(value = "/stopKafka", method = RequestMethod.GET)

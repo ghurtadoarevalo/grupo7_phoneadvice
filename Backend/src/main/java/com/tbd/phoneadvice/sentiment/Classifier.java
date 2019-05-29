@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
+
+import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import opennlp.tools.doccat.BagOfWordsFeatureGenerator;
@@ -23,14 +26,11 @@ import opennlp.tools.util.TrainingParameters;
 
 public class Classifier {
 
-    /*
     private DoccatModel model;
     private DocumentCategorizerME categorizer;
 
-    /*
-    @Autowired
-    private ResourceLoader resourceLoader;
-
+    @Value("classpath:tweets.txt")
+    private Resource resourceFile;
 
     public DoccatModel getModel() {
         return model;
@@ -44,41 +44,54 @@ public class Classifier {
     public void train() {
         InputStreamFactory dataIn=null;
         try {
-
             FeatureGenerator[] def = { new BagOfWordsFeatureGenerator() };
             DoccatFactory factory=new DoccatFactory(def);
+            File tweets = resourceFile.getFile();
+            dataIn=new MarkableFileInputStreamFactory(tweets);
+            ObjectStream<String> lineStream=new PlainTextByLineStream(dataIn,StandardCharsets.UTF_8);
+            ObjectStream<DocumentSample> sampleStream=new DocumentSampleStream(lineStream);
 
             TrainingParameters params = TrainingParameters.defaultParams();
             params.put(TrainingParameters.CUTOFF_PARAM, Integer.toString(0));
             params.put(TrainingParameters.ITERATIONS_PARAM, Integer.toString(100));
 
-
-
-            //Resource resource=resourceLoader.getResource("classpath:tweets.txt");
-
-            Resource resource = null;
-            File tweets=resource.getFile();
-
-            dataIn=new MarkableFileInputStreamFactory(tweets);
-            ObjectStream<String> lineStream=new PlainTextByLineStream(dataIn,StandardCharsets.UTF_8);
-            ObjectStream<DocumentSample> sampleStream=new DocumentSampleStream(lineStream);
-
             this.model=DocumentCategorizerME.train("es",sampleStream,params,factory);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.categorizer=new DocumentCategorizerME(this.model);
     }
+
+
     public HashMap<String,Double> classify(String tweet){
+
         String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
         double[] prob=categorizer.categorize(words);
-
-        HashMap<String,Double> result=new HashMap<String,Double>();
+        HashMap<String,Double> result= new HashMap<String,Double>();
         for(int i=0;i<categorizer.getNumberOfCategories();i++){
             result.put(categorizer.getCategory(i),prob[i]);
+            System.out.println("Categoria \n"+categorizer.getCategory(i));
+            System.out.println("Prob \n"+prob[i]);
         }
+
         return result;
     }
-    */
+
+    public Boolean tweetPositivo(String tweet){
+
+        String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
+        double[] prob=categorizer.categorize(words);
+        Double positive = prob[0];
+        Double negative = prob[1];
+
+
+        for(int i=0;i<categorizer.getNumberOfCategories();i++){
+            System.out.println("Categoria \n"+categorizer.getCategory(i));
+            System.out.println("Prob \n"+prob[i]);
+        }
+        if(positive > negative) { return true; }
+        else { return false; }
+
+    }
+
 }
