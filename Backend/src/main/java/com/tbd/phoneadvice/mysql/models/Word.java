@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,18 +19,22 @@ public class Word {
     @Column(name = "content", nullable = false, length = 30)
     private String content;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "phone_id", referencedColumnName = "phone_id")
     private Phone phone;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "specification_id", referencedColumnName = "specification_id")
     private Specification specification;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
     private Brand brand;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "words_bag_id", referencedColumnName = "words_bag_id")
     private WordsBag words_bag  ;

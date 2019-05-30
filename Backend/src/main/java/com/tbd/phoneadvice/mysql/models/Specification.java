@@ -16,14 +16,16 @@ public class Specification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "specification_id", unique = true, nullable = false)
-    private Long specification_id;
+    private Long specificationId;
 
     @Column(name = "name", nullable = false, length = 30)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "specification", cascade = CascadeType.ALL)
     private Set<Word> words;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "specification")
     Set<PhoneSpecification> phoneSpecifications;
 }

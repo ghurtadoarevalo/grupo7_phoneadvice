@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class PhoneSpecificationKey implements Serializable {
 
     @Column(name = "phone_id", unique = true, nullable = false)
-    private Long phone_id;
+    private Long phoneId;
 
     @Column(name = "specification_id", unique = true, nullable = false)
-    private Long specification_id;
+    private Long specificationId;
 }

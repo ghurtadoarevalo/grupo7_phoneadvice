@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class WordsBag {
     @Column(name = "type", nullable = false, length = 30)
     private String type;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "words_bag", cascade = CascadeType.ALL)
     private Set<Word> words;
 }

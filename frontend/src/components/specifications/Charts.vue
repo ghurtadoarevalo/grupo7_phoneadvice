@@ -1,10 +1,13 @@
 <template>
   <v-container grid-list-xs>
 
+      
+
+
     <v-layout row wrap style="margin-top:-5%;" md10 >
         <v-flex xs4 md1 style="margin-right:5%;" v-for="(specification, index) in specificationsList" :key="index" >
-            <v-btn flat color="rgb(14, 49, 138)" class="">
-                <v-icon @click="filterBySpecification(specification.id)" large>{{specification.icon}}</v-icon>
+            <v-btn @click="filterBySpecification(specification.id)" flat color="rgb(14, 49, 138)" class="">
+                <v-icon large>{{specification.icon}}</v-icon>
                 <span>{{specification.name}}</span>
             </v-btn>
         </v-flex>

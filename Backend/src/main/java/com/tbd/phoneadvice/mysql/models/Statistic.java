@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Statistic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "statistic_id", unique = true, nullable = false)
-    private Long statistic_id;
+    private Long statisticId;
 
     @Column(name = "positive_density", nullable = false)
     private int positive_density;
@@ -25,12 +26,15 @@ public class Statistic {
     @Column(name = "negative_density", nullable = false)
     private int negative_density;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
     private Set<Phone> phones;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
     private Set<PhoneSpecification> phoneSpecifications;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
     private Set<Brand> brands;
 

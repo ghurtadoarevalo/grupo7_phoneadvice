@@ -17,12 +17,20 @@ public class PhoneService {
     @Autowired
     private PhoneRepository phoneRepository;
 
+    @RequestMapping(value = "/getall", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Phone> getAll()
+    {
+        return phoneRepository.findAll();
+    }
+
+    /*
     @RequestMapping(value = "/{specification_id}/specification", method = RequestMethod.GET)
     @ResponseBody
     public List<Phone> getPhonesBySpecificationId(@PathVariable Long specification_id)
     {
-        return phoneRepository.findBySpecifications_Specification_id(specification_id);
+        //return phoneRepository.findBySpecifications_Specification_id(specification_id);
     }
-
+*/
 
 }

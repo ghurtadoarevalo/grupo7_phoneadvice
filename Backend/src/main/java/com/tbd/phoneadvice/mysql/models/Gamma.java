@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Gamma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gamma_id", unique = true, nullable = false)
-    private Long gamma_id;
+    private Long gammaId;
 
     @Column(name = "name", nullable = false, length = 30)
     private String name;
@@ -25,6 +26,7 @@ public class Gamma {
     @Column(name = "max_price", nullable = false)
     private int max_price;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "gamma", cascade = CascadeType.ALL)
     private Set<Phone> phones;
 }

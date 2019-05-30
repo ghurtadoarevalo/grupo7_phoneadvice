@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class DataSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "data_sheet_id", unique = true, nullable = false)
-    private Long data_sheet_id;
+    private Long dataSheetId;
 
     @Column(name = "cpu", nullable = false, length = 100)
     private String cpu;
@@ -41,6 +42,7 @@ public class DataSheet {
     @Column(name = "batery", nullable = false, length = 100)
     private String batery;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "data_sheet")
     private Phone phone;
 }
