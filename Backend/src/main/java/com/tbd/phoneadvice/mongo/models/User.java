@@ -7,12 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 
-@Data
-@NoArgsConstructor
-@Document(indexName = "users", type = "users",shards = 2)
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class User {
-    private String id;
+    private Long id;
     private String name;
 
     @SerializedName("screen_name")
@@ -22,7 +18,7 @@ public class User {
     @SerializedName("followers_count")
     private int followersCount;
 
-    public User(String id, String name, String screenName, String location, int followersCount) {
+    public User(Long id, String name, String screenName, String location, int followersCount) {
         this.id = id;
         this.name = name;
         this.screenName = screenName;
@@ -30,11 +26,11 @@ public class User {
         this.followersCount = followersCount;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,6 +1,8 @@
 package com.tbd.phoneadvice.config;
 
-/*
+//PROFE
+
+
 import com.tbd.phoneadvice.kafka.TwitterListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 
+import twitter4j.TwitterObjectFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
@@ -32,10 +35,6 @@ public class TwitterAppConfiguration {
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
-
-    @Autowired
-    private TwitterConfiguration properties;
-
     public static final String CONSUMER_KEY = "V7zUq8rn4yQEYsFR5T8eloOnl";
     public static final String CONSUMER_SECRET = "evBzrijWUwvDdtGMyhh5k4uYbaYLsqnA3iagREHll3KOD2cwrx";
     public static final String ACCESS_TOKEN = "1132408406046846977-LZe7i4H22c8sXXNwycJWeyiZjufSky";
@@ -45,7 +44,8 @@ public class TwitterAppConfiguration {
     @ConditionalOnMissingBean
     public TwitterStreamFactory twitterStreamFactory() {
         ConfigurationBuilder configurationBuilder=new ConfigurationBuilder();
-        configurationBuilder.setDebugEnabled(false)
+        configurationBuilder
+                .setDebugEnabled(false)
                 .setOAuthConsumerKey(CONSUMER_KEY)
                 .setOAuthConsumerSecret(CONSUMER_SECRET)
                 .setOAuthAccessToken(ACCESS_TOKEN)
@@ -53,6 +53,7 @@ public class TwitterAppConfiguration {
                 .setJSONStoreEnabled(true);
         return new TwitterStreamFactory(configurationBuilder.build());
     }
+
     @Bean
     @ConditionalOnMissingBean
     public TwitterStream twitterStream(TwitterStreamFactory twitterStreamFactory) {
@@ -80,4 +81,3 @@ public class TwitterAppConfiguration {
 }
 
 
-*/

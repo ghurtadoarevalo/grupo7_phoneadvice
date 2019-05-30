@@ -1,12 +1,14 @@
 package com.tbd.phoneadvice.kafka;
 
-/*
+
 import javax.annotation.PostConstruct;
 
 import com.google.gson.Gson;
 import com.mongodb.util.JSON;
 import com.tbd.phoneadvice.mongo.models.Tweet;
+import com.tbd.phoneadvice.mongo.models.User;
 import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
+import com.tbd.phoneadvice.mongo.services.TweetService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -37,6 +39,10 @@ public class TwitterListener {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
 
+    @Autowired
+    private TweetRepository tweetRepository;
+
+
     @Value(value = "${kafka.topicName}")
     private String topicName;
 
@@ -44,7 +50,10 @@ public class TwitterListener {
         twitterStream.addListener(new StatusListener()
         {
             public void onStatus(Status status) {
-                System.out.println(status.toString());
+
+                User user = new User(status.getUser().getId(),status.getUser().getName(),status.getUser().getScreenName(),status.getUser().getLocation(),status.getUser().getFollowersCount());
+                Tweet tweet = new Tweet(status.getId(),status.getText(),status.getLang(),user,status.getRetweetCount(),status.getFavoriteCount());
+                tweetRepository.save(tweet);
                 kafkaTemplate.send(topicName,status.toString());
             }
 
@@ -75,6 +84,7 @@ public class TwitterListener {
         filter.language(new String[]{"es"});
         twitterStream.filter(filter);
 
+
     }
 
 
@@ -86,4 +96,3 @@ public class TwitterListener {
         this.twitterStream = twitterStream;
     }
 }
-*/

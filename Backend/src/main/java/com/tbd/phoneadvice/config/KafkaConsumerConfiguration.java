@@ -1,5 +1,9 @@
 package com.tbd.phoneadvice.config;
-/*
+
+
+//PROFE
+
+
 import java.util.Collections;
 import java.util.Properties;
 
@@ -17,9 +21,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfiguration {
-    @Value("${kafka.bootstrap-servers}")
+    @Value("${kafka.bootstrapAddress}")
     private String kafkaBootstrapServers;
-    @Value("${kafka.topic}")
+    @Value("${kafka.topicName}")
     private String kafkaTopic;
     @Value("${zookeeper.group-id}")
     private String zookeeperGroupId;
@@ -43,4 +47,3 @@ public class KafkaConsumerConfiguration {
         return(consumer);
     }
 }
-*/

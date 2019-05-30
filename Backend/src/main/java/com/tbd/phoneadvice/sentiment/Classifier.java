@@ -62,7 +62,7 @@ public class Classifier {
         this.categorizer=new DocumentCategorizerME(this.model);
     }
 
-
+/*
     public HashMap<String,Double> classify(String tweet){
 
         String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
@@ -76,22 +76,16 @@ public class Classifier {
 
         return result;
     }
-
-    public Boolean tweetPositivo(String tweet){
+*/
+    public Boolean classify(String tweet){
 
         String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
         double[] prob=categorizer.categorize(words);
-        Double positive = prob[0];
+        //Double positive = prob[0];
+        //Como son 2 categorias= positivo = 100% - negativo%
         Double negative = prob[1];
-
-
-        for(int i=0;i<categorizer.getNumberOfCategories();i++){
-            System.out.println("Categoria \n"+categorizer.getCategory(i));
-            System.out.println("Prob \n"+prob[i]);
-        }
-        if(positive > negative) { return true; }
-        else { return false; }
-
+        if(0.2 < negative) { return false; }
+        else { return true; }
     }
 
 }

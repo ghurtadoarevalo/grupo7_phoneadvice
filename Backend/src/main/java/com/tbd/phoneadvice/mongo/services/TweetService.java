@@ -1,8 +1,8 @@
 package com.tbd.phoneadvice.mongo.services;
 
-import com.tbd.phoneadvice.kafka.TwitterKafkaProducer;
-//import com.tbd.phoneadvice.kafka.KafkaConsumer;
-//import com.tbd.phoneadvice.kafka.TwitterListener;
+//import com.tbd.phoneadvice.kafka.TwitterKafkaProducer;
+import com.tbd.phoneadvice.kafka.KafkaConsumer;
+import com.tbd.phoneadvice.kafka.TwitterListener;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,17 +25,34 @@ public class TweetService {
     @Autowired
     private TweetRepository tweetRepository;
 
-
+    /*
     @Autowired
     private TwitterKafkaProducer producer;
+    */
 
-    /*
     @Autowired
     private TwitterListener listener;
 
     @Autowired
     private KafkaConsumer consumer;
-    */
+
+
+    @RequestMapping(value = "/startKafka", method = RequestMethod.GET)
+    @ResponseBody
+    public void start()
+    {
+        List<String> hashtags = new ArrayList<>();
+
+        hashtags.add("huawei");
+        hashtags.add("samsung");
+        hashtags.add("apple");
+        hashtags.add("sony");
+
+
+        listener.run(hashtags);
+        //consumer.run();
+    }
+    /*
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Tweet getTweetbyId(@PathVariable String id)
@@ -66,10 +83,10 @@ public class TweetService {
 
         this.producer.run(this.tweetRepository,hashtags);
     }
-
+*/
     @RequestMapping(value = "/stopKafka", method = RequestMethod.GET)
     public List<Tweet> stopGet(){
-        this.producer.stop();
+        this.consumer.stop();
         return tweetRepository.findAll();
     }
 

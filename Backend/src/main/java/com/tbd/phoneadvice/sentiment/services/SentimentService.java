@@ -1,14 +1,10 @@
 package com.tbd.phoneadvice.sentiment.services;
 
-
 import com.tbd.phoneadvice.elasticsearch.repositories.DataTweetRepository;
 import com.tbd.phoneadvice.mongo.models.Tweet;
-import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
 import com.tbd.phoneadvice.sentiment.Classifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -16,7 +12,7 @@ import java.util.List;
 public class SentimentService {
 
     @Autowired
-    private DataTweetRepository repository;
+    private DataTweetRepository dataRepository;
 
     @Autowired
     private Classifier classifier;
@@ -24,19 +20,17 @@ public class SentimentService {
     @RequestMapping(value = "/{text}", method = RequestMethod.GET)
     @ResponseBody
     public void tweetSentiment(@PathVariable final String text){
-        List<Tweet> tweetList = repository.findByText(text);
+        List<Tweet> tweetList = dataRepository.findByText(text);
         int positive = 0;
         int negative = 0;
-        for(int i = 0 ; i < tweetList.size();i++)
-        {
+        for(int i = 0 ; i < tweetList.size();i++) {
             Tweet tweet = tweetList.get(i);
-            boolean typeOfTweet = classifier.tweetPositivo(tweet.getText());
+            boolean typeOfTweet = classifier.classify(tweet.getText());
             if(typeOfTweet){ positive++; }
             else { negative++; }
         }
         System.out.println("\nPositivo = "+positive);
         System.out.println("\nNegativo = "+negative);
     }
-
 
 }

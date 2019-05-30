@@ -1,5 +1,5 @@
 package com.tbd.phoneadvice.kafka;
-
+/*
 import com.google.gson.Gson;
 import com.tbd.phoneadvice.elasticsearch.repositories.DataTweetRepository;
 import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
@@ -77,8 +77,6 @@ public class TwitterKafkaProducer {
                 .gzipEnabled(true)
                 .processor(new StringDelimitedProcessor(queue))
                 .build();
-
-
         client.connect();
 
 
@@ -106,3 +104,4 @@ public class TwitterKafkaProducer {
 
     public void stop() {client.stop();}
 }
+*/
