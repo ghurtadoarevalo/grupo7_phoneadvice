@@ -1,17 +1,20 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 
 @Entity
 @Table(name = "statistic",schema = "phoneadvice")
+@Data
 public class Statistic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "statistic_id", unique = true, nullable = false)
-    private int statistic_id;
+    private Long statistic_id;
 
     @Column(name = "positive_density", nullable = false)
     private int positive_density;

@@ -1,11 +1,14 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "phone_specification",schema = "phoneadvice")
+@Data
 public class PhoneSpecification {
 
     @EmbeddedId

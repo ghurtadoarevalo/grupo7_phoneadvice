@@ -6,6 +6,8 @@
   <Twitteros v-if="active ==='twitter'"/>
   <Maps v-if="active ==='maps'"/>
   </v-container>
+
+  
 </template>
 
 <script>

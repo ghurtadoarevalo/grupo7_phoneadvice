@@ -1,8 +1,10 @@
+
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Axios from 'axios';
 
 Vue.use(Vuex)
-
+Vue.use(Axios)
 export default new Vuex.Store({
   state: {
     active: 'graph',
@@ -31,6 +33,10 @@ export default new Vuex.Store({
     resetActive(state)
     {
         state.active = 'graph'
+    },
+    filterBySpecification(state)
+    {
+
     },
     //Devices Evaluation
     getAll(state){

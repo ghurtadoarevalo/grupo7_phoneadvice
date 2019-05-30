@@ -1,7 +1,10 @@
 <template>
   <v-container grid-list-xl>
-    <VLayout row wrap class="mt-5">
+                      <!-- No borrar, lo usé para un random 
+                          <li v-for="(k,index) in query">{{k}}</li>
+                        -->
 
+    <VLayout row wrap class="mt-5">
       <v-flex xs12 md3>
         <v-card height="100%">
           <v-img src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg">
@@ -50,10 +53,8 @@
               <v-layout >
                 <v-flex>
                   <span class="headline white--text">Avengers Infinity</span>
-                </v-flex>
-                
+                </v-flex>   
               </v-layout>
-              
             </v-container>  
           </v-img>
           <v-card-title>
@@ -76,7 +77,6 @@
                 <v-flex>
                   <span class="headline white--text">Avengers Infinity</span>
                 </v-flex>
-                
               </v-layout>
               
             </v-container>  
@@ -117,9 +117,28 @@
   export default {
     data(){
       return{
-      dialog:false
+      dialog:false,
+      //query:[]
       }
+    },
+    mounted()
+    {
+        //Esto lo usé para un random, no borrar aún xD
+        //for (let index = 1; index < 11; index++) {
+            //for (let index2 = 1; index2 < 7; index2++) {
+                //let positive = Math.floor(Math.random() * (100 - 1 + 1))+1;
+                //let negative = Math.floor(Math.random() * (100 - 1 + 1))+1;
+                //let neutral = Math.floor(Math.random() * (100 - 1 + 1))+1;
+                //let assessment = Math.floor(Math.random() * (7 - 1 + 1))+1;
+
+                //let query = "INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (" + positive + "," + negative + ","+ neutral+");";
+                //let query = "INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES ("+ index +","+ index2 + "," + assessment +");"
+                //this.query.push(query);
+            //}
+
+        //}
     }
+    
   }
 </script>
 

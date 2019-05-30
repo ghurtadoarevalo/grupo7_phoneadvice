@@ -48,8 +48,7 @@ public class ActorService {
     @RequestMapping(value = "/{id_actor}/film/{id_film}", method = RequestMethod.GET)
     @ResponseBody
     public void postActorInMovie(@PathVariable Long id_actor, @PathVariable Long id_film) {
-
-        if (this.repository.existsById(id_actor) && this.repository2.existsById(id_film))
+         if (this.repository.existsById(id_actor) && this.repository2.existsById(id_film))
         {
             Actor actor = this.repository.findActorByActorId(id_actor);
             Film film = this.repository2.findFilmByFilmId((id_film));

@@ -1,17 +1,20 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 
 @Entity
 @Table(name = "brand",schema = "phoneadvice")
+@Data
 public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id", unique = true, nullable = false)
-    private int brand_id;
+    private Long brand_id;
 
     @Column(name = "name", nullable = false, length = 30)
     private String name;
@@ -32,36 +35,9 @@ public class Brand {
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private Set<Word> words;
 
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setAssessment(int assessment) {
-        this.assessment = assessment;
-    }
-
-    public void setName(String name) {
+    public Brand(String name, String description, int assessment) {
         this.name = name;
-    }
-
-    public void setBrand_id(int brand_id) {
-        this.brand_id = brand_id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAssessment() {
-        return assessment;
-    }
-
-    public int getBrand_id() {
-        return brand_id;
+        this.description = description;
+        this.assessment = assessment;
     }
 }
