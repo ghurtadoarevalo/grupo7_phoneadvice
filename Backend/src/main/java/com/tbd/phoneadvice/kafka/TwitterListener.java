@@ -50,11 +50,8 @@ public class TwitterListener {
         twitterStream.addListener(new StatusListener()
         {
             public void onStatus(Status status) {
-
-                User user = new User(status.getUser().getId(),status.getUser().getName(),status.getUser().getScreenName(),status.getUser().getLocation(),status.getUser().getFollowersCount());
-                Tweet tweet = new Tweet(status.getId(),status.getText(),status.getLang(),user,status.getRetweetCount(),status.getFavoriteCount());
-                tweetRepository.save(tweet);
-                kafkaTemplate.send(topicName,status.toString());
+                String tweetJson = TwitterObjectFactory.getRawJSON(status);
+                kafkaTemplate.send(topicName,tweetJson);
             }
 
             @Override

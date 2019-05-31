@@ -48,9 +48,8 @@ public class TweetService {
         hashtags.add("apple");
         hashtags.add("sony");
 
-
         listener.run(hashtags);
-        //consumer.run();
+        consumer.run();
     }
     /*
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

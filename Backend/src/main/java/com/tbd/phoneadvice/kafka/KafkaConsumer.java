@@ -12,6 +12,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.tbd.phoneadvice.mongo.models.Tweet;
+import com.tbd.phoneadvice.mongo.models.User;
 import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
 import lombok.var;
 import org.apache.kafka.clients.consumer.Consumer;
@@ -39,81 +40,32 @@ public class KafkaConsumer {
 
     @Scheduled(cron = "0 0/1 * * * ?")
     public void run() {
-        java.util.Date date = new java.util.Date();
-
         this.status = true;
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("EEE MMM dd HH:mm:ss ZZZZZ yyyy");
-        Gson gson = gsonBuilder.create();
-        //JsonReader reader = new JsonReader(new StringReader("s"));
-        Type type = new TypeToken<Tweet>() {}.getType();
-
         while(status) {
             ConsumerRecords<Long, String> records = consumer.poll(Duration.of(1, ChronoUnit.SECONDS));
             for (ConsumerRecord<Long, String> record : records) {
+                try{
+                    System.out.println("\n");
+                    System.out.println(record.value());
+                    System.out.println("\n");
+                    Status s = TwitterObjectFactory.createStatus(record.value());
+                    String country = "null",countryCode = "null",region = "null";
+                    Double latitude = -1.0,longitude = -1.0;
+                    if(s.getPlace() != null) {
+                        country = s.getPlace().getCountry();
+                        countryCode = s.getPlace().getCountryCode();
+                        region = s.getPlace().getName();
+                    }
+                    if(s.getGeoLocation() != null)
+                    {
+                        latitude = s.getGeoLocation().getLatitude();
+                        longitude = s.getGeoLocation().getLongitude();
+                    }
+                    User user = new User(s.getUser().getId(),s.getUser().getName(),s.getUser().getScreenName(),s.getUser().getLocation(),s.getUser().getFollowersCount());
+                    Tweet tweet = new Tweet(s.getId(),s.getText(),s.getLang(),user,s.getRetweetCount(),s.getFavoriteCount(),country,countryCode,region,latitude,longitude);
+                    this.tweetRepository.save(tweet);
 
-                //Status s = TwitterObjectFactory.createStatus(record.value());
-
-                //System.out.println(record.value());
-/*
-                try {
-                    /*
-                    String e = record.value();
-                    String p = e.substring(e.indexOf("id"), e.lastIndexOf("}") + 1);
-                    String f = "{" + p;
-                    Status s = TwitterObjectFactory.createStatus(f);
-                    System.out.println("\n"+s+"\n");
-                    System.out.println(s.getText());
-
-                    //JsonParser parser = new JsonParser();
-
-                    //String retVal = parser.parse(record.value()).getAsString();
-
-                    //Status s = TwitterObjectFactory.createStatus(retVal);
-                    //System.out.println(s.getText());
-
-
-                }catch(TwitterException name){
-                    System.out.println(name);
-                }
-            */
-
-                //record.value().replace("StatusJSONImpl","");
-                //Tweet incomingTweet = new ObjectMapper().readValue(record.value(), Tweet.class);
-
-                    //JsonConvert j = new JsonConvert();
-                    //var result = JsonConvert.DeserializeObject(record.value());
-
-                    //String statusJson = TwitterObjectFactory.getRawJSON(record.value());
-
-                    //JSONObject JSON_complete = new JSONObject(statusJson);
-
-
-                    //Tweet incomingTweet = gson.fromJson(record.value(), type);
-                    //String languageTweet = JSON_user.getString("name");
-
-                    //Gson gsons = new Gson();
-                    //String json = gsons.toJson( record.value().replace("StatusJSONImpl","") );
-
-                    //System.out.println( json );
-                    //JSONObject JSON_complete = new JSONObject(json);
-
-                    //System.out.println(record.value());
-                    //JSONObject f = new JSONObject();
-                    //JSONObject d = f.getJSONObject(record.value());
-                    //TwitterObjectFactory s = TwitterObjectFactory.
-
-                    //String j = TwitterObjectFactory.getRawJSON(record.value());
-                    //String e = record.value();
-                    //JSONObject d = new twitter4j.JSONObject(e.substring(e.indexOf("{"), e.lastIndexOf("}") + 1).replace("[]","'null'"));
-                    //System.out.println("\nACA FALLO");
-                    //JSONObject JSON_user = d.getJSONObject("user");
-                    //System.out.println("\nACA FALLO denuevo");
-                    //String languageTweet = JSON_user.getString("name");
-                    //System.out.println(languageTweet);
-                    //Status status = TwitterObjectFactory.createStatus(j);
-
-                    //tweetRepository.save(incomingTweet);
+                }catch(TwitterException name) { System.out.println(name); }
 
                 if (status == false) {
                     break;
