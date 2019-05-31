@@ -18,7 +18,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 
-@EnableKafka
+//@EnableKafka
 @Configuration
 public class KafkaConsumerConfiguration {
     @Value("${kafka.bootstrapAddress}")
