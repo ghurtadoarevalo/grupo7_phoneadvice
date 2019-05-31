@@ -19,22 +19,11 @@ public class Specification {
     @Column(name = "name", nullable = false, length = 30)
     private String name;
 
-    @Column(name = "assessment", nullable = false)
-    private int assessment;
-
-    @ManyToMany(mappedBy = "specifications")
-    private Set<Phone> phones = new HashSet<>();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
-    private Statistic statistic;
-
     @OneToMany(mappedBy = "specification", cascade = CascadeType.ALL)
     private Set<Word> words;
 
-    public int getAssessment() {
-        return assessment;
-    }
+    @OneToMany(mappedBy = "specification")
+    Set<PhoneSpecification> phoneSpecifications;
 
     public String getName() {
         return name;
@@ -44,7 +33,4 @@ public class Specification {
         this.name = name;
     }
 
-    public void setAssessment(int assessment) {
-        this.assessment = assessment;
-    }
 }

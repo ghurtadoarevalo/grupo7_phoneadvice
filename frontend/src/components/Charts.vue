@@ -1,17 +1,18 @@
+
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
       <v-flex md10>
-        <highcharts :options="chartOptions"></highcharts>
+        <highcharts :options="getData()"></highcharts>
       </v-flex>
       <v-flex md2>
         <VBtn fab dark color="#0E318A" @click="allGamma">
           <v-icon large color="white">monetization_on</v-icon>
         </VBtn> Gama
         
-        <v-switch v-model="baja" label="Baja" color="#0E318A"></v-switch>
-        <v-switch v-model="media" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="alta" label="Alta" color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>
+        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>
     
       </v-flex>
     </v-layout>
@@ -19,22 +20,22 @@
 </template>
 
 <script>
+import { mapState,mapMutations, Store } from 'vuex';
 
 export default {
+  name: 'Charts',
+  computed:{
+    ...mapState(['evalP','evalN','listaEquipos','names']),
+  },
   methods: {
+    ...mapMutations(['filterByGama']),
     allGamma(){
-      this.baja = true;
-      this.media = true;
-      this.alta = true;
-      }
+      this.gamas = [true,true,true]
+      this.filterByGama(this.gamas);
+
     },
-  data () {
-    return{
-      baja: true,
-      media: true,
-      alta: true,
-      
-      chartOptions: {
+    getData(){
+      var chartOptions = {
         chart: {
           //styledMode: true,
           renderTo: 'cointainer',
@@ -44,8 +45,7 @@ export default {
           text: 'Evaluación de Celulares'
         },
         xAxis: {
-          categories: ['Huawei p30 Pro ', 'Samsung A5 ', 'Iphone X ', 'Huawei mate 20 Pro ',
-          ' Xiaomi redmi note 7 ', 'Motorola moto z3 play ', 'LG g7 Thinq ', 'Samsung Galaxy s10 ',],
+          categories: this.names,
     
         },
         yAxis:{
@@ -63,7 +63,7 @@ export default {
         },
         plotOptions: {
           column:{
-            borderRadius: 5
+            borderRadius: 4
           },
           series: {
               //stacking: 'normal'
@@ -71,16 +71,25 @@ export default {
         },
         series: [
           {
-          data: [9,12,4,10,8,12,15,11],
+          data: this.evalP,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
           {
-          data:[2,5,8,1,6,10,3,11],
+          data: this.evalN,
           name:'Evaluación Negativa',
           color: 'Red'
         }]
       }
+      return chartOptions;
+    },
+  },
+  /*mounted(){
+    this.$store.dispatch('getAll')
+  },*/
+  data () {
+    return{
+      gamas: [true,true,true],
     }
   }
   

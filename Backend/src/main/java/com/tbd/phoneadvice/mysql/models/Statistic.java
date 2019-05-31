@@ -26,11 +26,10 @@ public class Statistic {
     private Set<Phone> phones;
 
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
-    private Set<Specification> specifications;
+    private Set<PhoneSpecification> phoneSpecifications;
 
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
     private Set<Brand> brands;
-
 
     public int getNegative_density() {
         return negative_density;

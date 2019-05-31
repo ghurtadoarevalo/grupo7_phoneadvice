@@ -11,7 +11,6 @@ export default {
       return{ 
       chartOptions: {
         chart: {
-          //styledMode: true,
           renderTo: 'cointainer',
           type: 'column'
         },
