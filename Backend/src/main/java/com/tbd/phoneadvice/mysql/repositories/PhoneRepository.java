@@ -14,7 +14,7 @@ import java.util.List;
 public interface PhoneRepository extends JpaRepository<Phone,Long> {
     //Phone findByPhone_id(int id);
 
-    //@Query("SELECT ps FROM PhoneSpecification ps WHERE ps.ps_id.specification_id = ?1")
+
     //List<Phone> findByPsId_SpecificationId(Long specification_id);
 }
 

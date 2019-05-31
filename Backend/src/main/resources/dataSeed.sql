@@ -135,6 +135,20 @@ INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`
 INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`, `brand_id`, `gamma_id`,`statistic_id`) VALUES ('0', 'El ZenFone 3 presume de un diseño ágil y exquisito inspirado en la belleza de la naturaleza. Es una obra de arte en metal y vidrio que captura el mundo con la máxima precisión. Un teléfono extraordinario para una vida menos ordinaria.', 'asus/zenfone_3', 'Zenfone 3', '6', '2',9);
 INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`, `brand_id`, `gamma_id`,`statistic_id`) VALUES ('0', 'Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones', 'asus/zenfone_pegasus_4A', 'Zenfone Pegasus 4A', '6', '1',10);
 
+INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`, `brand_id`, `gamma_id`) VALUES
+('2', 'Sumérgete en la gran pantalla QHD+ FullVision de 6,1", diseñada con precisión en el metal y el vidrio.', 'https://www.lg.com/cl/images/celular/md05989957/gallery/Zoom_black_1.jpg', 'G7 ThinQ', '1', '3'),
+('4', 'Diseño elegante y acabados perfectos', 'https://www.lg.com/cl/images/celular/md06040376/gallery/940_1.jpg', 'LGH870', '1', '3'),
+('6', 'Diseño elegante y cubierta de metal', 'https://www.lg.com/cl/images/celular/md05989896/gallery/Meduim_01_V.jpg', 'K11', '1', '1'),
+('1', 'Los colores más realistas y la definición nítida hacen que todo lo que ves en la pantalla sea memorable.', 'https://www.lg.com/cl/images/celular/md05995336/gallery/01_CV1(K9)_Prime_Black_On-Shot_Global_01_Desktop-Gallery_14112018_V1.jpg', 'K9', '1', '1'),
+('3', 'Diseño elegante y equilibrado', 'https://www.lg.com/cl/images/celular/md05991917/gallery/medium_Black01.jpg', 'Q7', '1', '2'),
+
+                                                                                                                 ('1', 'El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con paneles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/17495/attachments/large/Apple_iPhoneXS_SVR_Front.png', 'iPhone XS', '2', '3'),
+('2', 'El iPhone XR tiene el LCD más avanzado en un smartphone', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/19339/attachments/large/Apple_iPhoneXR_Y_Front.png', 'iPhone XR', '2', '3'),
+('3', ' Está diseñado con el vidrio más resistente usado en un smartphone hasta ahora y tiene un borde de aluminio aeroespacial', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/14493/attachments/large/iPhone8-Svr-front.png?1513620416', 'iPhone 8', '2', '3'),
+('1', 'El Apple iPhone 8 Plus conserva la misma pantalla de su antecesor, con 5.5 pulgadas a resolución Full HD', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/14512/attachments/large/iPhone8Plus-Svr-front.png', 'iPhone 8 Plus', '2', '3'),
+('3', 'El Apple iPhone XS Max es el móvil de gama top de Apple de 2018', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/17544/attachments/large/Apple_iPhoneXSMax_SVR_Front.png', 'iPhone XS Max', '2', '3');
+
+
 INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,1,6);
 INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,2,3);
 INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,3,7);

@@ -55,9 +55,10 @@ export default new Vuex.Store({
 
     },
     //Devices Evaluation
-    async getAll(state){
+    
+     getAll(state){
         try{
-            await Axios 
+            Axios 
             .get('http://localhost:8081/phones/getall')
             .then(response => (state.listaEquipos = response.data))
             console.log(state.listaEquipos);
@@ -67,7 +68,7 @@ export default new Vuex.Store({
             var names = []
             var imgList = []
       
-            for(var item of state.listaEquipos){
+            for(var item of state.listaEquipos ){
               evalP.push(item.phone.statistic.positive_density)
               evalN.push(item.phone.statistic.negative_density)
               names.push(item.phone.model)
@@ -79,7 +80,7 @@ export default new Vuex.Store({
             state.names = names
             state.imgList = imgList
 
-        }catch(err){console.log("En getAll: " + err)}
+        }catch(err){console.log("En get all " + err)}
     
     },
     filterByGama(state,gammas){
