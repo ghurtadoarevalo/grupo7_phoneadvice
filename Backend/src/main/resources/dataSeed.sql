@@ -135,78 +135,64 @@ INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`
 INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`, `brand_id`, `gamma_id`,`statistic_id`) VALUES ('0', 'El ZenFone 3 presume de un diseño ágil y exquisito inspirado en la belleza de la naturaleza. Es una obra de arte en metal y vidrio que captura el mundo con la máxima precisión. Un teléfono extraordinario para una vida menos ordinaria.', 'asus/zenfone_3', 'Zenfone 3', '6', '2',9);
 INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`, `brand_id`, `gamma_id`,`statistic_id`) VALUES ('0', 'Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones', 'asus/zenfone_pegasus_4A', 'Zenfone Pegasus 4A', '6', '1',10);
 
-INSERT INTO `phoneadvice`.`phone` (`assessment`, `description`, `image`, `model`, `brand_id`, `gamma_id`) VALUES
-('2', 'Sumérgete en la gran pantalla QHD+ FullVision de 6,1", diseñada con precisión en el metal y el vidrio.', 'https://www.lg.com/cl/images/celular/md05989957/gallery/Zoom_black_1.jpg', 'G7 ThinQ', '1', '3'),
-('4', 'Diseño elegante y acabados perfectos', 'https://www.lg.com/cl/images/celular/md06040376/gallery/940_1.jpg', 'LGH870', '1', '3'),
-('6', 'Diseño elegante y cubierta de metal', 'https://www.lg.com/cl/images/celular/md05989896/gallery/Meduim_01_V.jpg', 'K11', '1', '1'),
-('1', 'Los colores más realistas y la definición nítida hacen que todo lo que ves en la pantalla sea memorable.', 'https://www.lg.com/cl/images/celular/md05995336/gallery/01_CV1(K9)_Prime_Black_On-Shot_Global_01_Desktop-Gallery_14112018_V1.jpg', 'K9', '1', '1'),
-('3', 'Diseño elegante y equilibrado', 'https://www.lg.com/cl/images/celular/md05991917/gallery/medium_Black01.jpg', 'Q7', '1', '2'),
-
-                                                                                                                 ('1', 'El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con paneles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/17495/attachments/large/Apple_iPhoneXS_SVR_Front.png', 'iPhone XS', '2', '3'),
-('2', 'El iPhone XR tiene el LCD más avanzado en un smartphone', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/19339/attachments/large/Apple_iPhoneXR_Y_Front.png', 'iPhone XR', '2', '3'),
-('3', ' Está diseñado con el vidrio más resistente usado en un smartphone hasta ahora y tiene un borde de aluminio aeroespacial', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/14493/attachments/large/iPhone8-Svr-front.png?1513620416', 'iPhone 8', '2', '3'),
-('1', 'El Apple iPhone 8 Plus conserva la misma pantalla de su antecesor, con 5.5 pulgadas a resolución Full HD', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/14512/attachments/large/iPhone8Plus-Svr-front.png', 'iPhone 8 Plus', '2', '3'),
-('3', 'El Apple iPhone XS Max es el móvil de gama top de Apple de 2018', 'https://d3tctca4ed2xlu.cloudfront.net/images/spree/images/17544/attachments/large/Apple_iPhoneXSMax_SVR_Front.png', 'iPhone XS Max', '2', '3');
-
-
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,1,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,2,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,3,7);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,4,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,5,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (1,6,5);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (2,1,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (2,2,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (2,3,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (2,4,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (2,5,5);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (2,6,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (3,1,7);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (3,2,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (3,3,7);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (3,4,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (3,5,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (3,6,7);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (4,1,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (4,2,5);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (4,3,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (4,4,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (4,5,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (4,6,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (5,1,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (5,2,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (5,3,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (5,4,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (5,5,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (5,6,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (6,1,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (6,2,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (6,3,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (6,4,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (6,5,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (6,6,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (7,1,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (7,2,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (7,3,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (7,4,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (7,5,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (7,6,5);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (8,1,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (8,2,7);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (8,3,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (8,4,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (8,5,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (8,6,7);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (9,1,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (9,2,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (9,3,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (9,4,3);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (9,5,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (9,6,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (10,1,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (10,2,1);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (10,3,2);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (10,4,4);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (10,5,6);
-INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES (10,6,1);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (1,1,6,11);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (1,2,3,12);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (1,3,7,13);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (1,4,3,14);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (1,5,4,15);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (1,6,5,16);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (2,1,3,17);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (2,2,4,18);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (2,3,3,19);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (2,4,1,20);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (2,5,5,21);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (2,6,6,22);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (3,1,7,23);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (3,2,4,24);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (3,3,7,25);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (3,4,6,26);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (3,5,1,27);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (3,6,7,28);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (4,1,3,29);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (4,2,5,30);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (4,3,2,31);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (4,4,1,32);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (4,5,6,33);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (4,6,3,34);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (5,1,4,35);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (5,2,4,36);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (5,3,6,37);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (5,4,2,38);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (5,5,4,39);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (5,6,4,40);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (6,1,1,41);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (6,2,1,42);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (6,3,6,43);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (6,4,2,44);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (6,5,4,45);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (6,6,2,46);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (7,1,2,47);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (7,2,1,48);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (7,3,6,49);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (7,4,2,50);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (7,5,4,51);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (7,6,5,52);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (8,1,3,53);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (8,2,7,54);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (8,3,4,55);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (8,4,2,56);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (8,5,1,57);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (8,6,7,58);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (9,1,2,59);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (9,2,3,60);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (9,3,1,61);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (9,4,3,62);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (9,5,2,63);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (9,6,6,64);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (10,1,1,65);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (10,2,1,66);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (10,3,2,67);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (10,4,4,68);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (10,5,6,69);
+INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`, `statistic_id`) VALUES (10,6,1,70);
 

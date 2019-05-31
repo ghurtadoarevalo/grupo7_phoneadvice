@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface PhoneSpecificationRepository extends JpaRepository<PhoneSpecification, Long> {
 
     //@Query("SELECT ps FROM PhoneSpecification ps WHERE ps.ps_id.specification_id = ?1")
-    List<PhoneSpecification> findByPsId_SpecificationIdOrderByAssessmentAsc(Long specification_id);
+    List<PhoneSpecification> findByPsId_SpecificationIdOrderByAssessmentDesc(Long specification_id);
 
 /*    @Query("Select distinct distributor " +
             "from Distributor distributor" +

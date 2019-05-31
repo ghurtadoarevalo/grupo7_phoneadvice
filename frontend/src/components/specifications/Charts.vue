@@ -6,7 +6,7 @@
 
     <v-layout row wrap style="margin-top:-5%;" md10 >
         <v-flex xs4 md1 style="margin-right:5%;" v-for="(specification, index) in specificationsList" :key="index" >
-            <v-btn @click="filterBySpecification(specification.id)" flat color="rgb(14, 49, 138)" class="">
+            <v-btn round  @click="filterBySpecification(specification.id), gammas = [true,true,true]" flat color="rgb(14, 49, 138)" class="">
                 <v-icon large>{{specification.icon}}</v-icon>
                 <span>{{specification.name}}</span>
             </v-btn>
@@ -19,11 +19,11 @@
       <v-flex md2>
         <VBtn fab dark color="#0E318A" @click="allGamma">
           <v-icon large color="white">monetization_on</v-icon>
-        </VBtn> Gama
+        </VBtn> Filtro Gama
         
-        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>
-        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>
+        <v-switch v-model="gammas[0]" @change="filterByGammaSpecification(gammas)" label="Baja"  color="#0E318A"></v-switch>
+        <v-switch v-model="gammas[1]" @change="filterByGammaSpecification(gammas)" label="Media" color="#0E318A"></v-switch>
+        <v-switch v-model="gammas[2]" @change="filterByGammaSpecification(gammas)" label="Alta" color="#0E318A"></v-switch>
     
       </v-flex>
     </v-layout>
@@ -36,23 +36,38 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','listaEquipos','names']),
+    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','names','activeSpecification']),
   },
   methods: {
-    ...mapMutations(['filterByGama','filterBySpecification']),
+    ...mapMutations(['filterByGammaSpecification','filterBySpecification']),
     allGamma(){
-      this.gamas = [true,true,true]
-      this.filterByGama(this.gamas);
+      this.gammas = [true,true,true]
+      this.filterByGammaSpecification(this.gammas);
     },
     getData(){
       var chartOptions = {
+
+        responsive: {
+        rules: [{
+            condition: {
+            maxWidth: 500
+            },
+            chartOptions: {
+            legend: {
+                enabled: false
+            }
+            }
+        }]
+        },
         chart: {
           //styledMode: true,
           renderTo: 'cointainer',
           type: 'column'
         },
         title: {
-          text: 'Evaluación de Celulares'
+          text: 'Evaluación por especificación: ' + this.activeSpecification,
+          x:0,
+          y:7
         },
         xAxis: {
           categories: this.names,
@@ -68,8 +83,8 @@ export default {
           align: 'top',
           verticalAlign: 'top',
           layout: 'horizontal',
-          x: 0,
-          y: 0
+          x: 100,
+          y: 20
         },
         plotOptions: {
           column:{
@@ -81,15 +96,29 @@ export default {
         },
         series: [
           {
+          data: this.evalSpecification,
+          name:'Evaluación de ' + this.activeSpecification,
+          color: 'Blue'
+          },
+          {
           data: this.evalP,
-          name:'Evaluación Positiva',
+          visible: false,
+          name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
+          data: this.evalNeutral,
+          visible: false,
+          name:'Comentarios Neutrales',
+          color: 'Grey'
+          }, 
+          {
           data: this.evalN,
-          name:'Evaluación Negativa',
+          visible: false,
+          name:'Comentarios Negativos',
           color: 'Red'
-        }]
+          }
+        ]
       }
       return chartOptions;
     },
@@ -99,7 +128,7 @@ export default {
   },*/
   data () {
     return{
-      gamas: [true,true,true],
+      gammas: [true,true,true],
       specificationsList: [
           {id:1,name:'Batería',icon:'battery_charging_full'},
           {id:2,name:'Pantalla',icon:'stay_current_portrait'},

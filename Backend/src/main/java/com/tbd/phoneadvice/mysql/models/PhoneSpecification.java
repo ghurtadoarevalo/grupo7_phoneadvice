@@ -28,11 +28,13 @@ public class PhoneSpecification {
     @Column(name = "assessment", nullable = false)
     private int assessment;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
     private Statistic statistic;
 
+    public Phone getPhone() {
+        return phone;
+    }
 }
 
 

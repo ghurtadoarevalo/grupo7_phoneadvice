@@ -2,56 +2,56 @@
   <v-container grid-list-xl>
     <v-layout v-if="imgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else-if="imgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else-if="imgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else-if="imgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else-if="imgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else-if="imgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else-if="imgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src='img'>
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"" >
             <v-expand-transition>
             <div
             v-if="hover"
