@@ -1,0 +1,91 @@
+package com.tbd.phoneadvice.sentiment;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import javax.annotation.PostConstruct;
+
+import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import opennlp.tools.doccat.BagOfWordsFeatureGenerator;
+import opennlp.tools.doccat.DoccatFactory;
+import opennlp.tools.doccat.DoccatModel;
+import opennlp.tools.doccat.DocumentCategorizerME;
+import opennlp.tools.doccat.DocumentSample;
+import opennlp.tools.doccat.DocumentSampleStream;
+import opennlp.tools.doccat.FeatureGenerator;
+import opennlp.tools.util.InputStreamFactory;
+import opennlp.tools.util.MarkableFileInputStreamFactory;
+import opennlp.tools.util.ObjectStream;
+import opennlp.tools.util.PlainTextByLineStream;
+import opennlp.tools.util.TrainingParameters;
+
+public class Classifier {
+
+    private DoccatModel model;
+    private DocumentCategorizerME categorizer;
+
+    @Value("classpath:tweets.txt")
+    private Resource resourceFile;
+
+    public DoccatModel getModel() {
+        return model;
+    }
+
+    public void setModel(DoccatModel model) {
+        this.model = model;
+    }
+
+    @PostConstruct
+    public void train() {
+        InputStreamFactory dataIn=null;
+        try {
+            FeatureGenerator[] def = { new BagOfWordsFeatureGenerator() };
+            DoccatFactory factory=new DoccatFactory(def);
+            File tweets = resourceFile.getFile();
+            dataIn=new MarkableFileInputStreamFactory(tweets);
+            ObjectStream<String> lineStream=new PlainTextByLineStream(dataIn,StandardCharsets.UTF_8);
+            ObjectStream<DocumentSample> sampleStream=new DocumentSampleStream(lineStream);
+
+            TrainingParameters params = TrainingParameters.defaultParams();
+            params.put(TrainingParameters.CUTOFF_PARAM, Integer.toString(0));
+            params.put(TrainingParameters.ITERATIONS_PARAM, Integer.toString(100));
+
+            this.model=DocumentCategorizerME.train("es",sampleStream,params,factory);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.categorizer=new DocumentCategorizerME(this.model);
+    }
+
+/*
+    public HashMap<String,Double> classify(String tweet){
+
+        String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
+        double[] prob=categorizer.categorize(words);
+        HashMap<String,Double> result= new HashMap<String,Double>();
+        for(int i=0;i<categorizer.getNumberOfCategories();i++){
+            result.put(categorizer.getCategory(i),prob[i]);
+            System.out.println("Categoria \n"+categorizer.getCategory(i));
+            System.out.println("Prob \n"+prob[i]);
+        }
+
+        return result;
+    }
+*/
+    public Boolean classify(String tweet){
+
+        String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
+        double[] prob=categorizer.categorize(words);
+        //Double positive = prob[0];
+        //Como son 2 categorias= positivo = 100% - negativo%
+        Double negative = prob[1];
+        if(0.2 < negative) { return false; }
+        else { return true; }
+    }
+
+}

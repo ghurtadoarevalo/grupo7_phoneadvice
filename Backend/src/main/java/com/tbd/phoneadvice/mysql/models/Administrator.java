@@ -1,5 +1,7 @@
 package com.tbd.phoneadvice.mysql.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 
