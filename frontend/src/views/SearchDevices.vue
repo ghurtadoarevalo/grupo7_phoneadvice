@@ -9,11 +9,11 @@
 </template>
 
 <script>
-  import PhoneList from '../components/PhoneList'
-  import Charts from '../components/Charts'
-  import ChangeToolbar from '../components/ChangeToolbar'
-  import Twitteros from '../components/Twitteros'
-  import Maps from '../components/Maps'
+  import PhoneList from '../components/devices/PhoneList'
+  import Charts from '../components/devices/Charts'
+  import ChangeToolbar from '../components/devices/ChangeToolbar'
+  import Twitteros from '../components/devices/Twitteros'
+  import Maps from '../components/devices/Maps'
   import {mapState} from 'vuex';
    
   export default {
