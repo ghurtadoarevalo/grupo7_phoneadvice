@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xl>
+  <v-container grid-list-xs>
     <v-layout v-if="imgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in imgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
@@ -28,40 +28,12 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-          </v-img>
-      </v-flex>
-    </v-layout>
-
-    <v-layout v-else-if="imgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-          </v-img>
-      </v-flex>
-    </v-layout>
-
-    <v-layout v-else-if="imgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-          </v-img>
-      </v-flex>
-    </v-layout>
-
     <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-            <v-expand-transition>
-            <div
-            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;"
-            >
-            $14.99
-            </div>
-        </v-expand-transition>
-          </v-img>
+        <paginate name="imgList" :list="imgList" :per="4"></paginate>	
+      <v-flex class="ml-3" xs2 v-for="(img,index) in paginated('imgList')" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"></v-img>
       </v-flex>
+      <paginate-links for="imgList"></paginate-links>  
     </v-layout>
 
     <v-dialog v-model="dialog" width="500">
@@ -89,6 +61,7 @@ import { mapState } from 'vuex';
         return{
         dialog:false,
         indice:0,
+        paginate:['imgList'],
       }
     },
     computed:{

@@ -1,30 +1,48 @@
 <template>
-  <v-container grid-list-xs>
-
-      
-
-
-    <v-layout row wrap style="margin-top:-5%;" md10 >
-        <v-flex xs4 md1 style="margin-right:5%;" v-for="(specification, index) in specificationsList" :key="index" >
+  <v-container grid-list-xl>
+    
+    <v-layout class="hidden-sm-and-down" row wrap style="margin-top:-5%;" md10 >
+        <v-flex md1 style="margin-right:5%;" v-for="(specification, index) in specificationsList" :key="index" >
             <v-btn round  @click="filterBySpecification(specification.id), gammas = [true,true,true]" flat color="rgb(14, 49, 138)" class="">
                 <v-icon large>{{specification.icon}}</v-icon>
                 <span>{{specification.name}}</span>
             </v-btn>
         </v-flex>
     </v-layout>
-    <v-layout row wrap>
+        <v-layout class="hidden-sm-and-down" row wrap>
       <v-flex md10>
         <highcharts :options="getData()"></highcharts>
       </v-flex>
       <v-flex md2>
         <VBtn fab dark color="#0E318A" @click="allGamma">
           <v-icon large color="white">monetization_on</v-icon>
-        </VBtn> Filtro Gama
+        </VBtn>Filtro Gama
         
         <v-switch v-model="gammas[0]" @change="filterByGammaSpecification(gammas)" label="Baja"  color="#0E318A"></v-switch>
         <v-switch v-model="gammas[1]" @change="filterByGammaSpecification(gammas)" label="Media" color="#0E318A"></v-switch>
         <v-switch v-model="gammas[2]" @change="filterByGammaSpecification(gammas)" label="Alta" color="#0E318A"></v-switch>
-    
+      </v-flex>
+    </v-layout>
+
+    <v-layout class="hidden-md-and-up" row wrap style="margin-top:-20%;margin-left:-20%">
+        <v-flex xs2 v-for="(specification, index) in specificationsList" :key="index" >
+            <v-btn round  @click="filterBySpecification(specification.id), gammas = [true,true,true]" flat color="rgb(14, 49, 138)" class="">
+                <v-icon large>{{specification.icon}}</v-icon>
+            </v-btn>
+        </v-flex>
+    </v-layout>
+
+    <v-layout class="hidden-md-and-up" row wrap>
+      <VBtn fab dark color="#0E318A" @click="allGamma">
+        <v-icon large color="white">monetization_on</v-icon>
+      </VBtn>
+        
+      <v-switch v-model="gammas[0]" @change="filterByGammaSpecification(gammas)" label="Baja"  color="#0E318A"></v-switch>
+      <v-switch v-model="gammas[1]" @change="filterByGammaSpecification(gammas)" label="Media" color="#0E318A"></v-switch>
+      <v-switch v-model="gammas[2]" @change="filterByGammaSpecification(gammas)" label="Alta" color="#0E318A"></v-switch>
+      
+      <v-flex xs12>
+        <highcharts :options="getData()"></highcharts>
       </v-flex>
     </v-layout>
   </v-container>

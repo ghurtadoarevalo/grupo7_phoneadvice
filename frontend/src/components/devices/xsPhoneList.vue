@@ -28,36 +28,15 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex class ="hidden-sm-and-down" style="margin-left:4%;margin-right: 4%" xs2 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')" >
-          </v-img>
-      </v-flex>
-    </v-layout>
-
-    <v-layout v-else-if="imgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs2 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-          </v-img>
-      </v-flex>
-    </v-layout>
-
-    <v-layout v-else-if="imgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs2 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-          </v-img>
-      </v-flex>
-    </v-layout>
-
     <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
-      <paginate name="imgList" :list="imgList" :per="8">
+      <paginate name="imgList" :list="imgList" :per="4">
         </paginate>	
-        <v-flex class="ml-3" xs2 md1 v-for="(img,index) in paginated('imgList')" :key="index">
+        <v-flex class="ml-3" xs2 v-for="(img,index) in paginated('imgList')" :key="index">
             <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
             </v-img>
         </v-flex>
+            <paginate-links for="imgList"></paginate-links>    
     </v-layout>
-    <paginate-links for="imgList"></paginate-links>
     
     <v-dialog v-model="dialog" width="500">
       <v-card>

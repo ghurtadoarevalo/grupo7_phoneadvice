@@ -2,7 +2,8 @@
 <v-container grid-list-xl>
   <ChangeToolbar/>
   <Charts v-if="active ==='graph'"/>
-  <PhoneList v-if="active ==='graph'"/>
+  <PhoneList class ="hidden-sm-and-down" v-if="active ==='graph'"/>
+  <XsPhoneList class ="hidden-sm-and-up" v-if="active ==='graph'"/>
   <Twitteros v-if="active ==='twitter'"/>
   <Maps v-if="active ==='maps'"/>
   </v-container>
@@ -12,6 +13,7 @@
 
 <script>
   import PhoneList from '../components/devices/PhoneList'
+  import XsPhoneList from '../components/devices/xsPhoneList'
   import Charts from '../components/devices/Charts'
   import ChangeToolbar from '../components/devices/ChangeToolbar'
   import Twitteros from '../components/devices/Twitteros'
@@ -28,7 +30,8 @@
       ChangeToolbar,
       Charts,
       Twitteros,
-      Maps
+      Maps,
+      XsPhoneList
     },
     computed:{
       ...mapState(['active'])
