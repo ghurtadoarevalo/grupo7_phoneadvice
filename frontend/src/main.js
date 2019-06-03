@@ -8,6 +8,9 @@ import store from './store'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
+import VuePaginate from 'vue-paginate'
+Vue.use(VuePaginate)
+
 Vue.config.productionTip = false
 Vue.use(HighchartsVue)
 

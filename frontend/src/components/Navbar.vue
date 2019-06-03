@@ -22,8 +22,7 @@
     </v-navigation-drawer>
 
     <v-toolbar dense dark color="#0E318A" app>
-    
-      <span >
+      <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="sidebar = !sidebar">
         </v-toolbar-side-icon>
       </span>
