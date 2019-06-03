@@ -107,19 +107,23 @@ export default new Vuex.Store({
             console.log(state.listaEquipos);
             
             var evalNeutral = []
+            var evalSpecification = []
             var evalP = []
             var evalN = []
             var names = []
             var imgList = []
       
             for(var item of state.listaEquipos ){
-              evalP.push(item.statistic.positive_density)
-              evalN.push(item.statistic.negative_density)
-              evalNeutral.push(item.statistic.neutral_density)
-              names.push(item.model)
-              imgList.push(item.image)
+              
+                evalSpecification.push(item.assessment)
+                evalP.push(item.statistic.positive_density)
+                evalN.push(item.statistic.negative_density)
+                evalNeutral.push(item.statistic.neutral_density)
+                names.push(item.model)
+                imgList.push(item.image)
             }
       
+            state.evalSpecification = evalSpecification
             state.evalNeutral = evalNeutral
             state.evalP = evalP
             state.evalN = evalN
@@ -153,6 +157,7 @@ export default new Vuex.Store({
               }
 
               state.activeSpecification = activeSpecification
+              state.evalNeutral = evalNeutral
               state.evalSpecification = evalSpecification
               state.evalNeutral = evalNeutral
               state.evalP = evalP
@@ -167,15 +172,21 @@ export default new Vuex.Store({
       var evalN = []
       var names = []
       var imgList = []
-      
+      var evalNeutral = []
+      var evalSpecification = []
+
       for(var item of state.listaEquipos ){
         if(gammas[item.gamma.gammaId - 1]){
+            evalSpecification.push(item.assessment)
             evalP.push(item.statistic.positive_density)
             evalN.push(item.statistic.negative_density)
             names.push(item.model)
             imgList.push(item.image)
         }
       }
+      
+      state.evalSpecification = evalSpecification
+      state.evalNeutral = evalNeutral
       state.evalP = evalP
       state.evalN = evalN
       state.names = names

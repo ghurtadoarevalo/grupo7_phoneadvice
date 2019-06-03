@@ -25,10 +25,10 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','listaEquipos','names']),
+    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','names']),
   },
   methods: {
-    ...mapMutations(['filterByGama']),
+    ...mapMutations(['filterByGama']), 
     allGamma(){
       this.gamas = [true,true,true]
       this.filterByGama(this.gamas);
@@ -36,13 +36,27 @@ export default {
     },
     getData(){
       var chartOptions = {
+          responsive: {
+        rules: [{
+            condition: {
+            maxWidth: 500
+            },
+            chartOptions: {
+            legend: {
+                enabled: false
+            }
+            }
+        }]
+        },
         chart: {
           //styledMode: true,
           renderTo: 'cointainer',
           type: 'column'
         },
         title: {
-          text: 'Evaluación de Celulares'
+          text: 'Evaluación de Celulares',
+          x:0,
+          y:7
         },
         xAxis: {
           categories: this.names,
@@ -58,8 +72,8 @@ export default {
           align: 'top',
           verticalAlign: 'top',
           layout: 'horizontal',
-          x: 0,
-          y: 0
+          x: 100,
+          y: 20
         },
         plotOptions: {
           column:{
@@ -71,12 +85,25 @@ export default {
         },
         series: [
           {
+          data: this.evalSpecification,
+          name:'Evaluación de celulares',
+          color: 'Blue'
+          },
+          {
           data: this.evalP,
+          visible: false,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
           {
+          data: this.evalNeutral,
+          visible: false,
+          name:'Comentarios Neutrales',
+          color: 'Grey'
+          }, 
+          {
           data: this.evalN,
+          visible: false,
           name:'Evaluación Negativa',
           color: 'Red'
         }]

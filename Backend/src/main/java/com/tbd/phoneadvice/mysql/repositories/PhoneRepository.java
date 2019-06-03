@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone,Long> {
     //Phone findByPhone_id(int id);
-
+    List<Phone>  findAllByOrderByAssessmentDesc();
 
     //List<Phone> findByPsId_SpecificationId(Long specification_id);
 }

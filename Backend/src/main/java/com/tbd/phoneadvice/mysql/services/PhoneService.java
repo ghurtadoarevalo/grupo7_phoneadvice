@@ -19,9 +19,9 @@ public class PhoneService {
 
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
     @ResponseBody
-    public List<Phone> getAll()
+    public List<Phone> getAllOrderedByAssessmentDesc()
     {
-        return phoneRepository.findAll();
+        return phoneRepository.findAllByOrderByAssessmentDesc();
     }
 
     /*
