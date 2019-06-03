@@ -19,6 +19,9 @@ public class Word {
     @Column(name = "content", nullable = false, length = 30)
     private String content;
 
+    @Column(name = "type", nullable = false, length = 30)
+    private String type;
+
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "phone_id", referencedColumnName = "phone_id")
@@ -34,8 +37,4 @@ public class Word {
     @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
     private Brand brand;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "words_bag_id", referencedColumnName = "words_bag_id")
-    private WordsBag words_bag  ;
 }
