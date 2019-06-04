@@ -10,14 +10,16 @@ export default new Vuex.Store({
   state: {
     active: 'graph',
     evalSpecification: [],
+    evalBrand: [],
     evalNeutral: [],
     evalP: [],
     evalN: [],
     names:[],
     imgList :[],
-    brandImgList: ['./assets/brands/LGlogo.png','./assets/brands/Xiaomilogo','./assets/brands/Motorolalogo','./assets/brands/Huaweilogo','./assets/brands/Asuslogo','./assets/brands/Applelogo','./assets/brands/Nokialogo'],
-    brandNames:['Lg','Samsung','Xiaomi','Motorola','Huawei','Asus','Apple','Nokia'],
+    brandImgList: [],
+    brandNames:[],
     listaEquipos: [],
+    listaMarcas:[],
     activeSpecification: 'Batería'
   },
   mutations: {
@@ -134,6 +136,25 @@ export default new Vuex.Store({
 
         }catch(err){console.log("En get all " + err)}
     
+      },
+    async getBrands(state){
+      try{
+        await Axios
+        .get('http://localhost:8081/brands/')
+        .then(response => (state.listaMarcas = response.data))
+        console.log("Metodo getBrands");
+        var evalBrand = []
+        var brandNames = []
+        var brandImgList = []
+        for(var item of state.listaMarcas){
+          evalBrand.push(item.assessment)
+          brandNames.push(item.name)
+          brandImgList.push(item.image)
+        }
+        state.evalBrand = evalBrand
+        state.brandImgList = brandImgList
+        state.brandNames = brandNames
+      } catch(err) {console.log(err)}
     },
     filterByGammaSpecification(state,gammas)
     {
@@ -206,6 +227,9 @@ export default new Vuex.Store({
     resetActive (context)
     {
         context.commit('resetActive')
+    },
+    getBrands(context){
+      context.commit('getBrands')
     }
   },
 })

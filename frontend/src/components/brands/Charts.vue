@@ -25,7 +25,7 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','brandNames']),
+    ...mapState(['evalP','evalN','evalNeutral','evalBrand','listaMarcas','brandNames']),
   },
   methods: {
     ...mapMutations(['filterByGama']), 
@@ -85,7 +85,7 @@ export default {
         },
         series: [
           {
-          data: this.evalSpecification,
+          data: this.evalBrand,
           name:'Evaluación de marcas',
           color: 'Blue'
           },

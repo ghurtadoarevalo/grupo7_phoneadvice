@@ -31,7 +31,7 @@
       ...mapState(['active'])
     },
     beforeMount(){
-      this.$store.dispatch('getAll')
+      this.$store.dispatch('getBrands')
     },
   }
 </script>

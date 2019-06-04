@@ -1,57 +1,57 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout v-if="imgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-if="brandImgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-else-if="brandImgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-else-if="brandImgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-else-if="brandImgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-else-if="brandImgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-else-if="brandImgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+    <v-layout v-else-if="brandImgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
     <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
-          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+      <v-flex class="ml-3" xs1 md1 v-for="(img, index) in brandImgList" :key="index">
+          <v-img height="100%" width="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/brands/'+ img + '.png')">
             <v-expand-transition>
             <div
             v-if="hover"
@@ -68,7 +68,7 @@
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <VCardTitle>
-          {{names[indice]}}
+          {{brandNames[indice]}}
         </VCardTitle>
         <v-card-text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, repellendus!
@@ -93,7 +93,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['imgList','names'])
+      ...mapState(['brandImgList','brandNames'])
     }
   }
 </script>
