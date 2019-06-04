@@ -23,5 +23,12 @@ export default new Router({
       name: 'searchForSpecifications',
       component: () => import(/* webpackChunkName: "search devices" */ './views/SearchSpecifications.vue')
     },
+    {
+      path: '/searchForBrands',
+      name: 'searchForBrands',
+      component: () => import(/* webpackChunkName: "search devices" */ './views/SearchBrands.vue')
+
+    }
+
   ]
 })

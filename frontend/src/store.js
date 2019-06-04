@@ -15,6 +15,8 @@ export default new Vuex.Store({
     evalN: [],
     names:[],
     imgList :[],
+    brandImgList: ['./assets/brands/LGlogo.png','./assets/brands/Xiaomilogo','./assets/brands/Motorolalogo','./assets/brands/Huaweilogo','./assets/brands/Asuslogo','./assets/brands/Applelogo','./assets/brands/Nokialogo'],
+    brandNames:['Lg','Samsung','Xiaomi','Motorola','Huawei','Asus','Apple','Nokia'],
     listaEquipos: [],
     activeSpecification: 'Batería'
   },
