@@ -22,7 +22,7 @@ public class Specification {
 
     @JsonIgnore
     @OneToMany(mappedBy = "specification", cascade = CascadeType.ALL)
-    private Set<Word_specification> words_specifications;
+    private Set<WordSpecification> words_specifications;
 
     @JsonIgnore
     @OneToMany(mappedBy = "specification")

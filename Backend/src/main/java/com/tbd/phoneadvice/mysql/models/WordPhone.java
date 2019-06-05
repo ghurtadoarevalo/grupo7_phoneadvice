@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "word_phone",schema = "phoneadvice")
 @Data
-public class Word_phone {
+public class WordPhone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

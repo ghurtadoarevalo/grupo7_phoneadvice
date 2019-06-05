@@ -32,9 +32,6 @@ public class PhoneSpecification {
     @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
     private Statistic statistic;
 
-    public Phone getPhone() {
-        return phone;
-    }
 }
 
 

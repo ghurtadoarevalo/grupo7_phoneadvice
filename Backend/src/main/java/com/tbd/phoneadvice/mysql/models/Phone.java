@@ -48,7 +48,7 @@ public class Phone {
 
     @JsonIgnore
     @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL)
-    private Set<Word_phone> words_phones;
+    private Set<WordPhone> phoneWords;
 
     @JsonIgnore
     @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL)
