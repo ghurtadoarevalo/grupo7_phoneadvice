@@ -19,9 +19,12 @@ public class Word_phone {
     @Column(name = "content", nullable = false, length = 30)
     private String content;
 
+    /*
     //No se si sera necesario
     @Column(name = "type", nullable = false, length = 30)
     private String type;
+
+     */
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)

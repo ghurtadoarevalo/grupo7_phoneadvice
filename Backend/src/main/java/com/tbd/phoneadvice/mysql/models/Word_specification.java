@@ -18,10 +18,13 @@ public class Word_specification {
     @Column(name = "content", nullable = false, length = 30)
     private String content;
 
+    /*
     //No se si sera necesario
     @Column(name = "type", nullable = false, length = 30)
     private String type;
 
+
+     */
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "specification_id", referencedColumnName = "specification_id")

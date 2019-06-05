@@ -1,0 +1,445 @@
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('1','samsung', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('2','samsune', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('3','sansune', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('4','sansun', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('5','samsum', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('6','sansung', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('7','samzung', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('8','sanzung', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('9','samzun', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('10','SAMSUNG', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('11','SANSUNG', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('12','Samsung', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('13','Samsune', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('14','Sansune', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('15','Sansun', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('16','Samsun', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('17','Samsum', '2');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('18','Sansung', '2');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('19','motorola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('20','motomola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('21','motolola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('22','motomoto', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('23','motorrola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('24','motosola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('25','motorolla', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('26','Motorola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('27','Motomola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('27','Motomoto', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('28','Motorrola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('29','Motosola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('30','Motorola', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('31','lenovo', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('32','Motorolla', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('33','MOTOROLA', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('34','MOTORROLA', '4');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('35','MOTOROLLA', '4');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('36','xiaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('37','chaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('38','chiaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('39','chaomy', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('40','shiaomy', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('41','shyaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('42','shaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('43','xaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('44','xiaomy', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('45','xyaomy', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('46','xyaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('47','jaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('48','Xiaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('49','Chaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('50','Chiaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('51','Chaomy', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('52','Shaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('53','Xaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('54','Xiaomy', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('55','Xyaomi', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('56','XIAOMI', '3');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('57','CHAOMI', '3');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('58','apple', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('59','appl', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('60','aple', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('61','apel', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('62','eipol', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('63','Apple', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('64','Aple', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('65','Appl', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('66','Apel', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('67','Aipol', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('68','Apple', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('69','Aple', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('70','Applle', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('71','Appll', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('72','Apel', '7');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('73','Aipol', '7');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('74','nokia', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('75','noqia', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('76','nockia', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('77','nokkia', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('78','nnokia', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('79','nokiaa', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('80','Nokia', '8');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('81','Noqia', '8');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('82','lg', '1');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('83','LG', '1');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('84','Lg', '1');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('85','huawei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('86','Huawei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('87','wawei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('88','guaguei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('89','waguei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('90','HUAWEI', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('91','wahuei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('92','Wawei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('93','Guaguei', '5');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('94','Waguei', '5');
+
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('95','sony', '6');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('96','Sony', '6');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('97','SONY', '6');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('98','soni', '6');
+INSERT INTO `phoneadvice`.`word_brand` (`word_brand_id`, `content`, `brand_id`) VALUES ('99','sonny', '6');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('1','galaxys10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('2','galaxis10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('3','galaxyS10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('4','GalaxyS10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('5','GalaxiS10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('6','galaxy_s10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('7','galaxi_s10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('8','Galaxi_S10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('9','Galaxy_S10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('10','s10', '1');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('11','S10', '1');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('12','galaxynote9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('13','galaxinote9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('14','galaxyNote9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('15','GalaxyNote9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('16','GalaxiNote9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('17','galaxy_note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('18','galaxi_note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('19','galaxy_Note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('20','Galaxy_Note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('21','Galaxi_Note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('22','Note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('23','note_9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('24','note9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('25','Note9', '2');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('26','NOTE9', '2');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('27','galaxya70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('28','galaxia70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('29','galaxyA70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('30','GalaxyA70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('31','GalaxiA70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('32','galaxy_a70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('33','galaxi_a70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('34','galaxy_A70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('35','Galaxy_A70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('36','Galaxi_A70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('37','A70', '3');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('38','a70', '3');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('39','galaxya9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('40','galaxia9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('41','galaxyA9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('42','GalaxyA9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('43','GalaxiA9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('44','galaxy_a9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('45','galaxi_a9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('46','galaxy_A9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('47','Galaxy_A9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('48','Galaxi_A9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('49','a9', '4');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('50','A9', '4');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('51','galaxyj4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('52','galaxij4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('53','galaxyJ4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('54','GalaxyJ4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('55','GalaxiJ4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('56','galaxy_j4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('57','galaxi_j4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('58','galaxy_J4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('59','Galaxy_J4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('60','Galaxi_J4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('61','j4', '5');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('62','J4', '5');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('63','9pureview', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('64','9Pureview', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('65','9PureView', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('66','9piurviu', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('67','9_pureview', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('68','9_Pureview', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('69','9_PureView', '6');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('70','9_piurviu', '6');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('71','Nokia7.1', '7');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('72','nokia7.1', '7');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('73','Nokia_7.1', '7');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('74','nokia_7.1', '7');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('75','Nokia6.1', '8');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('76','nokia6.1', '8');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('77','Nokia_6.1', '8');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('78','nokia_6.1', '8');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('79','Nokia3.1', '9');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('80','nokia3.1', '9');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('81','Nokia_3.1', '9');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('82','nokia_3.1', '9');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('83','Nokia2.1', '10');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('84','nokia2.1', '10');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('85','Nokia_2.1', '10');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('86','nokia_2.1', '10');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('87','huaweiy6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('88','huaweiY6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('89','Huaweiy6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('90','HuaweiY6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('91','huawei_y6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('92','huawei_Y6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('93','Huawei_y6', '11');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('94','Huawei_Y6', '11');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('95','PSmart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('96','psmart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('97','PSmart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('98','Psmart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('99','P_Smart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('100','p_smart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('101','P_Smart', '12');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('102','P_smart', '12');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('103','huaweiy9', '13');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('104','huaweiY9', '13');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('105','huawei_y9', '13');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('106','huawei_Y9', '13');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('107','Y9', '13');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('108','huaweiP30', '14');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('109','huaweip30', '14');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('110','huawei_P30', '14');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('111','huawei_p30', '14');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('112','p30', '14');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('113','P30', '14');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('114','mate20', '15');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('115','Mate20', '15');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('116','mate_20', '15');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('117','Mate_20', '15');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('118','MotoE5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('119','Motoe5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('120','motoE5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('121','motoe5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('122','Moto_E5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('123','Moto_e5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('124','moto_E5', '16');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('125','moto_e5', '16');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('126','motoone', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('127','motoOne', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('128','Motoone', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('129','MotoOne', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('130','moto_one', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('131','moto_One', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('132','Moto_one', '17');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('133','Moto_One', '17');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('134','motog7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('135','motoG7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('136','Motog7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('136','MotoG7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('137','moto_g7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('138','moto_G7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('139','Moto_g7', '18');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('140','Moto_G7', '18');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('141','motog6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('142','motoG6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('143','Motog6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('144','MotoG6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('145','moto_g6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('146','moto_G6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('147','Moto_g6', '19');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('148','Moto_G6', '19');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('149','MotoZ3Play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('150','motoz3play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('151','motoZ3Play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('152','motoz3Play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('153','MOTOZ3PLAY', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('154','Moto_Z3_Play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('155','moto_z3_play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('156','moto_Z3_Play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('157','moto_z3_Play', '20');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('158','MOTO_Z3_PLAY', '20');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('159','G7ThinQ', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('160','G7Thinq', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('161','g7ThinQ', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('162','g7Thinq', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('163','G7thinQ', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('164','G7_ThinQ', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('165','G7_Thinq', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('166','g7_ThinQ', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('167','g7_Thinq', '21');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('168','G7_thinQ', '21');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('169','LGH870', '22');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('170','lgH870', '22');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('171','LG_H870', '22');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('172','lg_H870', '22');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('173','H870', '22');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('174','lgk11', '23');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('175','K11', '23');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('176','LGK11', '23');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('177','lgK11', '23');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('178','lg_k11', '23');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('179','LG_K11', '23');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('180','lg_K11', '23');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('181','lgk9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('182','LGK9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('183','lgK9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('184','LgK9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('185','lg_k9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('186','LG_K9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('187','lg_K9', '24');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('188','Lg_K9', '24');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('189','lgq7', '25');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('190','LGQ7', '25');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('191','LgQ7', '25');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('192','lg_q7', '25');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('193','LG_Q7', '25');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('194','Lg_Q7', '25');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('195','iphone8', '26');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('196','Iphone8', '26');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('197','IPHONE8', '26');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('198','iphone_8', '26');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('199','Iphone_8', '26');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('200','IPHONE_8', '26');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('201','iPhoneXS', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('202','iPhonexs', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('203','IPhoneXS', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('204','IPhonexs', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('205','iPhone_XS', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('206','iPhone_xs', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('207','IPhone_XS', '27');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('208','IPhone_xs', '27');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('209','IPhoneXR', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('210','IPhonexr', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('211','iPhoneXR', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('212','iPhonexr', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('213','IPhone_XR', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('214','IPhone_xr', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('215','iPhone_XR', '28');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('216','iPhone_xr', '28');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('217','iPhone8Plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('218','IPhone8Plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('219','iPhone8plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('220','IPhone8plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('221','IPHONE8PLUS', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('222','iPhone_8_Plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('223','IPhone_8_Plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('224','iPhone_8_plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('225','IPhone_8_plus', '29');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('226','IPHONE_8_PLUS', '29');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('227','iPhoneXSMax', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('228','IPhoneXSMax', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('229','IphoneXsMax', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('230','iphonexsmax', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('231','IPHONEXSMAX', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('232','iPhone_XS_Max', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('233','IPhone_XS_Max', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('234','Iphone_Xs_Max', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('235','iphone_xs_max', '30');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('236','IPHONE_XS_MAX', '30');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('237','zenfone3', '31');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('238','Zenfone3', '31');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('239','zenfone_3', '31');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('240','Zenfone_3', '31');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('241','Zenfone5', '32');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('242','zenfone_5', '32');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('243','Zenfone_5', '32');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('244','Zenfone5z', '33');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('245','zenfone_5z', '33');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('246','Zenfone_5z', '33');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('247','Zenfonemaxpro', '34');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('248','ZenfoneMaxPro', '34');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('249','Zenfone_max_Pro', '34');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('250','Zenfonepegasus4a', '35');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('251','ZenfonePegasus4a', '35');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('251','Zenfone_Pegasus_4a', '35');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('252','mi9', '36');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('253','Mi9', '36');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('254','mi_9', '36');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('255','Mi_9', '36');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('256','mimix9', '37');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('257','MiMix9', '37');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('258','mi_mix_9', '37');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('259','Mi_Mix_9', '37');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('260','redmi6', '38');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('261','Redmi6', '38');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('262','redmi_6', '38');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('263','Redmi_6', '38');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('264','redmigo', '39');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('265','Redmigo', '39');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('266','redmi_go', '39');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('267','Redmi_go', '39');
+
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('268','redminote7', '40');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('269','Redminote7', '400');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('270','redmi_note_7', '40');
+INSERT INTO `phoneadvice`.`word_phone` (`word_phone_id`, `content`, `phone_id`) VALUES ('271','Redmi_Note_7', '40');
+
+
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('1','camara', '1');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('2','Camara', '1');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('3','CAMARA', '1');
+
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('4','pantalla', '2');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('5','Pantalla', '2');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('6','PANTALLA', '2');
+
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('7','memoria', '3');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('8','Memoria', '3');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('9','MEMORIA', '3');
+
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('10','diseño', '4');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('11','Diseño', '4');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('12','DISEÑO', '4');
+
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('13','rendimiento', '5');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('14','Rendimiento', '5');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('15','RENDIMIENTO', '5');
+
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('16','bateria', '6');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('17','Bateria', '6');
+INSERT INTO `phoneadvice`.`word_specification` (`word_specification_id`, `content`, `specification_id`) VALUES ('18','BATERIA', '6');
