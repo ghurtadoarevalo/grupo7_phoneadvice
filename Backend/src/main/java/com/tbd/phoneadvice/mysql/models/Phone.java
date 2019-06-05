@@ -34,7 +34,6 @@ public class Phone {
     @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
     private Brand brand;
 
-    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "data_sheet_id", referencedColumnName = "data_sheet_id")
     private DataSheet data_sheet;
