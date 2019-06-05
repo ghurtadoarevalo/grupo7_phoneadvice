@@ -1,6 +1,6 @@
 <template>
   <v-app>
-   <v-navigation-drawer v-model="sidebar" app>
+   <v-navigation-drawer class="hidden-sm-and-up" disable-resize-watcher v-model="sidebar" app>
     <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo.png')"> 
           </v-img>
      <v-text-field
@@ -22,8 +22,7 @@
     </v-navigation-drawer>
 
     <v-toolbar dense dark color="#0E318A" app>
-    
-      <span >
+      <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="sidebar = !sidebar">
         </v-toolbar-side-icon>
       </span>
