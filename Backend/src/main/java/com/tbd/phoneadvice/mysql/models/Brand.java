@@ -37,5 +37,5 @@ public class Brand {
 
     @JsonIgnore
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
-    private Set<Word> words;
+    private Set<Word_brand> words_brands;
 }
