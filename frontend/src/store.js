@@ -16,7 +16,30 @@ export default new Vuex.Store({
     names:[],
     imgList :[],
     listaEquipos: [],
-    activeSpecification: 'Batería'
+    activeSpecification: 'Batería',
+    headers:[
+      {spec: 'Procesador: ', icon:'settings'},
+      {spec: 'RAM: ' , icon:'build'}, 
+      {spec: 'Sistema Operativo: ', icon:'android'},
+      {spec: 'Dimensiones: ', icon:'open_with'}, 
+      {spec: 'Peso: ', icon:'fitness_center'}, 
+      {spec: 'Cámara Frontal: ', icon:'camera_front'},
+      {spec: 'Cámara Trasera: ', icon:'camera_rear'},
+      {spec: 'Pantalla: ', icon:'smartphone'},
+      {spec: 'Almacenamiento', icon:'storage'},
+      {spec: 'Bateria: ', icon:'battery_charging_full'}],
+    items: [
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
+    ],
   },
   mutations: {
     //Button bar

@@ -1,5 +1,10 @@
 <template>
-  <Cards />
+<v-parallax
+    dark
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+  >
+  </v-parallax>
+
 </template>
 
 <script>
