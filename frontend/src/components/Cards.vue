@@ -3,19 +3,18 @@
                       <!-- No borrar, lo usé para un random 
                           <li v-for="(k,index) in query">{{k}}</li>
                         -->
-
-    <VLayout row wrap class="mt-5">
+    <VLayout row wrap class="mt-2">
       <v-flex xs12 md3>
         <v-hover>
           <v-card
             slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
             color="grey lighten-4"
-            max-width="600"
           >
             <v-img
-              :aspect-ratio="16/9"
-              src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
+              :aspect-ratio="9/16"
+              :src="require('@/assets/home/celulares.jpg')"
             >
               <v-expand-transition>
                 <div
@@ -40,14 +39,9 @@
                 right
                 top
               >
-                <v-icon>mdi-cart</v-icon>
+                <v-icon>mdi-cellphone-iphone</v-icon>
               </v-btn>
-              <div class="font-weight-light grey--text title mb-2">For the perfect meal</div>
-              <h3 class="display-1 font-weight-light orange--text mb-2">QW cooking utensils</h3>
-              <div class="font-weight-light title mb-2">
-                Our Vintage kitchen utensils delight any chef.<br>
-                Made of bamboo by hand
-              </div>
+              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por equipo</h3>
             </v-card-text>
           </v-card>
         </v-hover>
@@ -59,37 +53,40 @@
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
+            color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="16/9"
-              src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
-            ></v-img>
-            <v-card-title>
-              <div>
-                <span class="headline">Cafe Badilico</span>
-                <div class="d-flex">
-                  <v-rating
-                    :value="value"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                  ></v-rating>
-                  <div class="ml-2 grey--text text--darken-2">
-                    <span>{{ value }}</span>
-                    <span>({{ reviews }})</span>
-                  </div>
+              :aspect-ratio="9/16"
+              :src="require('@/assets/home/spec.png')"
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  style="height: 100%;"
+                >
+                  $14.99
                 </div>
-              </div>
-              <v-spacer></v-spacer>
-              <v-btn icon class="mr-0">
-                <v-icon>mdi-chevron-right</v-icon>
+              </v-expand-transition>
+            </v-img>
+            <v-card-text
+              class="pt-4"
+              style="position: relative;"
+            >
+              <v-btn
+                absolute
+                color="orange"
+                class="white--text"
+                fab
+                large
+                right
+                top
+              >
+                <v-icon>settings</v-icon>
               </v-btn>
-            </v-card-title>
-            <v-card-text>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>
-          </v-card-text>
+              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por especificación</h3>
+     
+            </v-card-text>
           </v-card>
         </v-hover>
       </v-flex>
@@ -100,78 +97,86 @@
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
           >
             <v-img
-              :aspect-ratio="16/9"
-              src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
-            ></v-img>
-            <v-card-title>
-              <div>
-                <span class="headline">Cafe Badilico</span>
-                <div class="d-flex">
-                  <v-rating
-                    :value="value"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                  ></v-rating>
-                  <div class="ml-2 grey--text text--darken-2">
-                    <span>{{ value }}</span>
-                    <span>({{ reviews }})</span>
-                  </div>
+              :aspect-ratio="9/16"
+              :src="require('@/assets/home/brand.png')"
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  style="height: 100%;"
+                >
+                  $14.99
                 </div>
-              </div>
-              <v-spacer></v-spacer>
-              <v-btn icon class="mr-0">
-                <v-icon>mdi-chevron-right</v-icon>
+              </v-expand-transition>
+            </v-img>
+            <v-card-text
+              class="pt-4"
+              style="position: relative;"
+            >
+              <v-btn
+                absolute
+                color="orange"
+                class="white--text"
+                fab
+                large
+                right
+                top
+              >
+                <v-icon>mdi-compass</v-icon>
               </v-btn>
-            </v-card-title>
-            <v-card-text>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>
-          </v-card-text>
+              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por marca</h3>
+
+            </v-card-text>
           </v-card>
         </v-hover>
       </v-flex>
 
       <v-flex xs12 md3>
-       <v-hover>
+        <v-hover>
           <v-card
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
           >
             <v-img
-              :aspect-ratio="16/9"
-              src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
-            ></v-img>
-            <v-card-title>
-              <div>
-                <span class="headline">Cafe Badilico</span>
-                <div class="d-flex">
-                  <v-rating
-                    :value="value"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                  ></v-rating>
-                  <div class="ml-2 grey--text text--darken-2">
-                    <span>{{ value }}</span>
-                    <span>({{ reviews }})</span>
-                  </div>
+              :aspect-ratio="9/16"
+              :src="require('@/assets/home/build.png')"
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  style="height: 100%;"
+                >
+                  $14.99
                 </div>
-              </div>
-              <v-spacer></v-spacer>
-              <v-btn icon class="mr-0">
-                <v-icon>mdi-chevron-right</v-icon>
+              </v-expand-transition>
+            </v-img>
+            <v-card-text
+              class="pt-4"
+              style="position: relative;"
+            >
+              <v-btn
+                absolute
+                color="orange"
+                class="white--text"
+                fab
+                large
+                right
+                top
+              >
+                <v-icon>mdi-hammer</v-icon>
               </v-btn>
-            </v-card-title>
-            <v-card-text>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>
-          </v-card-text>
+              <h3 class="display-1 font-weight-light orange--text mb-2">En construccion</h3>
+
+            </v-card-text>
           </v-card>
         </v-hover>
       </v-flex>
@@ -182,45 +187,51 @@
     </VLayout>
     
     <v-dialog v-model="dialog" width="500">
-      <v-hover>
+        <v-hover>
           <v-card
             slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
           >
             <v-img
               :aspect-ratio="16/9"
               src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
-            ></v-img>
-            <v-card-title>
-              <div>
-                <span class="headline">Cafe Badilico</span>
-                <div class="d-flex">
-                  <v-rating
-                    :value="value"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                  ></v-rating>
-                  <div class="ml-2 grey--text text--darken-2">
-                    <span>{{ value }}</span>
-                    <span>({{ reviews }})</span>
-                  </div>
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  style="height: 100%;"
+                >
+                  $14.99
                 </div>
-              </div>
-              <v-spacer></v-spacer>
-              <v-btn icon class="mr-0">
-                <v-icon>mdi-chevron-right</v-icon>
+              </v-expand-transition>
+            </v-img>
+            <v-card-text
+              class="pt-4"
+              style="position: relative;"
+            >
+              <v-btn
+                absolute
+                color="orange"
+                class="white--text"
+                fab
+                large
+                right
+                top
+              >
+                <v-icon>mdi-cellphone</v-icon>
               </v-btn>
-            </v-card-title>
-            <v-card-text>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestias consequatur explicabo itaque labore optio, ratione soluta rem fugit minus alias nisi, consectetur quaerat nulla veniam porro, unde nihil reiciendis.</p>
-          </v-card-text>
+              <div class="font-weight-light grey--text title mb-2">For the perfect meal</div>
+              <h3 class="display-1 font-weight-light orange--text mb-2">QW cooking utensils</h3>
+              <div class="font-weight-light title mb-2">
+                Our Vintage kitchen utensils delight any chef.<br>
+                Made of bamboo by hand
+              </div>
+            </v-card-text>
           </v-card>
         </v-hover>
-      
     </v-dialog>
   </v-container>
 </template>

@@ -1,11 +1,7 @@
 <template>
-<v-parallax
-    dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-  >
+<v-container grid-list-xs>
   <Cards/>
-  </v-parallax>
-
+</v-container>
 </template>
 
 <script>

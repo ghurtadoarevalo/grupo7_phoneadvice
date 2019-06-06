@@ -1,7 +1,7 @@
 <template>
   <v-app>
    <v-navigation-drawer class="hidden-sm-and-up" disable-resize-watcher v-model="sidebar" app>
-    <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo.png')"> 
+    <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo2.png')"> 
           </v-img>
      <v-text-field
         hide-details
