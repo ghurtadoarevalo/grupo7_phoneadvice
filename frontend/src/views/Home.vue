@@ -3,6 +3,7 @@
     dark
     src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
   >
+  <Cards/>
   </v-parallax>
 
 </template>
