@@ -32,8 +32,7 @@ public class Brand {
     @JsonIgnore
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private Set<Phone> phones;
-
-    @JsonIgnore
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
     private Statistic statistic;

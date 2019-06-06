@@ -68,7 +68,7 @@ export default {
       menuItems: [
           { title: 'Inicio', path: '/', icon: 'home' },
           { title: 'Celulares', path: '/searchForDevices', icon: 'phone_iphone' },
-          {title: 'Marcas', path: '/searchForBrands', icon: 'explore' },
+          {title: 'Marcas', path: '/searchForBrands', icon: 'mdi-android' },
           { title: 'Especificaciones', path: '/searchForSpecifications', icon: 'settings' },
      ]
     }

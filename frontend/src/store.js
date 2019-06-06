@@ -146,14 +146,25 @@ export default new Vuex.Store({
         var evalBrand = []
         var brandNames = []
         var brandImgList = []
+        var evalP = []
+        var evalN = []
+        var evalNeutral = []
+
         for(var item of state.listaMarcas){
+          console.log(item)
           evalBrand.push(item.assessment)
           brandNames.push(item.name)
           brandImgList.push(item.image)
+          evalP.push(item.statistic.positive_density)
+          evalN.push(item.statistic.negative_density)
+          evalNeutral.push(item.statistic.neutral_density)
         }
         state.evalBrand = evalBrand
         state.brandImgList = brandImgList
         state.brandNames = brandNames
+        state.evalP = evalP
+        state.evalN = evalN
+        state.evalNeutral = evalNeutral
       } catch(err) {console.log(err)}
     },
     filterByGammaSpecification(state,gammas)

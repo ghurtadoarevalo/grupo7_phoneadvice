@@ -27,7 +27,6 @@
 </template>
 
 <script>
-    import TwitterIcon from "vue-material-design-icons/Twitter.vue"
     import ChartIcon from "vue-material-design-icons/ChartBar.vue"
     import {mapMutations} from 'vuex'
 
