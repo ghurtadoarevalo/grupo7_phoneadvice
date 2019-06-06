@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -23,7 +22,7 @@ public class Specification {
 
     @JsonIgnore
     @OneToMany(mappedBy = "specification", cascade = CascadeType.ALL)
-    private Set<Word> words;
+    private Set<WordSpecification> words_specifications;
 
     @JsonIgnore
     @OneToMany(mappedBy = "specification")
