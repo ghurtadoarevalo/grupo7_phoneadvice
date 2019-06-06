@@ -67,14 +67,37 @@
 
     <v-dialog v-model="dialog" width="500">
       <v-card>
-        <VCardTitle>
-          {{names[indice]}}
-        </VCardTitle>
-        <v-card-text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, repellendus!
-        </v-card-text>
-        <VDivider/>
-        <v-card-actions>
+        <v-toolbar color="#0E318A" dark>
+
+          <v-toolbar-title>Tabla de especificaciones</v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+        </v-toolbar>
+
+        <v-list three-line>
+          <v-subheader>
+              {{ names[indice]}}
+            </v-subheader>
+          <template v-for="(item, index) in items[indice]">
+
+            <v-divider :key="index" :inset="true"></v-divider>
+
+            <v-list-tile :key="index">
+              <v-list-tile-action>
+                <v-icon large color="#0E318A">{{ headers[index].icon}}</v-icon>
+              </v-list-tile-action>
+
+              <v-list-tile-content>
+                <v-list-tile-title>{{ headers[index].spec }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{item}}</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+              
+          </template>
+        </v-list>
+      
+      <v-card-actions>
           <v-btn dark color="#0E318A" @click="dialog=false">Cerrar</v-btn>
         </v-card-actions>
       </v-card>
@@ -93,7 +116,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['imgList','names'])
+      ...mapState(['imgList','names','headers','items'])
     }
   }
 </script>

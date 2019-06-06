@@ -2,7 +2,6 @@
 <v-bottom-nav
       :active.sync="bottomNav"
       :value="true"
-      color="transparent"
     >
       <v-btn
         color="#0E318A"

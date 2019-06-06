@@ -1,5 +1,7 @@
 <template>
-  <Cards />
+<v-container grid-list-xs>
+  <Cards/>
+</v-container>
 </template>
 
 <script>

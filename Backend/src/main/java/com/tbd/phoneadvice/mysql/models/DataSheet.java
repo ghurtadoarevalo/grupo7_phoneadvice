@@ -19,7 +19,7 @@ public class DataSheet {
     private String cpu;
 
     @Column(name = "ram", nullable = false)
-    private int ram;
+    private String ram;
 
     @Column(name = "operative_s", nullable = false, length = 100)
     private String operative_s;

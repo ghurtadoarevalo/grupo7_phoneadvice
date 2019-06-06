@@ -1,14 +1,14 @@
 <template>
-<v-container grid-list-xl>
-  <ChangeToolbar/>
-  <Charts v-if="active ==='graph'"/>
-  <PhoneList v-if="active ==='graph'"/>
-  <Twitteros v-if="active ==='twitter'"/>
-  <Maps v-if="active ==='maps'"/>
+  <v-container grid-list-xl>
+    <ChangeToolbar/>
+    <Charts v-if="active ==='graph'"/>
+    <PhoneList v-if="active ==='graph'"/>
+    <Twitteros v-if="active ==='twitter'"/>
+    <Maps v-if="active ==='maps'"/>
   </v-container>
 
-  
 </template>
+        
 
 <script>
   import PhoneList from '../components/devices/PhoneList'
