@@ -102,7 +102,7 @@ INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `p
 INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (10,98,36);
 
 INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('8', 'asd', 'Lg', 'LGLogo',1);
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('6', 'asd', 'Samsung', 'SamsungLogo',12;
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('6', 'asd', 'Samsung', 'SamsungLogo',12);
 INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('9', 'asd', 'Xiaomi', 'XiaomiLogo',14);
 INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('5', 'asd', 'Motorola', 'MotorolaLogo',12);
 INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('11', 'asd', 'Huawei', 'HuaweiLogo',11);
