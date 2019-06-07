@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     active: 'graph',
     evalSpecification: [],
+    evalBrand: [],
     evalNeutral: [],
     evalP: [],
     evalN: [],
@@ -17,6 +18,8 @@ export default new Vuex.Store({
     specData: [],
     names:[],
     imgList :[],
+    brandImgList: [],
+    brandNames:[],
     listaEquipos: [],
     activeSpecification: 'Batería',
     headers:[
@@ -183,6 +186,36 @@ export default new Vuex.Store({
 
         }catch(err){console.log("En get all " + err)}
     
+      },
+    async getBrands(state){
+      try{
+        await Axios
+        .get('http://localhost:8081/brands/')
+        .then(response => (state.listaMarcas = response.data))
+        console.log("Metodo getBrands");
+        var evalBrand = []
+        var brandNames = []
+        var brandImgList = []
+        var evalP = []
+        var evalN = []
+        var evalNeutral = []
+
+        for(var item of state.listaMarcas){
+          console.log(item)
+          evalBrand.push(item.assessment)
+          brandNames.push(item.name)
+          brandImgList.push(item.image)
+          evalP.push(item.statistic.positive_density)
+          evalN.push(item.statistic.negative_density)
+          evalNeutral.push(item.statistic.neutral_density)
+        }
+        state.evalBrand = evalBrand
+        state.brandImgList = brandImgList
+        state.brandNames = brandNames
+        state.evalP = evalP
+        state.evalN = evalN
+        state.evalNeutral = evalNeutral
+      } catch(err) {console.log(err)}
     },
     filterByGammaSpecification(state,gammas)
     {
@@ -287,6 +320,9 @@ export default new Vuex.Store({
     resetActive (context)
     {
         context.commit('resetActive')
+    },
+    getBrands(context){
+      context.commit('getBrands')
     }
   },
 })

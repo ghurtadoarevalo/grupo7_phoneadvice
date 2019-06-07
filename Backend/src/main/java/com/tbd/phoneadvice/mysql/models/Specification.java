@@ -27,4 +27,21 @@ public class Specification {
     @JsonIgnore
     @OneToMany(mappedBy = "specification")
     Set<PhoneSpecification> phoneSpecifications;
+
+
+    public Long getSpecificationId() {
+        return specificationId;
+    }
+
+    public void setSpecificationId(Long specificationId) {
+        this.specificationId = specificationId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
