@@ -79,7 +79,7 @@
           <v-subheader>
               {{ names[indice]}}
             </v-subheader>
-          <template v-for="(item, index) in items[indice]">
+          <template v-for="(item, index) in dataSheet[indice]">
 
             <v-divider :key="index" :inset="true"></v-divider>
 
@@ -120,7 +120,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['imgList','names','headers','items'])
+      ...mapState(['imgList','names','headers','dataSheet'])
     }
   }
 </script>
