@@ -14,7 +14,7 @@
           >
             <v-img
               :aspect-ratio="9/16"
-              :src="require('@/assets/home/celulares.jpg')"
+              :src="require('@/assets/home/celulares.png')"
             >
               <v-expand-transition>
                 <div
@@ -38,6 +38,7 @@
                 large
                 right
                 top
+                to="/searchForDevices"
               >
                 <v-icon>mdi-cellphone-iphone</v-icon>
               </v-btn>
@@ -81,8 +82,9 @@
                 large
                 right
                 top
+                to="/searchForSpecifications"
               >
-                <v-icon>settings</v-icon>
+                <v-icon>mdi-settings</v-icon>
               </v-btn>
               <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por especificación</h3>
      
@@ -174,7 +176,7 @@
               >
                 <v-icon>mdi-hammer</v-icon>
               </v-btn>
-              <h3 class="display-1 font-weight-light orange--text mb-2">En construccion</h3>
+              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por Gama</h3>
 
             </v-card-text>
           </v-card>

@@ -1,7 +1,8 @@
 <template>
-  <v-app>
-   <v-navigation-drawer class="hidden-sm-and-up" disable-resize-watcher v-model="sidebar" app>
-    <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo2.png')"> 
+  <v-app >
+   <v-navigation-drawer v-if="$router.currentRoute.path != '/'"
+    class="hidden-sm-and-up" disable-resize-watcher v-model="sidebar" app>
+    <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo2.svg')"> 
           </v-img>
      <v-text-field
         hide-details
@@ -14,14 +15,14 @@
           :key="item.title"
           :to="item.path">
           <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon >{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar dense dark color="#0E318A" app>
+    <v-toolbar v-if="$router.currentRoute.path != '/'" dense dark color="#0E318A" app>
       <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="sidebar = !sidebar">
         </v-toolbar-side-icon>
