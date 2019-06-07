@@ -40,7 +40,7 @@ public class Classifier {
         this.model = model;
     }
 
-    @PostConstruct
+    //@PostConstruct
     public void train() {
         InputStreamFactory dataIn=null;
         try {
@@ -77,15 +77,16 @@ public class Classifier {
         return result;
     }
 */
-    public Boolean classify(String tweet){
+    public String classify(String tweet){
 
         String[] words=tweet.replaceAll("[^A-Za-z]"," ").split(" ");
         double[] prob=categorizer.categorize(words);
         //Double positive = prob[0];
         //Como son 2 categorias= positivo = 100% - negativo%
         Double negative = prob[1];
-        if(0.2 < negative) { return false; }
-        else { return true; }
+        if(negative <= 0.35) { return "positivo"; }
+        else if(negative <= 0.55){return "neutro";}
+        else { return "negativo"; }
     }
 
 }

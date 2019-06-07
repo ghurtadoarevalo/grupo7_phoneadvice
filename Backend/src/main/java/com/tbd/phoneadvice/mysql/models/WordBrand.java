@@ -19,15 +19,33 @@ public class WordBrand {
     @Column(name = "content", nullable = false, length = 30)
     private String content;
 
-    /*
-    //No se si sera necesario
-    @Column(name = "type", nullable = false, length = 30)
-    private String type;
-
-
-     */
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
     private Brand brand;
+
+
+    public Long getWord_brand_id() {
+        return word_brand_id;
+    }
+
+    public void setWord_brand_id(Long word_brand_id) {
+        this.word_brand_id = word_brand_id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
 }

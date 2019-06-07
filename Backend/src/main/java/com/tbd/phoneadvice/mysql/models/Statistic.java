@@ -38,6 +38,14 @@ public class Statistic {
     @OneToMany(mappedBy = "statistic", cascade = CascadeType.ALL)
     private Set<Brand> brands;
 
+    public Long getStatisticId() {
+        return statisticId;
+    }
+
+    public void setStatisticId(Long statisticId) {
+        this.statisticId = statisticId;
+    }
+
     public int getNegative_density() {
         return negative_density;
     }

@@ -7,8 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DataTweetRepository extends ElasticsearchRepository<Tweet,String> {
+public interface DataTweetRepository extends ElasticsearchRepository<Tweet,Long> {
     //Iterable<Tweet> findByText(String text);
     List<Tweet> findByText(String text);
     Iterable<Tweet> findByUserName(String text);
 }
+
+
+

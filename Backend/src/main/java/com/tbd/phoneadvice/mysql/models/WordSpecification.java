@@ -30,4 +30,28 @@ public class WordSpecification {
     @JoinColumn(name = "specification_id", referencedColumnName = "specification_id")
     private Specification specification;
 
+
+    public Long getWord_specification_id() {
+        return word_specification_id;
+    }
+
+    public void setWord_specification_id(Long word_specification_id) {
+        this.word_specification_id = word_specification_id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Specification getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(Specification specification) {
+        this.specification = specification;
+    }
 }

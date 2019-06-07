@@ -31,7 +31,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 @RestController
 @Configurable
-@RequestMapping(value = "/kafkaProducerB")
+@RequestMapping(value = "/kafkaProducer")
 public class TwitterListener {
 
     @Autowired
@@ -80,6 +80,7 @@ public class TwitterListener {
         filter.track(listaFinal);
         filter.language(new String[]{"es"});
         twitterStream.filter(filter);
+
 
 
     }

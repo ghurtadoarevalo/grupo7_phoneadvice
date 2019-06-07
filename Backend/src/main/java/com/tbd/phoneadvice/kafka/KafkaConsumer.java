@@ -14,6 +14,7 @@ import com.google.gson.stream.JsonReader;
 import com.tbd.phoneadvice.mongo.models.Tweet;
 import com.tbd.phoneadvice.mongo.models.User;
 import com.tbd.phoneadvice.mongo.repositories.TweetRepository;
+import com.tbd.phoneadvice.sentiment.Classifier;
 import lombok.var;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -36,6 +37,9 @@ public class KafkaConsumer {
     @Autowired
     private TweetRepository tweetRepository;
 
+    @Autowired
+    private Classifier classifier;
+
     private boolean status;
 
     @Scheduled(cron = "0 0/1 * * * ?")
@@ -45,10 +49,21 @@ public class KafkaConsumer {
             ConsumerRecords<Long, String> records = consumer.poll(Duration.of(1, ChronoUnit.SECONDS));
             for (ConsumerRecord<Long, String> record : records) {
                 try{
-                    System.out.println("\n");
-                    System.out.println(record.value());
-                    System.out.println("\n");
                     Status s = TwitterObjectFactory.createStatus(record.value());
+                    String textoCompleto = "null";
+                    String text;
+                    try{
+                        String tweetJson = TwitterObjectFactory.getRawJSON(s);
+                        if(tweetJson != null)
+                        {
+                            JSONObject json = new JSONObject(tweetJson);
+                            JSONObject b = json.getJSONObject("extended_tweet");
+                            textoCompleto = b.getString("full_text");
+                        }
+                    }
+                    catch(JSONException e){
+                    }
+
                     String country = "null",countryCode = "null",region = "null";
                     Double latitude = -1.0,longitude = -1.0;
                     if(s.getPlace() != null) {
@@ -61,9 +76,19 @@ public class KafkaConsumer {
                         latitude = s.getGeoLocation().getLatitude();
                         longitude = s.getGeoLocation().getLongitude();
                     }
+                    text = s.getText();
+                    if(textoCompleto.equals("null") == false)
+                    {
+                        text = textoCompleto;
+                    }
                     User user = new User(s.getUser().getId(),s.getUser().getName(),s.getUser().getScreenName(),s.getUser().getLocation(),s.getUser().getFollowersCount());
-                    Tweet tweet = new Tweet(s.getId(),s.getText(),s.getLang(),user,s.getRetweetCount(),s.getFavoriteCount(),country,countryCode,region,latitude,longitude);
+                    Tweet tweet = new Tweet(s.getId(),text,s.getLang(),user,s.getRetweetCount(),s.getFavoriteCount(),country,countryCode,region,latitude,longitude);
+                    String sentimiento = classifier.classify(tweet.getText());
+                    tweet.setSentiment(sentimiento);
                     this.tweetRepository.save(tweet);
+                    if(status == false){
+                        break;
+                    }
 
                 }catch(TwitterException name) { System.out.println(name); }
 

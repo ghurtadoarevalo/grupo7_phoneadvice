@@ -23,12 +23,6 @@ public class SentimentService {
         List<Tweet> tweetList = dataRepository.findByText(text);
         int positive = 0;
         int negative = 0;
-        for(int i = 0 ; i < tweetList.size();i++) {
-            Tweet tweet = tweetList.get(i);
-            boolean typeOfTweet = classifier.classify(tweet.getText());
-            if(typeOfTweet){ positive++; }
-            else { negative++; }
-        }
         System.out.println("\nPositivo = "+positive);
         System.out.println("\nNegativo = "+negative);
     }
