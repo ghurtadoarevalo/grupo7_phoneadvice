@@ -101,14 +101,14 @@ INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `p
 INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (24,53,31);
 INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (10,98,36);
 
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Lg', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Samsung', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Xiaomi', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Motorola', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Huawei', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Asus', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Apple', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Nokia', 'asd');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('8', 'asd', 'Lg', 'LGLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('6', 'asd', 'Samsung', 'SamsungLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('9', 'asd', 'Xiaomi', 'XiaomiLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('5', 'asd', 'Motorola', 'MotorolaLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('11', 'asd', 'Huawei', 'HuaweiLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('4', 'asd', 'Asus', 'AsusLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('2', 'asd', 'Apple', 'AppleLogo');
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`) VALUES ('7', 'asd', 'Nokia', 'NokiaLogo');
 
 INSERT INTO `phoneadvice`.`gamma` (`max_price`, `min_price`, `name`) VALUES ('0', '150000', 'Baja');
 INSERT INTO `phoneadvice`.`gamma` (`max_price`, `min_price`, `name`) VALUES ('350000', '150001', 'Media');

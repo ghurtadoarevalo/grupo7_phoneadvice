@@ -26,11 +26,13 @@ public class Brand {
     @Column(name = "assessment", nullable = false)
     private int assessment;
 
+    @Column(name = "image", nullable = false, length = 500)
+    private String image;
+
     @JsonIgnore
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private Set<Phone> phones;
-
-    @JsonIgnore
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
     private Statistic statistic;
