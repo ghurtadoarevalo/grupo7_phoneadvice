@@ -13,16 +13,18 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/celulares.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+
+                <b>¡En esta sección podrá encontrar un ranking con los mejores equipos recomendados por la gente!</b>
+                
                 </div>
               </v-expand-transition>
             </v-img>
@@ -57,16 +59,16 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/spec.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+                <b>¡En esta sección podrá encontrar un ranking con los mejores equipos según su especificación recomendados por la gente!</b>
                 </div>
               </v-expand-transition>
             </v-img>
@@ -103,16 +105,16 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/brand.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+                <b>¡En esta sección podrá encontrar un ranking con las mejores marcas recomendados por la gente!</b>
                 </div>
               </v-expand-transition>
             </v-img>
@@ -128,6 +130,8 @@
                 large
                 right
                 top
+                to="/searchForSpecifications"
+
               >
                 <v-icon>mdi-compass</v-icon>
               </v-btn>
@@ -148,16 +152,16 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/build.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+                <b>¡Sección en construcción!</b>
                 </div>
               </v-expand-transition>
             </v-img>
@@ -197,7 +201,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="16/9"
+              :aspect-ratio="3.5/4"
               src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
             >
               <v-expand-transition>

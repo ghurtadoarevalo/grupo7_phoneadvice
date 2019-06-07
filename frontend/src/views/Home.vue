@@ -1,8 +1,8 @@
 <template>
 <v-parallax
     dark
-    src="https://picserio.com/data/out/337/orange-and-yellow-wallpaper_5448482.jpg"
-    height="100%"
+    src="https://cdn.pixabay.com/photo/2018/03/21/10/01/desktop-3246124_1280.jpg"
+    height="50%"
   >
   <v-container grid-list-xs>
     <v-layout class="justify-center">

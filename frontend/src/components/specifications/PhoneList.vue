@@ -49,9 +49,16 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
+    <v-layout v-else-if="imgList.length === 8" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+<v-layout v-else-if="imgList.length === 10" row wrap style="margin-top:-5%; margin-left:3.5%">
+      <v-flex class="ml-0" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img contain class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>

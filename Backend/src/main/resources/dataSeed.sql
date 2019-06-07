@@ -183,11 +183,11 @@ INSERT INTO `phoneadvice`.`phone` (`assessment`,`data_sheet_id`, `description`, 
 ('6',13, 'Diseño elegante y cubierta de metal', 'lg/k11', 'K11', '1', '1',3),
 ('1',14, 'Los colores más realistas y la definición nítida hacen que todo lo que ves en la pantalla sea memorable.', 'lg/k9', 'K9', '1', '1',4),
 ('3',15, 'Diseño elegante y equilibrado', 'lg/q7', 'Q7', '1', '2',5),
-('1',16, 'El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con paneles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble', 'apple/iphone_xs', 'iPhone XS', '2', '3',6),
+('1',16, 'El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con pan  eles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble', 'apple/iphone_xs', 'iPhone XS', '2', '3',6),
 ('2',17, 'El iPhone XR tiene el LCD más avanzado en un smartphone', 'apple/iphone_xr', 'iPhone XR', '2', '3',7),
 ('3',18, ' Está diseñado con el vidrio más resistente usado en un smartphone hasta ahora y tiene un borde de aluminio aeroespacial', 'apple/iphone_8', 'iPhone 8', '2', '3',8),
 ('1',19, 'El Apple iPhone 8 Plus conserva la misma pantalla de su antecesor, con 5.5 pulgadas a resolución Full HD', 'apple/iphone_8_plus', 'iPhone 8 Plus', '2', '3',9),
-('3',20, 'El Apple iPhone XS Max es el móvil de gama top de Apple de 2018', ' apple/iphone_xs_max', 'iPhone XS Max', '2', '3',10);
+('3',20, 'El Apple iPhone XS Max es el móvil de gama top de Apple de 2018', 'apple/iphone_xs_max', 'iPhone XS Max', '2', '3',10);
 
 
 INSERT INTO `phoneadvice`.`phone` (`assessment`,`data_sheet_id`, `description`, `image`, `model`, `brand_id`, `gamma_id`, `statistic_id` ) VALUES ('3',21, 'El Huawei Y6 (2019) es el nuevo móvil de gama baja de Huawei, la renovación de uno de los terminales que mejores características ofrece dentro de los móviles más baratos de la marca', 'huawei/y6', 'Y6', '5', '1','5');
