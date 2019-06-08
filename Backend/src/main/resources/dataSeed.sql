@@ -101,6 +101,14 @@ INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `p
 INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (24,53,31);
 INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (10,98,36);
 
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('8', 'asd', 'Lg', 'LGLogo',1);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('6', 'asd', 'Samsung', 'SamsungLogo',12);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('9', 'asd', 'Xiaomi', 'XiaomiLogo',14);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('5', 'asd', 'Motorola', 'MotorolaLogo',12);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('11', 'asd', 'Huawei', 'HuaweiLogo',11);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('4', 'asd', 'Asus', 'AsusLogo',15);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('2', 'asd', 'Apple', 'AppleLogo',11);
+INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`, `image`,`statistic_id`) VALUES ('7', 'asd', 'Nokia', 'NokiaLogo',14);
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
@@ -141,16 +149,6 @@ INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Lg', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Samsung', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Xiaomi', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Motorola', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Huawei', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Asus', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Apple', 'asd');
-INSERT INTO `phoneadvice`.`brand` (`assessment`, `description`, `name`) VALUES ('0', 'Nokia', 'asd');
 
 INSERT INTO `phoneadvice`.`gamma` (`max_price`, `min_price`, `name`) VALUES ('0', '150000', 'Baja');
 INSERT INTO `phoneadvice`.`gamma` (`max_price`, `min_price`, `name`) VALUES ('350000', '150001', 'Media');
@@ -183,11 +181,11 @@ INSERT INTO `phoneadvice`.`phone` (`assessment`,`data_sheet_id`, `description`, 
 ('6',13, 'Diseño elegante y cubierta de metal', 'lg/k11', 'K11', '1', '1',3),
 ('1',14, 'Los colores más realistas y la definición nítida hacen que todo lo que ves en la pantalla sea memorable.', 'lg/k9', 'K9', '1', '1',4),
 ('3',15, 'Diseño elegante y equilibrado', 'lg/q7', 'Q7', '1', '2',5),
-('1',16, 'El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con paneles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble', 'apple/iphone_xs', 'iPhone XS', '2', '3',6),
+('1',16, 'El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con pan  eles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble', 'apple/iphone_xs', 'iPhone XS', '2', '3',6),
 ('2',17, 'El iPhone XR tiene el LCD más avanzado en un smartphone', 'apple/iphone_xr', 'iPhone XR', '2', '3',7),
 ('3',18, ' Está diseñado con el vidrio más resistente usado en un smartphone hasta ahora y tiene un borde de aluminio aeroespacial', 'apple/iphone_8', 'iPhone 8', '2', '3',8),
 ('1',19, 'El Apple iPhone 8 Plus conserva la misma pantalla de su antecesor, con 5.5 pulgadas a resolución Full HD', 'apple/iphone_8_plus', 'iPhone 8 Plus', '2', '3',9),
-('3',20, 'El Apple iPhone XS Max es el móvil de gama top de Apple de 2018', ' apple/iphone_xs_max', 'iPhone XS Max', '2', '3',10);
+('3',20, 'El Apple iPhone XS Max es el móvil de gama top de Apple de 2018', 'apple/iphone_xs_max', 'iPhone XS Max', '2', '3',10);
 
 
 INSERT INTO `phoneadvice`.`phone` (`assessment`,`data_sheet_id`, `description`, `image`, `model`, `brand_id`, `gamma_id`, `statistic_id` ) VALUES ('3',21, 'El Huawei Y6 (2019) es el nuevo móvil de gama baja de Huawei, la renovación de uno de los terminales que mejores características ofrece dentro de los móviles más baratos de la marca', 'huawei/y6', 'Y6', '5', '1','5');

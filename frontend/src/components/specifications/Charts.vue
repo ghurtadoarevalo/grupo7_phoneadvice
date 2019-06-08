@@ -94,7 +94,7 @@ export default {
           {
           data: this.evalSpecification,
           name:'Evaluación de ' + this.activeSpecification,
-          color: 'Blue'
+          color: 'orange'
           },
           {
           data: this.evalP,

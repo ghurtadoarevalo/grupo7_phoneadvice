@@ -27,6 +27,7 @@ public class Tweet {
     private String state;
     private Double geoLatitude;
     private Double geoLongitude;
+    private String sentiment;
 
     @SerializedName("retweet_count")
     private int retweetCount;
@@ -47,6 +48,7 @@ public class Tweet {
         this.state = state;
         this.geoLatitude = geoLatitude;
         this.geoLongitude = geoLongitude;
+        this.sentiment = "null";
     }
 
     public Long getId() {
@@ -116,5 +118,13 @@ public class Tweet {
     public void setGeoLatitude(Double geoLatitude) { this.geoLatitude = geoLatitude; }
 
     public void setGeoLongitude(Double geoLongitude) { this.geoLongitude = geoLongitude; }
+
+    public String getSentiment() {
+        return sentiment;
+    }
+
+    public void setSentiment(String sentiment) {
+        this.sentiment = sentiment;
+    }
 }
 

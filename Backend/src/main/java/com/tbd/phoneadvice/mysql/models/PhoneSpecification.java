@@ -32,6 +32,37 @@ public class PhoneSpecification {
     @JoinColumn(name = "statistic_id", referencedColumnName = "statistic_id")
     private Statistic statistic;
 
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public Specification getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(Specification specification) {
+        this.specification = specification;
+    }
+
+    public int getAssessment() {
+        return assessment;
+    }
+
+    public void setAssessment(int assessment) {
+        this.assessment = assessment;
+    }
+
+    public Statistic getStatistic() {
+        return statistic;
+    }
+
+    public void setStatistic(Statistic statistic) {
+        this.statistic = statistic;
+    }
 }
 
 

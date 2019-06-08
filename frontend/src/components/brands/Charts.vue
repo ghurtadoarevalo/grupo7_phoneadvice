@@ -2,19 +2,10 @@
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
-      <v-flex md10>
+      <v-flex md12>
         <highcharts :options="getData()"></highcharts>
       </v-flex>
-      <v-flex md2>
-        <VBtn fab dark color="#0E318A" @click="allGamma">
-          <v-icon large color="white">monetization_on</v-icon>
-        </VBtn> Gama
-        
-        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>
-        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>
-    
-      </v-flex>
+      
     </v-layout>
   </v-container>
 </template>
@@ -25,15 +16,11 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','names']),
+    ...mapState(['evalP','evalN','evalNeutral','evalBrand','listaMarcas','brandNames']),
   },
   methods: {
     ...mapMutations(['filterByGama']), 
-    allGamma(){
-      this.gamas = [true,true,true]
-      this.filterByGama(this.gamas);
 
-    },
     getData(){
       var chartOptions = {
           responsive: {
@@ -54,12 +41,12 @@ export default {
           type: 'column'
         },
         title: {
-          text: 'Evaluación de Celulares',
+          text: 'Evaluación de Marcas',
           x:0,
           y:7
         },
         xAxis: {
-          categories: this.names,
+          categories: this.brandNames,
     
         },
         yAxis:{
@@ -85,14 +72,14 @@ export default {
         },
         series: [
           {
-          data: this.evalSpecification,
-          name:'Evaluación de celulares',
+          data: this.evalBrand,
+          name:'Evaluación de marcas',
           color: 'orange'
           },
           {
           data: this.evalP,
           visible: false,
-          name:'Evaluación Positiva',
+          name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
@@ -104,7 +91,7 @@ export default {
           {
           data: this.evalN,
           visible: false,
-          name:'Evaluación Negativa',
+          name:'Comentarios Negativos',
           color: 'Red'
         }]
       }

@@ -22,11 +22,6 @@ public class SearchService {
     @Autowired
     TweetRepository tweetRepository;
 
-    /*
-    @Autowired
-    private Classifier classifier;
-    */
-
     @GetMapping(value = "/delete")
     public void deleteAll()
     {
@@ -34,11 +29,14 @@ public class SearchService {
     }
 
     @GetMapping(value = "/update")
-    public Iterable<Tweet> update()
+    public void update()
     {
         List<Tweet> list = tweetRepository.findAll();
-        for(int i = 0 ;i < list.size() ;i++ ) {repository.save(list.get(i)); }
-        return repository.findAll();
+        for(int i = 0 ;i < list.size() ;i++ )
+        {
+            System.out.println("\nElemento "+ i);
+            repository.save(list.get(i)); }
+
     }
 
     @GetMapping(value = "/getAll")

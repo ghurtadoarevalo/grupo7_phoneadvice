@@ -13,16 +13,18 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/celulares.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+
+                <b>¡En esta sección podrá encontrar un ranking con los mejores equipos recomendados por la gente!</b>
+                
                 </div>
               </v-expand-transition>
             </v-img>
@@ -48,6 +50,55 @@
         </v-hover>
       </v-flex>
 
+
+      <v-flex xs12 md3>
+        <v-hover>
+          <v-card
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
+          >
+            <v-img
+              :aspect-ratio="3.5/4"
+              :src="require('@/assets/home/brand.png')"
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
+                  style="height: 100%;"
+                >
+                <b>¡En esta sección podrá encontrar un ranking con las mejores marcas recomendados por la gente!</b>
+                </div>
+              </v-expand-transition>
+            </v-img>
+            <v-card-text
+              class="pt-4"
+              style="position: relative;"
+            >
+              <v-btn
+                absolute
+                color="orange"
+                class="white--text"
+                fab
+                large
+                right
+                top
+                to="/searchForBrands"
+
+              >
+                <v-icon>mdi-compass</v-icon>
+              </v-btn>
+              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por marca</h3>
+
+            </v-card-text>
+          </v-card>
+        </v-hover>
+      </v-flex>
+
+
       <v-flex xs12 md3>
         <v-hover>
           <v-card
@@ -57,16 +108,16 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/spec.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+                <b>¡En esta sección podrá encontrar un ranking con los mejores equipos según su especificación recomendados por la gente!</b>
                 </div>
               </v-expand-transition>
             </v-img>
@@ -103,61 +154,16 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="9/16"
-              :src="require('@/assets/home/brand.png')"
-            >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-                  style="height: 100%;"
-                >
-                  $14.99
-                </div>
-              </v-expand-transition>
-            </v-img>
-            <v-card-text
-              class="pt-4"
-              style="position: relative;"
-            >
-              <v-btn
-                absolute
-                color="orange"
-                class="white--text"
-                fab
-                large
-                right
-                top
-              >
-                <v-icon>mdi-compass</v-icon>
-              </v-btn>
-              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por marca</h3>
-
-            </v-card-text>
-          </v-card>
-        </v-hover>
-      </v-flex>
-
-      <v-flex xs12 md3>
-        <v-hover>
-          <v-card
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
-            class="mx-auto"
-            color="grey lighten-4"
-            max-width="600"
-          >
-            <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="3.5/4"
               :src="require('@/assets/home/build.png')"
             >
               <v-expand-transition>
                 <div
                   v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
                   style="height: 100%;"
                 >
-                  $14.99
+                <b>¡Sección en construcción!</b>
                 </div>
               </v-expand-transition>
             </v-img>
@@ -197,7 +203,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="16/9"
+              :aspect-ratio="3.5/4"
               src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
             >
               <v-expand-transition>

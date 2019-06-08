@@ -44,4 +44,27 @@ public class WordPhone {
 
      */
 
+    public Long getWord_phone_id() {
+        return word_phone_id;
+    }
+
+    public void setWord_phone_id(Long word_phone_id) {
+        this.word_phone_id = word_phone_id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
 }
