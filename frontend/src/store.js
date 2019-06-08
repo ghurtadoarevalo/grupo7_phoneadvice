@@ -8,21 +8,20 @@ Vue.use(Axios)
 
 export default new Vuex.Store({
   state: {
-    active: 'graph',
-    evalSpecification: [],
-    evalBrand: [],
-    evalNeutral: [],
-    evalP: [],
-    evalN: [],
-    dataSheet: [],
-    specData: [],
-    names:[],
-    imgList :[],
-    brandImgList: [],
-    brandNames:[],
-    listaEquipos: [],
-    activeSpecification: 'Batería',
-    headers:[
+    active: 'graph', //Utilizado para indicar qué pestaña se muestra dentro de cada categoría
+    evalSpecification: [],  //Utilizado para mostrar la evaluación en los gráficos de specificacion
+    evalBrand: [], //Utilizado para mostrar la evaluación en los gráficos de marca
+    evalNeutral: [], //Utilizado para mostrar los comentarios neutrales en los gráficos
+    evalP: [], //Utilizado para mostrar los comentarios positivos en los gráficos
+    evalN: [], //Utilizado para mostrar los comentarios negativos en los gráficos
+    specData: [], //Utilizado para mostrar las fichas técnicas de los equipos
+    names:[], //Utilizado para almacenar los nombres de los equipos y mostrarlos en los gráficos
+    imgList :[], //Utilizado para almacenar las imágenes de los equipos y mostrarlas en los gráficos
+    brandImgList: [], //Utilizado para almacenar las imágenes de las marcas y mostrarlas en los gráficos
+    brandNames:[], //Utilizado para almacenar los nombres de las marcas y mostrarlos en los gráficos
+    listaEquipos: [],  //Utilizado para almacenar los equipos que provienen del backend al hacer las consultas
+    activeSpecification: 'Batería', //Utilizado para indicar qué especificación está activa en la pestaña de especficaciones
+    headers:[ //Utilizado por la ficha técnica
       {spec: 'Procesador: ', icon:'mdi-chip'},
       {spec: 'RAM: ' , icon:'memory'}, 
       {spec: 'Sistema Operativo: ', icon:'android'},
