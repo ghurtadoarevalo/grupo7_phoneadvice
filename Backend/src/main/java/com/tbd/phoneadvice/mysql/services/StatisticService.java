@@ -43,7 +43,7 @@ public class StatisticService {
     @Autowired
     private DataTweetRepository dataTweetRepository;
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/test1", method = RequestMethod.GET)
     @ResponseBody
     public void almacenarStatCelulares()
     {
@@ -88,13 +88,8 @@ public class StatisticService {
             stat.setPositive_density(c_positivos);
             stat.setNeutral_density(c_neutros);
             stat.setNegative_density(c_negativos);
-            System.out.println(phone.getModel() + "\n");
-            System.out.println(c_positivos);
-            System.out.println(c_neutros);
-            System.out.println(c_negativos + "\n");
 
-
-            int nota = 2;
+            int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
             phone.setAssessment(nota);
 
             statisticRepository.saveAndFlush(stat);
@@ -144,13 +139,8 @@ public class StatisticService {
             stat.setPositive_density(c_positivos);
             stat.setNeutral_density(c_neutros);
             stat.setNegative_density(c_negativos);
-            int nota = 2;
+            int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
             brand.setAssessment(nota);
-
-            System.out.println(brand.getName() + "\n");
-            System.out.println(c_positivos);
-            System.out.println(c_neutros);
-            System.out.println(c_negativos + "\n");
 
             statisticRepository.saveAndFlush(stat);
             brandRepository.saveAndFlush(brand);
@@ -214,7 +204,7 @@ public class StatisticService {
             stat.setPositive_density(c_positivos);
             stat.setNeutral_density(c_neutros);
             stat.setNegative_density(c_negativos);
-            int nota = 2;
+            int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
             phoneSpecification.setAssessment(nota);
 
             statisticRepository.saveAndFlush(stat);
@@ -223,10 +213,22 @@ public class StatisticService {
 
         }
     }
-    @RequestMapping(value = "/test4", method = RequestMethod.GET)
-    @ResponseBody
-    public void crearIntermedias() {
-        long id = 0;
+
+    public int calculcarNota(int pos,int neutro,int neg)
+    {
+        int nota = 0;
+        int auxB = pos+neutro+neg;
+        if(auxB != 0) {
+            double auxA = (pos - 0.2 * neg) / auxB;
+            if (auxA <= 0) {
+                nota = 1;
+            }
+            else {
+                double auxC = auxA*7;
+                return (int)Math.ceil(auxC);
+            }
+        }
+        return nota;
     }
 
 }
