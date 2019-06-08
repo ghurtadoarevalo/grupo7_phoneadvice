@@ -50,6 +50,55 @@
         </v-hover>
       </v-flex>
 
+
+      <v-flex xs12 md3>
+        <v-hover>
+          <v-card
+            slot-scope="{ hover }"
+            :class="`elevation-${hover ? 12 : 2}`"
+            class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
+          >
+            <v-img
+              :aspect-ratio="3.5/4"
+              :src="require('@/assets/home/brand.png')"
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
+                  style="height: 100%;"
+                >
+                <b>¡En esta sección podrá encontrar un ranking con las mejores marcas recomendados por la gente!</b>
+                </div>
+              </v-expand-transition>
+            </v-img>
+            <v-card-text
+              class="pt-4"
+              style="position: relative;"
+            >
+              <v-btn
+                absolute
+                color="orange"
+                class="white--text"
+                fab
+                large
+                right
+                top
+                to="/searchForBrands"
+
+              >
+                <v-icon>mdi-compass</v-icon>
+              </v-btn>
+              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por marca</h3>
+
+            </v-card-text>
+          </v-card>
+        </v-hover>
+      </v-flex>
+
+
       <v-flex xs12 md3>
         <v-hover>
           <v-card
@@ -90,53 +139,6 @@
               </v-btn>
               <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por especificación</h3>
      
-            </v-card-text>
-          </v-card>
-        </v-hover>
-      </v-flex>
-
-      <v-flex xs12 md3>
-        <v-hover>
-          <v-card
-            slot-scope="{ hover }"
-            :class="`elevation-${hover ? 12 : 2}`"
-            class="mx-auto"
-            color="grey lighten-4"
-            max-width="600"
-          >
-            <v-img
-              :aspect-ratio="3.5/4"
-              :src="require('@/assets/home/brand.png')"
-            >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
-                  style="height: 100%;"
-                >
-                <b>¡En esta sección podrá encontrar un ranking con las mejores marcas recomendados por la gente!</b>
-                </div>
-              </v-expand-transition>
-            </v-img>
-            <v-card-text
-              class="pt-4"
-              style="position: relative;"
-            >
-              <v-btn
-                absolute
-                color="orange"
-                class="white--text"
-                fab
-                large
-                right
-                top
-                to="/searchForSpecifications"
-
-              >
-                <v-icon>mdi-compass</v-icon>
-              </v-btn>
-              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por marca</h3>
-
             </v-card-text>
           </v-card>
         </v-hover>
