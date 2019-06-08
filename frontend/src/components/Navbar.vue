@@ -4,11 +4,7 @@
     class="hidden-sm-and-up" disable-resize-watcher v-model="sidebar" app>
     <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo2.svg')"> 
           </v-img>
-     <v-text-field
-        hide-details
-        prepend-icon="search"
-        single-line
-      ></v-text-field>
+
       <v-list>
         <v-list-tile
           v-for="item in menuItems"
@@ -29,7 +25,7 @@
       </span>
       <v-toolbar-title>
         
-        <router-link to="/" tag="span" style="cursor: pointer">
+        <router-link  to="/" tag="span" style="cursor: pointer">
         Phone Advice
         </router-link>
 
@@ -44,11 +40,6 @@
           <v-icon left dark>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
-        <v-text-field
-        hide-details
-        prepend-icon="search"
-        single-line
-      ></v-text-field>
       </v-toolbar-items>
     </v-toolbar>
 
