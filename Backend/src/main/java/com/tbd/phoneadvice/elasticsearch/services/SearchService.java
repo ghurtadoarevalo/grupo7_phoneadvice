@@ -31,8 +31,11 @@ public class SearchService {
     @GetMapping(value = "/update")
     public void update()
     {
+        System.out.println("\nACA ME PEGUE");
         List<Tweet> list = tweetRepository.findAll();
-        for(int i = 0 ;i < list.size() ;i++ )
+        System.out.println("\nCantidad ="+ list.size());
+
+        for(int i = 20400 ;i < list.size() ;i++ )
         {
             System.out.println("\nElemento "+ i);
             repository.save(list.get(i)); }

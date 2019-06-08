@@ -88,6 +88,11 @@ public class StatisticService {
             stat.setPositive_density(c_positivos);
             stat.setNeutral_density(c_neutros);
             stat.setNegative_density(c_negativos);
+            System.out.println(phone.getModel() + "\n");
+            System.out.println(c_positivos);
+            System.out.println(c_neutros);
+            System.out.println(c_negativos + "\n");
+
 
             int nota = 2;
             phone.setAssessment(nota);
@@ -141,6 +146,12 @@ public class StatisticService {
             stat.setNegative_density(c_negativos);
             int nota = 2;
             brand.setAssessment(nota);
+
+            System.out.println(brand.getName() + "\n");
+            System.out.println(c_positivos);
+            System.out.println(c_neutros);
+            System.out.println(c_negativos + "\n");
+
             statisticRepository.saveAndFlush(stat);
             brandRepository.saveAndFlush(brand);
 
@@ -161,56 +172,33 @@ public class StatisticService {
             List<WordSpecification> wordSpecificationList = word_specificationRepository.findBySpecification_SpecificationId(specification.getSpecificationId());
 
             List<String> bagWordsPhone = new ArrayList<>();
-            List<String> bagWordsSpec = new ArrayList<>();
 
             for(int j = 0 ; j < wordPhoneList.size();j++)
             {
                 String word = wordPhoneList.get(j).getContent();
-                bagWordsPhone.add(word);
+                for(int k = 0 ; k < wordSpecificationList.size();k++)
+                {
+                    String wordB = wordSpecificationList.get(k).getContent();
+                    String wordC = word.replace("_"," ") + " " + wordB;
+                    bagWordsPhone.add(wordC);
+                }
             }
 
-            for(int j = 0 ; j < wordSpecificationList.size();j++)
-            {
-                String word = wordSpecificationList.get(j).getContent();
-                bagWordsSpec.add(word);
-            }
+            List<Tweet> listTweets = new ArrayList<>();
 
-            List<Tweet> listTweetsA = new ArrayList<>();
-            for(int j = 0 ; j < bagWordsPhone.size();j++)
+            for(int j = 0 ; j < bagWordsPhone.size(); j++)
             {
                 String text = bagWordsPhone.get(j);
                 List<Tweet> aux= dataTweetRepository.findByText(text);
-                for(int k = 0 ; k < aux.size();k++) { listTweetsA.add(aux.get(k)); }
-            }
-
-            List<Tweet> listTweetsB = new ArrayList<>();
-            for(int j = 0 ; j < bagWordsSpec.size();j++)
-            {
-                String text = bagWordsSpec.get(j);
-                List<Tweet> aux= dataTweetRepository.findByText(text);
-                for(int k = 0 ; k < aux.size();k++) { listTweetsB.add(aux.get(k)); }
-            }
-
-            List<Tweet> listTweetsC = new ArrayList<>();
-            for(int j = 0 ; j < listTweetsA.size();j++)
-            {
-                Long tweetId = listTweetsA.get(j).getId();
-                for(int k = 0 ; k < listTweetsB.size();k++)
-                {
-                    Long tweetAuxId = listTweetsB.get(k).getId();
-                    if(tweetId == tweetAuxId) {
-                        listTweetsC.add(listTweetsB.get(k));
-                        break;
-                    }
-                }
+                for(int k = 0 ; k < aux.size();k++) { listTweets.add(aux.get(k)); }
             }
 
             int c_positivos = 0;
             int c_neutros = 0;
             int c_negativos = 0;
-            for(int j = 0 ; j < listTweetsC.size();j++)
+            for(int j = 0 ; j < listTweets.size();j++)
             {
-                Tweet tweet = listTweetsC.get(j);
+                Tweet tweet = listTweets.get(j);
                 if(tweet.getSentiment().equals("positivo")) {
                     c_positivos++;
                 }
@@ -222,18 +210,23 @@ public class StatisticService {
                 }
             }
 
-            Statistic stat = phoneSpecification.getStatistic();
+            Statistic stat = statisticRepository.findByStatisticId(phoneSpecification.getStatistic().getStatisticId());
             stat.setPositive_density(c_positivos);
             stat.setNeutral_density(c_neutros);
             stat.setNegative_density(c_negativos);
+            int nota = 2;
+            phoneSpecification.setAssessment(nota);
+
             statisticRepository.saveAndFlush(stat);
-
-            //De la lista tweetsA y tweetsB
-            //Filtrar por ambas en elastic search
-            //Resultantes, obtener positivos, negativos y neutros.
-
+            phoneSpecificationRepository.saveAndFlush(phoneSpecification);
 
 
         }
     }
+    @RequestMapping(value = "/test4", method = RequestMethod.GET)
+    @ResponseBody
+    public void crearIntermedias() {
+        long id = 0;
+    }
+
 }

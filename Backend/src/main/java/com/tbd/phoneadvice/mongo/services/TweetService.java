@@ -73,12 +73,13 @@ public class TweetService {
             String contenido = listB.get(i).getContent();
             filtro.add(contenido);
         }
-
+        /*
         for(int i = 0 ; i < listC.size();i++)
         {
             String contenido = listC.get(i).getContent();
             filtro.add(contenido);
         }
+        */
 
 
         listener.run(filtro);
