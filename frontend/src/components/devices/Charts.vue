@@ -87,7 +87,7 @@ export default {
           {
           data: this.evalSpecification,
           name:'Evaluación de celulares',
-          color: 'Blue'
+          color: 'orange'
           },
           {
           data: this.evalP,

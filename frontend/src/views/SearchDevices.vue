@@ -6,10 +6,8 @@
     <Twitteros v-if="active ==='twitter'"/>
     <Maps v-if="active ==='maps'"/>
   </v-container>
-
 </template>
         
-
 <script>
   import PhoneList from '../components/devices/PhoneList'
   import Charts from '../components/devices/Charts'
@@ -21,6 +19,7 @@
   export default {
     data() {
       return {
+        showNavbar: true
       }
     },
     components: {

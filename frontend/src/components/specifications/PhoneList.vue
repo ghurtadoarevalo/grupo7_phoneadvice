@@ -49,18 +49,16 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-else row wrap style="margin-top:-5%; margin-left:6.5%">
+    <v-layout v-else-if="imgList.length === 8" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
-            <v-expand-transition>
-            <div
-            v-if="hover"
-            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;"
-            >
-            $14.99
-            </div>
-        </v-expand-transition>
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+<v-layout v-else-if="imgList.length === 10" row wrap style="margin-top:-5%; margin-left:3.5%">
+      <v-flex class="ml-0" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img contain class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
@@ -74,16 +72,28 @@
           <v-spacer></v-spacer>
 
         </v-toolbar>
-
+        <v-layout mt-4 ml-2 row wrap>
+          <v-flex md5>
+            <v-img class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ imgList[indice] + '.png')"/>
+          </v-flex>
+          <v-flex>
+            <v-list-tile>
+            <v-list-tile-content>
+                <v-list-tile-title>Descripcion</v-list-tile-title>
+                <v-list-tile-sub-title>Celular que bla bla</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-flex>
+        </v-layout>
         <v-list three-line>
-          <v-subheader>
+            <v-subheader>
               {{ names[indice]}}
             </v-subheader>
-          <template v-for="(item, index) in items[indice]">
+          <template v-for="(item, index) in specData[indice]">
+            
+            <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
 
-            <v-divider :key="index" :inset="true"></v-divider>
-
-            <v-list-tile :key="index">
+            <v-list-tile :key="index+'%'+item+2">
               <v-list-tile-action>
                 <v-icon large color="#0E318A">{{ headers[index].icon}}</v-icon>
               </v-list-tile-action>
@@ -116,7 +126,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['imgList','names','headers','items'])
+      ...mapState(['imgList','names','headers','specData'])
     }
   }
 </script>

@@ -8,19 +8,20 @@ Vue.use(Axios)
 
 export default new Vuex.Store({
   state: {
-    active: 'graph',
-    evalSpecification: [],
-    evalBrand: [],
-    evalNeutral: [],
-    evalP: [],
-    evalN: [],
-    names:[],
-    imgList :[],
-    brandImgList: [],
-    brandNames:[],
-    listaEquipos: [],
-    activeSpecification: 'Batería',
-    headers:[
+    active: 'graph', //Utilizado para indicar qué pestaña se muestra dentro de cada categoría
+    evalSpecification: [],  //Utilizado para mostrar la evaluación en los gráficos de specificacion
+    evalBrand: [], //Utilizado para mostrar la evaluación en los gráficos de marca
+    evalNeutral: [], //Utilizado para mostrar los comentarios neutrales en los gráficos
+    evalP: [], //Utilizado para mostrar los comentarios positivos en los gráficos
+    evalN: [], //Utilizado para mostrar los comentarios negativos en los gráficos
+    specData: [], //Utilizado para mostrar las fichas técnicas de los equipos
+    names:[], //Utilizado para almacenar los nombres de los equipos y mostrarlos en los gráficos
+    imgList :[], //Utilizado para almacenar las imágenes de los equipos y mostrarlas en los gráficos
+    brandImgList: [], //Utilizado para almacenar las imágenes de las marcas y mostrarlas en los gráficos
+    brandNames:[], //Utilizado para almacenar los nombres de las marcas y mostrarlos en los gráficos
+    listaEquipos: [],  //Utilizado para almacenar los equipos que provienen del backend al hacer las consultas
+    activeSpecification: 'Batería', //Utilizado para indicar qué especificación está activa en la pestaña de especficaciones
+    headers:[ //Utilizado por la ficha técnica
       {spec: 'Procesador: ', icon:'mdi-chip'},
       {spec: 'RAM: ' , icon:'memory'}, 
       {spec: 'Sistema Operativo: ', icon:'android'},
@@ -31,19 +32,6 @@ export default new Vuex.Store({
       {spec: 'Pantalla: ', icon:'smartphone'},
       {spec: 'Almacenamiento', icon:'storage'},
       {spec: 'Bateria: ', icon:'battery_charging_full'}],
-    items: [
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '10MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '20MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '30MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '40MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '50MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '60MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '70MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '80MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '90MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-      ['KIRIM', '8GB', 'Android', '10x10', '5kg', '100MP', '100MP', 'Smart Glass', '1T', '5000 mAh'],
-    ],
-    listaMarcas:[],
   },
   mutations: {
     //Button bar
@@ -66,16 +54,29 @@ export default new Vuex.Store({
             var imgList = []
             var evalNeutral = []
             var evalSpecification = []
-            var activeSpecification;
+            var specData = []
+            var activeSpecification
 
             for(var item of state.listaEquipos ){
-                activeSpecification = item.specification.name
-                evalSpecification.push(item.assessment)
-                evalP.push(item.statistic.positive_density)
-                evalN.push(item.statistic.negative_density)
-                evalNeutral.push(item.statistic.neutral_density)
-                names.push(item.phone.model)
-                imgList.push(item.phone.image)
+              var dataSheet = []
+              dataSheet.push(item.phone.data_sheet.back_cam)
+              dataSheet.push(item.phone.data_sheet.batery)
+              dataSheet.push(item.phone.data_sheet.cpu)
+              dataSheet.push(item.phone.data_sheet.dimensions)
+              dataSheet.push(item.phone.data_sheet.operative_s)
+              dataSheet.push(item.phone.data_sheet.ram)
+              dataSheet.push(item.phone.data_sheet.screen)
+              dataSheet.push(item.phone.data_sheet.storage)
+              dataSheet.push(item.phone.data_sheet.weight)
+              specData.push(dataSheet);
+
+              activeSpecification = item.specification.name
+              evalSpecification.push(item.assessment)
+              evalP.push(item.statistic.positive_density)
+              evalN.push(item.statistic.negative_density)
+              evalNeutral.push(item.statistic.neutral_density)
+              names.push(item.phone.model)
+              imgList.push(item.phone.image)
               }
 
               state.activeSpecification = activeSpecification
@@ -85,6 +86,7 @@ export default new Vuex.Store({
               state.evalN = evalN
               state.names = names
               state.imgList = imgList
+              state.specData = specData
         
         }catch(err){console.log(err)}
     },
@@ -93,8 +95,6 @@ export default new Vuex.Store({
         try{await Axios
             .get('http://localhost:8081/phones_specifications/1/specification')
             .then(response => (state.listaEquipos = response.data))
-        
-            console.log(state.listaEquipos)
 
             var evalP = []
             var evalN = []
@@ -102,18 +102,31 @@ export default new Vuex.Store({
             var imgList = []
             var evalNeutral = []
             var evalSpecification = []
-            var activeSpecification;
+            var activeSpecification
+            var specData = []
 
             for(var item of state.listaEquipos ){
-                activeSpecification = item.specification.name
-                evalSpecification.push(item.assessment)
-                evalP.push(item.statistic.positive_density)
-                evalN.push(item.statistic.negative_density)
-                evalNeutral.push(item.statistic.neutral_density)
-                names.push(item.phone.model)
-                imgList.push(item.phone.image)
-              }
 
+              var dataSheet = []
+              dataSheet.push(item.phone.data_sheet.back_cam)
+              dataSheet.push(item.phone.data_sheet.batery)
+              dataSheet.push(item.phone.data_sheet.cpu)
+              dataSheet.push(item.phone.data_sheet.dimensions)
+              dataSheet.push(item.phone.data_sheet.operative_s)
+              dataSheet.push(item.phone.data_sheet.ram)
+              dataSheet.push(item.phone.data_sheet.screen)
+              dataSheet.push(item.phone.data_sheet.storage)
+              dataSheet.push(item.phone.data_sheet.weight)
+              specData.push(dataSheet);
+
+              activeSpecification = item.specification.name
+              evalSpecification.push(item.assessment)
+              evalP.push(item.statistic.positive_density)
+              evalN.push(item.statistic.negative_density)
+              evalNeutral.push(item.statistic.neutral_density)
+              names.push(item.phone.model)
+              imgList.push(item.phone.image)
+            }
               state.activeSpecification = activeSpecification
               state.evalSpecification = evalSpecification
               state.evalNeutral = evalNeutral
@@ -121,7 +134,8 @@ export default new Vuex.Store({
               state.evalN = evalN
               state.names = names
               state.imgList = imgList
-        
+              state.specData = specData;
+
         }catch(err){console.log(err)}
     },
     //Devices Evaluation
@@ -131,17 +145,28 @@ export default new Vuex.Store({
             await Axios 
             .get('http://localhost:8081/phones/getall')
             .then(response => (state.listaEquipos = response.data))
-            console.log(state.listaEquipos);
-            
             var evalNeutral = []
             var evalSpecification = []
             var evalP = []
             var evalN = []
             var names = []
             var imgList = []
-      
-            for(var item of state.listaEquipos ){
-              
+            var specData = []
+
+            for(var item of state.listaEquipos )
+            {
+                var dataSheet = []
+                dataSheet.push(item.data_sheet.back_cam)
+                dataSheet.push(item.data_sheet.batery)
+                dataSheet.push(item.data_sheet.cpu)
+                dataSheet.push(item.data_sheet.dimensions)
+                dataSheet.push(item.data_sheet.operative_s)
+                dataSheet.push(item.data_sheet.ram)
+                dataSheet.push(item.data_sheet.screen)
+                dataSheet.push(item.data_sheet.storage)
+                dataSheet.push(item.data_sheet.weight)
+                specData.push(dataSheet);
+            
                 evalSpecification.push(item.assessment)
                 evalP.push(item.statistic.positive_density)
                 evalN.push(item.statistic.negative_density)
@@ -150,6 +175,7 @@ export default new Vuex.Store({
                 imgList.push(item.image)
             }
       
+            state.specData = specData;
             state.evalSpecification = evalSpecification
             state.evalNeutral = evalNeutral
             state.evalP = evalP
@@ -200,9 +226,24 @@ export default new Vuex.Store({
             var evalNeutral = []
             var evalSpecification = []
             var activeSpecification;
+            var specData = []
 
             for(var item of state.listaEquipos ){
                 if(gammas[item.phone.gamma.gammaId - 1]){
+
+                  var dataSheet = []
+                  dataSheet.push(item.phone.data_sheet.back_cam)
+                  dataSheet.push(item.phone.data_sheet.batery)
+                  dataSheet.push(item.phone.data_sheet.cpu)
+                  dataSheet.push(item.phone.data_sheet.dimensions)
+                  dataSheet.push(item.phone.data_sheet.operative_s)
+                  dataSheet.push(item.phone.data_sheet.ram)
+                  dataSheet.push(item.phone.data_sheet.screen)
+                  dataSheet.push(item.phone.data_sheet.storage)
+                  dataSheet.push(item.phone.data_sheet.weight)
+                  specData.push(dataSheet);
+
+
                     activeSpecification = item.specification.name
                     evalSpecification.push(item.assessment)
                     evalP.push(item.statistic.positive_density)
@@ -221,6 +262,7 @@ export default new Vuex.Store({
               state.evalN = evalN
               state.names = names
               state.imgList = imgList
+              state.specData = specData
         
         }catch(err){console.log(err)}    
     },
@@ -231,14 +273,28 @@ export default new Vuex.Store({
       var imgList = []
       var evalNeutral = []
       var evalSpecification = []
+      var specData = []
 
       for(var item of state.listaEquipos ){
         if(gammas[item.gamma.gammaId - 1]){
-            evalSpecification.push(item.assessment)
-            evalP.push(item.statistic.positive_density)
-            evalN.push(item.statistic.negative_density)
-            names.push(item.model)
-            imgList.push(item.image)
+
+          var dataSheet = []
+          dataSheet.push(item.data_sheet.back_cam)
+          dataSheet.push(item.data_sheet.batery)
+          dataSheet.push(item.data_sheet.cpu)
+          dataSheet.push(item.data_sheet.dimensions)
+          dataSheet.push(item.data_sheet.operative_s)
+          dataSheet.push(item.data_sheet.ram)
+          dataSheet.push(item.data_sheet.screen)
+          dataSheet.push(item.data_sheet.storage)
+          dataSheet.push(item.data_sheet.weight)
+          specData.push(dataSheet);
+
+          evalSpecification.push(item.assessment)
+          evalP.push(item.statistic.positive_density)
+          evalN.push(item.statistic.negative_density)
+          names.push(item.model)
+          imgList.push(item.image)
         }
       }
       
@@ -248,6 +304,8 @@ export default new Vuex.Store({
       state.evalN = evalN
       state.names = names
       state.imgList = imgList
+      state.specData = specData
+
     }
   },
   actions: {

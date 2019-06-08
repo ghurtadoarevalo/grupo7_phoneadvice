@@ -74,7 +74,7 @@ export default {
           {
           data: this.evalBrand,
           name:'Evaluación de marcas',
-          color: 'Blue'
+          color: 'orange'
           },
           {
           data: this.evalP,
