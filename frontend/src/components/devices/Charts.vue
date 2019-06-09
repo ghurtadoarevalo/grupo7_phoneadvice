@@ -29,7 +29,7 @@ export default {
     ...mapState(['evalP','evalN','evalNeutral','evalSpecification','names','topTenEvalP','topTenEvalN','topTenEvalNeutral','topTenEvalSpecification','topTenNames']),
   },
   methods: {
-    ...mapMutations(['filterByGama','getTopTen']), 
+    ...mapMutations(['filterByGama']), 
     allGamma(){
       this.gamas = [true,true,true]
       this.filterByGama(this.gamas);
