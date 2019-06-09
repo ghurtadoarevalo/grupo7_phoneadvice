@@ -2,7 +2,7 @@
   <v-app >
    <v-navigation-drawer v-if="$router.currentRoute.path != '/'"
     class="hidden-sm-and-up" disable-resize-watcher v-model="sidebar" app>
-    <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo2.svg')"> 
+    <v-img class="ml-5 mr-5 mt-3" :src="require('@/assets/logo.svg')"> 
           </v-img>
 
       <v-list>

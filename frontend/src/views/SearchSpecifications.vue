@@ -2,7 +2,7 @@
   <v-container grid-list-xl class="mt-5">
       <!--<specificationsList v-if="activo ==='graph'"/>-->
       <Charts/>
-      <PhoneList/>
+      <PhoneList style="margin-left:1.7%"/>
   </v-container>
 </template>
 

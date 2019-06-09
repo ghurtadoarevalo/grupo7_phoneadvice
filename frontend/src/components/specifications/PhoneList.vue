@@ -57,7 +57,7 @@
     </v-layout>
 
 <v-layout v-else-if="topTenImgList.length === 10" row wrap style="margin-top:-5%; margin-left:3.5%">
-      <v-flex class="ml-0" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
+      <v-flex style="margin-left:0.7%;margin-right:0.7%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img contain class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
