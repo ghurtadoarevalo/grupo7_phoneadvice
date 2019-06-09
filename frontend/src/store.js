@@ -69,8 +69,9 @@ export default new Vuex.Store({
             var topTenSpecData = []
             var activeSpecification
             var index = 0
-
-            for(var item of state.listaEquipos ){
+            console.log(state.listaEquipos)
+            for(var item of state.listaEquipos )
+            {
               var dataSheet = []
               dataSheet.push(item.phone.data_sheet.cpu)
               dataSheet.push(item.phone.data_sheet.ram)
@@ -81,6 +82,7 @@ export default new Vuex.Store({
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
               dataSheet.push(item.phone.data_sheet.batery)
+               
               if(index >= 10){
                 specData.push(dataSheet);
                 activeSpecification = item.specification.name
@@ -104,7 +106,7 @@ export default new Vuex.Store({
                 index ++
               }
               
-              }
+             }
 
               state.activeSpecification = activeSpecification
               state.evalSpecification = evalSpecification
@@ -364,8 +366,8 @@ export default new Vuex.Store({
                     topTenEvalP.push(item.statistic.positive_density)
                     topTenEvalN.push(item.statistic.negative_density)
                     topTenEvalNeutral.push(item.statistic.neutral_density)
-                    topTenNames.push(item.name)
-                    topTenImgList.push(item.image)
+                    topTenNames.push(item.phone.model)
+                    topTenImgList.push(item.phone.image)
                     index ++
                   }
 
@@ -412,11 +414,10 @@ export default new Vuex.Store({
       var index = 0
       for(var item of state.listaEquipos )
       {
-          console.log(state.listaEquipos)
         if(gammas[item.gamma.gammaId - 1])
         {
-          var dataSheet = []
-          dataSheet.push(item.data_sheet.cpu)
+            var dataSheet = []
+            dataSheet.push(item.data_sheet.cpu)
             dataSheet.push(item.data_sheet.ram)
             dataSheet.push(item.data_sheet.operative_s)
             dataSheet.push(item.data_sheet.dimensions)

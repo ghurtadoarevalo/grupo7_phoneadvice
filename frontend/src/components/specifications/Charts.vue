@@ -9,10 +9,10 @@
         </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex md10>
+      <v-flex md11>
         <highcharts :options="getData()"></highcharts>
       </v-flex>
-      <v-flex md2>
+      <v-flex md1>
         <VBtn fab dark color="#0E318A" @click="allGamma">
           <v-icon large color="white">monetization_on</v-icon>
         </VBtn> Filtro Gama
