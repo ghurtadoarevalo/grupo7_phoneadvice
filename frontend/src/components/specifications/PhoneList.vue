@@ -1,63 +1,63 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout v-if="imgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-if="topTenImgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-    <v-layout v-else-if="imgList.length === 8" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex class="ml-3" xs1 md1 v-for="(img, index) in imgList" :key="index">
+    <v-layout v-else-if="topTenImgList.length === 8" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex class="ml-3" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
     </v-layout>
 
-<v-layout v-else-if="imgList.length === 10" row wrap style="margin-top:-5%; margin-left:3.5%">
-      <v-flex class="ml-0" xs1 md1 v-for="(img, index) in imgList" :key="index">
+<v-layout v-else-if="topTenImgList.length === 10" row wrap style="margin-top:-5%; margin-left:3.5%">
+      <v-flex class="ml-0" xs1 md1 v-for="(img, index) in topTenImgList" :key="index">
           <v-img contain class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
@@ -74,7 +74,7 @@
         </v-toolbar>
         <v-layout mt-4 ml-2 row wrap>
           <v-flex md5>
-            <v-img class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ imgList[indice] + '.png')"/>
+            <v-img class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ topTenImgList[indice] + '.png')"/>
           </v-flex>
           <v-flex>
             <v-list-tile>
@@ -87,9 +87,9 @@
         </v-layout>
         <v-list three-line>
             <v-subheader>
-              {{ names[indice]}}
+              {{ topTenNames[indice]}}
             </v-subheader>
-          <template v-for="(item, index) in specData[indice]">
+          <template v-for="(item, index) in topTenSpecData[indice]">
             
             <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
 
@@ -126,7 +126,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['imgList','names','headers','specData'])
+      ...mapState(['imgList','names','headers','specData','topTenImgList','topTenSpecData','topTenNames'])
     }
   }
 </script>

@@ -32,7 +32,7 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','names','activeSpecification']),
+    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','names','topTenEvalP','topTenEvalN','topTenEvalNeutral','topTenEvalSpecification','topTenNames','activeSpecification']),
   },
   methods: {
     ...mapMutations(['filterByGammaSpecification','filterBySpecification']),
@@ -66,7 +66,7 @@ export default {
           y:7
         },
         xAxis: {
-          categories: this.names,
+          categories: this.topTenNames,
     
         },
         yAxis:{
@@ -92,24 +92,24 @@ export default {
         },
         series: [
           {
-          data: this.evalSpecification,
+          data: this.topTenEvalSpecification,
           name:'Evaluación de ' + this.activeSpecification,
           color: 'orange'
           },
           {
-          data: this.evalP,
+          data: this.topTenEvalP,
           visible: false,
           name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
-          data: this.evalNeutral,
+          data: this.topTenEvalNeutral,
           visible: false,
           name:'Comentarios Neutrales',
           color: 'Grey'
           }, 
           {
-          data: this.evalN,
+          data: this.topTenEvalN,
           visible: false,
           name:'Comentarios Negativos',
           color: 'Red'
