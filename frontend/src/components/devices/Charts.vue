@@ -92,7 +92,7 @@ export default {
           color: 'orange'
           },
           {
-          data: this.topTenevalP,
+          data: this.topTenEvalP,
           visible: false,
           name:'Evaluación Positiva',
           color: '#90ed7d'
