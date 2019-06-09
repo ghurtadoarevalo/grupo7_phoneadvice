@@ -2,7 +2,7 @@
   <v-container grid-list-xl>
     <ChangeToolbar/>
     <Charts v-if="active ==='graph'"/>
-    <PhoneList v-if="active ==='graph'"/>
+    <PhoneList v-if="active ==='graph'" style="margin-left:-1%"/>
     <Twitteros v-if="active ==='twitter'"/>
     <Maps v-if="active ==='maps'"/>
   </v-container>

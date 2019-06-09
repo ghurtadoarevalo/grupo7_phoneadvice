@@ -49,8 +49,8 @@
       </v-flex>
     </v-layout>
 
-    <v-layout v-else align-center="true" justify-start="true" row wrap style="margin-top:-5%; margin-left:7.5  %">
-      <v-flex class="ml-1" xs1 md1 v-for="(img, index) in topTenImgList" :key="img">
+    <v-layout v-else align-center="true" justify-start="true" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:0.7%;margin-right:0.9%" xs1 md1 v-for="(img, index) in topTenImgList" :key="img">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"></v-img>
       </v-flex>
     </v-layout>

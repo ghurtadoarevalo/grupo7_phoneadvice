@@ -2,18 +2,26 @@
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
-      <v-flex md11>
-        <highcharts :options="getData()"></highcharts>
-      </v-flex>
-      <v-flex md1>
+        <v-flex md3>
+
         <VBtn fab dark color="#0E318A" @click="allGamma">
-          <v-icon large color="white">monetization_on</v-icon>
+          <v-icon color="white">monetization_on</v-icon>
         </VBtn> Gama
-        
-        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>
-        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>
-    
+        </v-flex>
+
+        <v-flex>
+        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>          
+        </v-flex>
+        <v-flex >
+        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>          
+        </v-flex>
+        <v-flex>
+        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>          
+        </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+      <v-flex md12>
+        <highcharts :options="getData()"></highcharts>
       </v-flex>
     </v-layout>
   </v-container>

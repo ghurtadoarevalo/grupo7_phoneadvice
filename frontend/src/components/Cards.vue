@@ -13,7 +13,7 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="3.5/4"
+              :aspect-ratio="9/16"
               :src="require('@/assets/home/celulares.png')"
             >
               <v-expand-transition>
@@ -61,7 +61,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="3.5/4"
+              :aspect-ratio="9/16"
               :src="require('@/assets/home/brand.png')"
             >
               <v-expand-transition>
@@ -108,7 +108,7 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="3.5/4"
+              :aspect-ratio="9/16"
               :src="require('@/assets/home/spec.png')"
             >
               <v-expand-transition>
@@ -154,7 +154,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="3.5/4"
+              :aspect-ratio="9/16"
               :src="require('@/assets/home/build.png')"
             >
               <v-expand-transition>
@@ -203,7 +203,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="3.5/4"
+              :aspect-ratio="9/16"
               src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
             >
               <v-expand-transition>
