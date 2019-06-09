@@ -313,12 +313,12 @@ INSERT INTO `phoneadvice`.`specification` (`name`) VALUES ('Rendimiento');
 
 -- _____________________________________________________________ SEEDS PARA TABLA DATA_SHEET ____________________________________________________
 
--- Samsung NO TERMINADOS
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
+-- Samsung
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Samsung Exynos 9 Octa (9820) (2730 MHz)', '8 GB', 'Android 9.0 "Pie"', '70 x 150 x 8 mm', 'Estándar 10.0 MP', 'Dynamic AMOLED 6.1" táctil (3040x1440)', 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP', '128 GB', '3400 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 845 (2700 MHz)', '6 GB', 'Android 8.1 "Oreo"', '76 x 162 x 9 mm', 'Estándar 8.0 MP', 'Super AMOLED 6.4" táctil (2960x1440)', 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP ', '128 GB', '4000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 675 (SDM675) (2000 MHz)', '6 GB', 'Android 9.0 "Pie"', '77 x 164 x 8 mm ', 'Estándar 32.0 MP', 'Super AMOLED 6.7" táctil (2400x1080)', 'Estándar 32.0 MP + Gran angular (Wide angle) 8.0 MP + Percepción profundidad (Bokeh) 5.0 MP', '64 GB', '4500 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 660 (MSM8956) (2200 MHz)', '6 GB', 'Android 8.0 "Oreo"', '77 x 163 x 8 mm', 'Estándar 24.0 MP', 'Super AMOLED 6.3" táctil (2220x1080)', 'Estándar 24.0 MP + Gran angular (Wide angle) 8.0 MP + Teleobjetivo (Zoom) 10.0 MP + Percepción profundidad (Bokeh) 5.0 MP', '128 GB', '3800 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 425 (MSM8917) (1300 MHz)', '2 GB', 'Android 8.0 "Oreo"', '77 x 152 x 8 mm  ', 'Estándar 5.0 MP', 'Super AMOLED 5.5" táctil (1280x720)', 'Estándar 13.0 MP ', '32 GB', '3000 mAh');
 
 -- Nokia
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('5x 12 megapixeles', '3320mAh', 'Snapdragon 845 de 8 núcleos', '155x75x8mm', 'Android 9.0 Pie', '6GB', '5.99 pulgadas', '128GB', '20 megapixeles');
@@ -334,26 +334,26 @@ INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('8 megapixeles', '2500 mAh', 'Snapdragon 210 MSM8909 de 4 núcleos ', '146.3 x 73.2 x 8.2mm', 'Android Nougat 7.1.2', '2GB', '5 pulgadas', '32GB', '5 megapixeles');
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('8 megapixeles', '3000mAh', 'Helio P10 de ocho núcleos', '143.8 x 69.3 x 8.4mm', 'Android 8.1 Oreo', '3GB', '5.5 pulgadas', '32GB', '5 megapixeles');
 
---  IPHONE NO TERMINADOS
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
+--  IPHONE
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Apple A11 Bionic (2500 MHz)', '2 GB', 'iOS 11', '67 x 138 x 7 mm ', 'Estándar 7.0 MP', 'LCD IPS 4.7" táctil (1334x750)', 'Estándar 12.0 MP ', '64 GB', '1821 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Super AMOLED 5.8" táctil (1125x2436)', '4 GB', 'iOS 12', '72 x 149 x 8 mm ', 'Estándar 7.0 MP', 'Super AMOLED 5.8" táctil (1125x2436)', 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP', '64 GB', '2658 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Apple A12 Bionic (2400 MHz)', '4 GB', 'iOS 12', '75 x 150 x 8 mm', 'Estándar 7.0 MP', 'LCD IPS 6.1" táctil (1792x828)', 'Estándar 12.0 MP ', '64 GB', '2942 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Apple A11 Bionic (2500 MHz)', '3 GB', 'iOS 11', '78 x 158 x 7 mm ', 'Estándar 7.0 MP', 'LCD IPS 5.5" táctil FullHD (1920x1080)', 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP', '64 GB', '2691  mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Apple A12 Bionic (2400 MHz)', '4 GB', 'iOS 12', '77 x 157 x 7 mm ', 'Estándar 7.0 MP', 'Super AMOLED 6.5" táctil (1242x2688)', 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP ', '64 GB', '2658 mAh');
 
--- HUAWEI NO TERMINADOS
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
+-- HUAWEI
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('MediaTek MT6761 Helio A22 (2000 MHz)', '2 GB', 'Android 8.0 "Oreo"', '73 x 154 x 8 mm', 'Estándar 8.0 MP', 'LCD IPS 6.1" táctil (1560x720)', 'Gran angular (Wide angle) 13.0 MP', '32 GB', '3000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Kirin 710 en 12 nm, ocho núcleos (A73, A53) y GPU Mali G51 de cuatro núcleos.', '3 GB', 'Android 9.0 "Pie"', '74 x 156 x 8 mm ', '8 MP con apertura f/2.0', '6,2 pulgadas IPS, en resolución FullHD (1.080 x 2.340)', 'Principal: 13 MP con apertura f/1,8. Profundidad: 2 MP', '64 GB', '3020 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('HiSilicon Kirin 710 (2200 MHz)', '3 GB', 'Android 8.1 "Oreo"', '77 x 162 x 8 mm', 'Estándar 13.0 MP + Percepción profundidad (Bokeh) 2.0 MP', 'LCD IPS 6.5" táctil (2340x1080)', 'Estándar 16.0 MP + Percepción profundidad (Bokeh) 2.0 MP', '64 GB', '4000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('HiSilicon Kirin 710 (2200 MHz)', '2 GB', 'Android 9.0 "Pie"', '72 x 152 x 7 mm', 'Estándar 32.0 MP', 'LCD IPS 6,2" táctil (2312x1080)', 'Estándar 24.0 MP + Gran angular (Wide angle) 8.0 MP + Percepción profundidad (Bokeh) 2.0 MP', '128 GB', '3340 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('HiSilicon Kirin 980 (2600 MHz)', '2 GB', 'Android 9.0 "Pie"', '77 x 158 x 8 mm', 'Estándar 24.0 MP', 'LCD IPS 6.5" táctil (2244x1080)', 'Estándar 12.0 MP + Gran angular (Wide angle) 16.0 MP + Teleobjetivo (Zoom) 8.0 MP ','128 GB', '4000 mAh');
 
--- MOTOROLA NO TERMINADOS
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
-INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2');
+-- MOTOROLA
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 425 (MSM8917) (1300 MHz)', '2 GB', 'Android 8.0 "Oreo"', '73 x 154 x 8 mm', 'Estándar 5.0 MP', 'LCD IPS 5.7" táctil (1440x720)', 'Estándar 13.0 MP ', '16 GB', '4000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 625 (MSM8953) (2000 MHz)', '3 GB', 'Android 8.1 "Oreo"', '72 x 149 x 8 mm ', 'Estándar 8.0 MP', 'LTPS IPS 5,9" táctil (1520x720)', 'Estándar 13.0 MP + Percepción profundidad (Bokeh) 2.0 MP ', '32 GB', '3.000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 632 (1800 MHz)', '4 GB', 'Android 9.0 "Pie"', '75 x 157 x 8 mm', 'Estándar 8.0 MP', 'LTPS IPS 6,2" táctil (2270x1080)', 'Estándar 12.0 MP + Percepción profundidad (Bokeh) 5.0 MP ', '64 GB', '3000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 450 (1800 MHz)', '3 GB', 'Android 8.0 "Oreo"', '72 x 153 x 8 mm ', 'Estándar 8.0 MP', 'LCD IPS 5.7" táctil (2160x1080)', 'Estándar 12.0 MP + Percepción profundidad (Bokeh) 5.0 MP ', '32 GB', '3000 mAh');
+INSERT INTO `phoneadvice`.`data_sheet` (`cpu`, `ram`, `operative_s`, `dimensions`, `front_cam`, `screen`, `back_cam`, `storage`, `batery`) VALUES ('Qualcomm Snapdragon 636 (1800 MHz)', '6 GB', 'Android 8.1 "Oreo"', '76 x 156 x 6 mm', 'Estándar 5.0 MP', 'Super AMOLED 6.0" táctil (2160x1080)', 'Estándar 16.0 MP ', '128 GB', '3000 mAh');
 
 -- Xiaomi
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('8 megapixeles', '3000mAh', 'Snapdragon 425 de 4 núcleos', '140.4x70.1x8.4mm', 'Android 8.1 Oreo', '1GB', '5 pulgadas', '8GB', '5 megapixeles');
@@ -370,7 +370,7 @@ INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions
 INSERT INTO `phoneadvice`.`data_sheet` (`back_cam`, `batery`, `cpu`, `dimensions`, `operative_s`, `ram`, `screen`, `storage`, `front_cam`) VALUES ('13 megapixeles', '4100mAh', 'ARM Cortex-A53 de cuatro núcleos', '71.26x144.26x9.1mm', 'Android 7.0 Nougat', '3GB', '5 pulgadas', '32GB', '5 megapixeles');
 
 
--- _____________________________________________________________ SEEDS PARA TABBLA PHONE_____________________________________________________________________
+-- _____________________________________________________________ SEEDS PARA TABlA PHONE_____________________________________________________________________
 
 -- Celulares Xiaomi
 INSERT INTO `phoneadvice`.`phone` (`assessment`,`data_sheet_id`, `description`, `image`, `model`, `brand_id`, `gamma_id`,`statistic_id`) VALUES ('4',31, 'Es pequeño, es potente, el nuevo Xiaomi Redmi Go es la primera apuesta del fabricante Chino con Android Go, pensado para equipos economicos pero sin sacrificar potencia.', 'xiaomi/redmi_go', 'Redmi GO', '3', '1',1);

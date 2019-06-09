@@ -26,7 +26,6 @@ export default new Vuex.Store({
       {spec: 'RAM: ' , icon:'memory'}, 
       {spec: 'Sistema Operativo: ', icon:'android'},
       {spec: 'Dimensiones: ', icon:'open_with'}, 
-      {spec: 'Peso: ', icon:'mdi-weight-gram'}, 
       {spec: 'Cámara Frontal: ', icon:'camera_front'},
       {spec: 'Cámara Trasera: ', icon:'camera_rear'},
       {spec: 'Pantalla: ', icon:'smartphone'},
@@ -59,15 +58,15 @@ export default new Vuex.Store({
 
             for(var item of state.listaEquipos ){
               var dataSheet = []
-              dataSheet.push(item.phone.data_sheet.back_cam)
-              dataSheet.push(item.phone.data_sheet.batery)
               dataSheet.push(item.phone.data_sheet.cpu)
-              dataSheet.push(item.phone.data_sheet.dimensions)
-              dataSheet.push(item.phone.data_sheet.operative_s)
               dataSheet.push(item.phone.data_sheet.ram)
+              dataSheet.push(item.phone.data_sheet.operative_s)
+              dataSheet.push(item.phone.data_sheet.dimensions)
+              dataSheet.push(item.phone.data_sheet.front_cam)
+              dataSheet.push(item.phone.data_sheet.back_cam)
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
-              dataSheet.push(item.phone.data_sheet.weight)
+              dataSheet.push(item.phone.data_sheet.batery)
               specData.push(dataSheet);
 
               activeSpecification = item.specification.name
@@ -108,15 +107,15 @@ export default new Vuex.Store({
             for(var item of state.listaEquipos ){
 
               var dataSheet = []
-              dataSheet.push(item.phone.data_sheet.back_cam)
-              dataSheet.push(item.phone.data_sheet.batery)
               dataSheet.push(item.phone.data_sheet.cpu)
-              dataSheet.push(item.phone.data_sheet.dimensions)
-              dataSheet.push(item.phone.data_sheet.operative_s)
               dataSheet.push(item.phone.data_sheet.ram)
+              dataSheet.push(item.phone.data_sheet.operative_s)
+              dataSheet.push(item.phone.data_sheet.dimensions)
+              dataSheet.push(item.phone.data_sheet.front_cam)
+              dataSheet.push(item.phone.data_sheet.back_cam)
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
-              dataSheet.push(item.phone.data_sheet.weight)
+              dataSheet.push(item.phone.data_sheet.batery)
               specData.push(dataSheet);
 
               activeSpecification = item.specification.name
@@ -156,15 +155,15 @@ export default new Vuex.Store({
             for(var item of state.listaEquipos )
             {
                 var dataSheet = []
-                dataSheet.push(item.data_sheet.back_cam)
-                dataSheet.push(item.data_sheet.batery)
                 dataSheet.push(item.data_sheet.cpu)
-                dataSheet.push(item.data_sheet.dimensions)
-                dataSheet.push(item.data_sheet.operative_s)
                 dataSheet.push(item.data_sheet.ram)
+                dataSheet.push(item.data_sheet.operative_s)
+                dataSheet.push(item.data_sheet.dimensions)
+                dataSheet.push(item.data_sheet.front_cam)
+                dataSheet.push(item.data_sheet.back_cam)
                 dataSheet.push(item.data_sheet.screen)
                 dataSheet.push(item.data_sheet.storage)
-                dataSheet.push(item.data_sheet.weight)
+                dataSheet.push(item.data_sheet.batery)
                 specData.push(dataSheet);
             
                 evalSpecification.push(item.assessment)
@@ -232,15 +231,15 @@ export default new Vuex.Store({
                 if(gammas[item.phone.gamma.gammaId - 1]){
 
                   var dataSheet = []
-                  dataSheet.push(item.phone.data_sheet.back_cam)
-                  dataSheet.push(item.phone.data_sheet.batery)
                   dataSheet.push(item.phone.data_sheet.cpu)
-                  dataSheet.push(item.phone.data_sheet.dimensions)
-                  dataSheet.push(item.phone.data_sheet.operative_s)
-                  dataSheet.push(item.phone.data_sheet.ram)
-                  dataSheet.push(item.phone.data_sheet.screen)
-                  dataSheet.push(item.phone.data_sheet.storage)
-                  dataSheet.push(item.phone.data_sheet.weight)
+                    dataSheet.push(item.phone.data_sheet.ram)
+                    dataSheet.push(item.phone.data_sheet.operative_s)
+                    dataSheet.push(item.phone.data_sheet.dimensions)
+                    dataSheet.push(item.phone.data_sheet.front_cam)
+                    dataSheet.push(item.phone.data_sheet.back_cam)
+                    dataSheet.push(item.phone.data_sheet.screen)
+                    dataSheet.push(item.phone.data_sheet.storage)
+                    dataSheet.push(item.phone.data_sheet.batery)
                   specData.push(dataSheet);
 
 
@@ -279,15 +278,15 @@ export default new Vuex.Store({
         if(gammas[item.gamma.gammaId - 1]){
 
           var dataSheet = []
-          dataSheet.push(item.data_sheet.back_cam)
-          dataSheet.push(item.data_sheet.batery)
           dataSheet.push(item.data_sheet.cpu)
-          dataSheet.push(item.data_sheet.dimensions)
-          dataSheet.push(item.data_sheet.operative_s)
-          dataSheet.push(item.data_sheet.ram)
-          dataSheet.push(item.data_sheet.screen)
-          dataSheet.push(item.data_sheet.storage)
-          dataSheet.push(item.data_sheet.weight)
+            dataSheet.push(item.data_sheet.ram)
+            dataSheet.push(item.data_sheet.operative_s)
+            dataSheet.push(item.data_sheet.dimensions)
+            dataSheet.push(item.data_sheet.front_cam)
+            dataSheet.push(item.data_sheet.back_cam)
+            dataSheet.push(item.data_sheet.screen)
+            dataSheet.push(item.data_sheet.storage)
+            dataSheet.push(item.data_sheet.batery)
           specData.push(dataSheet);
 
           evalSpecification.push(item.assessment)

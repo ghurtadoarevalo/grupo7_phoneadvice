@@ -15,31 +15,31 @@ public class DataSheet {
     @Column(name = "data_sheet_id", unique = true, nullable = false)
     private Long dataSheetId;
 
-    @Column(name = "cpu", nullable = false, length = 100)
+    @Column(name = "cpu", nullable = false, length = 300)
     private String cpu;
 
     @Column(name = "ram", nullable = false)
     private String ram;
 
-    @Column(name = "operative_s", nullable = false, length = 100)
+    @Column(name = "operative_s", nullable = false, length = 300)
     private String operative_s;
 
-    @Column(name = "dimensions", nullable = false, length = 100)
+    @Column(name = "dimensions", nullable = false, length = 300)
     private String dimensions;
 
-    @Column(name = "front_cam", nullable = false, length = 100)
-    private String weight;
+    @Column(name = "front_cam", nullable = false, length = 300)
+    private String front_cam;
 
-    @Column(name = "screen", nullable = false, length = 100)
+    @Column(name = "screen", nullable = false, length = 300)
     private String screen;
 
-    @Column(name = "back_cam", nullable = false, length = 100)
+    @Column(name = "back_cam", nullable = false, length = 300)
     private String back_cam;
 
-    @Column(name = "storage", nullable = false, length = 100)
+    @Column(name = "storage", nullable = false, length = 300)
     private String storage;
 
-    @Column(name = "batery", nullable = false, length = 100)
+    @Column(name = "batery", nullable = false, length = 300)
     private String batery;
 
     @JsonIgnore
