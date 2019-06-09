@@ -9,7 +9,6 @@ Vue.use(Axios)
 export default new Vuex.Store({
   state: {
     active: 'graph', //Utilizado para indicar qué pestaña se muestra dentro de cada categoría
-    topTenEvalSpecification: [],
     topTenEvalP: [],
     topTenEvalN: [],
     topTenEvalNeutral: [],
@@ -33,7 +32,6 @@ export default new Vuex.Store({
       {spec: 'RAM: ' , icon:'memory'}, 
       {spec: 'Sistema Operativo: ', icon:'android'},
       {spec: 'Dimensiones: ', icon:'open_with'}, 
-      {spec: 'Peso: ', icon:'mdi-weight-gram'}, 
       {spec: 'Cámara Frontal: ', icon:'camera_front'},
       {spec: 'Cámara Trasera: ', icon:'camera_rear'},
       {spec: 'Pantalla: ', icon:'smartphone'},
@@ -74,16 +72,16 @@ export default new Vuex.Store({
 
             for(var item of state.listaEquipos ){
               var dataSheet = []
-              dataSheet.push(item.phone.data_sheet.back_cam)
-              dataSheet.push(item.phone.data_sheet.batery)
               dataSheet.push(item.phone.data_sheet.cpu)
-              dataSheet.push(item.phone.data_sheet.dimensions)
-              dataSheet.push(item.phone.data_sheet.operative_s)
               dataSheet.push(item.phone.data_sheet.ram)
+              dataSheet.push(item.phone.data_sheet.operative_s)
+              dataSheet.push(item.phone.data_sheet.dimensions)
+              dataSheet.push(item.phone.data_sheet.front_cam)
+              dataSheet.push(item.phone.data_sheet.back_cam)
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
-              dataSheet.push(item.phone.data_sheet.weight)
-              if(index == 10){
+              dataSheet.push(item.phone.data_sheet.batery)
+              if(index >= 10){
                 specData.push(dataSheet);
                 activeSpecification = item.specification.name
                 evalSpecification.push(item.assessment)
@@ -146,7 +144,7 @@ export default new Vuex.Store({
             var topTenEvalNeutral = []
             var evalSpecification = []
             var topTenEvalSpecification = []
-            var activeSpecification
+            var activeSpecification 
             var specData = []
             var topTenSpecData = []
             var index = 0
@@ -154,16 +152,16 @@ export default new Vuex.Store({
             for(var item of state.listaEquipos ){
 
               var dataSheet = []
-              dataSheet.push(item.phone.data_sheet.back_cam)
-              dataSheet.push(item.phone.data_sheet.batery)
               dataSheet.push(item.phone.data_sheet.cpu)
-              dataSheet.push(item.phone.data_sheet.dimensions)
-              dataSheet.push(item.phone.data_sheet.operative_s)
               dataSheet.push(item.phone.data_sheet.ram)
+              dataSheet.push(item.phone.data_sheet.operative_s)
+              dataSheet.push(item.phone.data_sheet.dimensions)
+              dataSheet.push(item.phone.data_sheet.front_cam)
+              dataSheet.push(item.phone.data_sheet.back_cam)
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
-              dataSheet.push(item.phone.data_sheet.weight)
-              if (index == 10){
+              dataSheet.push(item.phone.data_sheet.batery)
+              if (index > 9){
                 specData.push(dataSheet);
                 activeSpecification = item.specification.name
                 evalSpecification.push(item.assessment)
@@ -232,16 +230,16 @@ export default new Vuex.Store({
             for(var item of state.listaEquipos )
             {
                 var dataSheet = []
-                dataSheet.push(item.data_sheet.back_cam)
-                dataSheet.push(item.data_sheet.batery)
                 dataSheet.push(item.data_sheet.cpu)
-                dataSheet.push(item.data_sheet.dimensions)
-                dataSheet.push(item.data_sheet.operative_s)
                 dataSheet.push(item.data_sheet.ram)
+                dataSheet.push(item.data_sheet.operative_s)
+                dataSheet.push(item.data_sheet.dimensions)
+                dataSheet.push(item.data_sheet.front_cam)
+                dataSheet.push(item.data_sheet.back_cam)
                 dataSheet.push(item.data_sheet.screen)
                 dataSheet.push(item.data_sheet.storage)
-                dataSheet.push(item.data_sheet.weight)
-                if(index == 10){
+                dataSheet.push(item.data_sheet.batery)
+                if(index > 9){
                   specData.push(dataSheet);
                   evalSpecification.push(item.assessment)
                   evalP.push(item.statistic.positive_density)
@@ -280,10 +278,7 @@ export default new Vuex.Store({
             state.topTenEvalP = topTenEvalP
             state.topTenEvalN = topTenEvalN
             state.topTenNames = topTenNames
-            state.topTenImgList = topTenImgList
-            console.log(topTenNames)
-            console.log(names)
-            
+            state.topTenImgList = topTenImgList        
 
         }catch(err){console.log("En get all " + err)}
     
@@ -293,7 +288,6 @@ export default new Vuex.Store({
         await Axios
         .get('http://localhost:8081/brands/')
         .then(response => (state.listaMarcas = response.data))
-        console.log("Metodo getBrands");
         var evalBrand = []
         var brandNames = []
         var brandImgList = []
@@ -342,17 +336,17 @@ export default new Vuex.Store({
                 if(gammas[item.phone.gamma.gammaId - 1]){
 
                   var dataSheet = []
-                  dataSheet.push(item.phone.data_sheet.back_cam)
-                  dataSheet.push(item.phone.data_sheet.batery)
                   dataSheet.push(item.phone.data_sheet.cpu)
-                  dataSheet.push(item.phone.data_sheet.dimensions)
-                  dataSheet.push(item.phone.data_sheet.operative_s)
-                  dataSheet.push(item.phone.data_sheet.ram)
-                  dataSheet.push(item.phone.data_sheet.screen)
-                  dataSheet.push(item.phone.data_sheet.storage)
-                  dataSheet.push(item.phone.data_sheet.weight)
+                    dataSheet.push(item.phone.data_sheet.ram)
+                    dataSheet.push(item.phone.data_sheet.operative_s)
+                    dataSheet.push(item.phone.data_sheet.dimensions)
+                    dataSheet.push(item.phone.data_sheet.front_cam)
+                    dataSheet.push(item.phone.data_sheet.back_cam)
+                    dataSheet.push(item.phone.data_sheet.screen)
+                    dataSheet.push(item.phone.data_sheet.storage)
+                    dataSheet.push(item.phone.data_sheet.batery)
                   
-                  if(index == 10){
+                  if(index > 9){
                     activeSpecification = item.specification.name
                     evalSpecification.push(item.assessment)
                     evalP.push(item.statistic.positive_density)
@@ -370,7 +364,7 @@ export default new Vuex.Store({
                     topTenEvalP.push(item.statistic.positive_density)
                     topTenEvalN.push(item.statistic.negative_density)
                     topTenEvalNeutral.push(item.statistic.neutral_density)
-                    topTenNames.push(item.model)
+                    topTenNames.push(item.name)
                     topTenImgList.push(item.image)
                     index ++
                   }
@@ -400,6 +394,7 @@ export default new Vuex.Store({
     },
     filterByGama(state,gammas){
 
+    try{
       var evalP = []
       var topTenEvalP = []
       var evalN = []
@@ -415,21 +410,23 @@ export default new Vuex.Store({
       var specData = []
       var topTenSpecData = []
       var index = 0
-
-      for(var item of state.listaEquipos ){
-        if(gammas[item.gamma.gammaId - 1]){
-
+      for(var item of state.listaEquipos )
+      {
+          console.log(state.listaEquipos)
+        if(gammas[item.gamma.gammaId - 1])
+        {
           var dataSheet = []
-          dataSheet.push(item.data_sheet.back_cam)
-          dataSheet.push(item.data_sheet.batery)
           dataSheet.push(item.data_sheet.cpu)
-          dataSheet.push(item.data_sheet.dimensions)
-          dataSheet.push(item.data_sheet.operative_s)
-          dataSheet.push(item.data_sheet.ram)
-          dataSheet.push(item.data_sheet.screen)
-          dataSheet.push(item.data_sheet.storage)
-          dataSheet.push(item.data_sheet.weight)
-          if(index == 10){
+            dataSheet.push(item.data_sheet.ram)
+            dataSheet.push(item.data_sheet.operative_s)
+            dataSheet.push(item.data_sheet.dimensions)
+            dataSheet.push(item.data_sheet.front_cam)
+            dataSheet.push(item.data_sheet.back_cam)
+            dataSheet.push(item.data_sheet.screen)
+            dataSheet.push(item.data_sheet.storage)
+            dataSheet.push(item.data_sheet.batery)
+
+          if(index > 9){
             specData.push(dataSheet)
             evalSpecification.push(item.assessment)
             evalP.push(item.statistic.positive_density)
@@ -439,19 +436,20 @@ export default new Vuex.Store({
             imgList.push(item.image)
 
           }
-          else{
+          else
+          {
             topTenSpecData.push(dataSheet);
             topTenEvalSpecification.push(item.assessment)
             topTenEvalP.push(item.statistic.positive_density)
             topTenEvalN.push(item.statistic.negative_density)
             topTenEvalNeutral.push(item.statistic.neutral_density)
-            topTenNames.push(item.phone.model)
-            topTenImgList.push(item.phone.image)
+            topTenNames.push(item.model)
+            topTenImgList.push(item.image)
             index ++
           }
           
         }
-      }
+       }
       
       state.evalSpecification = evalSpecification
       state.evalNeutral = evalNeutral
@@ -468,6 +466,7 @@ export default new Vuex.Store({
       state.topTenNames = topTenNames
       state.topTenImgList = topTenImgList
       state.topTenSpecData = topTenSpecData
+    }catch(err){console.log(err)}    
 
     },
   
