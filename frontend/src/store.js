@@ -9,6 +9,13 @@ Vue.use(Axios)
 export default new Vuex.Store({
   state: {
     active: 'graph', //Utilizado para indicar qué pestaña se muestra dentro de cada categoría
+    topTenEvalSpecification: [],
+    topTenEvalP: [],
+    topTenEvalN: [],
+    topTenEvalNeutral: [],
+    topTenNames: [],
+    topTenImgList: [],
+    topTenEvalSpecification: [],
     evalSpecification: [],  //Utilizado para mostrar la evaluación en los gráficos de specificacion
     evalBrand: [], //Utilizado para mostrar la evaluación en los gráficos de marca
     evalNeutral: [], //Utilizado para mostrar los comentarios neutrales en los gráficos
@@ -146,12 +153,20 @@ export default new Vuex.Store({
             .get('http://localhost:8081/phones/getall')
             .then(response => (state.listaEquipos = response.data))
             var evalNeutral = []
+            var topTenEvalNeutral = []
             var evalSpecification = []
+            var topTenEvalSpecification = []
             var evalP = []
+            var topTenEvalP = []
             var evalN = []
+            var topTenEvalN = []
             var names = []
+            var topTenNames = []
             var imgList = []
+            var topTenImgList = []
             var specData = []
+            var topTenSpecData = []
+            var index = 0
 
             for(var item of state.listaEquipos )
             {
@@ -165,14 +180,29 @@ export default new Vuex.Store({
                 dataSheet.push(item.data_sheet.screen)
                 dataSheet.push(item.data_sheet.storage)
                 dataSheet.push(item.data_sheet.weight)
-                specData.push(dataSheet);
-            
-                evalSpecification.push(item.assessment)
-                evalP.push(item.statistic.positive_density)
-                evalN.push(item.statistic.negative_density)
-                evalNeutral.push(item.statistic.neutral_density)
-                names.push(item.model)
-                imgList.push(item.image)
+                if(index == 10){
+                  specData.push(dataSheet);
+                  evalSpecification.push(item.assessment)
+                  evalP.push(item.statistic.positive_density)
+                  evalN.push(item.statistic.negative_density)
+                  evalNeutral.push(item.statistic.neutral_density)
+                  names.push(item.model)
+                  imgList.push(item.image)
+
+
+                }
+                else{
+                  topTenSpecData.push(dataSheet);
+                  topTenEvalSpecification.push(item.assessment)
+                  topTenEvalP.push(item.statistic.positive_density)
+                  topTenEvalN.push(item.statistic.negative_density)
+                  topTenEvalNeutral.push(item.statistic.neutral_density)
+                  topTenNames.push(item.model)
+                  topTenImgList.push(item.image)
+                  index ++
+
+                }
+                
             }
       
             state.specData = specData;
@@ -182,6 +212,17 @@ export default new Vuex.Store({
             state.evalN = evalN
             state.names = names
             state.imgList = imgList
+
+            state.topTenSpecData = topTenSpecData;
+            state.topTenEvalSpecification = topTenEvalSpecification
+            state.topTenEvalNeutral = topTenEvalNeutral
+            state.topTenEvalP = topTenEvalP
+            state.topTenEvalN = topTenEvalN
+            state.topTenNames = topTenNames
+            state.topTenImgList = topTenImgList
+            console.log(topTenNames)
+            console.log(names)
+            
 
         }catch(err){console.log("En get all " + err)}
     
@@ -306,7 +347,8 @@ export default new Vuex.Store({
       state.imgList = imgList
       state.specData = specData
 
-    }
+    },
+  
   },
   actions: {
     getAll (context){
@@ -322,6 +364,6 @@ export default new Vuex.Store({
     },
     getBrands(context){
       context.commit('getBrands')
-    }
+    },
   },
 })

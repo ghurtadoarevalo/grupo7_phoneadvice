@@ -22,18 +22,20 @@
 <script>
 import { mapState,mapMutations, Store } from 'vuex';
 
+
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','names']),
+    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','names','topTenEvalP','topTenEvalN','topTenEvalNeutral','topTenEvalSpecification','topTenNames']),
   },
   methods: {
-    ...mapMutations(['filterByGama']), 
+    ...mapMutations(['filterByGama','getTopTen']), 
     allGamma(){
       this.gamas = [true,true,true]
       this.filterByGama(this.gamas);
 
     },
+
     getData(){
       var chartOptions = {
           responsive: {
@@ -59,7 +61,7 @@ export default {
           y:7
         },
         xAxis: {
-          categories: this.names,
+          categories: this.topTenNames,
     
         },
         yAxis:{
@@ -85,24 +87,24 @@ export default {
         },
         series: [
           {
-          data: this.evalSpecification,
+          data: this.topTenEvalSpecification,
           name:'Evaluación de celulares',
           color: 'orange'
           },
           {
-          data: this.evalP,
+          data: this.topTenevalP,
           visible: false,
           name:'Evaluación Positiva',
           color: '#90ed7d'
           },
           {
-          data: this.evalNeutral,
+          data: this.topTenEvalNeutral,
           visible: false,
           name:'Comentarios Neutrales',
           color: 'Grey'
           }, 
           {
-          data: this.evalN,
+          data: this.topTenEvalN,
           visible: false,
           name:'Evaluación Negativa',
           color: 'Red'
