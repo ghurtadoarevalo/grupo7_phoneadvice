@@ -14,23 +14,19 @@
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
-
           <v-toolbar-title>Tabla de especificaciones</v-toolbar-title>
-
           <v-spacer></v-spacer>
-
         </v-toolbar>
         <v-layout mt-4 ml-2 row wrap>
-          <v-flex md5>
+          <v-flex md4>
             <v-img class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ topTenImgList[indice] + '.png')"/>
           </v-flex>
-          <v-flex>
+          <v-flex md6 ml-4>
             <v-list-tile>
-            <v-list-tile-content>
-                <v-list-tile-title>Descripcion</v-list-tile-title>
-                <v-list-tile-sub-title>{{phonesDescription[indice]}}</v-list-tile-sub-title>
-              </v-list-tile-content>
+                <v-list-tile-title>Descripcion: </v-list-tile-title>
             </v-list-tile>
+            <p>{{phonesDescription[indice]}}</p>
+
           </v-flex>
         </v-layout>
         <v-list three-line>
@@ -62,7 +58,7 @@
     </v-dialog>
 
 
-<v-dialog v-model="dialog3" width="500">
+  <v-dialog v-model="dialog3" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
 
@@ -72,16 +68,15 @@
 
         </v-toolbar>
         <v-layout mt-4 ml-2 row wrap>
-          <v-flex md5>
+          <v-flex md4>
             <v-img class="imagen" :src="require('@/assets/phones/'+ imgList[indice] + '.png')"/>
           </v-flex>
-          <v-flex>
+          <v-flex md6 ml-4>
             <v-list-tile>
-            <v-list-tile-content>
-                <v-list-tile-title>Descripcion</v-list-tile-title>
-                <p>{{phonesDescription[indice]}}</p>
-              </v-list-tile-content>
+                <v-list-tile-title>Descripcion: </v-list-tile-title>
             </v-list-tile>
+            <p>{{phonesDescription[indice]}}</p>
+
           </v-flex>
         </v-layout>
         <v-list three-line>
@@ -122,10 +117,6 @@
           <template v-for="(item, index) in names">
             
             <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
-
-              <!--<v-list-tile-action>
-<v-img class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ imgList[indice] + '.png')"/>
-              </v-list-tile-action>-->
               <v-subheader :key="index+'%'+item+4">
                 {{index+11+". " + item }}
               </v-subheader>
