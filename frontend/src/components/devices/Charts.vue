@@ -8,8 +8,9 @@
 
     <v-flex md1>      
       <VBtn fab dark color="#0E318A" @click="allGamma">
-        <v-icon color="white">monetization_on</v-icon>
+        <v-icon large color="white">monetization_on</v-icon>
       </VBtn>
+      Gama
       <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>          
       <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>          
       <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>          
