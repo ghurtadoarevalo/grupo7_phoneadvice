@@ -18,14 +18,14 @@
             >
               <v-expand-transition>
                 <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card white--text"
-                  style="height: 100%;"
-                >
-
+                v-if="hover"
+                class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
+                style="height: 100%; width: 100%"
+              >
+              <div class = "a font-weight-light mb-2">
                 <b>¡En esta sección podrá encontrar un ranking con los mejores equipos recomendados por la gente!</b>
-                
-                </div>
+              </div>
+              </div>
               </v-expand-transition>
             </v-img>
             <v-card-text
@@ -65,13 +65,15 @@
               :src="require('@/assets/home/brand.png')"
             >
               <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
-                  style="height: 100%;"
-                >
+                <vflex
+                v-if="hover"
+                class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
+                style="height: 100%; width: 100%"
+              >
+              <div class = "a font-weight-light mb-2">
                 <b>¡En esta sección podrá encontrar un ranking con las mejores marcas recomendados por la gente!</b>
-                </div>
+              </div>
+              </vflex>
               </v-expand-transition>
             </v-img>
             <v-card-text
@@ -110,16 +112,18 @@
             <v-img
               :aspect-ratio="9/15"
               :src="require('@/assets/home/spec.png')"
-            >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
-                  style="height: 100%;"
-                >
+            >               
+            <v-expand-transition>
+                <vflex
+                v-if="hover"
+                class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
+                style="height: 100%; width: 100%"
+              >
+              <div class = "a font-weight-light mb-2">
                 <b>¡En esta sección podrá encontrar un ranking con los mejores equipos según su especificación recomendados por la gente!</b>
-                </div>
-              </v-expand-transition>
+              </div>
+              </vflex>
+              </v-expand-transition> 
             </v-img>
             <v-card-text
               class="pt-4"
@@ -137,7 +141,10 @@
               >
                 <v-icon>mdi-settings</v-icon>
               </v-btn>
-              <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por especificación</h3>
+
+              <div class="display-1 font-weight-light orange--text mb-2">
+              Busqueda por especificación
+              </div>
      
             </v-card-text>
           </v-card>
@@ -158,14 +165,16 @@
               :src="require('@/assets/home/build.png')"
             >
               <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 white--text"
-                  style="height: 100%;"
-                >
-                <b>¡Sección en construcción!</b>
-                </div>
-              </v-expand-transition>
+              <vflex
+              v-if="hover"
+              class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
+              style="height: 100%; width: 100%"
+            >
+            <div class = "a font-weight-light mb-2">
+              <b>¡Sección en construcción!</b>
+            </div>
+            </vflex>
+            </v-expand-transition> 
             </v-img>
             <v-card-text
               class="pt-4"
@@ -182,6 +191,7 @@
               >
                 <v-icon>mdi-hammer</v-icon>
               </v-btn>
+  
               <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por Gama</h3>
 
             </v-card-text>
@@ -193,54 +203,6 @@
       </v-flex>
 
     </VLayout>
-    
-    <v-dialog v-model="dialog" width="500">
-        <v-hover>
-          <v-card
-            slot-scope="{ hover }"
-            class="mx-auto"
-            color="grey lighten-4"
-            max-width="600"
-          >
-            <v-img
-              :aspect-ratio="9/16"
-              src="https://img.europapress.es/fotoweb/fotonoticia_20190314170534_640.jpg"
-            >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-                  style="height: 100%;"
-                >
-                  $14.99
-                </div>
-              </v-expand-transition>
-            </v-img>
-            <v-card-text
-              class="pt-4"
-              style="position: relative;"
-            >
-              <v-btn
-                absolute
-                color="orange"
-                class="white--text"
-                fab
-                large
-                right
-                top
-              >
-                <v-icon>mdi-cellphone</v-icon>
-              </v-btn>
-              <div class="font-weight-light grey--text title mb-2">For the perfect meal</div>
-              <h3 class="display-1 font-weight-light orange--text mb-2">QW cooking utensils</h3>
-              <div class="font-weight-light title mb-2">
-                Our Vintage kitchen utensils delight any chef.<br>
-                Made of bamboo by hand
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-hover>
-    </v-dialog>
   </v-container>
 </template>
 
@@ -275,19 +237,23 @@
   }
 </script>
 
-<style>
+<style lang="css">
 .v-card--reveal {
-  align-items: center;
+  align-items: top;
+  bottom: 0;
   justify-content: center;
+  opacity: 0.85;
   position: absolute;
   width: 100%;
-  color:#ffffff;
 
 }
 .a{
-text-shadow: 1px 1px 1px #000000; 
-color:#ffffff;
-font-variant:small-caps;
+text-shadow: 2px 2px 4px #000000;
 font-style:italic;
+font-family: Gill Sans, sans-serif;
+width: 100%;
+height: 40vh;
+font-size: 4.5vmin !important;
+white-space: pre-wrap;
 }
 </style>
