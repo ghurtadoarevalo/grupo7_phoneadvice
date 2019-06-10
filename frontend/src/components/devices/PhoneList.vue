@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-xl>
     <v-layout align-center="true" justify-start="true" row wrap style="margin-top:-5%; margin-left:6.5%">
-      <v-flex style="margin-left:0.3%;margin-right:0.3%" xs1 md1 v-for="(img, index) in topTenImgList" :key="img">
+      <v-flex style="margin-left:0.3%;margin-right:0.3%" xs1 md1 v-for="(img, index) in topTen.topTenImgList" :key="img">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"></v-img>
       </v-flex>
        <v-flex md1>
@@ -19,7 +19,7 @@
         </v-toolbar>
         <v-layout mt-4 ml-2 row wrap>
           <v-flex md4>
-            <v-img class="imagen" :src="require('@/assets/phones/'+ topTenImgList[indice] + '.png')"/>
+            <v-img class="imagen" :src="require('@/assets/phones/'+ topTen.topTenImgList[indice] + '.png')"/>
           </v-flex>
           <v-flex md6 ml-4>
             <v-list-tile>
@@ -31,9 +31,9 @@
         </v-layout>
         <v-list three-line>
             <v-subheader>
-              {{ topTenNames[indice]}}
+              {{ topTen.topTenNames[indice]}}
             </v-subheader>
-          <template v-for="(item, index) in topTenSpecData[indice]">
+          <template v-for="(item, index) in topTen.topTenSpecData[indice]">
             
             <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
 
@@ -158,7 +158,7 @@ import { mapState } from 'vuex';
       }
     },
     computed:{
-      ...mapState(['imgList','names','headers','specData','topTenImgList','topTenSpecData','topTenNames','evalSpecification','phonesDescription'])
+      ...mapState(['imgList','names','headers','specData','topTen','evalSpecification','phonesDescription'])
     }
   }
 </script>

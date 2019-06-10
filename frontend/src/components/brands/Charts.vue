@@ -16,7 +16,7 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalBrand','listaMarcas','brandNames']),
+    ...mapState(['brandData']),
   },
   methods: {
     ...mapMutations(['filterByGama']), 
@@ -46,7 +46,7 @@ export default {
           y:7
         },
         xAxis: {
-          categories: this.brandNames,
+          categories: this.brandData.brandNames,
     
         },
         yAxis:{
@@ -72,24 +72,24 @@ export default {
         },
         series: [
           {
-          data: this.evalBrand,
+          data: this.brandData.evalBrand,
           name:'Evaluación de marcas',
           color: 'orange'
           },
           {
-          data: this.evalP,
+          data: this.brandData.evalP,
           visible: false,
           name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
-          data: this.evalNeutral,
+          data: this.brandData.evalNeutral,
           visible: false,
           name:'Comentarios Neutrales',
           color: 'Grey'
           }, 
           {
-          data: this.evalN,
+          data: this.brandData.evalN,
           visible: false,
           name:'Comentarios Negativos',
           color: 'Red'
