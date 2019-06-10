@@ -6,8 +6,8 @@
   >
   <v-container grid-list-xs>
     <v-layout class="justify-center">
-      <v-flex  md6 text-xs-center>
-        <v-img style="margin-top:-3%" :src="require('@/assets/logo.svg')"></v-img>
+      <v-flex  md5 text-xs-center>
+        <v-img style="margin-top:-5%" :src="require('@/assets/logo.svg')"></v-img>
       </v-flex>
     </v-layout>
 

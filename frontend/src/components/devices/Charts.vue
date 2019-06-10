@@ -2,27 +2,18 @@
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
-        <v-flex md3>
-
-        <VBtn fab dark color="#0E318A" @click="allGamma">
-          <v-icon color="white">monetization_on</v-icon>
-        </VBtn> Gama
-        </v-flex>
-
-        <v-flex>
-        <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>          
-        </v-flex>
-        <v-flex >
-        <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>          
-        </v-flex>
-        <v-flex>
-        <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>          
-        </v-flex>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex md12>
+      <v-flex md11 style="margin-left:-5%">
         <highcharts :options="getData()"></highcharts>
       </v-flex>
+
+    <v-flex md1>      
+      <VBtn fab dark color="#0E318A" @click="allGamma">
+        <v-icon color="white">monetization_on</v-icon>
+      </VBtn>
+      <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>          
+    </v-flex>
     </v-layout>
   </v-container>
 </template>

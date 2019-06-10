@@ -13,7 +13,7 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="9/15"
               :src="require('@/assets/home/celulares.png')"
             >
               <v-expand-transition>
@@ -61,7 +61,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="9/15"
               :src="require('@/assets/home/brand.png')"
             >
               <v-expand-transition>
@@ -108,7 +108,7 @@
             color="grey lighten-4"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="9/15"
               :src="require('@/assets/home/spec.png')"
             >
               <v-expand-transition>
@@ -154,7 +154,7 @@
             max-width="600"
           >
             <v-img
-              :aspect-ratio="9/16"
+              :aspect-ratio="9/15"
               :src="require('@/assets/home/build.png')"
             >
               <v-expand-transition>
