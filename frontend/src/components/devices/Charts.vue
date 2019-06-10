@@ -94,7 +94,7 @@ export default {
           {
           data: this.topTenEvalP,
           visible: false,
-          name:'Evaluación Positiva',
+          name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
@@ -106,7 +106,7 @@ export default {
           {
           data: this.topTenEvalN,
           visible: false,
-          name:'Evaluación Negativa',
+          name:'Comentarios Negativos',
           color: 'Red'
         }]
       }
