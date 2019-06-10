@@ -109,21 +109,21 @@
         </v-toolbar>
         <v-layout mt-4 ml-2 row wrap>
           <v-flex md4>
-            <v-img class="imagen" :src="require('@/assets/phones/'+ imgList[indice] + '.png')"/>
+            <v-img class="imagen" :src="require('@/assets/phones/'+ imgList[indice2] + '.png')"/>
           </v-flex>
           <v-flex md6 ml-4>
             <v-list-tile>
                 <v-list-tile-title>Descripcion: </v-list-tile-title>
             </v-list-tile>
-            <p>{{phonesDescription[indice]}}</p>
+            <p>{{phonesDescription[indice+10]}}</p>
 
           </v-flex>
         </v-layout>
         <v-list three-line>
             <v-subheader>
-              {{ names[indice]}}
+              {{ names[indice2]}}
             </v-subheader>
-          <template v-for="(item, index) in specData[indice]">
+          <template v-for="(item, index) in specData[indice2]">
             
             <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
 
@@ -162,7 +162,7 @@
               </v-subheader>
               <v-layout row wrap :key="index+'%'+item+3">
                 <v-flex style="margin-left:2%; margin-bottom:1%;" md1>
-                  <v-img class="imagen" @click="dialog3=true;indice=index" :src="require('@/assets/phones/'+ imgList[index] + '.png')"/>
+                  <v-img class="imagen" @click="dialog3=true;indice2=index" :src="require('@/assets/phones/'+ imgList[index] + '.png')"/>
                 </v-flex>  
                 <v-flex>
                   <v-list-tile :key="index+'%'+item+2">
@@ -193,6 +193,7 @@ import { mapState } from 'vuex';
         dialog2:false,
         dialog3:false,
         indice:0,
+        indice2:0,
       }
     },
     computed:{
