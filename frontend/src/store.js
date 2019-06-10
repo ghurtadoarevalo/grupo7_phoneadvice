@@ -71,7 +71,7 @@ export default new Vuex.Store({
             var phonesDescription = []
             var activeSpecification
             var index = 0
-            console.log(state.listaEquipos)
+
             for(var item of state.listaEquipos )
             {
               var dataSheet = []
@@ -94,8 +94,7 @@ export default new Vuex.Store({
                 evalNeutral.push(item.statistic.neutral_density)
                 names.push(item.phone.model)
                 imgList.push(item.phone.image)
-                phonesDescription.push(item.description)
-
+                phonesDescription.push(item.phone.description)
               }
               else {
                 topTenSpecData.push(dataSheet);
@@ -106,7 +105,7 @@ export default new Vuex.Store({
                 topTenEvalNeutral.push(item.statistic.neutral_density)
                 topTenNames.push(item.phone.model)
                 topTenImgList.push(item.phone.image)
-                phonesDescription.push(item.description)
+                phonesDescription.push(item.phone.description)
                 index ++
               }
               
@@ -178,7 +177,7 @@ export default new Vuex.Store({
                 evalNeutral.push(item.statistic.neutral_density)
                 names.push(item.phone.model)
                 imgList.push(item.phone.image)
-                phonesDescription.push(item.description)
+                phonesDescription.push(item.phone.description)
 
               }
               else{
@@ -190,7 +189,7 @@ export default new Vuex.Store({
                 topTenEvalNeutral.push(item.statistic.neutral_density)
                 topTenNames.push(item.phone.model)
                 topTenImgList.push(item.phone.image)
-                phonesDescription.push(item.description)
+                phonesDescription.push(item.phone.description)
                 index++
               }
               
@@ -275,7 +274,6 @@ export default new Vuex.Store({
                   topTenImgList.push(item.image)
                   phonesDescription.push(item.description)
                   index ++
-
                 }
                 
             }
@@ -377,7 +375,7 @@ export default new Vuex.Store({
                     names.push(item.phone.model)
                     imgList.push(item.phone.image)
                     specData.push(dataSheet);
-                    phonesDescription.push(item.description)
+                    phonesDescription.push(item.phone.description)
 
                   }
                   else{
@@ -389,7 +387,7 @@ export default new Vuex.Store({
                     topTenEvalNeutral.push(item.statistic.neutral_density)
                     topTenNames.push(item.phone.model)
                     topTenImgList.push(item.phone.image)
-                    phonesDescription.push(item.description)
+                    phonesDescription.push(item.phone.description)
                     index ++
                   }
 

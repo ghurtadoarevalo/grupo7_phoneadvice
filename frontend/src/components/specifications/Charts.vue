@@ -8,29 +8,21 @@
             </v-btn>
         </v-flex>
     </v-layout>
+
     <v-layout row wrap>
-      <v-flex md3>
+      <v-flex md11 style="margin-left:-5%">
+        <highcharts :options="getData()"></highcharts>
+      </v-flex> 
+
+      <v-flex md1>      
         <VBtn fab dark color="#0E318A" @click="allGamma">
           <v-icon large color="white">monetization_on</v-icon>
         </VBtn> Filtro Gama
-      </v-flex>
-      <v-flex >
         <v-switch v-model="gammas[0]" @change="filterByGammaSpecification(gammas)" label="Baja"  color="#0E318A"></v-switch>
-
-      </v-flex>
-      <v-flex >
         <v-switch v-model="gammas[1]" @change="filterByGammaSpecification(gammas)" label="Media" color="#0E318A"></v-switch>        
-      </v-flex>
-
-      <v-flex >
         <v-switch v-model="gammas[2]" @change="filterByGammaSpecification(gammas)" label="Alta" color="#0E318A"></v-switch>        
       </v-flex>
-      
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex md12>
-        <highcharts :options="getData()"></highcharts>
-      </v-flex>    
+         
     </v-layout>
   </v-container>
 </template>
