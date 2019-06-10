@@ -1,27 +1,29 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap style="margin-top:-5%;" md10 >
-        <v-flex xs4 md1 style="margin-right:5%;" v-for="(specification, index) in specificationsList" :key="index" >
+    <v-layout row wrap style="margin-top:-7%;" md12 >
+        <v-flex xs4 md1 style="margin-right:8%;" v-for="(specification, index) in specificationsList" :key="index" >
             <v-btn round  @click="filterBySpecification(specification.id), gammas = [true,true,true]" flat color="rgb(14, 49, 138)" class="">
                 <v-icon large>{{specification.icon}}</v-icon>
                 <span>{{specification.name}}</span>
             </v-btn>
         </v-flex>
     </v-layout>
+
     <v-layout row wrap>
-      <v-flex md10>
+      <v-flex md11 style="margin-left:-5%">
         <highcharts :options="getData()"></highcharts>
-      </v-flex>
-      <v-flex md2>
+      </v-flex> 
+
+      <v-flex md1>      
         <VBtn fab dark color="#0E318A" @click="allGamma">
           <v-icon large color="white">monetization_on</v-icon>
-        </VBtn> Filtro Gama
-        
+        </VBtn> 
+        <br>Gama
         <v-switch v-model="gammas[0]" @change="filterByGammaSpecification(gammas)" label="Baja"  color="#0E318A"></v-switch>
-        <v-switch v-model="gammas[1]" @change="filterByGammaSpecification(gammas)" label="Media" color="#0E318A"></v-switch>
-        <v-switch v-model="gammas[2]" @change="filterByGammaSpecification(gammas)" label="Alta" color="#0E318A"></v-switch>
-    
+        <v-switch v-model="gammas[1]" @change="filterByGammaSpecification(gammas)" label="Media" color="#0E318A"></v-switch>        
+        <v-switch v-model="gammas[2]" @change="filterByGammaSpecification(gammas)" label="Alta" color="#0E318A"></v-switch>        
       </v-flex>
+         
     </v-layout>
   </v-container>
 </template>
@@ -32,7 +34,7 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','listaEquipos','names','activeSpecification']),
+    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','names','topTenEvalP','topTenEvalN','topTenEvalNeutral','topTenEvalSpecification','topTenNames','activeSpecification']),
   },
   methods: {
     ...mapMutations(['filterByGammaSpecification','filterBySpecification']),
@@ -66,12 +68,12 @@ export default {
           y:7
         },
         xAxis: {
-          categories: this.names,
+          categories: this.topTenNames,
     
         },
         yAxis:{
           title: {
-            text: 'Numero de Tweets'
+                text: 'Nota / Numero de Tweets'
           }
 
         },
@@ -92,24 +94,24 @@ export default {
         },
         series: [
           {
-          data: this.evalSpecification,
+          data: this.topTenEvalSpecification,
           name:'Evaluación de ' + this.activeSpecification,
           color: 'orange'
           },
           {
-          data: this.evalP,
+          data: this.topTenEvalP,
           visible: false,
           name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
-          data: this.evalNeutral,
+          data: this.topTenEvalNeutral,
           visible: false,
           name:'Comentarios Neutrales',
           color: 'Grey'
           }, 
           {
-          data: this.evalN,
+          data: this.topTenEvalN,
           visible: false,
           name:'Comentarios Negativos',
           color: 'Red'

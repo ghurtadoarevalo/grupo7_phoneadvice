@@ -9,6 +9,13 @@ Vue.use(Axios)
 export default new Vuex.Store({
   state: {
     active: 'graph', //Utilizado para indicar qué pestaña se muestra dentro de cada categoría
+    topTenEvalP: [],
+    topTenEvalN: [],
+    topTenEvalNeutral: [],
+    topTenNames: [],
+    topTenImgList: [],
+    topTenEvalSpecification: [],
+    phonesDescription: [],
     evalSpecification: [],  //Utilizado para mostrar la evaluación en los gráficos de specificacion
     evalBrand: [], //Utilizado para mostrar la evaluación en los gráficos de marca
     evalNeutral: [], //Utilizado para mostrar los comentarios neutrales en los gráficos
@@ -46,17 +53,27 @@ export default new Vuex.Store({
         try{await Axios
             .get('http://localhost:8081/phones_specifications/'+specification_id+'/specification')
             .then(response => (state.listaEquipos = response.data))
-        
+            state.specData = []
             var evalP = []
+            var topTenEvalP = []
             var evalN = []
+            var topTenEvalN = []
             var names = []
+            var topTenNames = []
             var imgList = []
+            var topTenImgList= []
             var evalNeutral = []
+            var topTenEvalNeutral= []
             var evalSpecification = []
+            var topTenEvalSpecification= []
             var specData = []
+            var topTenSpecData = []
+            var phonesDescription = []
             var activeSpecification
+            var index = 0
 
-            for(var item of state.listaEquipos ){
+            for(var item of state.listaEquipos )
+            {
               var dataSheet = []
               dataSheet.push(item.phone.data_sheet.cpu)
               dataSheet.push(item.phone.data_sheet.ram)
@@ -67,16 +84,32 @@ export default new Vuex.Store({
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
               dataSheet.push(item.phone.data_sheet.batery)
-              specData.push(dataSheet);
-
-              activeSpecification = item.specification.name
-              evalSpecification.push(item.assessment)
-              evalP.push(item.statistic.positive_density)
-              evalN.push(item.statistic.negative_density)
-              evalNeutral.push(item.statistic.neutral_density)
-              names.push(item.phone.model)
-              imgList.push(item.phone.image)
+               
+              if(index >= 10){
+                specData.push(dataSheet);
+                activeSpecification = item.specification.name
+                evalSpecification.push(item.assessment)
+                evalP.push(item.statistic.positive_density)
+                evalN.push(item.statistic.negative_density)
+                evalNeutral.push(item.statistic.neutral_density)
+                names.push(item.phone.model)
+                imgList.push(item.phone.image)
+                phonesDescription.push(item.phone.description)
               }
+              else {
+                topTenSpecData.push(dataSheet);
+                activeSpecification = item.specification.name
+                topTenEvalSpecification.push(item.assessment)
+                topTenEvalP.push(item.statistic.positive_density)
+                topTenEvalN.push(item.statistic.negative_density)
+                topTenEvalNeutral.push(item.statistic.neutral_density)
+                topTenNames.push(item.phone.model)
+                topTenImgList.push(item.phone.image)
+                phonesDescription.push(item.phone.description)
+                index ++
+              }
+              
+             }
 
               state.activeSpecification = activeSpecification
               state.evalSpecification = evalSpecification
@@ -86,6 +119,15 @@ export default new Vuex.Store({
               state.names = names
               state.imgList = imgList
               state.specData = specData
+              state.phonesDescription = phonesDescription
+              
+              state.topTenEvalSpecification = topTenEvalSpecification
+              state.topTenEvalNeutral = topTenEvalNeutral
+              state.topTenEvalP = topTenEvalP
+              state.topTenEvalN = topTenEvalN
+              state.topTenNames = topTenNames
+              state.topTenImgList = topTenImgList
+              state.topTenSpecData = topTenSpecData
         
         }catch(err){console.log(err)}
     },
@@ -94,15 +136,25 @@ export default new Vuex.Store({
         try{await Axios
             .get('http://localhost:8081/phones_specifications/1/specification')
             .then(response => (state.listaEquipos = response.data))
-
+            state.specData = []
             var evalP = []
+            var topTenEvalP = []
             var evalN = []
+            var topTenEvalN = []
             var names = []
+            var topTenNames = []
             var imgList = []
+            var topTenImgList = []
             var evalNeutral = []
+            var topTenEvalNeutral = []
             var evalSpecification = []
-            var activeSpecification
+            var topTenEvalSpecification = []
+            var activeSpecification 
             var specData = []
+            var topTenSpecData = []
+            var phonesDescription = []
+
+            var index = 0
 
             for(var item of state.listaEquipos ){
 
@@ -116,15 +168,31 @@ export default new Vuex.Store({
               dataSheet.push(item.phone.data_sheet.screen)
               dataSheet.push(item.phone.data_sheet.storage)
               dataSheet.push(item.phone.data_sheet.batery)
-              specData.push(dataSheet);
+              if (index > 9){
+                specData.push(dataSheet);
+                activeSpecification = item.specification.name
+                evalSpecification.push(item.assessment)
+                evalP.push(item.statistic.positive_density)
+                evalN.push(item.statistic.negative_density)
+                evalNeutral.push(item.statistic.neutral_density)
+                names.push(item.phone.model)
+                imgList.push(item.phone.image)
+                phonesDescription.push(item.phone.description)
 
-              activeSpecification = item.specification.name
-              evalSpecification.push(item.assessment)
-              evalP.push(item.statistic.positive_density)
-              evalN.push(item.statistic.negative_density)
-              evalNeutral.push(item.statistic.neutral_density)
-              names.push(item.phone.model)
-              imgList.push(item.phone.image)
+              }
+              else{
+                topTenSpecData.push(dataSheet);
+                activeSpecification = item.specification.name
+                topTenEvalSpecification.push(item.assessment)
+                topTenEvalP.push(item.statistic.positive_density)
+                topTenEvalN.push(item.statistic.negative_density)
+                topTenEvalNeutral.push(item.statistic.neutral_density)
+                topTenNames.push(item.phone.model)
+                topTenImgList.push(item.phone.image)
+                phonesDescription.push(item.phone.description)
+                index++
+              }
+              
             }
               state.activeSpecification = activeSpecification
               state.evalSpecification = evalSpecification
@@ -134,6 +202,15 @@ export default new Vuex.Store({
               state.names = names
               state.imgList = imgList
               state.specData = specData;
+              state.phonesDescription = phonesDescription
+
+              state.topTenEvalSpecification = topTenEvalSpecification
+              state.topTenEvalNeutral = topTenEvalNeutral
+              state.topTenEvalP = topTenEvalP
+              state.topTenEvalN = topTenEvalN
+              state.topTenNames = topTenNames
+              state.topTenImgList = topTenImgList
+              state.topTenSpecData = topTenSpecData;
 
         }catch(err){console.log(err)}
     },
@@ -144,13 +221,25 @@ export default new Vuex.Store({
             await Axios 
             .get('http://localhost:8081/phones/getall')
             .then(response => (state.listaEquipos = response.data))
+            console.log(state.listaEquipos)
+            state.specData = []
             var evalNeutral = []
+            var topTenEvalNeutral = []
             var evalSpecification = []
+            var topTenEvalSpecification = []
             var evalP = []
+            var topTenEvalP = []
             var evalN = []
+            var topTenEvalN = []
             var names = []
+            var topTenNames = []
             var imgList = []
+            var topTenImgList = []
             var specData = []
+            var topTenSpecData = []
+            var phonesDescription = []
+
+            var index = 0
 
             for(var item of state.listaEquipos )
             {
@@ -164,16 +253,31 @@ export default new Vuex.Store({
                 dataSheet.push(item.data_sheet.screen)
                 dataSheet.push(item.data_sheet.storage)
                 dataSheet.push(item.data_sheet.batery)
-                specData.push(dataSheet);
-            
-                evalSpecification.push(item.assessment)
-                evalP.push(item.statistic.positive_density)
-                evalN.push(item.statistic.negative_density)
-                evalNeutral.push(item.statistic.neutral_density)
-                names.push(item.model)
-                imgList.push(item.image)
+                if(index > 9){
+                  specData.push(dataSheet);
+                  evalSpecification.push(item.assessment)
+                  evalP.push(item.statistic.positive_density)
+                  evalN.push(item.statistic.negative_density)
+                  evalNeutral.push(item.statistic.neutral_density)
+                  names.push(item.model)
+                  imgList.push(item.image)
+                  phonesDescription.push(item.description)
+
+                }
+                else{
+                  topTenSpecData.push(dataSheet);
+                  topTenEvalSpecification.push(item.assessment)
+                  topTenEvalP.push(item.statistic.positive_density)
+                  topTenEvalN.push(item.statistic.negative_density)
+                  topTenEvalNeutral.push(item.statistic.neutral_density)
+                  topTenNames.push(item.model)
+                  topTenImgList.push(item.image)
+                  phonesDescription.push(item.description)
+                  index ++
+                }
+                
             }
-      
+            console.log(names);
             state.specData = specData;
             state.evalSpecification = evalSpecification
             state.evalNeutral = evalNeutral
@@ -181,6 +285,15 @@ export default new Vuex.Store({
             state.evalN = evalN
             state.names = names
             state.imgList = imgList
+            state.phonesDescription = phonesDescription
+
+            state.topTenSpecData = topTenSpecData;
+            state.topTenEvalSpecification = topTenEvalSpecification
+            state.topTenEvalNeutral = topTenEvalNeutral
+            state.topTenEvalP = topTenEvalP
+            state.topTenEvalN = topTenEvalN
+            state.topTenNames = topTenNames
+            state.topTenImgList = topTenImgList        
 
         }catch(err){console.log("En get all " + err)}
     
@@ -190,7 +303,8 @@ export default new Vuex.Store({
         await Axios
         .get('http://localhost:8081/brands/')
         .then(response => (state.listaMarcas = response.data))
-        console.log("Metodo getBrands");
+        state.specData = []
+
         var evalBrand = []
         var brandNames = []
         var brandImgList = []
@@ -218,14 +332,25 @@ export default new Vuex.Store({
     filterByGammaSpecification(state,gammas)
     {
         try{
-            var evalP = []
-            var evalN = []
-            var names = []
-            var imgList = []
+            state.specData = []
+
             var evalNeutral = []
+            var topTenEvalNeutral = []
             var evalSpecification = []
-            var activeSpecification;
+            var topTenEvalSpecification = []
+            var evalP = []
+            var topTenEvalP = []
+            var evalN = []
+            var topTenEvalN = []
+            var names = []
+            var topTenNames = []
+            var imgList = []
+            var topTenImgList = []
             var specData = []
+            var topTenSpecData = []
+            var index = 0
+            var phonesDescription = []
+            var activeSpecification;
 
             for(var item of state.listaEquipos ){
                 if(gammas[item.phone.gamma.gammaId - 1]){
@@ -240,9 +365,8 @@ export default new Vuex.Store({
                     dataSheet.push(item.phone.data_sheet.screen)
                     dataSheet.push(item.phone.data_sheet.storage)
                     dataSheet.push(item.phone.data_sheet.batery)
-                  specData.push(dataSheet);
-
-
+                  
+                  if(index > 9){
                     activeSpecification = item.specification.name
                     evalSpecification.push(item.assessment)
                     evalP.push(item.statistic.positive_density)
@@ -250,35 +374,74 @@ export default new Vuex.Store({
                     evalNeutral.push(item.statistic.neutral_density)
                     names.push(item.phone.model)
                     imgList.push(item.phone.image)
+                    specData.push(dataSheet);
+                    phonesDescription.push(item.phone.description)
+
+                  }
+                  else{
+                    activeSpecification = item.specification.name
+                    topTenSpecData.push(dataSheet);
+                    topTenEvalSpecification.push(item.assessment)
+                    topTenEvalP.push(item.statistic.positive_density)
+                    topTenEvalN.push(item.statistic.negative_density)
+                    topTenEvalNeutral.push(item.statistic.neutral_density)
+                    topTenNames.push(item.phone.model)
+                    topTenImgList.push(item.phone.image)
+                    phonesDescription.push(item.phone.description)
+                    index ++
+                  }
+
+                    
                 }
               }
 
               state.activeSpecification = activeSpecification
               state.evalNeutral = evalNeutral
               state.evalSpecification = evalSpecification
-              state.evalNeutral = evalNeutral
               state.evalP = evalP
               state.evalN = evalN
               state.names = names
               state.imgList = imgList
               state.specData = specData
+              state.phonesDescription = phonesDescription
+
+              state.topTenSpecData = topTenSpecData;
+              state.topTenEvalSpecification = topTenEvalSpecification
+              state.topTenEvalNeutral = topTenEvalNeutral
+              state.topTenEvalP = topTenEvalP
+              state.topTenEvalN = topTenEvalN
+              state.topTenNames = topTenNames
+              state.topTenImgList = topTenImgList
         
         }catch(err){console.log(err)}    
     },
     filterByGama(state,gammas){
+
+    try{
+        state.specData = []
+
       var evalP = []
+      var topTenEvalP = []
       var evalN = []
+      var topTenEvalN = []
       var names = []
+      var topTenNames = []
       var imgList = []
+      var topTenImgList= []
       var evalNeutral = []
+      var topTenEvalNeutral= []
       var evalSpecification = []
+      var topTenEvalSpecification= []
       var specData = []
-
-      for(var item of state.listaEquipos ){
-        if(gammas[item.gamma.gammaId - 1]){
-
-          var dataSheet = []
-          dataSheet.push(item.data_sheet.cpu)
+      var topTenSpecData = []
+      var phonesDescription = []
+      var index = 0
+      for(var item of state.listaEquipos )
+      {
+        if(gammas[item.gamma.gammaId - 1])
+        {
+            var dataSheet = []
+            dataSheet.push(item.data_sheet.cpu)
             dataSheet.push(item.data_sheet.ram)
             dataSheet.push(item.data_sheet.operative_s)
             dataSheet.push(item.data_sheet.dimensions)
@@ -287,15 +450,33 @@ export default new Vuex.Store({
             dataSheet.push(item.data_sheet.screen)
             dataSheet.push(item.data_sheet.storage)
             dataSheet.push(item.data_sheet.batery)
-          specData.push(dataSheet);
 
-          evalSpecification.push(item.assessment)
-          evalP.push(item.statistic.positive_density)
-          evalN.push(item.statistic.negative_density)
-          names.push(item.model)
-          imgList.push(item.image)
+          if(index > 9){
+            specData.push(dataSheet)
+            evalSpecification.push(item.assessment)
+            evalP.push(item.statistic.positive_density)
+            evalN.push(item.statistic.negative_density)
+            evalNeutral.push(item.statistic.neutral_density)
+            names.push(item.model)
+            imgList.push(item.image)
+            phonesDescription.push(item.description)
+
+          }
+          else
+          {
+            topTenSpecData.push(dataSheet);
+            topTenEvalSpecification.push(item.assessment)
+            topTenEvalP.push(item.statistic.positive_density)
+            topTenEvalN.push(item.statistic.negative_density)
+            topTenEvalNeutral.push(item.statistic.neutral_density)
+            topTenNames.push(item.model)
+            topTenImgList.push(item.image)
+            phonesDescription.push(item.description)
+            index ++
+          }
+          
         }
-      }
+       }
       
       state.evalSpecification = evalSpecification
       state.evalNeutral = evalNeutral
@@ -304,8 +485,19 @@ export default new Vuex.Store({
       state.names = names
       state.imgList = imgList
       state.specData = specData
+      state.phonesDescription = phonesDescription
 
-    }
+      state.topTenEvalSpecification = topTenEvalSpecification
+      state.topTenEvalNeutral = topTenEvalNeutral
+      state.topTenEvalP = topTenEvalP
+      state.topTenEvalN = topTenEvalN
+      state.topTenNames = topTenNames
+      state.topTenImgList = topTenImgList
+      state.topTenSpecData = topTenSpecData
+    }catch(err){console.log(err)}    
+
+    },
+  
   },
   actions: {
     getAll (context){
@@ -321,6 +513,6 @@ export default new Vuex.Store({
     },
     getBrands(context){
       context.commit('getBrands')
-    }
+    },
   },
 })
