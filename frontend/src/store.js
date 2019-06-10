@@ -137,7 +137,6 @@ export default new Vuex.Store({
         try{await Axios
             .get('http://localhost:8081/phones_specifications/1/specification')
             .then(response => (state.listaEquipos = response.data))
-
             var evalP = []
             var topTenEvalP = []
             var evalN = []
