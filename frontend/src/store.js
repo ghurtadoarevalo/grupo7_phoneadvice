@@ -53,7 +53,7 @@ export default new Vuex.Store({
         try{await Axios
             .get('http://localhost:8081/phones_specifications/'+specification_id+'/specification')
             .then(response => (state.listaEquipos = response.data))
-        
+            state.specData = []
             var evalP = []
             var topTenEvalP = []
             var evalN = []
@@ -137,6 +137,7 @@ export default new Vuex.Store({
         try{await Axios
             .get('http://localhost:8081/phones_specifications/1/specification')
             .then(response => (state.listaEquipos = response.data))
+            state.specData = []
             var evalP = []
             var topTenEvalP = []
             var evalN = []
@@ -222,6 +223,7 @@ export default new Vuex.Store({
             .get('http://localhost:8081/phones/getall')
             .then(response => (state.listaEquipos = response.data))
             console.log(state.listaEquipos)
+            state.specData = []
             var evalNeutral = []
             var topTenEvalNeutral = []
             var evalSpecification = []
@@ -303,6 +305,8 @@ export default new Vuex.Store({
         await Axios
         .get('http://localhost:8081/brands/')
         .then(response => (state.listaMarcas = response.data))
+        state.specData = []
+
         var evalBrand = []
         var brandNames = []
         var brandImgList = []
@@ -330,6 +334,8 @@ export default new Vuex.Store({
     filterByGammaSpecification(state,gammas)
     {
         try{
+            state.specData = []
+
             var evalNeutral = []
             var topTenEvalNeutral = []
             var evalSpecification = []
@@ -414,6 +420,8 @@ export default new Vuex.Store({
     filterByGama(state,gammas){
 
     try{
+        state.specData = []
+
       var evalP = []
       var topTenEvalP = []
       var evalN = []

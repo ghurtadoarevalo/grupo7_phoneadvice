@@ -65,7 +65,7 @@ export default {
         },
         yAxis:{
           title: {
-            text: 'Numero de Tweets'
+            text: 'Nota / Numero de Tweets'
           }
 
         },

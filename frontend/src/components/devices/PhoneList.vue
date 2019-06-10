@@ -6,7 +6,7 @@
       </v-flex>
        <v-flex md1>
         <v-btn @click="dialog2=true" large outline color="#0E318A">
-          <VIcon>phone_iphone</VIcon>Ver más</v-btn>      
+          <VIcon>phone_iphone</VIcon>!Aún hay más!</v-btn>      
       </v-flex>
     </v-layout>
    
