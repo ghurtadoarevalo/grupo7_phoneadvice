@@ -278,10 +278,16 @@
 <style>
 .v-card--reveal {
   align-items: center;
-  bottom: 0;
   justify-content: center;
-  opacity: .5;
   position: absolute;
   width: 100%;
+  color:#ffffff;
+
+}
+.a{
+text-shadow: 1px 1px 1px #000000; 
+color:#ffffff;
+font-variant:small-caps;
+font-style:italic;
 }
 </style>
