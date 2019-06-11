@@ -92,19 +92,19 @@ export default {
           color: 'orange'
           },
           {
-          data: this.topTenEvalP,
+          data: this.topTen.evalP,
           visible: false,
           name:'Comentarios Positivos',
           color: '#90ed7d'
           },
           {
-          data: this.topTen.topTenEvalNeutral,
+          data: this.topTen.evalNeutral,
           visible: false,
           name:'Comentarios Neutrales',
           color: 'Grey'
           }, 
           {
-          data: this.topTen.topTenEvalN,
+          data: this.topTen.evalN,
           visible: false,
           name:'Comentarios Negativos',
           color: 'Red'

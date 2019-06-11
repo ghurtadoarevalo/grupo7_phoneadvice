@@ -26,7 +26,7 @@
     computed:{
       ...mapMutations(['changeActive']),
     },
-    beforeMount(){
+    mounted(){
         this.$store.dispatch('getAllSpecification'),
         this.$store.dispatch('resetActive')
 	},
