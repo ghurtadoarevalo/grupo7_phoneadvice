@@ -1,6 +1,16 @@
 <template>
 <v-container>
-<d3-network :net-nodes="nodes" :net-links="links" :options="options"></d3-network>
+    <v-layout row wrap>
+      <ul class="menu">
+        <li>
+          <label> Node size  </label>
+          <input type="range" min="1" max="100" v-model='nodeSize' /> {{ options.nodeSize }}
+        </li>  
+      </ul>
+    </v-layout>
+    <v-layout row wrap>
+        <d3-network :net-nodes="nodes" :net-links="links" :options="options"></d3-network>
+    </v-layout>
 </v-container>
 </template>
 
@@ -17,7 +27,7 @@
         nodes: [
         { id: 1, name: 'my node 1' },
         { id: 2, name: 'my node 2' },
-        { id: 3,},
+        { id: 3 },
         { id: 4 },
         { id: 5 },
         { id: 6 },
@@ -36,29 +46,38 @@
         { sid: 3, tid: 8 },
         { sid: 7, tid: 9 }
       ],
-      options:
-      {
-        force: 3000,
-        nodeSize: 20,
-        nodeLabels: true,
-        linkWidth:5
-      }
+      nodeSize:20,
+
       }
     },
     methods: {
       //
     },
     computed:{
-    //
+    options(){
+      return{
+        force: 3000,
+        size:{ w:1000, h:600},
+        nodeSize: this.nodeSize,
+        nodeLabels: true,
+        linkWidth:3
+      }
+    }
   }
 
   }
 </script>
 <style>
-canvas{
-    position:absolute;
-    top:0;
-    left:0
+ul.menu {
+  list-style: none;
+  position: absolute;
+  z-index: 100;
+  min-width: 20em;
+  text-align: left;
+}
+ul.menu li{
+  margin-top: 1em;
+  position: relative;
 }
 .net{
     height:100%;
