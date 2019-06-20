@@ -1,0 +1,68 @@
+package com.tbd.phoneadvice.neo4j.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@NodeEntity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class NodeBrand {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String brandName;
+    private Long brandID;
+
+    @Relationship(type = "HAS",direction = Relationship.OUTGOING)
+    private List<NodePhone> phones = new ArrayList<>();
+
+    public NodeBrand(String brandName, Long brandID) {
+        this.brandName = brandName;
+        this.brandID = brandID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public Long getBrandID() {
+        return brandID;
+    }
+
+    public void setBrandID(Long brandID) {
+        this.brandID = brandID;
+    }
+
+    public List<NodePhone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<NodePhone> phones) {
+        this.phones = phones;
+    }
+
+
+}
+

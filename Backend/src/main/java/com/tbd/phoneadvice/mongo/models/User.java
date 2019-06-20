@@ -5,13 +5,16 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 
 @Data
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class User {
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
 
@@ -21,6 +24,7 @@ public class User {
 
     @SerializedName("followers_count")
     private int followersCount;
+
 
     public User(Long id, String name, String screenName, String location, int followersCount) {
         this.id = id;

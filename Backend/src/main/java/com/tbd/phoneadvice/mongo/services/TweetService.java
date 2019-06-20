@@ -68,10 +68,11 @@ public class TweetService {
             String contenido = listA.get(i).getContent();
             filtro.add(contenido);
         }
+
         for(int i = 0 ; i < listB.size();i++)
         {
             String contenido = listB.get(i).getContent();
-            filtro.add(contenido);
+            filtro.add(contenido.replace("_"," "));
         }
         /*
         for(int i = 0 ; i < listC.size();i++)
@@ -121,6 +122,11 @@ public class TweetService {
     public List<Tweet> stopGet(){
         this.consumer.stop();
         return tweetRepository.findAll();
+    }
+
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    public List<Tweet> byUser(@PathVariable Long id){
+        return tweetRepository.findByUserId(id);
     }
 
 }
