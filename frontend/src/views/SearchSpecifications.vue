@@ -24,7 +24,7 @@
       specificationsList
     },
     computed:{
-      ...mapMutations(['changeActive']),
+      ...mapMutations(['changeActive','ready']),
     },
     mounted(){
         this.$store.dispatch('getAllSpecification'),
