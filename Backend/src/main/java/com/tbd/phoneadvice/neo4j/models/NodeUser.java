@@ -25,6 +25,9 @@ public class NodeUser {
     private int followersCount;
     private Long userID;
 
+    private Double size;
+
+
     @Relationship(type = "TWEET_ABOUT",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
 
@@ -36,6 +39,8 @@ public class NodeUser {
         this.name = name;
         this.followersCount = followersCount;
         this.userID = userID;
+        this.size = 0.0;
+
     }
 
 
@@ -85,5 +90,13 @@ public class NodeUser {
 
     public void setBrands(List<NodeBrand> brands) {
         this.brands = brands;
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
     }
 }

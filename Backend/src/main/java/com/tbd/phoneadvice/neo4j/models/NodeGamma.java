@@ -23,12 +23,15 @@ public class NodeGamma {
     private String gammaName;
     private Long gammaID;
 
+    private Double size;
+
     @Relationship(type = "RELATED",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
 
     public NodeGamma(String gammaName, Long gammaID) {
         this.gammaName = gammaName;
         this.gammaID = gammaID;
+        this.size = 0.0;
     }
 
     public Long getId() {
@@ -63,4 +66,11 @@ public class NodeGamma {
         this.phones = phones;
     }
 
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
 }

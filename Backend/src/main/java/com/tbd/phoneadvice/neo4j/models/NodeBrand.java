@@ -23,12 +23,15 @@ public class NodeBrand {
     private String brandName;
     private Long brandID;
 
+    private Double size;
+
     @Relationship(type = "HAS",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
 
     public NodeBrand(String brandName, Long brandID) {
         this.brandName = brandName;
         this.brandID = brandID;
+        this.size = 0.0;
     }
 
     public Long getId() {
@@ -63,6 +66,12 @@ public class NodeBrand {
         this.phones = phones;
     }
 
+    public Double getSize() {
+        return size;
+    }
 
+    public void setSize(Double size) {
+        this.size = size;
+    }
 }
 

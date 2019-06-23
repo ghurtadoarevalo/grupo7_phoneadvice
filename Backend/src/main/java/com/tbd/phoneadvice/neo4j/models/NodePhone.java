@@ -20,9 +20,12 @@ public class NodePhone {
     private String model;
     private Long phoneID;
 
+    private Double size;
+
     public NodePhone(String model, Long phoneID) {
         this.model = model;
         this.phoneID = phoneID;
+        this.size = 0.0;
     }
 
     public Long getId() {
@@ -49,4 +52,11 @@ public class NodePhone {
         this.phoneID = phoneID;
     }
 
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
 }
