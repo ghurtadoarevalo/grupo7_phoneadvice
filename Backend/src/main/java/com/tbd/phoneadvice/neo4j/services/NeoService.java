@@ -29,8 +29,9 @@ import java.util.*;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    @Autowired
-    private TweetRepository tweetRepository;
+    private String uri = "bolt://178.128.227.134";
+    private String user = "neo4j";
+    private String password = "lolis123";
 
     @Autowired
     private UserRepository userRepository;
@@ -89,34 +90,54 @@ public class NeoService {
     @RequestMapping(value = "/cargarPesos", method = RequestMethod.GET)
     @ResponseBody
     public void cargarPesos() {
-        Driver driver = GraphDatabase.driver( "bolt://localhost", AuthTokens.basic( "neo4j", "canito123" ) );
+        Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
         Session session = driver.session();
+
+
+        //Pesos de los usuarios
+        //Por cantidad de seguidores
+        //Por pesos de los temas que habla -> Promedio de todos los temas
+        StatementResult resultUser = session.run("MATCH (u:NodeUser) RETURN u.userID as userID, u.followersCount as followersCount");
+        while(resultUser.hasNext())
+        {
+            Record record = resultUser.next();
+            int followersCount = record.get("followersCount").asInt();
+            Double relevancia = (double)followersCount;
+            NodeUser nodeUser = nodeUserRepository.findByUserID(record.get("userID").asLong());
+            nodeUser.setSize(relevancia);
+            nodeUserRepository.save(nodeUser);
+        }
+
 
         //Pesos de los celulares
         //Por cantidad de usuarios que hablan de ella
-        StatementResult resultPhone = session.run( "MATCH (p:NodePhone) return p.phoneID as phoneID");
+
+        StatementResult resultPhone = session.run( "MATCH (p:NodePhone) RETURN p.phoneID as phoneID");
         while(resultPhone.hasNext())
         {
             Record record = resultPhone.next();
-            StatementResult resultAux = session.run( "MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p)<-[TWEET_ABOUT]-(u:NodeUser) return u.userID as userID");
+            StatementResult resultAux = session.run( "MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p)<-[TWEET_ABOUT]-(u:NodeUser) RETURN u.followersCount as followersCount, u.phoneID as phoneID");
             Double relevancia = 0.0;
             while(resultAux.hasNext())
             {
                 Record recordAux = resultAux.next();
-                relevancia++;
+                int followersCount = recordAux.get("followersCount").asInt();
+                relevancia = relevancia + (long)followersCount*0.3;
             }
             NodePhone nodePhone = nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong());
             nodePhone.setSize(relevancia);
             nodePhoneRepository.save(nodePhone);
         }
 
+
+
         //Pesos de la marca
         //Por cantidad de usuarios que hablan de ella, y de sus celulares
-        StatementResult resultBrand = session.run( "MATCH (b:NodeBrand) return b.brandID as brandID");
+        StatementResult resultBrand = session.run( "MATCH (b:NodeBrand) RETURN b.brandID as brandID");
         while(resultBrand.hasNext())
         {
             Record record = resultBrand.next();
-            StatementResult resultAuxA = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b)-[HAS]->(p:NodePhone) return p.size as size");
+            StatementResult resultAuxA = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b)-[HAS]->(p:NodePhone) RETURN p.size as size");
             Double sizesPhones = 0.0;
             while(resultAuxA.hasNext())
             {
@@ -124,49 +145,22 @@ public class NeoService {
                 Double size = recordAux.get("size").asDouble();
                 sizesPhones = sizesPhones + size;
             }
-            //Agregar mas valor si habla un usuario de mas peso (?)
-            StatementResult resultAuxB = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b)<-[TWEET_ABOUT]-(u:NodeUser) return u");
+
+            StatementResult resultAuxB = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b)<-[TWEET_ABOUT]-(u:NodeUser) RETURN u.followersCount as followersCount");
             Double usersCount = 0.0;
             while(resultAuxB.hasNext())
             {
                 Record recordAux = resultAuxB.next();
-                usersCount++;
+                int followersCount = recordAux.get("followersCount").asInt();
+                usersCount = followersCount*0.3 + usersCount;
             }
-            Double relevancia = sizesPhones*0.5 + usersCount*0.5;
+            Double relevancia = sizesPhones*0.75 + usersCount*0.25;
             NodeBrand nodeBrand = nodeBrandRepository.findByBrandID(record.get("brandID").asLong());
             nodeBrand.setSize(relevancia);
             nodeBrandRepository.save(nodeBrand);
         }
-
-        //Pesos de los usuarios
-            //Por cantidad de seguidores
-            //Por pesos de los temas que habla -> Promedio de todos los temas
-        StatementResult resultUser = session.run("MATCH (u:NodeUser) RETURN u.userID as userID, u.followersCount as followersCount");
-        while(resultUser.hasNext())
-        {
-            Record record = resultUser.next();
-            StatementResult resultBrandAux = session.run("MATCH (u:NodeUser) WHERE u.userID="+record.get("userID").asLong()+" MATCH (u) -[TWEET_ABOUT]-> (b:NodeBrand) RETURN b.size as size");
-            Double sizeBrands = 0.0;
-            while(resultBrandAux.hasNext())
-            {
-                Record recordAux = resultBrandAux.next();
-                sizeBrands = recordAux.get("size").asDouble() + sizeBrands;
-            }
-            System.out.println("\nSIZE BRANDS = "+sizeBrands);
-
-            StatementResult resultPhoneAux = session.run("MATCH (u:NodeUser) WHERE u.userID="+record.get("userID").asLong()+" MATCH (u) -[TWEET_ABOUT]-> (b:NodePhone) RETURN b.size as size");
-            Double sizePhone = 0.0;
-            while(resultPhoneAux.hasNext())
-            {
-                Record recordAux = resultPhoneAux.next();
-                sizePhone = recordAux.get("size").asDouble() + sizePhone;
-            }
-            int followersCount = record.get("followersCount").asInt();
-            Double relevancia = (double)followersCount*0.6+sizeBrands*0.2+sizePhone*0.2;
-            NodeUser nodeUser = nodeUserRepository.findByUserID(record.get("userID").asLong());
-            nodeUser.setSize(relevancia);
-            nodeUserRepository.save(nodeUser);
-        }
+        session.close();
+        driver.close();
     }
 
 
@@ -330,5 +324,108 @@ public class NeoService {
             for(int k = 0 ; k < aux.size();k++) { listTweets.add(aux.get(k)); }
         }
     }
+
+    //--------------------------------------SERVICIOS--------------------------------------//
+
+    @RequestMapping(value = "/getRelevantGamma/{gamma}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<NodeUser> relevantUserGamma(@PathVariable String gamma)
+    {
+        Gamma gammaA = gammaRepository.findByName(gamma);
+        if(gammaA == null) {
+            return null;
+        }
+        else {
+            Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+            Session session = driver.session();
+            List<NodeUser> list = new ArrayList<>();
+            StatementResult result = session.run("MATCH (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" MATCH (g) -[RELATED]-> (n:NodePhone) RETURN n.phoneID as phoneID");
+            while(result.hasNext())
+            {
+                Record record = result.next();
+                StatementResult resultAux = session.run("MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
+                while(resultAux.hasNext())
+                {
+                    Record recordAux = resultAux.next();
+                    NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
+
+                    StatementResult resultAuxAux = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p");
+                    int phonesCount = 0;
+                    while(resultAuxAux.hasNext())
+                    {
+                        resultAuxAux.next();
+                        phonesCount++;
+                    }
+                    System.out.println("\n"+phonesCount);
+                    /*
+                    if(phonesCount > 1){
+                    */
+                        list.add(nodeUser);
+                    /*
+                    }
+                    */
+                }
+            }
+
+            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
+                @Override
+                public int compare(NodeUser o1, NodeUser o2) {
+                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
+                }
+            };
+
+            Collections.sort(list,compareByFollowers);
+            if(list.size() > 5) {
+                int a = list.size();
+                for(int i = 5; i < a;i++){
+                    list.remove(i);
+                }
+            }
+            session.close();
+            driver.close();
+            return list;
+        }
+    }
+
+
+    @RequestMapping(value = "/getGammaUser/{gamma}/{userID}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<NodePhone> userGammaPhones(@PathVariable String gamma,@PathVariable Long userID)
+    {
+        Gamma gammaA = gammaRepository.findByName(gamma);
+        NodeUser userA = nodeUserRepository.findByUserID(userID);
+        if(gammaA == null) {
+            return null;
+        }
+        if(userA == null) {
+            return null;
+        }
+        else
+        {
+            Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+            Session session = driver.session();
+            List<NodePhone> list = new ArrayList<>();
+            StatementResult result = session.run("MATCH (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" MATCH (g) -[RELATED]-> (p:NodePhone) MATCH (p) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID="+userID+" RETURN p.phoneID as phoneID");
+            while(result.hasNext())
+            {
+                Record record = result.next();
+                list.add(nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong()));
+            }
+            session.close();
+            driver.close();
+            return list;
+        }
+    }
+
+    @RequestMapping(value = "/getUserBrand/{brand}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<NodeUser> userBrand(@PathVariable String brand)
+    {
+        
+        return null;
+    }
+
+
+
 
 }
