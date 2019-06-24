@@ -23,7 +23,7 @@ export default {
 
     getData(){
       var chartOptions = {
-          responsive: {
+        responsive: {
         rules: [{
             condition: {
             maxWidth: 500

@@ -65,7 +65,7 @@
               :src="require('@/assets/home/brand.png')"
             >
               <v-expand-transition>
-                <vflex
+                <v-flex
                 v-if="hover"
                 class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
                 style="height: 100%; width: 100%"
@@ -73,7 +73,7 @@
               <div class = "a font-weight-light mb-2">
                 <b>¡En esta sección podrá encontrar un ranking con las mejores marcas recomendados por la gente!</b>
               </div>
-              </vflex>
+              </v-flex>
               </v-expand-transition>
             </v-img>
             <v-card-text
@@ -114,7 +114,7 @@
               :src="require('@/assets/home/spec.png')"
             >               
             <v-expand-transition>
-                <vflex
+                <v-flex
                 v-if="hover"
                 class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
                 style="height: 100%; width: 100%"
@@ -122,7 +122,7 @@
               <div class = "a font-weight-light mb-2">
                 <b>¡En esta sección podrá encontrar un ranking con los mejores equipos según su especificación recomendados por la gente!</b>
               </div>
-              </vflex>
+              </v-flex>
               </v-expand-transition> 
             </v-img>
             <v-card-text
@@ -165,7 +165,7 @@
               :src="require('@/assets/home/build.png')"
             >
               <v-expand-transition>
-              <vflex
+              <v-flex
               v-if="hover"
               class="d-flex v-card--reveal transition-fast-in-fast-out orange darken-2 display-3 white--text "
               style="height: 100%; width: 100%"
@@ -173,7 +173,7 @@
             <div class = "a font-weight-light mb-2">
               <b>¡Sección en construcción!</b>
             </div>
-            </vflex>
+            </v-flex>
             </v-expand-transition> 
             </v-img>
             <v-card-text

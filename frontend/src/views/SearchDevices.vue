@@ -22,6 +22,11 @@
         showNavbar: true
       }
     },
+    methods:{
+      getData(){
+        this.$store.dispatch('getAll')
+      }
+    },
     components: {
       PhoneList,
       ChangeToolbar,
@@ -30,10 +35,10 @@
       Maps
     },
     computed:{
-      ...mapState(['active'])
+      ...mapState(['active','ready']),
     },
-    beforeMount(){
-      this.$store.dispatch('getAll')
+    mounted(){
+      this.getData()
     },
   }
 </script>

@@ -41,12 +41,12 @@
           </v-img>
       </v-flex>
     </v-layout>
-  <v-layout v-else-if="topTen.topTenImgList.length >= 10" row wrap style="margin-top:-5%; margin-left:6.5%">
+  <v-layout v-else-if="topTen.topTenImgList.length === 10" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:0.3%;margin-right:0.3%" xs1 md1 v-for="(img, index) in topTen.topTenImgList" :key="index">
           <v-img contain class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
           </v-img>
       </v-flex>
-      <v-flex md1>
+      <v-flex v-if="imgList.length>1" md1>
         <v-btn @click="dialog2=true" large outline color="#0E318A">
           <VIcon>phone_iphone</VIcon>¡Aún hay más!</v-btn>      
       </v-flex>

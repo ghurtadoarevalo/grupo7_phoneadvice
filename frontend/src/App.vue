@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar'
+import Navbar from './components/home/Navbar'
 export default {
   
   name: 'App',
@@ -16,6 +16,9 @@ export default {
     return {
       //
     }
+  },
+  beforeCreate(){
+    this.$store.dispatch('getAllAll')
   }
 }
 </script>

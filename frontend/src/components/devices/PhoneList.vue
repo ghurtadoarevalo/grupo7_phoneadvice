@@ -1,17 +1,64 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout align-center="true" justify-start="true" row wrap style="margin-top:-5%; margin-left:6.5%">
+    <v-layout v-if="topTen.topTenImgList.length === 1" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:36%;margin-right: 35%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="topTen.topTenImgList.length === 2" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:16%;margin-right: 16%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="topTen.topTenImgList.length === 3" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:9%;margin-right: 9%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="topTen.topTenImgList.length === 4" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:6%;margin-right: 6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="topTen.topTenImgList.length === 5" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:4%;margin-right: 4%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="topTen.topTenImgList.length === 6" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:2.5%;margin-right: 2.5%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+
+    <v-layout v-else-if="topTen.topTenImgList.length === 7" row wrap style="margin-top:-5%; margin-left:6.5%">
+      <v-flex style="margin-left:1.6%;margin-right: 1.6%" xs1 md1 v-for="(img, index) in imgList" :key="index">
+          <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')">
+          </v-img>
+      </v-flex>
+    </v-layout>
+    <v-layout v-else-if="topTen.topTenImgList.length > 7" align-center="true" justify-start="true" row wrap style="margin-top:-5%; margin-left:6.5%">
       <v-flex style="margin-left:0.3%;margin-right:0.3%" xs1 md1 v-for="(img, index) in topTen.topTenImgList" :key="img">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"></v-img>
       </v-flex>
-       <v-flex md1>
+       <v-flex md1 v-if="imgList.length>1">
         <v-btn @click="dialog2=true" large outline color="#0E318A">
           <VIcon>phone_iphone</VIcon>¡Aún hay más!</v-btn>      
       </v-flex>
     </v-layout>
-   
 
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog lazy v-model="dialog" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Tabla de especificaciones</v-toolbar-title>
@@ -58,7 +105,7 @@
     </v-dialog>
 
 
-  <v-dialog v-model="dialog3" width="500">
+  <v-dialog lazy v-model="dialog3" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
 
@@ -107,7 +154,7 @@
     </v-dialog>
 
 
-    <v-dialog v-model="dialog2" width="500">
+    <v-dialog lazy v-model="dialog2" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Ranking</v-toolbar-title>

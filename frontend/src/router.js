@@ -28,7 +28,18 @@ export default new Router({
       name: 'searchForBrands',
       component: () => import(/* webpackChunkName: "search devices" */ './views/SearchBrands.vue')
 
-    }
+    },
+    {
+      path: '/networkGraph',
+      name: 'networkGraph',
+      component: () => import(/* webpackChunkName: "search devices" */ './views/NetworkGraph.vue')
 
+    },
+    {
+      path: '/twittersForGamma',
+      name: 'twittersForGamma',
+      component: () => import(/* webpackChunkName: "search devices" */ './views/TwittersForGamma.vue')
+
+    }
   ]
 })
