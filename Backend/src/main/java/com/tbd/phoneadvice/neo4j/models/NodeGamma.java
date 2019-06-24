@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.neo4j.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class NodeGamma {
 
     private Double size;
 
+    @JsonIgnore
     @Relationship(type = "RELATED",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
 

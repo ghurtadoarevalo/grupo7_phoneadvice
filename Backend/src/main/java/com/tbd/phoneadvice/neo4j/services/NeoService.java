@@ -329,6 +329,9 @@ public class NeoService {
 
     //--------------------------------------SERVICIOS--------------------------------------//
 
+    //Funcion: Funcion que retorna los top 5 de usuarios mas relevantes que hablan de una gamma
+    //Entrada: id de una gamma
+
     @RequestMapping(value = "/getRelevantGamma/{gammaID}", method = RequestMethod.GET)
     @ResponseBody
     public List<NodeUser> relevantUserGamma(@PathVariable Long gammaID)
@@ -358,14 +361,7 @@ public class NeoService {
                         resultAuxAux.next();
                         phonesCount++;
                     }
-                    System.out.println("\n"+phonesCount);
-                    /*
-                    if(phonesCount > 1){
-                    */
-                        list.add(nodeUser);
-                    /*
-                    }
-                    */
+                    list.add(nodeUser);
                 }
             }
 
@@ -389,7 +385,8 @@ public class NeoService {
         }
     }
 
-
+    //Funcion: Funcion que retorna los celulares que hablo un usuario en relacion a una gamma.
+    //Entrada: id de una gamma, id de un usuario.
     @RequestMapping(value = "/getGammaUser/{gammaID}/{userID}", method = RequestMethod.GET)
     @ResponseBody
     public List<NodePhone> userGammaPhones(@PathVariable Long gammaID,@PathVariable Long userID)
@@ -419,6 +416,8 @@ public class NeoService {
         }
     }
 
+    //Funcion: Funcion que retorna los top 5 de usuarios mas relevantes que hablan de una marca
+    //Entrada: id de una marca.
     @RequestMapping(value = "/getUserBrand/{brandID}", method = RequestMethod.GET)
     @ResponseBody
     public List<NodeUser> userBrand(@PathVariable Long brandID) {
@@ -456,6 +455,8 @@ public class NeoService {
         }
     }
 
+    //Funcion: Funcion que retorna las marcas ordenadas por relevancia
+    //Entrada: N/A
     @RequestMapping(value = "/getBrand", method = RequestMethod.GET)
     @ResponseBody
     public List<NodeBrand> getBrands() {
@@ -480,6 +481,9 @@ public class NeoService {
         return list;
     }
 
+
+    //Funcion: Funcion que retorna los celulares ordenados por relevancia
+    //Entrada: N/A
     @RequestMapping(value = "/getPhones", method = RequestMethod.GET)
     @ResponseBody
     public List<NodePhone> getPhones() {

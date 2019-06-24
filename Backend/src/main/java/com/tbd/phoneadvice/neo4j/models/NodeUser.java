@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.neo4j.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,11 @@ public class NodeUser {
 
     private Double size;
 
-
+    @JsonIgnore
     @Relationship(type = "TWEET_ABOUT",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
 
+    @JsonIgnore
     @Relationship(type = "TWEET_ABOUT",direction = Relationship.OUTGOING)
     private List<NodeBrand> brands = new ArrayList<>();
 
