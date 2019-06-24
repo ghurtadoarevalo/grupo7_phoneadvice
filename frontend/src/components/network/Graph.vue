@@ -27,7 +27,7 @@
         nodes: [
         { id: 1, name: 'my node 1' },
         { id: 2, name: 'my node 2' },
-        { id: 3 },
+        { id: 3, _size: 40 },
         { id: 4 },
         { id: 5 },
         { id: 6 },

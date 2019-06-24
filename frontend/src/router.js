@@ -34,7 +34,12 @@ export default new Router({
       name: 'networkGraph',
       component: () => import(/* webpackChunkName: "search devices" */ './views/NetworkGraph.vue')
 
-    }
+    },
+    {
+      path: '/twittersForGamma',
+      name: 'twittersForGamma',
+      component: () => import(/* webpackChunkName: "search devices" */ './views/TwittersForGamma.vue')
 
+    }
   ]
 })
