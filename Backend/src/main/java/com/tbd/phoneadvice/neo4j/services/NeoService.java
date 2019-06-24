@@ -66,6 +66,7 @@ public class NeoService {
     @Autowired
     private DataTweetRepository dataTweetRepository;
 
+
     //--------------------------------------------------------------------------------------------------------//
     //-------------------------TAREA: Retornar todos los nodos y relaciones para front -----------------------//
     //--------------------------------------No existe forma nativa para hacerlo-------------------------------//
@@ -73,6 +74,7 @@ public class NeoService {
     //-----------------------------------------Plugin para traspasar------------------------------------------//
     //--------------------------------------------------------------------------------------------------------//
     /*
+    //D3 links nodes
     @RequestMapping(value = "/cargarGrafo", method = RequestMethod.GET)
     @ResponseBody
     public StatementResult cargarGrafo() {
@@ -327,11 +329,11 @@ public class NeoService {
 
     //--------------------------------------SERVICIOS--------------------------------------//
 
-    @RequestMapping(value = "/getRelevantGamma/{gamma}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getRelevantGamma/{gammaID}", method = RequestMethod.GET)
     @ResponseBody
-    public List<NodeUser> relevantUserGamma(@PathVariable String gamma)
+    public List<NodeUser> relevantUserGamma(@PathVariable Long gammaID)
     {
-        Gamma gammaA = gammaRepository.findByName(gamma);
+        Gamma gammaA = gammaRepository.findByGammaId(gammaID);
         if(gammaA == null) {
             return null;
         }
@@ -375,24 +377,24 @@ public class NeoService {
             };
 
             Collections.sort(list,compareByFollowers);
-            if(list.size() > 5) {
-                int a = list.size();
-                for(int i = 5; i < a;i++){
-                    list.remove(i);
-                }
+            List<NodeUser> listFinal = new ArrayList<>();
+            int max= list.size();
+            if(max > 5) { max = 5; }
+            for(int i = 0 ; i < max; i++) {
+                listFinal.add(list.get(i));
             }
             session.close();
             driver.close();
-            return list;
+            return listFinal;
         }
     }
 
 
-    @RequestMapping(value = "/getGammaUser/{gamma}/{userID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getGammaUser/{gammaID}/{userID}", method = RequestMethod.GET)
     @ResponseBody
-    public List<NodePhone> userGammaPhones(@PathVariable String gamma,@PathVariable Long userID)
+    public List<NodePhone> userGammaPhones(@PathVariable Long gammaID,@PathVariable Long userID)
     {
-        Gamma gammaA = gammaRepository.findByName(gamma);
+        Gamma gammaA = gammaRepository.findByGammaId(gammaID);
         NodeUser userA = nodeUserRepository.findByUserID(userID);
         if(gammaA == null) {
             return null;
@@ -417,14 +419,91 @@ public class NeoService {
         }
     }
 
-    @RequestMapping(value = "/getUserBrand/{brand}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserBrand/{brandID}", method = RequestMethod.GET)
     @ResponseBody
-    public List<NodeUser> userBrand(@PathVariable String brand)
-    {
-        
-        return null;
+    public List<NodeUser> userBrand(@PathVariable Long brandID) {
+        NodeBrand brandAux = nodeBrandRepository.findByBrandID(brandID);
+        if(brandAux == null) {
+            return null;
+        }
+        else {
+            Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+            Session session = driver.session();
+            List<NodeUser> list = new ArrayList<>();
+            StatementResult result = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+brandAux.getBrandID()+" MATCH (b) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
+            while(result.hasNext()) {
+                Record record = result.next();
+                list.add(nodeUserRepository.findByUserID(record.get("userID").asLong()));
+            }
+
+            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
+                @Override
+                public int compare(NodeUser o1, NodeUser o2) {
+                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
+                }
+            };
+
+            Collections.sort(list,compareByFollowers);
+            List<NodeUser> listFinal = new ArrayList<>();
+            int max= list.size();
+            if(max > 5) { max = 5; }
+            for(int i = 0 ; i < max; i++) {
+                listFinal.add(list.get(i));
+            }
+            session.close();
+            driver.close();
+            return listFinal;
+        }
     }
 
+    @RequestMapping(value = "/getBrand", method = RequestMethod.GET)
+    @ResponseBody
+    public List<NodeBrand> getBrands() {
+        List<NodeBrand> list = new ArrayList<>();
+        Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+        Session session = driver.session();
+        StatementResult result = session.run("MATCH (b:NodeBrand) RETURN b.brandID as brandID");
+        while(result.hasNext())
+        {
+            Record record = result.next();
+            list.add(nodeBrandRepository.findByBrandID(record.get("brandID").asLong()));
+        }
+        Comparator<NodeBrand> compareBySize = new Comparator<NodeBrand>() {
+            @Override
+            public int compare(NodeBrand o1, NodeBrand o2) {
+                return o2.getSize().compareTo(o1.getSize());
+            }
+        };
+        Collections.sort(list,compareBySize);
+        session.close();
+        driver.close();
+        return list;
+    }
+
+    @RequestMapping(value = "/getPhones", method = RequestMethod.GET)
+    @ResponseBody
+    public List<NodePhone> getPhones() {
+        List<NodePhone> list = new ArrayList<>();
+        Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+        Session session = driver.session();
+        StatementResult result = session.run("MATCH (b:NodePhone) RETURN b.phoneID as phoneID");
+        while(result.hasNext())
+        {
+            Record record = result.next();
+            list.add(nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong()));
+        }
+
+        Comparator<NodePhone> compareBySize = new Comparator<NodePhone>() {
+            @Override
+            public int compare(NodePhone o1, NodePhone o2) {
+                return o2.getSize().compareTo(o1.getSize());
+            }
+        };
+        Collections.sort(list,compareBySize);
+        session.close();
+        driver.close();
+        return list;
+    }
 
 
 
