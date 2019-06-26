@@ -29,12 +29,12 @@ import java.util.*;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    //private String uri = "bolt://178.128.227.134";
-    //private String user = "neo4j";
-    //private String password = "lolis123";
-    private String uri = "bolt://localhost";
+    private String uri = "bolt://178.128.227.134";
     private String user = "neo4j";
-    private String password = "canito123";
+    private String password = "lolis123";
+    //private String uri = "bolt://localhost";
+    //private String user = "neo4j";
+    //private String password = "canito123";
 
     @Autowired
     private UserRepository userRepository;
