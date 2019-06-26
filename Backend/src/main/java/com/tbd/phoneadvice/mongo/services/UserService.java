@@ -34,23 +34,32 @@ public class UserService {
         {
             Tweet tweet = tweetList.get(i);
             User user = tweet.getUser();
-
+            String urlProfile = "",urlPhoto="",description="",email="";
+            Date createdAt=null;
+            urlProfile = "https://twitter.com/"+user.getScreenName();
             try{
-                String urlProfile = "https://twitter.com/"+user.getScreenName().replace("@","");
-                String urlPhoto = twitter.showUser(user.getId()).getBiggerProfileImageURLHttps();
-                String description = twitter.showUser(user.getId()).getDescription();
-                String email = twitter.showUser(user.getId()).getEmail();
-                Date createdAt = twitter.showUser(user.getId()).getCreatedAt();
-                user.setUrlProfile(urlProfile);
-                user.setUrlPhoto(urlPhoto);
-                user.setCreatedAt(createdAt);
-                user.setDescription(description);
-                user.setEmail(email);
-                userRepository.save(user);
+                urlPhoto = twitter.showUser(user.getId()).getOriginalProfileImageURLHttps();
+            }catch(TwitterException e){}
+            try{
+                description = twitter.showUser(user.getId()).getDescription();
+            }catch(TwitterException e){}
+            try{
+                email = twitter.showUser(user.getId()).getEmail();
+            }catch (TwitterException e){}
+            try{
+                createdAt = twitter.showUser(user.getId()).getCreatedAt();
+            }catch (TwitterException e){}
 
-            }catch(TwitterException e){
-                System.out.println("\nfalle");
+            if(urlPhoto.equals("")){
+                try{
+                    urlPhoto = twitter.showUser(user.getId()).getBiggerProfileImageURLHttps();
+                }catch (TwitterException e){}
             }
+            user.setUrlProfile(urlProfile);
+            user.setUrlPhoto(urlPhoto);
+            user.setCreatedAt(createdAt);
+            user.setDescription(description);
+            user.setEmail(email);
             userRepository.save(user);
         }
     }
