@@ -9,10 +9,7 @@ import com.tbd.phoneadvice.mongo.repositories.UserRepository;
 
 import com.tbd.phoneadvice.mysql.models.*;
 import com.tbd.phoneadvice.mysql.repositories.*;
-import com.tbd.phoneadvice.neo4j.models.NodeBrand;
-import com.tbd.phoneadvice.neo4j.models.NodeGamma;
-import com.tbd.phoneadvice.neo4j.models.NodePhone;
-import com.tbd.phoneadvice.neo4j.models.NodeUser;
+import com.tbd.phoneadvice.neo4j.models.*;
 import com.tbd.phoneadvice.neo4j.repositories.NodeBrandRepository;
 import com.tbd.phoneadvice.neo4j.repositories.NodeGammaRepository;
 import com.tbd.phoneadvice.neo4j.repositories.NodePhoneRepository;
@@ -90,6 +87,76 @@ public class NeoService {
     }
     //Retorna lista vacia de 250 elementos -> Ver como trasparar resultado de QUERY de Cypher a JSON.
     */
+
+    @RequestMapping(value = "/fullNodos", method = RequestMethod.GET)
+    @ResponseBody
+    public List<nodo> grafoCompleto() {
+        Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+        Session session = driver.session();
+        List<nodo> list = new ArrayList<>();
+        StatementResult result = session.run("MATCH (u:NodeUser) RETURN id(u) as id, u.name as name, u.size as size");
+        while(result.hasNext())
+        {
+            Record record = result.next();
+            nodo nuevoNodo = new nodo();
+            nuevoNodo.setId(record.get("id").asLong());
+            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setPeso(record.get("size").asDouble());
+            list.add(nuevoNodo);
+        }
+        StatementResult result2 = session.run("MATCH (p:NodePhone) RETURN id(p) as id, p.model as name, p.size as size");
+        while(result2.hasNext())
+        {
+            Record record = result2.next();
+            nodo nuevoNodo = new nodo();
+            nuevoNodo.setId(record.get("id").asLong());
+            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setPeso(record.get("size").asDouble());
+            list.add(nuevoNodo);
+        }
+        StatementResult result3 = session.run("MATCH (b:NodeBrand) RETURN id(b) as id, b.brandName as name, b.size as size");
+        while(result3.hasNext())
+        {
+            Record record = result3.next();
+            nodo nuevoNodo = new nodo();
+            nuevoNodo.setId(record.get("id").asLong());
+            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setPeso(record.get("size").asDouble());
+            list.add(nuevoNodo);
+        }
+        StatementResult result4 = session.run("MATCH (g:NodeGamma) RETURN id(g) as id, g.gammaName as name, g.size as size");
+        while(result4.hasNext())
+        {
+            Record record = result4.next();
+            nodo nuevoNodo = new nodo();
+            nuevoNodo.setId(record.get("id").asLong());
+            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setPeso(record.get("size").asDouble());
+            list.add(nuevoNodo);
+        }
+
+        return list;
+    }
+
+    @RequestMapping(value = "/fullAristas", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Arista> aristasCompletas() {
+        Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
+        Session session = driver.session();
+        List<Arista> list = new ArrayList<>();
+        StatementResult result = session.run("MATCH (a)-[r]->(b) RETURN id(a) as source, id(b) as target, type(r) as caption");
+        while(result.hasNext()){
+            Record record = result.next();
+            Arista nuevaArista = new Arista();
+            nuevaArista.setSource(record.get("source").asLong());
+            nuevaArista.setTarget(record.get("target").asLong());
+            nuevaArista.setType(record.get("caption").asString());
+            list.add(nuevaArista);
+        }
+        return list;
+    }
+
+
 
 
     @RequestMapping(value = "/cargarPesos", method = RequestMethod.GET)
