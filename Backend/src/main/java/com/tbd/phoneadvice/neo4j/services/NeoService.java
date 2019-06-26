@@ -29,9 +29,12 @@ import java.util.*;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    private String uri = "bolt://178.128.227.134";
+    //private String uri = "bolt://178.128.227.134";
+    //private String user = "neo4j";
+    //private String password = "lolis123";
+    private String uri = "bolt://localhost";
     private String user = "neo4j";
-    private String password = "lolis123";
+    private String password = "canito123";
 
     @Autowired
     private UserRepository userRepository;
@@ -329,7 +332,8 @@ public class NeoService {
 
     //--------------------------------------SERVICIOS--------------------------------------//
 
-    //Funcion: Funcion que retorna los top 5 de usuarios mas relevantes que hablan de una gamma
+    //Funcion: Funcion que retorna los top 5 de usuarios mas relevantes que hablan de una gamma, adjunto con los celulares
+    //         que hablaron de esa gamma.
     //Entrada: id de una gamma
 
     @RequestMapping(value = "/getRelevantGamma/{gammaID}", method = RequestMethod.GET)
@@ -348,31 +352,34 @@ public class NeoService {
             while(result.hasNext())
             {
                 Record record = result.next();
-                StatementResult resultAux = session.run("MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
+                StatementResult resultAux = session.run("MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID,u.size as size");
                 while(resultAux.hasNext())
                 {
                     Record recordAux = resultAux.next();
                     NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
-
-                    StatementResult resultAuxAux = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p");
-                    int phonesCount = 0;
+                    StatementResult resultAuxAux = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p.phoneID as phoneID");
+                    List<NodePhone> listPhones = new ArrayList<>();
                     while(resultAuxAux.hasNext())
                     {
                         resultAuxAux.next();
-                        phonesCount++;
+                        listPhones.add(nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong()));
                     }
+                    nodeUser.setPhones(listPhones);
+                    nodeUser.setBrands(null);
+                    nodeUser.setFromUser(userRepository.findUserById(nodeUser.getUserID()));
                     list.add(nodeUser);
                 }
             }
 
-            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
+            Comparator<NodeUser> compareBySize = new Comparator<NodeUser>() {
                 @Override
                 public int compare(NodeUser o1, NodeUser o2) {
-                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
+                    return Double.compare(o2.getSize(),o1.getSize());
                 }
             };
 
-            Collections.sort(list,compareByFollowers);
+            Collections.sort(list,compareBySize);
+
             List<NodeUser> listFinal = new ArrayList<>();
             int max= list.size();
             if(max > 5) { max = 5; }
@@ -385,6 +392,7 @@ public class NeoService {
         }
     }
 
+    /*
     //Funcion: Funcion que retorna los celulares que hablo un usuario en relacion a una gamma.
     //Entrada: id de una gamma, id de un usuario.
     @RequestMapping(value = "/getGammaUser/{gammaID}/{userID}", method = RequestMethod.GET)
@@ -415,10 +423,12 @@ public class NeoService {
             return list;
         }
     }
+    */
 
-    //Funcion: Funcion que retorna los top 5 de usuarios mas relevantes que hablan de una marca
+    /*
+    //Funcion: Funcion que retorna las marcas ordenadas por peso, con los 5 usuarios mas relevantes que hablan por marca.
     //Entrada: id de una marca.
-    @RequestMapping(value = "/getUserBrand/{brandID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserBrand", method = RequestMethod.GET)
     @ResponseBody
     public List<NodeUser> userBrand(@PathVariable Long brandID) {
         NodeBrand brandAux = nodeBrandRepository.findByBrandID(brandID);
@@ -428,22 +438,22 @@ public class NeoService {
         else {
             Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
             Session session = driver.session();
-            List<NodeUser> list = new ArrayList<>();
+            List<Brand> list = new ArrayList<>();
             StatementResult result = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+brandAux.getBrandID()+" MATCH (b) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
             while(result.hasNext()) {
                 Record record = result.next();
                 list.add(nodeUserRepository.findByUserID(record.get("userID").asLong()));
             }
 
-            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
+            Comparator<Brand> compareBySize = new Comparator<Brand>() {
                 @Override
-                public int compare(NodeUser o1, NodeUser o2) {
-                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
+                public int compare(Brand o1, Brand o2) {
+                    return Double.compare(o2.getSize(),o1.getSize());
                 }
             };
 
-            Collections.sort(list,compareByFollowers);
-            List<NodeUser> listFinal = new ArrayList<>();
+            Collections.sort(list,compareBySize);
+            List<Brand> listFinal = new ArrayList<>();
             int max= list.size();
             if(max > 5) { max = 5; }
             for(int i = 0 ; i < max; i++) {
@@ -454,32 +464,63 @@ public class NeoService {
             return listFinal;
         }
     }
+    */
 
-    //Funcion: Funcion que retorna las marcas ordenadas por relevancia
+
+    //Funcion: Funcion que retorna las marcas ordenadas por peso, con los 5 usuarios mas relevantes que hablan por marca.
     //Entrada: N/A
-    @RequestMapping(value = "/getBrand", method = RequestMethod.GET)
+    @RequestMapping(value = "/getBrands", method = RequestMethod.GET)
     @ResponseBody
     public List<NodeBrand> getBrands() {
-        List<NodeBrand> list = new ArrayList<>();
+        List<NodeBrand> listBrand = new ArrayList<>();
         Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
         Session session = driver.session();
-        StatementResult result = session.run("MATCH (b:NodeBrand) RETURN b.brandID as brandID");
+        StatementResult result = session.run("MATCH (b:NodeBrand) RETURN b.brandID as brandID, b.size as size,b.brandName as brandName");
         while(result.hasNext())
         {
             Record record = result.next();
-            list.add(nodeBrandRepository.findByBrandID(record.get("brandID").asLong()));
+            StatementResult resultAux = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
+            List<User> userList = new ArrayList<>();
+
+            while(resultAux.hasNext()) {
+                Record recordAux = resultAux.next();
+                userList.add(userRepository.findUserById(recordAux.get("userID").asLong()));
+            }
+
+            Comparator<User> compareByFollowers = new Comparator<User>() {
+                @Override
+                public int compare(User o1, User o2) {
+                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
+                }
+            };
+
+            Collections.sort(userList,compareByFollowers);
+            List<User> userListFinal = new ArrayList<>();
+            int max= userList.size();
+            if(max > 5) { max = 5; }
+            for(int i = 0 ; i < max; i++) {
+                userListFinal.add(userList.get(i));
+            }
+            NodeBrand nodeBrand = nodeBrandRepository.findByBrandID(record.get("brandID").asLong());
+            nodeBrand.setUsers(userListFinal);
+            nodeBrand.setPhones(null);
+            listBrand.add(nodeBrand);
         }
+
         Comparator<NodeBrand> compareBySize = new Comparator<NodeBrand>() {
             @Override
             public int compare(NodeBrand o1, NodeBrand o2) {
-                return o2.getSize().compareTo(o1.getSize());
+                return Double.compare(o2.getSize(),o1.getSize());
             }
         };
-        Collections.sort(list,compareBySize);
+
+        Collections.sort(listBrand,compareBySize);
         session.close();
         driver.close();
-        return list;
+        return listBrand;
     }
+
+
 
 
     //Funcion: Funcion que retorna los celulares ordenados por relevancia

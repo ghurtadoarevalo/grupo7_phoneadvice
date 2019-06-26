@@ -1,6 +1,7 @@
 package com.tbd.phoneadvice.neo4j.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tbd.phoneadvice.mongo.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,10 @@ public class NodeBrand {
 
     private Double size;
 
-    @JsonIgnore
     @Relationship(type = "HAS",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
+
+    private List<User> users = new ArrayList<>();
 
     public NodeBrand(String brandName, Long brandID) {
         this.brandName = brandName;
@@ -74,6 +76,14 @@ public class NodeBrand {
 
     public void setSize(Double size) {
         this.size = size;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
 

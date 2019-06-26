@@ -39,9 +39,6 @@ public class TwitterListener {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
 
-    @Autowired
-    private TweetRepository tweetRepository;
-
 
     @Value(value = "${kafka.topicName}")
     private String topicName;
