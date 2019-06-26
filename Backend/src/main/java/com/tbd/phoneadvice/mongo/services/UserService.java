@@ -23,8 +23,6 @@ public class UserService {
     private TweetRepository tweetRepository;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private Twitter twitter;
 
     @RequestMapping(value = "/loadUsers", method = RequestMethod.GET)
     @ResponseBody
@@ -34,32 +32,8 @@ public class UserService {
         {
             Tweet tweet = tweetList.get(i);
             User user = tweet.getUser();
-            String urlProfile = "",urlPhoto="",description="",email="";
-            Date createdAt=null;
-            urlProfile = "https://twitter.com/"+user.getScreenName();
-            try{
-                urlPhoto = twitter.showUser(user.getId()).getOriginalProfileImageURLHttps();
-            }catch(TwitterException e){}
-            try{
-                description = twitter.showUser(user.getId()).getDescription();
-            }catch(TwitterException e){}
-            try{
-                email = twitter.showUser(user.getId()).getEmail();
-            }catch (TwitterException e){}
-            try{
-                createdAt = twitter.showUser(user.getId()).getCreatedAt();
-            }catch (TwitterException e){}
-
-            if(urlPhoto.equals("")){
-                try{
-                    urlPhoto = twitter.showUser(user.getId()).getBiggerProfileImageURLHttps();
-                }catch (TwitterException e){}
-            }
+            String urlProfile = "https://twitter.com/"+user.getScreenName();
             user.setUrlProfile(urlProfile);
-            user.setUrlPhoto(urlPhoto);
-            user.setCreatedAt(createdAt);
-            user.setDescription(description);
-            user.setEmail(email);
             userRepository.save(user);
         }
     }

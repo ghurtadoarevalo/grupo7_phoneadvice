@@ -21,6 +21,8 @@ import com.tbd.phoneadvice.neo4j.repositories.NodeUserRepository;
 import org.neo4j.driver.v1.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
 
 import java.util.*;
 
@@ -68,6 +70,9 @@ public class NeoService {
 
     @Autowired
     private DataTweetRepository dataTweetRepository;
+
+    @Autowired
+    private Twitter twitter;
 
 
     //--------------------------------------------------------------------------------------------------------//
@@ -366,7 +371,6 @@ public class NeoService {
                     }
                     nodeUser.setPhones(listPhones);
                     nodeUser.setBrands(null);
-                    nodeUser.setFromUser(userRepository.findUserById(nodeUser.getUserID()));
                     list.add(nodeUser);
                 }
             }
@@ -384,7 +388,9 @@ public class NeoService {
             int max= list.size();
             if(max > 5) { max = 5; }
             for(int i = 0 ; i < max; i++) {
-                listFinal.add(list.get(i));
+                NodeUser nodeUser = list.get(i);
+                setUserValues(nodeUser);
+                listFinal.add(nodeUser);
             }
             session.close();
             driver.close();
@@ -480,26 +486,31 @@ public class NeoService {
         {
             Record record = result.next();
             StatementResult resultAux = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
-            List<User> userList = new ArrayList<>();
+            List<NodeUser> userList = new ArrayList<>();
 
             while(resultAux.hasNext()) {
                 Record recordAux = resultAux.next();
-                userList.add(userRepository.findUserById(recordAux.get("userID").asLong()));
+                NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
+                nodeUser.setBrands(null);
+                nodeUser.setPhones(null);
+                userList.add(nodeUser);
             }
 
-            Comparator<User> compareByFollowers = new Comparator<User>() {
+            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
                 @Override
-                public int compare(User o1, User o2) {
+                public int compare(NodeUser o1, NodeUser o2) {
                     return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
                 }
             };
 
             Collections.sort(userList,compareByFollowers);
-            List<User> userListFinal = new ArrayList<>();
+            List<NodeUser> userListFinal = new ArrayList<>();
             int max= userList.size();
             if(max > 5) { max = 5; }
             for(int i = 0 ; i < max; i++) {
-                userListFinal.add(userList.get(i));
+                NodeUser nodeUser = userList.get(i);
+                setUserValues(nodeUser);
+                userListFinal.add(nodeUser);
             }
             NodeBrand nodeBrand = nodeBrandRepository.findByBrandID(record.get("brandID").asLong());
             nodeBrand.setUsers(userListFinal);
@@ -550,6 +561,33 @@ public class NeoService {
         return list;
     }
 
+    private void setUserValues(NodeUser nodeUser){
 
+        String urlPhoto ="",description="",email="";
+        Date createdAt=null;
+        try{
+            try {
+                urlPhoto = twitter.showUser(nodeUser.getUserID()).getOriginalProfileImageURLHttps();
+            }catch(StringIndexOutOfBoundsException exception){}
+        }catch(TwitterException e){}
+        try{
+            description = twitter.showUser(nodeUser.getUserID()).getDescription();
+        }catch(TwitterException e){}
+        try{
+            email = twitter.showUser(nodeUser.getUserID()).getEmail();
+        }catch (TwitterException e){}
+        try{
+            createdAt = twitter.showUser(nodeUser.getUserID()).getCreatedAt();
+        }catch (TwitterException e){}
 
+        if(urlPhoto.equals("")){
+            try{
+                urlPhoto = twitter.showUser(nodeUser.getUserID()).getBiggerProfileImageURLHttps();
+            }catch (TwitterException e){}
+        }
+        nodeUser.setUrlPhoto(urlPhoto);
+        nodeUser.setCreatedAt(createdAt);
+        nodeUser.setDescription(description);
+        nodeUser.setEmail(email);
+    }
 }
