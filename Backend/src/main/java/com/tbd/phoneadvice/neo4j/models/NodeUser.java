@@ -2,6 +2,7 @@ package com.tbd.phoneadvice.neo4j.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tbd.phoneadvice.mongo.models.User;
+import com.tbd.phoneadvice.mysql.models.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class NodeUser {
     private Long userID;
     private Double size;
 
+    private String screenName;
     private String location;
     private String urlProfile;
     private String urlPhoto;
@@ -42,6 +44,9 @@ public class NodeUser {
 
     @Relationship(type = "TWEET_ABOUT",direction = Relationship.OUTGOING)
     private List<NodeBrand> brands = new ArrayList<>();
+
+    private List<Phone> phonesSQL = new ArrayList<>();
+
 
     public NodeUser(String name, int followersCount,Long userID)
     {
@@ -156,16 +161,19 @@ public class NodeUser {
         this.createdAt = createdAt;
     }
 
-    public void setFromUser(User user) {
-        this.name = user.getName();
-        this.followersCount = user.getFollowersCount();
-        this.userID = user.getId();
-        this.location = user.getLocation();
-        this.urlProfile = user.getUrlProfile();
-        this.urlPhoto = user.getUrlPhoto();
-        this.email = user.getEmail();
-        this.description = user.getDescription();
-        this.createdAt = user.getCreatedAt();
+    public String getScreenName() {
+        return screenName;
     }
 
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
+    }
+
+    public List<Phone> getPhonesSQL() {
+        return phonesSQL;
+    }
+
+    public void setPhonesSQL(List<Phone> phonesSQL) {
+        this.phonesSQL = phonesSQL;
+    }
 }

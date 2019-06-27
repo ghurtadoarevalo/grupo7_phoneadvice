@@ -31,12 +31,12 @@ import java.util.*;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    private String uri = "bolt://178.128.227.134";
-    private String user = "neo4j";
-    private String password = "lolis123";
-    //private String uri = "bolt://localhost";
+    //private String uri = "bolt://178.128.227.134";
     //private String user = "neo4j";
-    //private String password = "canito123";
+    //private String password = "lolis123";
+    private String uri = "bolt://localhost";
+    private String user = "neo4j";
+    private String password = "canito123";
 
     @Autowired
     private UserRepository userRepository;
@@ -174,28 +174,22 @@ public class NeoService {
     }
 
 
-
-
-
-
-
     @RequestMapping(value = "/loadUsers", method = RequestMethod.GET)
     @ResponseBody
     public void loadUser() {
         List<User> userList = userRepository.findAll();
-        for(int i = 0 ; i < userList.size();i++)
+        for(int i = 35726 ; i < userList.size();i++)
         {
             User user = userList.get(i);
             NodeUser nodeUser = new NodeUser(user.getName(),user.getFollowersCount(),user.getId());
             nodeUserRepository.save(nodeUser);
         }
-/*
     }
 
     @RequestMapping(value = "/loadTopics", method = RequestMethod.GET)
     @ResponseBody
     public void loadTopics() {
-*/
+
         List<Brand> brandListA = brandRepository.findAll();
         for(int i = 0 ; i < brandListA.size();i++) {
             Brand brand = brandListA.get(i);
@@ -214,14 +208,14 @@ public class NeoService {
             NodePhone nodePhone = new NodePhone(phone.getModel(),phone.getPhoneId());
             nodePhoneRepository.save(nodePhone);
         }
-/*
+
     }
 
     @RequestMapping(value = "/loadRelationsA", method = RequestMethod.GET)
     @ResponseBody
     public void loadStaticRelations()
     {
-*/
+
         //Cargar relaciones de gamma
         Iterator<NodeGamma> gammaNodeList = nodeGammaRepository.findAll().iterator();
         while(gammaNodeList.hasNext())
@@ -255,14 +249,14 @@ public class NeoService {
             }
             nodeBrandRepository.save(nodeBrand);
         }
-/*
+
     }
 
     @RequestMapping(value = "/loadRelationsB", method = RequestMethod.GET)
     @ResponseBody
     public void loadTweetsRelations()
     {
-*/
+
         List<Phone> phoneList = phoneRepository.findAll();
         for(int i = 0 ; i < phoneList.size();i++)
         {
@@ -363,14 +357,15 @@ public class NeoService {
                     Record recordAux = resultAux.next();
                     NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
                     StatementResult resultAuxAux = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p.phoneID as phoneID");
-                    List<NodePhone> listPhones = new ArrayList<>();
+                    List<Phone> listPhones = new ArrayList<>();
                     while(resultAuxAux.hasNext())
                     {
                         resultAuxAux.next();
-                        listPhones.add(nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong()));
+                        listPhones.add(phoneRepository.findByPhoneId(record.get("phoneID").asLong()));
                     }
-                    nodeUser.setPhones(listPhones);
+                    nodeUser.setPhones(null);
                     nodeUser.setBrands(null);
+                    nodeUser.setPhonesSQL(listPhones);
                     list.add(nodeUser);
                 }
             }
@@ -546,7 +541,9 @@ public class NeoService {
         while(result.hasNext())
         {
             Record record = result.next();
-            list.add(nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong()));
+            NodePhone nodePhone = nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong());
+            nodePhone.setPhoneSQL(phoneRepository.findByPhoneId(record.get("phoneID").asLong()));
+            list.add(nodePhone);
         }
 
         Comparator<NodePhone> compareBySize = new Comparator<NodePhone>() {
@@ -555,6 +552,7 @@ public class NeoService {
                 return o2.getSize().compareTo(o1.getSize());
             }
         };
+
         Collections.sort(list,compareBySize);
         session.close();
         driver.close();
@@ -568,7 +566,7 @@ public class NeoService {
         try{
             try {
                 urlPhoto = twitter.showUser(nodeUser.getUserID()).getOriginalProfileImageURLHttps();
-            }catch(StringIndexOutOfBoundsException exception){}
+            }catch(StringIndexOutOfBoundsException e){}
         }catch(TwitterException e){}
         try{
             description = twitter.showUser(nodeUser.getUserID()).getDescription();
@@ -582,9 +580,13 @@ public class NeoService {
 
         if(urlPhoto.equals("")){
             try{
-                urlPhoto = twitter.showUser(nodeUser.getUserID()).getBiggerProfileImageURLHttps();
+                try{
+                    urlPhoto = twitter.showUser(nodeUser.getUserID()).getBiggerProfileImageURLHttps();
+                }catch(StringIndexOutOfBoundsException e){}
             }catch (TwitterException e){}
         }
+        User user = userRepository.findUserById(nodeUser.getUserID());
+        nodeUser.setUrlProfile(user.getUrlProfile());
         nodeUser.setUrlPhoto(urlPhoto);
         nodeUser.setCreatedAt(createdAt);
         nodeUser.setDescription(description);
