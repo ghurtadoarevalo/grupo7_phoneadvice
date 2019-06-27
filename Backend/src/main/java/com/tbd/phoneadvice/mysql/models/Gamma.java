@@ -29,4 +29,36 @@ public class Gamma {
     @JsonIgnore
     @OneToMany(mappedBy = "gamma", cascade = CascadeType.ALL)
     private Set<Phone> phones;
+
+    public Long getGammaId() {
+        return gammaId;
+    }
+
+    public void setGammaId(Long gammaId) {
+        this.gammaId = gammaId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMin_price() {
+        return min_price;
+    }
+
+    public void setMin_price(int min_price) {
+        this.min_price = min_price;
+    }
+
+    public Set<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Set<Phone> phones) {
+        this.phones = phones;
+    }
 }

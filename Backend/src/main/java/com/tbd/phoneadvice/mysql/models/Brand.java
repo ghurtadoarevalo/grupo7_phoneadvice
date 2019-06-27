@@ -1,9 +1,11 @@
 package com.tbd.phoneadvice.mysql.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tbd.phoneadvice.mongo.models.User;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -80,4 +82,5 @@ public class Brand {
     public void setStatistic(Statistic statistic) {
         this.statistic = statistic;
     }
+
 }

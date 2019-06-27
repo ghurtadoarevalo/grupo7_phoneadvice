@@ -43,6 +43,19 @@ public class StatisticService {
     @Autowired
     private DataTweetRepository dataTweetRepository;
 
+    private int max_p_pos = 0;
+    private int max_p_neutro = 0;
+    private int max_p_neg = 0;
+
+    private int max_b_pos = 0;
+    private int max_b_neutro = 0;
+    private int max_b_neg = 0;
+
+    private int max_ps_pos = 0;
+    private int max_ps_neutro = 0;
+    private int max_ps_neg = 0;
+
+
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     @ResponseBody
     public void almacenarStatCelulares()
@@ -88,12 +101,14 @@ public class StatisticService {
             stat.setPositive_density(c_positivos);
             stat.setNeutral_density(c_neutros);
             stat.setNegative_density(c_negativos);
-
-            int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
-            phone.setAssessment(nota);
+            if(max_p_pos < c_positivos) {max_p_pos = c_positivos; }
+            if(max_p_neutro < c_neutros){max_p_neutro = c_neutros;}
+            if(max_p_neg < c_negativos){max_p_neg = c_negativos;}
+            //int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
+            //phone.setAssessment(nota);
 
             statisticRepository.saveAndFlush(stat);
-            phoneRepository.saveAndFlush(phone);
+            //phoneRepository.saveAndFlush(phone);
         }
     }
     @RequestMapping(value = "/test2", method = RequestMethod.GET)
@@ -136,14 +151,10 @@ public class StatisticService {
                 }
             }
             Statistic stat = statisticRepository.findByStatisticId(brand.getStatistic().getStatisticId());
-            stat.setPositive_density(c_positivos);
-            stat.setNeutral_density(c_neutros);
-            stat.setNegative_density(c_negativos);
-            int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
-            brand.setAssessment(nota);
-
+            if(max_b_pos < c_positivos) {max_b_pos = c_positivos; }
+            if(max_b_neutro < c_neutros){max_b_neutro = c_neutros;}
+            if(max_b_neg < c_negativos){max_b_neg = c_negativos;}
             statisticRepository.saveAndFlush(stat);
-            brandRepository.saveAndFlush(brand);
 
         }
     }
@@ -162,7 +173,6 @@ public class StatisticService {
             List<WordSpecification> wordSpecificationList = word_specificationRepository.findBySpecification_SpecificationId(specification.getSpecificationId());
 
             List<String> bagWordsPhone = new ArrayList<>();
-
             for(int j = 0 ; j < wordPhoneList.size();j++)
             {
                 String word = wordPhoneList.get(j).getContent();
@@ -201,34 +211,114 @@ public class StatisticService {
             }
 
             Statistic stat = statisticRepository.findByStatisticId(phoneSpecification.getStatistic().getStatisticId());
-            stat.setPositive_density(c_positivos);
-            stat.setNeutral_density(c_neutros);
-            stat.setNegative_density(c_negativos);
-            int nota = calculcarNota(c_positivos,c_neutros,c_negativos);
-            phoneSpecification.setAssessment(nota);
+            if(max_ps_pos < c_positivos) {max_ps_pos = c_positivos; }
+            if(max_ps_neutro < c_neutros){max_ps_neutro = c_neutros;}
+            if(max_ps_neg < c_negativos){max_ps_neg = c_negativos;}
 
             statisticRepository.saveAndFlush(stat);
+
+
+        }
+    }
+
+
+    @RequestMapping(value = "/test4", method = RequestMethod.GET)
+    @ResponseBody
+    public void almacenarNotas() {
+        //Celulares
+        List<Phone> listA = phoneRepository.findAll();
+        List<Brand> listB = brandRepository.findAll();
+        List<PhoneSpecification> listC = phoneSpecificationRepository.findAll();
+
+        for(int i = 0 ; i < listA.size();i++)
+        {
+            Phone phone = listA.get(i);
+            Statistic statistic = phone.getStatistic();
+            int pos = statistic.getPositive_density();
+            if(pos >= max_p_pos)
+            {
+                max_p_pos = pos;
+            }
+        }
+        for(int i = 0 ; i < listB.size();i++)
+        {
+            Brand brand = listB.get(i);
+            Statistic statistic = brand.getStatistic();
+            int pos = statistic.getPositive_density();
+            if(pos >= max_b_pos)
+            {
+                max_b_pos = pos;
+            }
+        }
+        for(int i = 0 ; i < listC.size();i++)
+        {
+            PhoneSpecification phoneSpecification = listC.get(i);
+            Statistic statistic = phoneSpecification.getStatistic();
+            int pos = statistic.getPositive_density();
+            if(pos >= max_ps_pos)
+            {
+                max_ps_pos = pos;
+            }
+        }
+
+
+        for(int i = 0 ; i < listA.size();i++)
+        {
+            Phone phone = listA.get(i);
+            Statistic statistic = phone.getStatistic();
+            int pos = statistic.getPositive_density();
+            int neu = statistic.getNeutral_density();
+            int neg = statistic.getNegative_density();
+            System.out.println("\nStats"+pos+" "+neg+" "+max_p_pos);
+            int nota = calcularNota(pos,neu,neg,max_p_pos);
+            phone.setAssessment(nota);
+            phoneRepository.saveAndFlush(phone);
+        }
+
+        for(int i = 0 ; i < listB.size();i++)
+        {
+            Brand brand = listB.get(i);
+            Statistic statistic = brand.getStatistic();
+            int pos = statistic.getPositive_density();
+            int neu = statistic.getNeutral_density();
+            int neg = statistic.getNegative_density();
+            System.out.println("\nStats"+pos+" "+neg+" "+max_b_pos);
+            int nota = calcularNota(pos,neu,neg,max_b_pos);
+            brand.setAssessment(nota);
+            brandRepository.saveAndFlush(brand);
+        }
+
+
+        for(int i = 0 ; i < listC.size();i++)
+        {
+            PhoneSpecification phoneSpecification = listC.get(i);
+            Statistic statistic = phoneSpecification.getStatistic();
+            int pos = statistic.getPositive_density();
+            int neu = statistic.getNeutral_density();
+            int neg = statistic.getNegative_density();
+            System.out.println("\nStats"+pos+" "+neg+" "+max_ps_pos);
+            int nota = calcularNota(pos,neu,neg,max_ps_pos);
+            phoneSpecification.setAssessment(nota);
             phoneSpecificationRepository.saveAndFlush(phoneSpecification);
-
-
         }
+
+
+
     }
 
-    public int calculcarNota(int pos,int neutro,int neg)
+    public int calcularNota(int pos,int neutro,int neg,int max_pos)
     {
-        int nota = 0;
-        int auxB = pos+neutro+neg;
-        if(auxB != 0) {
-            double auxA = (pos - 0.2 * neg) / auxB;
-            if (auxA <= 0) {
-                nota = 1;
-            }
-            else {
-                double auxC = auxA*7;
-                return (int)Math.ceil(auxC);
-            }
+        double total = pos + neg;
+        if(total == 0)
+        {
+            return 0;
         }
-        return nota;
+        else {
+            double auxA = pos * 100 /total;
+            double auxB = pos * 100/(double)max_pos;
+            double auxC = auxA*0.5 + auxB*0.5;
+            System.out.println("\n"+auxA+" "+auxB+" "+auxC);
+            return (int) auxC;
+        }
     }
-
 }

@@ -108,4 +108,12 @@ public class Phone {
     public void setStatistic(Statistic statistic) {
         this.statistic = statistic;
     }
+
+    public Gamma getGamma() {
+        return gamma;
+    }
+
+    public void setGamma(Gamma gamma) {
+        this.gamma = gamma;
+    }
 }
