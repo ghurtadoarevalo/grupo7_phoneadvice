@@ -171,7 +171,7 @@
               style="height: 100%; width: 100%"
             >
             <div class = "a font-weight-light mb-2">
-              <b>¡Sección en construcción!</b>
+              <b>¡En esta sección podrá encontrar celulares según su bolsillo!</b>
             </div>
             </v-flex>
             </v-expand-transition> 
@@ -188,8 +188,9 @@
                 large
                 right
                 top
+                to = "/twittersForGamma"
               >
-                <v-icon>mdi-hammer</v-icon>
+                <v-icon>mdi-cash</v-icon>
               </v-btn>
   
               <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por Gama</h3>
