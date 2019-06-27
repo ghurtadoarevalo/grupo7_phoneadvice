@@ -8,7 +8,7 @@
         color="#0E318A"
         flat
         value="graph"
-        @click="changeActive('graph')"
+        @click="changeActive('graph',2)"
       >
         <span>Gráficos</span>
         <chart-icon/>
@@ -18,7 +18,7 @@
         color="#0E318A"
         flat
         value="maps"
-        @click="changeActive('maps')"
+        @click="changeActive('maps',2)"
       >
         <span>Mapas</span>
         <v-icon>place</v-icon>

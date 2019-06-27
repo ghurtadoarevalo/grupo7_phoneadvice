@@ -32,6 +32,7 @@
     },
     beforeMount(){
       this.$store.dispatch('getBrands')
+      this.$store.dispatch('resetActive')
     },
   }
 </script>

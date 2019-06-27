@@ -54,14 +54,14 @@
         { id: 3, name: 'User 3', svgSym:userIcon },
         { id: 4, name: 'User 4' , svgSym:userIcon},
         { id: 5, name: 'User 5' , svgSym:userIcon},
-        { id: 6, name: 'Apple' , svgSym:apple},
-        { id: 7, name: 'Samsung' , svgSym:samsung},
-        { id: 8, name: 'Huawei' , svgSym:huawei},
-        { id: 9, name: 'Xiaomi' , svgSym:xiaomi_svg},
-        { id: 10, name: 'Asus' , svgSym:asus_svg},
-        { id: 11, name: 'LG' , svgSym:lg_svg},
-        { id: 12, name: 'Motorola' , svgSym:moto_svg},
-        { id: 13, name: 'Nokia' , svgSym:nokia_svg},
+        { id: 6, name: 'Apple' /*, svgSym:apple*/},
+        { id: 7, name: 'Samsung' /*, svgSym:samsung*/},
+        { id: 8, name: 'Huawei' /*, svgSym:huawei*/},
+        { id: 9, name: 'Xiaomi' /*, svgSym:xiaomi_svg*/},
+        { id: 10, name: 'Asus' /*, svgSym:asus_svg*/},
+        { id: 11, name: 'LG' /*, svgSym:lg_svg*/},
+        { id: 12, name: 'Motorola' /*, svgSym:moto_svg*/},
+        { id: 13, name: 'Nokia' /*, svgSym:nokia_svg*/},
         { id: 14, name: 'Phone 1' , svgSym:phoneIcon},
         { id: 15, name: 'Phone 2' , svgSym:phoneIcon},
         { id: 16, name: 'Phone 3' , svgSym:phoneIcon},
@@ -87,7 +87,7 @@
         { sid: 5, tid: 12},
       ],
       nodeSize:40,
-      force:3200,
+      force:3500,
       zoom:0,
       h:700,
       //w:1200
@@ -112,7 +112,7 @@
     watch: {
       zoom: function(){
         this.nodeSize = 40 + this.nodeSize*(this.zoom/70)
-        this.force = 3200 + this.force*(this.zoom/70)
+        this.force = 3500 + this.force*(this.zoom/70)
         if(this.zoom>0){
           this.h = 700 + this.h*(this.zoom/70)
         }

@@ -49,8 +49,8 @@ export default new Vuex.Store({
   },
   mutations: {
     //Button bar
-    changeActive(state, newStatus){
-      state.active = newStatus
+    changeActive(state, newStatus, view){
+        state.active = newStatus
     },
     resetActive(state)
     {

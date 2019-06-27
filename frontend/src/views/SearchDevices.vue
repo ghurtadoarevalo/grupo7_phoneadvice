@@ -40,5 +40,8 @@
     mounted(){
       this.getData()
     },
+    beforeMount(){
+      this.$store.dispatch('resetActive')
+    },
   }
 </script>
