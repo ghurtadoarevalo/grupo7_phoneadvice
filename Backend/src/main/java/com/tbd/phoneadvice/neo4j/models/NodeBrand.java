@@ -30,7 +30,7 @@ public class NodeBrand {
     @Relationship(type = "HAS",direction = Relationship.OUTGOING)
     private List<NodePhone> phones = new ArrayList<>();
 
-    private List<User> users = new ArrayList<>();
+    private List<NodeUser> users = new ArrayList<>();
 
     public NodeBrand(String brandName, Long brandID) {
         this.brandName = brandName;
@@ -78,11 +78,11 @@ public class NodeBrand {
         this.size = size;
     }
 
-    public List<User> getUsers() {
+    public List<NodeUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<NodeUser> users) {
         this.users = users;
     }
 }
