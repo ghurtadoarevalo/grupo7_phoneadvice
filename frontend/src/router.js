@@ -41,5 +41,8 @@ export default new Router({
       component: () => import(/* webpackChunkName: "search devices" */ './views/TwittersForGamma.vue')
 
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })

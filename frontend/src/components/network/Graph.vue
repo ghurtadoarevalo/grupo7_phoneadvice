@@ -49,27 +49,10 @@
     data() {
       return {
         nodes: [
-        { id: 1, name: 'User 1' , svgSym:userIcon},
-        { id: 2, name: 'User 2' , svgSym:userIcon},
-        { id: 3, name: 'User 3', svgSym:userIcon },
-        { id: 4, name: 'User 4' , svgSym:userIcon},
-        { id: 5, name: 'User 5' , svgSym:userIcon},
-        { id: 6, name: 'Apple' /*, svgSym:apple*/},
-        { id: 7, name: 'Samsung' /*, svgSym:samsung*/},
-        { id: 8, name: 'Huawei' /*, svgSym:huawei*/},
-        { id: 9, name: 'Xiaomi' /*, svgSym:xiaomi_svg*/},
-        { id: 10, name: 'Asus' /*, svgSym:asus_svg*/},
-        { id: 11, name: 'LG' /*, svgSym:lg_svg*/},
-        { id: 12, name: 'Motorola' /*, svgSym:moto_svg*/},
-        { id: 13, name: 'Nokia' /*, svgSym:nokia_svg*/},
-        { id: 14, name: 'Phone 1' , svgSym:phoneIcon},
-        { id: 15, name: 'Phone 2' , svgSym:phoneIcon},
-        { id: 16, name: 'Phone 3' , svgSym:phoneIcon},
-        { id: 17, name: 'Phone 4' , svgSym:phoneIcon},
-        { id: 18, name: 'Phone 5' , svgSym:phoneIcon},],
+        ],
         
       links: [
-        { sid: 6, tid: 14},
+        /*{ sid: 6, tid: 14},
         { sid: 6, tid: 15},
         { sid: 6, tid: 16},
         { sid: 6, tid: 17},
@@ -84,13 +67,14 @@
         { sid: 4, tid: 9},
         { sid: 4, tid: 13},
         { sid: 5, tid: 7},
-        { sid: 5, tid: 12},
+        { sid: 5, tid: 12},*/
       ],
-      nodeSize:40,
+      nodeSize:20,
       force:3500,
       zoom:0,
-      h:700,
-      //w:1200
+      h:1200,
+      w:1200,
+      offset:{x:0,y:-70}
 
       }
     },
@@ -102,7 +86,8 @@
       options(){
         return{
           force: this.force,
-          size:{ w:1500, h:this.h},
+          size:{ w:this.w, h:this.h},
+          offset:this.offset,
           nodeSize: this.nodeSize,
           nodeLabels: true,
           linkWidth:2
@@ -111,22 +96,30 @@
     },
     watch: {
       zoom: function(){
-        this.nodeSize = 40 + this.nodeSize*(this.zoom/70)
-        this.force = 3500 + this.force*(this.zoom/70)
+        this.nodeSize = 20 + this.nodeSize*(this.zoom/70)
+        this.force = 3500 + this.force*(this.zoom/60)
         if(this.zoom>0){
-          this.h = 700 + this.h*(this.zoom/70)
+          this.h = 1200 + this.h*(this.zoom/70)
+          this.w = 1200 + this.w*(this.zoom/70)
+          this.offset.x = 0 - this.w*(this.zoom/200)
+          this.offset.y = -70 - this.w*(this.zoom/400)
         }
-        //this.w = 1200 + this.w*(this.zoom/70)
-        console.log(this.zoom)
-      }
-      /*phoneData: function (){
+      },
+      phoneData: function (){
         //var cellNodes = []
         for(var phone of this.phoneData){
           var node = {id: phone.phoneId, name: phone.model, svgSym:phoneIcon}
           this.nodes.push(node)
         }
-      }*/
+      }
     },
+    beforeMount(){
+      this.nodes = []
+      for(var phone of this.phoneData){
+          var node = {id: phone.phoneId, name: phone.model, svgSym:phoneIcon}
+          this.nodes.push(node)
+        }
+    }
   }
 </script>
 <style>
@@ -173,6 +166,9 @@
     transform:translateY(-.5em);
     text-anchor:middle
 }
-
+.layout {
+  display: inline-block align-content-start;
+  width: 100%;
+}
 
 </style>
