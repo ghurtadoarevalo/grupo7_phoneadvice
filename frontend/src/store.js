@@ -179,8 +179,8 @@ export default new Vuex.Store({
         }
         else{
           topTen.evalP.push(item.statistic.positive_density)
-          topTen.evalN.push(item.statistic.positive_density)
-          topTen.evalNeutral.push(item.statistic.positive_density)
+          topTen.evalN.push(item.statistic.negative_density)
+          topTen.evalNeutral.push(item.statistic.neutral_density)
           topTen.topTenEvalSpecification.push(item.assessment)
           topTen.topTenNames.push(item.phone.model)
           topTen.topTenImgList.push(item.phone.image)
@@ -238,8 +238,8 @@ export default new Vuex.Store({
         }
         else{
           topTen.evalP.push(item.statistic.positive_density)
-          topTen.evalN.push(item.statistic.positive_density)
-          topTen.evalNeutral.push(item.statistic.positive_density)
+          topTen.evalN.push(item.statistic.negative_density)
+          topTen.evalNeutral.push(item.statistic.neutral_density)
           topTen.topTenEvalSpecification.push(item.assessment)
           topTen.topTenNames.push(item.model)
           topTen.topTenImgList.push(item.image)
@@ -317,8 +317,8 @@ export default new Vuex.Store({
             }
             else{
               topTen.evalP.push(item.statistic.positive_density)
-              topTen.evalN.push(item.statistic.positive_density)
-              topTen.evalNeutral.push(item.statistic.positive_density)
+              topTen.evalN.push(item.statistic.negative_density)
+              topTen.evalNeutral.push(item.statistic.neutral_density)
               topTen.topTenEvalSpecification.push(item.assessment)
               topTen.topTenNames.push(item.phone.model)
               topTen.topTenImgList.push(item.phone.image)
@@ -380,8 +380,8 @@ export default new Vuex.Store({
           else
           {
             topTen.evalP.push(item.statistic.positive_density)
-            topTen.evalN.push(item.statistic.positive_density)
-            topTen.evalNeutral.push(item.statistic.positive_density)
+            topTen.evalN.push(item.statistic.negative_density)
+            topTen.evalNeutral.push(item.statistic.neutral_density)
             topTen.topTenEvalSpecification.push(item.assessment)
             topTen.topTenNames.push(item.model)
             topTen.topTenImgList.push(item.image)
