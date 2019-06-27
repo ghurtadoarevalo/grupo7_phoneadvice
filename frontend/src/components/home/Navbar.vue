@@ -61,6 +61,7 @@ export default {
           { title: 'Celulares', path: '/searchForDevices', icon: 'phone_iphone' },
           {title: 'Marcas', path: '/searchForBrands', icon: 'mdi-android' },
           { title: 'Especificaciones', path: '/searchForSpecifications', icon: 'settings' },
+          { title: 'Grafo', path: '/networkGraph', icon: 'mdi-graphql' },
      ]
     }
   }
