@@ -2,8 +2,8 @@
   <v-container grid-list-xl>
     <ChangeToolbar/>
     <Charts v-if="active ==='graph'"/>
-    <PhoneList v-if="active ==='graph'" style="margin-left:-5%"/>
     <Twitteros v-if="active ==='twitter'"/>
+    <PhoneList v-if="active ==='graph' || 'twitter' " style="margin-left:-5%"/>
     <Maps v-if="active ==='maps'"/>
   </v-container>
 </template>
