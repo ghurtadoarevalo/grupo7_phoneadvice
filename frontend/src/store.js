@@ -63,7 +63,7 @@ export default new Vuex.Store({
         await Axios 
         .get('http://localhost:8081/phones/getall')
         .then(response => (state.phoneData = response.data))
-
+        console.log(state.phoneData)
         for (let index = 1; index < 7; index++) {
           var listFilter = []
           await Axios
