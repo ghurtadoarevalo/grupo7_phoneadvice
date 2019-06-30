@@ -1,11 +1,11 @@
 <template>
-<v-container grid-list-xl>
+<v-container
+  grid-list-xl
+  id="scroll-target"
+  class="scroll-y">
   <v-layout row wrap>
-    <h2>Grafo</h2>
+    <h2>Grafo de conexiones entre twitteros marcas y teléfonos</h2>
     
-  </v-layout>
-  <v-layout row wrap>
-    <label> Tamaño de los nodos</label>
   </v-layout>
 
   <v-layout row wrap>
@@ -37,7 +37,9 @@
         </template>
         </v-slider>
   </v-layout>
-  <v-layout justify-space-between>
+  <v-layout 
+    :style="{height:h,width:w}"
+    >
         <d3-network style="margin-left:-10%" :net-nodes="nodes" :net-links="links" :options="options"></d3-network>
   </v-layout>
 </v-container>
@@ -93,8 +95,8 @@
       zoom:0,
       h:1200,
       w:1200,
-      offset:{x:0,y:-70},
-      slider: true
+      offset:{x:70,y:-100},
+      slider: true,
       }
     },
     methods: {
@@ -120,8 +122,8 @@
         if(this.zoom>0){
           this.h = 1200 + this.h*(this.zoom/70)
           this.w = 1200 + this.w*(this.zoom/70)
-          this.offset.x = 0 - this.w*(this.zoom/200)
-          this.offset.y = -70 - this.w*(this.zoom/400)
+          this.offset.x = 70 - this.w*(this.zoom/400)
+          this.offset.y = -100 - this.w*(this.zoom/400)
         }
       },
       phoneData: function (){
@@ -189,9 +191,4 @@
     transform:translateY(-.5em);
     text-anchor:middle
 }
-.layout {
-  display: inline-block align-content-start;
-  width: 100%;
-}
-
 </style>

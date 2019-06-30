@@ -46,7 +46,7 @@ export default new Vuex.Store({
       evalNeutral:[],
     },
     allGraphData:{nodes:[], links: []},
-    graphData: {nodes:[], links: []},
+    graphData: {brandNodes:[], links: []},
     link:[],
     ready:0,
   },
@@ -90,6 +90,14 @@ export default new Vuex.Store({
         await Axios
         .get('http://localhost:8081/neo/fullNodos/')
         .then(response => (state.allGraphData.nodes = response.data))
+
+        await Axios
+        .get('http://localhost:8081/neo/fullAristas/')
+        .then(response => (state.allGraphData.links = response.data))
+
+        await Axios
+        .get('http://localhost:8081/neo/getBrands')
+        .then(response => (state.graphData.brandNodes = response.data))
 
         await Axios
         .get('http://localhost:8081/neo/fullAristas/')
