@@ -212,29 +212,9 @@
     data(){
       return{
       dialog:false,
-      reviews: 413,
-      value: 4.5
       //query:[]
       }
-    },
-    mounted()
-    {
-        //Esto lo usé para un random, no borrar aún xD
-        //for (let index = 1; index < 11; index++) {
-            //for (let index2 = 1; index2 < 7; index2++) {
-                //let positive = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let negative = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let neutral = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let assessment = Math.floor(Math.random() * (7 - 1 + 1))+1;
-
-                //let query = "INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (" + positive + "," + negative + ","+ neutral+");";
-                //let query = "INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES ("+ index +","+ index2 + "," + assessment +");"
-                //this.query.push(query);
-            //}
-
-        //}
-    }
-    
+    },   
   }
 </script>
 
