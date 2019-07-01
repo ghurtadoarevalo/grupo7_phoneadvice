@@ -29,8 +29,6 @@
     mounted(){
         this.$store.dispatch('getAllSpecification'),
         this.$store.dispatch('resetActive')
-	},
-
-    
+    },
   }
 </script>
