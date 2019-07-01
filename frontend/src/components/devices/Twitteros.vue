@@ -24,7 +24,7 @@ import TwitterIcon from "vue-material-design-icons/Twitter.vue"
   export default {
     name: 'Charts',
     computed:{
-      //...mapState([]),
+      ...mapState(['neoPhoneSizes', 'neoPhoneNames', 'neoPhoneImgList', 'neoTopTen']),
     },
     components:{
       TwitterIcon,
@@ -62,7 +62,7 @@ import TwitterIcon from "vue-material-design-icons/Twitter.vue"
           y:7
         },
         xAxis: {
-          categories: ['1','2','3','4','5','6','7','8','9','10'],
+          categories: this.neoTopTen.topTenNames,
     
         },
         yAxis:{
@@ -88,7 +88,7 @@ import TwitterIcon from "vue-material-design-icons/Twitter.vue"
         },
         series: [
           {
-          data: [1,2,3,4,5,6,7,8,9,10],
+          data: this.neoTopTen.topTenSizes,
           name:'Peso de celulares',
           color: 'orange'
           

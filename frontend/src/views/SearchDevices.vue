@@ -2,14 +2,16 @@
   <v-container grid-list-xl>
     <ChangeToolbar/>
     <Charts v-if="active ==='graph'"/>
+    <PhoneList v-if="active ==='graph' " style="margin-left:-5%"/>
     <Twitteros v-if="active ==='twitter'"/>
-    <PhoneList v-if="active ==='graph' || 'twitter' " style="margin-left:-5%"/>
+    <NeoPhoneList v-if="active ==='twitter' " style="margin-left:-5%"/>
     <Maps v-if="active ==='maps'"/>
   </v-container>
 </template>
         
 <script>
   import PhoneList from '../components/devices/PhoneList'
+  import NeoPhoneList from '../components/devices/NeoPhoneList'
   import Charts from '../components/devices/Charts'
   import ChangeToolbar from '../components/devices/ChangeToolbar'
   import Twitteros from '../components/devices/Twitteros'
@@ -29,6 +31,7 @@
     },
     components: {
       PhoneList,
+      NeoPhoneList,
       ChangeToolbar,
       Charts,
       Twitteros,

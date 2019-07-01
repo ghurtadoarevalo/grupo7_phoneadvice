@@ -14,9 +14,354 @@ export default new Vuex.Store({
     evalSpecification: [],  //Utilizado para mostrar la evaluación en los gráficos de specificacion
     specData: [], //Utilizado para mostrar las fichas técnicas de los equipos
     names:[], //Utilizado para almacenar los nombres de los equipos y mostrarlos en los gráficos
-    imgList :[], //Utilizado para almacenar las imágenes de los equipos y mostrarlas en los gráficos
-    brandList: [],        
+    imgList : [], //Utilizado para almacenar las imágenes de los equipos y mostrarlas en los gráficos
+    brandList: [],
     phoneData: [],  //Utilizado para almacenar los equipos que provienen del backend al hacer las consultas
+    neoPhoneSizes: [],
+    neoPhoneNames: [],
+    neoPhoneImgList: [],
+    neoPhoneData: [
+      { phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },
+      { phoneID: 27, 
+        model: 'iPhone XR', 
+        description: 'El iPhone XR tiene el LCD más avanzado en un smartphone', 
+        assessment: 61,
+        image: 'apple/iphone_xr', 
+        size: 213,
+        data_sheet: {
+          dataSheetId: 17,
+          cpu: 'Super AMOLED 5.8\" táctil (1125x2436)',
+          ram: '4 GB',
+          operative_s: 'iOS 12',
+          dimensions: '72 x 149 x 8 mm ',
+          front_cam: 'Estándar 7.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP',
+          storage: '64 GB',
+          batery: '2658 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      },{ phoneID: 11, 
+        model: 'Galaxy s10', 
+        description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
+        assessment: 98,
+        image: 'samsung/galaxy_s10', 
+        size: 435,
+        data_sheet: {
+          dataSheetId: 1,
+          cpu: 'Samsung Exynos 9 Octa (9820) (2730 MHz)',
+          ram: '8 GB',
+          operative_s: 'Android 9.0 Pie',
+          dimensions: '70 x 150 x 8 mm',
+          front_cam: 'Estándar 10.0 MP',
+          screen: 'Dynamic AMOLED 6.1\" táctil (3040x1440)',
+          back_cam: 'Estándar 12.0 MP + Teleobjetivo (Zoom) 12.0 MP + Gran angular (Wide angle) 16.0 MP',
+          storage: '128 GB',
+          batery: '3400 mAh' 
+        },
+        gamma:{
+          gammaId: 3,
+          name: 'Alta',
+          min_price: 350001,
+          max_price: 2000000,
+        },
+        
+       
+      }
+    ],
     phoneSpecification:[], //Utilizado para almacenar los equipos que provienen del backend al hacer las consultas
     headers:[ //Utilizado por la ficha técnica
       {spec: 'Procesador: ', icon:'mdi-chip'},
@@ -35,6 +380,12 @@ export default new Vuex.Store({
       topTenNames: [],
       topTenImgList: [],
       topTenEvalSpecification: [],
+      topTenSpecData:[]
+    },
+    neoTopTen: {
+      topTenSizes: [],
+      topTenNames: [],
+      topTenImgList: [],
       topTenSpecData:[]
     },
     brandData: {
@@ -69,6 +420,7 @@ export default new Vuex.Store({
         .then(response => (state.phoneData = response.data))
         
         console.log('phoneData con datos cargados')
+        
 
         for (let index = 1; index < 7; index++) {
           var listFilter = []
@@ -101,6 +453,10 @@ export default new Vuex.Store({
         await Axios
         .get('http://localhost:8081/neo/fullAristas/')
         .then(response => (state.allGraphData.links = response.data))
+
+        await Axios
+        .get('http://localhost:8081/neo/getPhones/')
+        .then(response =>(state.neoPhoneData = response.data))
         */
 
       }catch(err){console.log("En get all all " + err)}
@@ -163,6 +519,57 @@ export default new Vuex.Store({
       state.imgList = imgList
       state.phonesDescription = phonesDescription
       state.topTen = topTen
+    },
+
+      getNeoPhones(state){
+      var names = []
+      var imgList = []
+      var specData = []
+      var phonesDescription = []
+      var phoneSize = []
+      var topTen = {
+        topTenSize: [],
+        topTenNames: [],
+        topTenImgList: [],
+        topTenSpecData:[]
+      }
+      var index = 0
+      for(var item of state.neoPhoneData )
+      {
+        var dataSheet = []
+        dataSheet.push(item.data_sheet.cpu)
+        dataSheet.push(item.data_sheet.ram)
+        dataSheet.push(item.data_sheet.operative_s)
+        dataSheet.push(item.data_sheet.dimensions)
+        dataSheet.push(item.data_sheet.front_cam)
+        dataSheet.push(item.data_sheet.back_cam)
+        dataSheet.push(item.data_sheet.screen)
+        dataSheet.push(item.data_sheet.storage)
+        dataSheet.push(item.data_sheet.batery)
+        phonesDescription.push(item.description)
+
+        if(index > 9){
+          specData.push(dataSheet);
+          phoneSize.push(item.size)
+          names.push(item.model)
+          imgList.push(item.image)
+
+        }
+        else{
+          topTen.topTenSize.push(item.size)
+          topTen.topTenNames.push(item.model)
+          topTen.topTenImgList.push(item.image)
+          topTen.topTenSpecData.push(dataSheet)
+          index ++
+        } 
+      }
+      state.neoPhoneSizes = phoneSize
+      state.neoPhoneNames = names
+      state.neoPhoneImgList = imgList
+      state.neoTopTen = topTen
+      console.log('PESOS')
+      console.log(topTen.topTenSize)
+
     },
 
     filterByGama(state,gammas){
@@ -434,6 +841,7 @@ export default new Vuex.Store({
       }
       state.brandData = brandData
     },
+
     
     
     /*Funciones para vista NetworkGraph*/
