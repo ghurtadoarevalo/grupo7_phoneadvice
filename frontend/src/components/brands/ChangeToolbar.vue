@@ -8,17 +8,26 @@
         color="#0E318A"
         flat
         value="graph"
-        @click="changeActive('graph',2)"
+        @click="changeActive('graph')"
       >
         <span>Gráficos</span>
-        <chart-icon/>
+        <v-icon>mdi-chart-bar</v-icon>
+      </v-btn>
+      <v-btn
+        color="#0E318A"
+        flat
+        value="twitter"
+        @click="changeActive('twitter')"
+      >
+        <span>Twitteros</span>
+        <v-icon>mdi-twitter</v-icon>
       </v-btn>
 
       <v-btn
         color="#0E318A"
         flat
         value="maps"
-        @click="changeActive('maps',2)"
+        @click="changeActive('maps')"
       >
         <span>Mapas</span>
         <v-icon>place</v-icon>
@@ -27,12 +36,10 @@
 </template>
 
 <script>
-    import ChartIcon from "vue-material-design-icons/ChartBar.vue"
-    import {mapMutations} from 'vuex'
+  import {mapMutations} from 'vuex'
 
   export default { 
     components:{
-      ChartIcon
     },
     data () {
       return {
