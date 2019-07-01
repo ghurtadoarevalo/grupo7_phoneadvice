@@ -7,13 +7,15 @@
       </v-flex>
 
     <v-flex md1>      
-      <VBtn fab dark color="#0E318A" @click="allGamma">
+      <VBtn fab dark color="#0E318A">
         <v-icon large color="white">monetization_on</v-icon>
       </VBtn>
       Gama
-      <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>          
-      <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>          
-      <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>          
+      <v-radio-group v-model="column" column @change="getTwittersByGamma(column)">
+        <v-radio  value="1" label="Baja"  color="#0E318A"></v-radio>          
+        <v-radio  value="2" label="Media" color="#0E318A"></v-radio>          
+        <v-radio  value="3" label="Alta" color="#0E318A"></v-radio>   
+      </v-radio-group>       
     </v-flex>
     </v-layout>
   </v-container>
@@ -29,12 +31,7 @@ export default {
     ...mapState(['gammaData']),
   },
   methods: {
-    ...mapMutations(['filterByGama']), 
-    allGamma(){
-      this.gamas = [true,true,true]
-      this.filterByGama(this.gamas);
-    },
-
+    ...mapMutations(['getTwittersByGamma']), 
     getData(){
       var chartOptions = {
           responsive: {
@@ -99,9 +96,11 @@ export default {
   },*/
   data () {
     return{
+      column: "3",
       gamas: [true,true,true],
     }
-  }
+  },
+ 
   
 }
 </script>
