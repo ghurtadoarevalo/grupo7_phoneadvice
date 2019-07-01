@@ -3,7 +3,6 @@
   <ChangeToolbar/>
   <Charts v-if="active ==='graph'"/>
   <BrandList v-if="active ==='graph'"/>
-  <ChartsForWeight v-if="active ==='twitter'"/>
   <BrandListForWeight v-if="active ==='twitter'"/>
   <Maps v-if="active ==='maps'"/>
   </v-container>
