@@ -344,7 +344,39 @@ export default new Vuex.Store({
                             "neutral_density": 2,
                             "negative_density": 0
                         }
-                    }
+                    },
+                    {
+                        "phoneId": 20,
+                        "model": "Nokia 2.1",
+                        "description": "Entretenimiento de larga duración. Accionado por una batería2 4000 mAh2, Nokia 2.1 se mantiene trabajando por dos días seguidos, así que puedes pasar menos tiempo en preocuparte por cargarlo y más tiempo haciendo lo que amas.",
+                        "image": "nokia/2_1",
+                        "assessment": 50,
+                        size:1234,
+                        "data_sheet": {
+                            "dataSheetId": 10,
+                            "cpu": "Snapdragon 425  de cuatro núcleos",
+                            "ram": "1GB",
+                            "operative_s": "Android 8.1 Oreo",
+                            "dimensions": "153.7x77.7x9.4mm",
+                            "front_cam": "5 megapixeles",
+                            "screen": "5.5 pulgadas",
+                            "back_cam": "8 megapixeles",
+                            "storage": "8GB",
+                            "batery": "4000mAh"
+                        },
+                        "gamma": {
+                            "gammaId": 1,
+                            "name": "Baja",
+                            "min_price": 150000,
+                            "max_price": 0
+                        },
+                        "statistic": {
+                            "statisticId": 20,
+                            "positive_density": 6,
+                            "neutral_density": 0,
+                            "negative_density": 0
+                        }
+                    },
                 ]
             },
         ],
@@ -810,6 +842,38 @@ export default new Vuex.Store({
                             "positive_density": 746,
                             "neutral_density": 332,
                             "negative_density": 282
+                        }
+                    },
+                    {
+                        "phoneId": 26,
+                        "model": "iPhone XS",
+                        "description": "El iPhone XS tiene una pantalla Super Retina de 5,8 pulgadas con pan  eles OLED hechos a la medida para ofrecer un HDR con la mayor precisión de color de toda la industria, negros intensos y un brillo increíble",
+                        "image": "apple/iphone_xs",
+                        "assessment": 46,
+                        size:123,
+                        "data_sheet": {
+                            "dataSheetId": 16,
+                            "cpu": "Apple A11 Bionic (2500 MHz)",
+                            "ram": "2 GB",
+                            "operative_s": "iOS 11",
+                            "dimensions": "67 x 138 x 7 mm ",
+                            "front_cam": "Estándar 7.0 MP",
+                            "screen": "LCD IPS 4.7\" táctil (1334x750)",
+                            "back_cam": "Estándar 12.0 MP ",
+                            "storage": "64 GB",
+                            "batery": "1821 mAh"
+                        },
+                        "gamma": {
+                            "gammaId": 3,
+                            "name": "Alta",
+                            "min_price": 350001,
+                            "max_price": 2000000
+                        },
+                        "statistic": {
+                            "statisticId": 6,
+                            "positive_density": 78,
+                            "neutral_density": 30,
+                            "negative_density": 10
                         }
                     },
                     {
@@ -1280,25 +1344,6 @@ export default new Vuex.Store({
     }, 
     getAllTwitters(state)
     {
-
-        state.usersGammaData = [],
-        state.gammaData =    {
-            phonesDescription: [],
-            topTen:
-            {
-                topTenNames:[],
-                topTenImgList:[],
-                topTenSize:[],
-                topTenSpecData: [],
-            },
-            others:
-            {
-                othersNames:[],
-                othersImgList:[],
-                othersSpecData: [], 
-            }
-        }
-
         var gammaData = {
             phonesDescription: [],
             topTen:
@@ -1313,6 +1358,8 @@ export default new Vuex.Store({
                 othersNames:[],
                 othersImgList:[],
                 othersSpecData: [], 
+                othersSize:[],
+
             }
         }
 
@@ -1375,30 +1422,30 @@ export default new Vuex.Store({
 
         var index = 0
 
-        for(var item of phones)
+        for(var phone of phones)
         {
             var dataSheet = []
-            dataSheet.push(item.data_sheet.cpu)
-            dataSheet.push(item.data_sheet.ram)
-            dataSheet.push(item.data_sheet.operative_s)
-            dataSheet.push(item.data_sheet.dimensions)
-            dataSheet.push(item.data_sheet.front_cam)
-            dataSheet.push(item.data_sheet.back_cam)
-            dataSheet.push(item.data_sheet.screen)
-            dataSheet.push(item.data_sheet.storage)
-            dataSheet.push(item.data_sheet.batery)
-            gammaData.phonesDescription.push(item.description)
+            dataSheet.push(phone.data_sheet.cpu)
+            dataSheet.push(phone.data_sheet.ram)
+            dataSheet.push(phone.data_sheet.operative_s)
+            dataSheet.push(phone.data_sheet.dimensions)
+            dataSheet.push(phone.data_sheet.front_cam)
+            dataSheet.push(phone.data_sheet.back_cam)
+            dataSheet.push(phone.data_sheet.screen)
+            dataSheet.push(phone.data_sheet.storage)
+            dataSheet.push(phone.data_sheet.batery)
+            gammaData.phonesDescription.push(phone.description)
     
             if(index > 9){
                 gammaData.others.othersSpecData.push(dataSheet);
-                gammaData.others.othersSize.push(item.size)
-                gammaData.others.othersNames.push(item.model)
-                gammaData.others.othersImgList.push(item.image)
+                gammaData.others.othersNames.push(phone.model)
+                gammaData.others.othersSize.push(phone.size)
+                gammaData.others.othersImgList.push(phone.image)
             }
             else{
-                gammaData.topTen.topTenSize.push(item.size)
-                gammaData.topTen.topTenNames.push(item.model)
-                gammaData.topTen.topTenImgList.push(item.image)
+                gammaData.topTen.topTenSize.push(phone.size)
+                gammaData.topTen.topTenNames.push(phone.model)
+                gammaData.topTen.topTenImgList.push(phone.image)
                 gammaData.topTen.topTenSpecData.push(dataSheet)
                 index ++
             } 
@@ -1407,26 +1454,12 @@ export default new Vuex.Store({
         state.gammaData = gammaData
         state.usersGammaData = users
 
+        console.log(gammaData)
+
+
     },
     getTwittersByGamma(state,gamma)
     {
-        state.usersGammaData = [],
-        state.gammaData =    {
-            phonesDescription: [],
-            topTen:
-            {
-                topTenNames:[],
-                topTenImgList:[],
-                topTenSize:[],
-                topTenSpecData: [],
-            },
-            others:
-            {
-                othersNames:[],
-                othersImgList:[],
-                othersSpecData: [], 
-            }
-        }
         let gammaData = {
             phonesDescription: [],
             topTen:
@@ -1441,6 +1474,8 @@ export default new Vuex.Store({
                 othersNames:[],
                 othersImgList:[],
                 othersSpecData: [], 
+                othersSize:[],
+
             }
         }
 
@@ -1502,33 +1537,33 @@ export default new Vuex.Store({
 
         var index = 0
 
-        for(let item of phones)
+        for(let phone of phones)
         {
             let dataSheet = []
-            dataSheet.push(item.data_sheet.cpu)
-            dataSheet.push(item.data_sheet.ram)
-            dataSheet.push(item.data_sheet.operative_s)
-            dataSheet.push(item.data_sheet.dimensions)
-            dataSheet.push(item.data_sheet.front_cam)
-            dataSheet.push(item.data_sheet.back_cam)
-            dataSheet.push(item.data_sheet.screen)
-            dataSheet.push(item.data_sheet.storage)
-            dataSheet.push(item.data_sheet.batery)
-            gammaData.phonesDescription.push(item.description)
+            dataSheet.push(phone.data_sheet.cpu)
+            dataSheet.push(phone.data_sheet.ram)
+            dataSheet.push(phone.data_sheet.operative_s)
+            dataSheet.push(phone.data_sheet.dimensions)
+            dataSheet.push(phone.data_sheet.front_cam)
+            dataSheet.push(phone.data_sheet.back_cam)
+            dataSheet.push(phone.data_sheet.screen)
+            dataSheet.push(phone.data_sheet.storage)
+            dataSheet.push(phone.data_sheet.batery)
+            gammaData.phonesDescription.push(phone.description)
     
             if(index > 9){
                 gammaData.others.othersSpecData.push(dataSheet);
-                gammaData.others.othersSize.push(item.size)
-                gammaData.others.othersNames.push(item.model)
-                gammaData.others.othersImgList.push(item.image)
+                gammaData.others.othersNames.push(phone.model)
+                gammaData.others.othersSize.push(phone.size)
+                gammaData.others.othersImgList.push(phone.image)
             }
             else{
-                gammaData.topTen.topTenSize.push(item.size)
-                gammaData.topTen.topTenNames.push(item.model)
-                gammaData.topTen.topTenImgList.push(item.image)
+                gammaData.topTen.topTenSize.push(phone.size)
+                gammaData.topTen.topTenNames.push(phone.model)
+                gammaData.topTen.topTenImgList.push(phone.image)
                 gammaData.topTen.topTenSpecData.push(dataSheet)
-                index ++
             } 
+            index ++
         }
 
 

@@ -98,7 +98,7 @@
       </v-card>
     </v-dialog>
 
-     <v-dialog v-model="dialog3" width="500">
+     <v-dialog v-if="imgList.length > 0" v-model="dialog3" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
 
@@ -148,7 +148,7 @@
     </v-dialog>
 
 
-    <v-dialog v-model="dialog2" width="500">
+    <v-dialog v-if="imgList.length > 0" v-model="dialog2" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Ranking</v-toolbar-title>

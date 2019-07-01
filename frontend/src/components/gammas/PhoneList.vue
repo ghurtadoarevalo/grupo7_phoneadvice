@@ -59,11 +59,12 @@
       <v-flex style="margin-left:0.3%;margin-right:0.3%" xs1 md1 v-for="(img, index) in gammaData.topTen.topTenImgList" :key="img">
           <v-img height="100%" class="imagen" @click="dialog=true;indice=index" :src="require('@/assets/phones/'+ img + '.png')"></v-img>
       </v-flex>
-       <v-flex md1 v-if="gammaData.others.othersImgList.length>1">
+       <v-flex md1 v-if="gammaData.others.othersImgList.length>0">
         <v-btn @click="dialog2=true" large outline color="#0E318A">
           <VIcon>phone_iphone</VIcon>¡Aún hay más!</v-btn>      
       </v-flex>
     </v-layout>
+
     <v-dialog lazy v-model="dialog" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
@@ -111,7 +112,7 @@
     </v-dialog>
 
 
-  <v-dialog lazy v-if="gammaData.others.othersImgList > 0" v-model="dialog3" width="500">
+  <v-dialog lazy v-if="gammaData.others.othersImgList.length > 0" v-model="dialog3" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
 
@@ -128,7 +129,7 @@
             <v-list-tile>
                 <v-list-tile-title>Descripcion: </v-list-tile-title>
             </v-list-tile>
-            <p>{{gammaData.phonesDescription[indice2+10]}}</p>
+            <p>{{gammaData.phonesDescription[indice+10]}}</p>
 
           </v-flex>
         </v-layout>
@@ -160,7 +161,7 @@
     </v-dialog>
 
 
-    <v-dialog lazy v-if="gammaData.others.othersImgList > 0" v-model="dialog2" width="500">
+    <v-dialog lazy v-if="gammaData.others.othersImgList.length > 0" v-model="dialog2" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Ranking</v-toolbar-title>
