@@ -65,7 +65,10 @@
       </v-flex>
     </v-layout>
 
-    <v-dialog lazy v-model="dialog" width="500">
+
+    <!--DIALOGO 1 X_X-->
+
+    <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Tabla de especificaciones</v-toolbar-title>
@@ -112,6 +115,42 @@
     </v-dialog>
 
 
+    <!--DIALOGO 2-->
+    <v-dialog lazy v-if="gammaData.others.othersImgList.length > 0" v-model="dialog2" width="500">
+      <v-card>
+        <v-toolbar color="#0E318A" dark>
+          <v-toolbar-title>Ranking</v-toolbar-title>
+          <v-spacer></v-spacer></v-toolbar>
+        <v-list three-line>
+          <template v-for="(item, index) in gammaData.others.othersNames">
+            
+            <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
+              <v-subheader :key="index+'%'+item+4">
+                {{index+11+". " + item }}
+              </v-subheader>
+              <v-layout row wrap :key="index+'%'+item+3">
+                <v-flex style="margin-left:2%; margin-bottom:1%;" md1>
+                  <v-img class="imagen" @click="dialog3=true;indice2=index;console.log(indice2)" :src="require('@/assets/phones/'+ gammaData.others.othersImgList[index] + '.png')"/>
+                </v-flex>  
+                <v-flex>
+                  <v-list-tile :key="index+'%'+item+2">
+                    <v-list-tile-content>
+                    <v-list-tile-title>Peso</v-list-tile-title>
+                    <v-list-tile-sub-title>{{gammaData.others.othersSize[index]}}</v-list-tile-sub-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                </v-flex> 
+              </v-layout>              
+          </template>
+        </v-list>
+      <v-card-actions>
+          <v-btn dark color="#0E318A" @click="dialog2=false">Cerrar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+
+  <!--DIALOGO 3-->
   <v-dialog lazy v-if="gammaData.others.othersImgList.length > 0" v-model="dialog3" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
@@ -160,39 +199,7 @@
       </v-card>
     </v-dialog>
 
-
-    <v-dialog lazy v-if="gammaData.others.othersImgList.length > 0" v-model="dialog2" width="500">
-      <v-card>
-        <v-toolbar color="#0E318A" dark>
-          <v-toolbar-title>Ranking</v-toolbar-title>
-          <v-spacer></v-spacer></v-toolbar>
-        <v-list three-line>
-          <template v-for="(item, index) in gammaData.others.othersNames">
-            
-            <v-divider :key="index+'%'+item+1" :inset="true"></v-divider>
-              <v-subheader :key="index+'%'+item+4">
-                {{index+11+". " + item }}
-              </v-subheader>
-              <v-layout row wrap :key="index+'%'+item+3">
-                <v-flex style="margin-left:2%; margin-bottom:1%;" md1>
-                  <v-img class="imagen" @click="dialog3=true;indice2=index;console.log(indice2)" :src="require('@/assets/phones/'+ gammaData.others.othersImgList[index] + '.png')"/>
-                </v-flex>  
-                <v-flex>
-                  <v-list-tile :key="index+'%'+item+2">
-                    <v-list-tile-content>
-                    <v-list-tile-title>Peso</v-list-tile-title>
-                    <v-list-tile-sub-title>{{gammaData.others.othersSize[index]}}</v-list-tile-sub-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-                </v-flex> 
-              </v-layout>              
-          </template>
-        </v-list>
-      <v-card-actions>
-          <v-btn dark color="#0E318A" @click="dialog2=false">Cerrar</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    
   </v-container>
 </template>
 
@@ -213,7 +220,14 @@ import { mapState } from 'vuex';
     computed:{
       ...mapState(['gammaData','headers'])
     /*...mapState(['imgList','names','headers','specData','topTen','evalSpecification','phonesDescription'])*/
-    }
+    },
+    watch: {
+      dialog: function(){
+        if(!this.dialog){
+          this.indice = 0
+        }
+      }
+    },
   }
 </script>
 
