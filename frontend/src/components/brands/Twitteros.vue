@@ -3,7 +3,7 @@
         <v-layout row wrap style="margin-left:-15%; margin-right:-15%" mt-5 mb-3>
             <v-flex md12 pa-0 >
                 <v-layout row wrap>
-                    <v-flex  md2 pa-0 mr-0   v-for="(userGamma, index) in usersGamma" :key="index" style="margin-left:2.8%">
+                    <v-flex  md2 pa-0 mr-0   v-for="(userGamma, index) in usersGammaData" :key="index" style="margin-left:2.8%">
                         <v-card
                             color="#26c6da"
                             dark  
@@ -93,319 +93,321 @@ import { mapState } from 'vuex';
       return{
         usersGamma: [
         [
-            {
-                id: 123,
-                name: "Tato",
-                followersCount: 123,
-                urlProfile: "https://twitter.com/Leonmarlon98", 
-                size: 123,
-                profile: "The word-break 22222",
-                urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
-                phones: [
-                     {
-                        "phoneId": 10,
-                        "model": "Zenfone Pegasus 4A",
-                        "description": "Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones",
-                        "image": "asus/zenfone_pegasus_4A",
-                        "assessment": 60,
-                        size: 123,
-                        "data_sheet": {
-                            "dataSheetId": 40,
-                            "cpu": "ARM Cortex-A53 de cuatro núcleos",
-                            "ram": "3GB",
-                            "operative_s": "Android 7.0 Nougat",
-                            "dimensions": "71.26x144.26x9.1mm",
-                            "front_cam": "5 megapixeles",
-                            "screen": "5 pulgadas",
-                            "back_cam": "13 megapixeles",
-                            "storage": "32GB",
-                            "batery": "4100mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 10,
-                            "positive_density": 425,
-                            "neutral_density": 60,
-                            "negative_density": 35
-                        }
-                    }
-
-                ]
-            },
-            {
-                id: 125,
-                name: "PAdivice", 
-                followersCount: 296, 
-                urlProfile: "https://twitter.com/phoneAdivice", 
-                size: 432,
-                profile: "phoneAdivice",
-                urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
-                phones: [
-                    {
-                        "phoneId": 10,
-                        "model": "Zenfone Pegasus 4A",
-                        "description": "Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones",
-                        "image": "asus/zenfone_pegasus_4A",
-                        "assessment": 60,
-                        size: 42,
-                        "data_sheet": {
-                            "dataSheetId": 40,
-                            "cpu": "ARM Cortex-A53 de cuatro núcleos",
-                            "ram": "3GB",
-                            "operative_s": "Android 7.0 Nougat",
-                            "dimensions": "71.26x144.26x9.1mm",
-                            "front_cam": "5 megapixeles",
-                            "screen": "5 pulgadas",
-                            "back_cam": "13 megapixeles",
-                            "storage": "32GB",
-                            "batery": "4100mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 10,
-                            "positive_density": 425,
-                            "neutral_density": 60,
-                            "negative_density": 35
-                        }
-                    }
-                ]
-            },
-            {
-                id: 225,
-                name: "Pasdasd", 
-                followersCount: 542, 
-                urlProfile: "https://twitter.com/phoneAdivice", 
-                size: 231,
-                profile: "Pasdasd",
-                urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
-                phones: [
-                    {
-                        "phoneId": 1,
-                        "model": "Redmi GO",
-                        "description": "Es pequeño, es potente, el nuevo Xiaomi Redmi Go es la primera apuesta del fabricante Chino con Android Go, pensado para equipos economicos pero sin sacrificar potencia.",
-                        "image": "xiaomi/redmi_go",
-                        "assessment": 51,
-                        size: 324,
-                        "data_sheet": {
-                            "dataSheetId": 31,
-                            "cpu": "Snapdragon 425 de 4 núcleos",
-                            "ram": "1GB",
-                            "operative_s": "Android 8.1 Oreo",
-                            "dimensions": "140.4x70.1x8.4mm",
-                            "front_cam": "5 megapixeles",
-                            "screen": "5 pulgadas",
-                            "back_cam": "8 megapixeles",
-                            "storage": "8GB",
-                            "batery": "3000mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 1,
-                            "positive_density": 30,
-                            "neutral_density": 0,
-                            "negative_density": 0
-                        }
+          {
+              id: 123,
+              name: "Tato",
+              followersCount: 123,
+              urlProfile: "https://twitter.com/Leonmarlon98", 
+              size: 123,
+              profile: "The word-break 22222",
+              urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
+              phones: [
+                {
+                  "phoneId": 10,
+                  "model": "Zenfone Pegasus 4A",
+                  "description": "Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones",
+                  "image": "asus/zenfone_pegasus_4A",
+                  "assessment": 60,
+                  size: 123,
+                  "data_sheet": {
+                      "dataSheetId": 40,
+                      "cpu": "ARM Cortex-A53 de cuatro núcleos",
+                      "ram": "3GB",
+                      "operative_s": "Android 7.0 Nougat",
+                      "dimensions": "71.26x144.26x9.1mm",
+                      "front_cam": "5 megapixeles",
+                      "screen": "5 pulgadas",
+                      "back_cam": "13 megapixeles",
+                      "storage": "32GB",
+                      "batery": "4100mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 10,
+                      "positive_density": 425,
+                      "neutral_density": 60,
+                      "negative_density": 35
+                  }
+              }
+            ]
+          },
+          {
+            id: 125,
+            name: "PAdivice", 
+            followersCount: 296, 
+            urlProfile: "https://twitter.com/phoneAdivice", 
+            size: 432,
+            profile: "phoneAdivice",
+            urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
+            phones: [
+              {
+                  "phoneId": 10,
+                  "model": "Zenfone Pegasus 4A",
+                  "description": "Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones",
+                  "image": "asus/zenfone_pegasus_4A",
+                  "assessment": 60,
+                  size: 42,
+                  "data_sheet": {
+                      "dataSheetId": 40,
+                      "cpu": "ARM Cortex-A53 de cuatro núcleos",
+                      "ram": "3GB",
+                      "operative_s": "Android 7.0 Nougat",
+                      "dimensions": "71.26x144.26x9.1mm",
+                      "front_cam": "5 megapixeles",
+                      "screen": "5 pulgadas",
+                      "back_cam": "13 megapixeles",
+                      "storage": "32GB",
+                      "batery": "4100mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 10,
+                      "positive_density": 425,
+                      "neutral_density": 60,
+                      "negative_density": 35
+                  }
+              }
+            ]
+          },
+          {
+            id: 225,
+            name: "Pasdasd", 
+            followersCount: 542, 
+            urlProfile: "https://twitter.com/phoneAdivice", 
+            size: 231,
+            profile: "Pasdasd",
+            urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
+            phones: [
+              {
+                  "phoneId": 1,
+                  "model": "Redmi GO",
+                  "description": "Es pequeño, es potente, el nuevo Xiaomi Redmi Go es la primera apuesta del fabricante Chino con Android Go, pensado para equipos economicos pero sin sacrificar potencia.",
+                  "image": "xiaomi/redmi_go",
+                  "assessment": 51,
+                  size: 324,
+                  "data_sheet": {
+                      "dataSheetId": 31,
+                      "cpu": "Snapdragon 425 de 4 núcleos",
+                      "ram": "1GB",
+                      "operative_s": "Android 8.1 Oreo",
+                      "dimensions": "140.4x70.1x8.4mm",
+                      "front_cam": "5 megapixeles",
+                      "screen": "5 pulgadas",
+                      "back_cam": "8 megapixeles",
+                      "storage": "8GB",
+                      "batery": "3000mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 1,
+                      "positive_density": 30,
+                      "neutral_density": 0,
+                      "negative_density": 0
+                  }
+              },
+                {
+                    "phoneId": 10,
+                    "model": "Zenfone Pegasus 4A",
+                    "description": "Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones",
+                    "image": "asus/zenfone_pegasus_4A",
+                    "assessment": 60,
+                    size: 42,
+                    "data_sheet": {
+                        "dataSheetId": 40,
+                        "cpu": "ARM Cortex-A53 de cuatro núcleos",
+                        "ram": "3GB",
+                        "operative_s": "Android 7.0 Nougat",
+                        "dimensions": "71.26x144.26x9.1mm",
+                        "front_cam": "5 megapixeles",
+                        "screen": "5 pulgadas",
+                        "back_cam": "13 megapixeles",
+                        "storage": "32GB",
+                        "batery": "4100mAh"
                     },
-                    {
-                        "phoneId": 10,
-                        "model": "Zenfone Pegasus 4A",
-                        "description": "Un celular económico, pero que no se quedará atrás al ejecutar tus aplicaciones",
-                        "image": "asus/zenfone_pegasus_4A",
-                        "assessment": 60,
-                        size: 42,
-                        "data_sheet": {
-                            "dataSheetId": 40,
-                            "cpu": "ARM Cortex-A53 de cuatro núcleos",
-                            "ram": "3GB",
-                            "operative_s": "Android 7.0 Nougat",
-                            "dimensions": "71.26x144.26x9.1mm",
-                            "front_cam": "5 megapixeles",
-                            "screen": "5 pulgadas",
-                            "back_cam": "13 megapixeles",
-                            "storage": "32GB",
-                            "batery": "4100mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 10,
-                            "positive_density": 425,
-                            "neutral_density": 60,
-                            "negative_density": 35
-                        }
+                    "gamma": {
+                        "gammaId": 1,
+                        "name": "Baja",
+                        "min_price": 150000,
+                        "max_price": 0
+                    },
+                    "statistic": {
+                        "statisticId": 10,
+                        "positive_density": 425,
+                        "neutral_density": 60,
+                        "negative_density": 35
                     }
-                ]
-            },
-            {
-                id: 123,
-                name: "Pedrito",
-                followersCount: 543,
-                urlProfile: "https://twitter.com/Leonmarlon98", 
-                size: 123,
-                profile: "Pedrito",
-                urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
-                phones: [
-                    {
-                        "phoneId": 1,
-                        "model": "Redmi GO",
-                        "description": "Es pequeño, es potente, el nuevo Xiaomi Redmi Go es la primera apuesta del fabricante Chino con Android Go, pensado para equipos economicos pero sin sacrificar potencia.",
-                        "image": "xiaomi/redmi_go",
-                        "assessment": 51,
-                        size: 342,
-                        "data_sheet": {
-                            "dataSheetId": 31,
-                            "cpu": "Snapdragon 425 de 4 núcleos",
-                            "ram": "1GB",
-                            "operative_s": "Android 8.1 Oreo",
-                            "dimensions": "140.4x70.1x8.4mm",
-                            "front_cam": "5 megapixeles",
-                            "screen": "5 pulgadas",
-                            "back_cam": "8 megapixeles",
-                            "storage": "8GB",
-                            "batery": "3000mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 1,
-                            "positive_density": 30,
-                            "neutral_density": 0,
-                            "negative_density": 0
-                        }
-                    },
-                    {
-                        "phoneId": 19,
-                        "model": "Nokia 3.1",
-                        "description": "Tu compañero de primera.Nokia 3.1 se ve y se siente superior. Llama la atención con sus sutiles curvas y sorprendentes lados de aluminio de corte de diamante. El nuevo Nokia 3 se siente cómodo en la mano gracias a una parte trasera curvada y una pantalla esculpida Corning® Gorilla® Glass.",
-                        "image": "nokia/3_1",
-                        "assessment": 50,
-                        size: 76,
-                        "data_sheet": {
-                            "dataSheetId": 9,
-                            "cpu": "Mediatek MT6750N de ocho núcleos",
-                            "ram": "2GB",
-                            "operative_s": "Android 8.0 Oreo",
-                            "dimensions": "146.3x68.7x8.7mm",
-                            "front_cam": "8 megapixeles",
-                            "screen": "5.2 pulgadas",
-                            "back_cam": "13 megapixeles",
-                            "storage": "16GB",
-                            "batery": "2990mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 19,
-                            "positive_density": 18,
-                            "neutral_density": 2,
-                            "negative_density": 0
-                        }
-                    }
-                ]
-            },
-            {
-                id: 225,
-                name: "Juanito", 
-                followersCount: 65, 
-                urlProfile: "https://twitter.com/phoneAdivice", 
-                size: 231,
-                profile: "Juanito",
-                urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
-                phones: [
-                    {
-                        "phoneId": 19,
-                        "model": "Nokia 3.1",
-                        "description": "Tu compañero de primera.Nokia 3.1 se ve y se siente superior. Llama la atención con sus sutiles curvas y sorprendentes lados de aluminio de corte de diamante. El nuevo Nokia 3 se siente cómodo en la mano gracias a una parte trasera curvada y una pantalla esculpida Corning® Gorilla® Glass.",
-                        "image": "nokia/3_1",
-                        "assessment": 50,
-                        size: 45,
-                        "data_sheet": {
-                            "dataSheetId": 9,
-                            "cpu": "Mediatek MT6750N de ocho núcleos",
-                            "ram": "2GB",
-                            "operative_s": "Android 8.0 Oreo",
-                            "dimensions": "146.3x68.7x8.7mm",
-                            "front_cam": "8 megapixeles",
-                            "screen": "5.2 pulgadas",
-                            "back_cam": "13 megapixeles",
-                            "storage": "16GB",
-                            "batery": "2990mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 19,
-                            "positive_density": 18,
-                            "neutral_density": 2,
-                            "negative_density": 0
-                        }
-                    },
-                    {
-                        "phoneId": 20,
-                        "model": "Nokia 2.1",
-                        "description": "Entretenimiento de larga duración. Accionado por una batería2 4000 mAh2, Nokia 2.1 se mantiene trabajando por dos días seguidos, así que puedes pasar menos tiempo en preocuparte por cargarlo y más tiempo haciendo lo que amas.",
-                        "image": "nokia/2_1",
-                        "assessment": 50,
-                        size:1234,
-                        "data_sheet": {
-                            "dataSheetId": 10,
-                            "cpu": "Snapdragon 425  de cuatro núcleos",
-                            "ram": "1GB",
-                            "operative_s": "Android 8.1 Oreo",
-                            "dimensions": "153.7x77.7x9.4mm",
-                            "front_cam": "5 megapixeles",
-                            "screen": "5.5 pulgadas",
-                            "back_cam": "8 megapixeles",
-                            "storage": "8GB",
-                            "batery": "4000mAh"
-                        },
-                        "gamma": {
-                            "gammaId": 1,
-                            "name": "Baja",
-                            "min_price": 150000,
-                            "max_price": 0
-                        },
-                        "statistic": {
-                            "statisticId": 20,
-                            "positive_density": 6,
-                            "neutral_density": 0,
-                            "negative_density": 0
-                        }
-                    },
-                ]
-            },
+                }
+            ]
+          },
+          {
+            id: 123,
+            name: "Pedrito",
+            followersCount: 543,
+            urlProfile: "https://twitter.com/Leonmarlon98", 
+            size: 123,
+            profile: "Pedrito",
+            urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
+            phones: [
+              {
+                  "phoneId": 1,
+                  "model": "Redmi GO",
+                  "description": "Es pequeño, es potente, el nuevo Xiaomi Redmi Go es la primera apuesta del fabricante Chino con Android Go, pensado para equipos economicos pero sin sacrificar potencia.",
+                  "image": "xiaomi/redmi_go",
+                  "assessment": 51,
+                  size: 342,
+                  "data_sheet": {
+                      "dataSheetId": 31,
+                      "cpu": "Snapdragon 425 de 4 núcleos",
+                      "ram": "1GB",
+                      "operative_s": "Android 8.1 Oreo",
+                      "dimensions": "140.4x70.1x8.4mm",
+                      "front_cam": "5 megapixeles",
+                      "screen": "5 pulgadas",
+                      "back_cam": "8 megapixeles",
+                      "storage": "8GB",
+                      "batery": "3000mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 1,
+                      "positive_density": 30,
+                      "neutral_density": 0,
+                      "negative_density": 0
+                  }
+              },
+              {
+                  "phoneId": 19,
+                  "model": "Nokia 3.1",
+                  "description": "Tu compañero de primera.Nokia 3.1 se ve y se siente superior. Llama la atención con sus sutiles curvas y sorprendentes lados de aluminio de corte de diamante. El nuevo Nokia 3 se siente cómodo en la mano gracias a una parte trasera curvada y una pantalla esculpida Corning® Gorilla® Glass.",
+                  "image": "nokia/3_1",
+                  "assessment": 50,
+                  size: 76,
+                  "data_sheet": {
+                      "dataSheetId": 9,
+                      "cpu": "Mediatek MT6750N de ocho núcleos",
+                      "ram": "2GB",
+                      "operative_s": "Android 8.0 Oreo",
+                      "dimensions": "146.3x68.7x8.7mm",
+                      "front_cam": "8 megapixeles",
+                      "screen": "5.2 pulgadas",
+                      "back_cam": "13 megapixeles",
+                      "storage": "16GB",
+                      "batery": "2990mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 19,
+                      "positive_density": 18,
+                      "neutral_density": 2,
+                      "negative_density": 0
+                  }
+              }
+            ]
+          },
+          {
+            id: 225,
+            name: "Juanito", 
+            followersCount: 65, 
+            urlProfile: "https://twitter.com/phoneAdivice", 
+            size: 231,
+            profile: "Juanito",
+            urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
+            phones: [
+              {
+                  "phoneId": 19,
+                  "model": "Nokia 3.1",
+                  "description": "Tu compañero de primera.Nokia 3.1 se ve y se siente superior. Llama la atención con sus sutiles curvas y sorprendentes lados de aluminio de corte de diamante. El nuevo Nokia 3 se siente cómodo en la mano gracias a una parte trasera curvada y una pantalla esculpida Corning® Gorilla® Glass.",
+                  "image": "nokia/3_1",
+                  "assessment": 50,
+                  size: 45,
+                  "data_sheet": {
+                      "dataSheetId": 9,
+                      "cpu": "Mediatek MT6750N de ocho núcleos",
+                      "ram": "2GB",
+                      "operative_s": "Android 8.0 Oreo",
+                      "dimensions": "146.3x68.7x8.7mm",
+                      "front_cam": "8 megapixeles",
+                      "screen": "5.2 pulgadas",
+                      "back_cam": "13 megapixeles",
+                      "storage": "16GB",
+                      "batery": "2990mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 19,
+                      "positive_density": 18,
+                      "neutral_density": 2,
+                      "negative_density": 0
+                  }
+              },
+              {
+                  "phoneId": 20,
+                  "model": "Nokia 2.1",
+                  "description": "Entretenimiento de larga duración. Accionado por una batería2 4000 mAh2, Nokia 2.1 se mantiene trabajando por dos días seguidos, así que puedes pasar menos tiempo en preocuparte por cargarlo y más tiempo haciendo lo que amas.",
+                  "image": "nokia/2_1",
+                  "assessment": 50,
+                  size:1234,
+                  "data_sheet": {
+                      "dataSheetId": 10,
+                      "cpu": "Snapdragon 425  de cuatro núcleos",
+                      "ram": "1GB",
+                      "operative_s": "Android 8.1 Oreo",
+                      "dimensions": "153.7x77.7x9.4mm",
+                      "front_cam": "5 megapixeles",
+                      "screen": "5.5 pulgadas",
+                      "back_cam": "8 megapixeles",
+                      "storage": "8GB",
+                      "batery": "4000mAh"
+                  },
+                  "gamma": {
+                      "gammaId": 1,
+                      "name": "Baja",
+                      "min_price": 150000,
+                      "max_price": 0
+                  },
+                  "statistic": {
+                      "statisticId": 20,
+                      "positive_density": 6,
+                      "neutral_density": 0,
+                      "negative_density": 0
+                  }
+              },
+            ]
+          },
         ],
+
+        //////////////
+
         [
             {
                 id: 123,
@@ -689,6 +691,9 @@ import { mapState } from 'vuex';
                 ]
             },
         ],
+
+        /////////////
+
         [
             {
                 id: 123,

@@ -3,7 +3,6 @@
   <ChangeToolbar/>
   <Charts v-if="active ==='graph'"/>
   <BrandList v-if="active ==='graph'"/>
-  <Twitteros v-if="active ==='twitter'"/>
   <ChartsForWeight v-if="active ==='twitter'"/>
   <BrandListForWeight v-if="active ==='twitter'"/>
   <Maps v-if="active ==='maps'"/>
@@ -37,11 +36,15 @@
       Maps
     },
     computed:{
-      ...mapState(['active'])
+      ...mapState(['active','brandData'])
     },
     beforeMount(){
-      this.$store.dispatch('getBrands')
       this.$store.dispatch('resetActive')
+    },
+    watch: {
+      brandData: function(){ 
+        this.$store.dispatch('getBrands')
+      }
     },
   }
 </script>

@@ -64,7 +64,6 @@ export default new Vuex.Store({
     /*Traer todo de la DB*/
     async getAllAll(state){
       try{
-        var phoneSpecification = []
         await Axios 
         .get('http://localhost:8081/phones/getall')
         .then(response => (state.phoneData = response.data))
