@@ -2,7 +2,7 @@
 <template>
   <v-card style="margin-top:3%">
     <v-card-title class="indigo white--text headline">
-      User Directory
+      Marcas ordenadas según relevancia
     </v-card-title>
     <v-layout
       justify-space-between
@@ -12,20 +12,20 @@
         <v-treeview
           :active.sync="active"
           :items="items"
-          :load-children="fetchUsers"
-          :open.sync="open"
           activatable
           active-class="primary--text"
-          class="grey lighten-5"
-          open-on-click
+          open-all
           transition
+          hoverable
+          on-icon
+          style="cursor: pointer;"
         >
           <template v-slot:prepend="{ item, active }">
             <v-icon
               v-if="!item.children"
-              :color="active ? 'primary' : ''"
+              :color="active ? '#0E318A' : ''"
             >
-              mdi-account
+              mdi-tag-heart
             </v-icon>
           </template>
         </v-treeview>
@@ -40,7 +40,7 @@
             class="title grey--text text--lighten-1 font-weight-light"
             style="align-self: center;"
           >
-            Select a User
+            Seleccione una marca
           </div>
           <v-card
             v-else
@@ -51,19 +51,18 @@
           >
             <v-card-text>
               <v-avatar
-                v-if="avatar"
-                size="88"
+                size="150"
               >
                 <v-img
-                  :src="`https://avataaars.io/${avatar}`"
+                  :src="require('@/assets/brands/'+ selected.img + '.png')"
                   class="mb-4"
                 ></v-img>
               </v-avatar>
               <h3 class="headline mb-2">
                 {{ selected.name }}
               </h3>
-              <div class="blue--text mb-2">{{ selected.email }}</div>
-              <div class="blue--text subheading font-weight-bold">{{ selected.username }}</div>
+              <div class="blue--text mb-2">{{ selected.name }}</div>
+              <div class="blue--text subheading font-weight-bold">{{ selected.name }}</div>
             </v-card-text>
             <v-divider></v-divider>
             <v-layout
@@ -71,14 +70,63 @@
               text-xs-left
               wrap
             >
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Company:</v-flex>
-              <v-flex>{{ selected.company.name }}</v-flex>
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Website:</v-flex>
-              <v-flex>
-                <a :href="`//${selected.website}`" target="_blank">{{ selected.website }}</a>
+              <v-flex mt-1 v-for="(user, index) in brandUsers[0]" :key="index">
+                <v-card
+                  color="#26c6da"
+                  dark
+                  height="110"
+                  style="margin-bottom:2%"
+                >
+                  <v-card-title>
+                      <v-icon
+                      large
+                      left>mdi-twitter</v-icon>
+                      <a 
+                        :href= user.urlProfile 
+                        class="title font-weight-light ml-1 hide_80"
+                        style="color:white;text-decoration:none"
+                      >{{user.name}}</a>
+
+                      <v-layout
+                      align-center
+                      justify-end
+                      ma-1
+                      >
+                      <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                          <v-icon v-on="on" class="mr-1">people</v-icon>
+                          <span  v-on="on" class="subheading mr-2">{{user.followersCount}}</span>
+                      </template>
+                      <span>Seguidores</span>
+                      </v-tooltip>
+                      </v-layout>
+                  </v-card-title> 
+
+                  <v-card-actions>
+                    <v-list-tile class="grow">
+                      <v-list-tile-avatar color="grey darken-3" class="mb-3" size="60" style="margin-left:-3%">
+                      <v-img
+                          class="elevation-6"
+                          :src="user.urlPhoto"
+                      ></v-img>
+                      </v-list-tile-avatar>
+                      <v-layout
+                        align-center
+                        justify-end
+                      >
+                        <v-tooltip bottom>
+                          <template v-slot:activator="{ on }">              
+                            <VBtn class="mr-1" style="margin-bottom:9%" v-on="on" :href= user.urlProfile flat icon><v-icon>mdi-open-in-new</v-icon></VBtn>
+                          </template>
+                          <span>Ir al perfil</span>
+                        </v-tooltip>
+                      </v-layout>
+                      
+                    </v-list-tile>
+                  </v-card-actions>
+                </v-card>
               </v-flex>
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Phone:</v-flex>
-              <v-flex>{{ selected.phone }}</v-flex>
+
             </v-layout>
           </v-card>
         </v-scroll-y-transition>
@@ -90,60 +138,93 @@ content_copy
 
 
 <script>
-  const avatars = [
-    '?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
-    '?accessoriesType=Sunglasses&avatarStyle=Circle&clotheColor=Gray02&clotheType=ShirtScoopNeck&eyeType=EyeRoll&eyebrowType=RaisedExcited&facialHairColor=Red&facialHairType=BeardMagestic&hairColor=Red&hatColor=White&mouthType=Twinkle&skinColor=DarkBrown&topType=LongHairBun',
-    '?accessoriesType=Prescription02&avatarStyle=Circle&clotheColor=Black&clotheType=ShirtVNeck&eyeType=Surprised&eyebrowType=Angry&facialHairColor=Blonde&facialHairType=Blank&hairColor=Blonde&hatColor=PastelOrange&mouthType=Smile&skinColor=Black&topType=LongHairNotTooLong',
-    '?accessoriesType=Round&avatarStyle=Circle&clotheColor=PastelOrange&clotheType=Overall&eyeType=Close&eyebrowType=AngryNatural&facialHairColor=Blonde&facialHairType=Blank&graphicType=Pizza&hairColor=Black&hatColor=PastelBlue&mouthType=Serious&skinColor=Light&topType=LongHairBigHair',
-    '?accessoriesType=Kurt&avatarStyle=Circle&clotheColor=Gray01&clotheType=BlazerShirt&eyeType=Surprised&eyebrowType=Default&facialHairColor=Red&facialHairType=Blank&graphicType=Selena&hairColor=Red&hatColor=Blue02&mouthType=Twinkle&skinColor=Pale&topType=LongHairCurly'
-  ]
-
-  const pause = ms => new Promise(resolve => setTimeout(resolve, ms))
 
   export default {
     data: () => ({
-      active: [],
+      active: [0],
       avatar: null,
-      open: [],
-      users: []
+      users: [],
+      brandData:[
+        {id: 0, name: 'Apple',img:'AppleLogo'},
+        {id: 1, name: 'Asus',img:'AsusLogo'},
+        {id: 2, name: 'Huawei',img:'HuaweiLogo'},
+        {id: 3, name: 'LG',img:'LGLogo'},
+        {id: 4, name: 'Motorola',img:'MotorolaLogo'},
+        {id: 5, name: 'Nokia',img:'NokiaLogo'},
+        {id: 6, name: 'Samsung',img:'SamsungLogo'},
+        {id: 7, name: 'Xiaomi',img:'XiaomiLogo'},
+      ],
+          
+      brandUsers:       
+      [
+        [
+        {
+            id: 123,
+            name: "Tato",
+            followersCount: 123,
+            urlProfile: "https://twitter.com/Leonmarlon98", 
+            size: 123,
+            profile: "The word-break 22222",
+            urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
+        },
+        {
+          id: 125,
+          name: "PAdivice", 
+          followersCount: 296, 
+          urlProfile: "https://twitter.com/phoneAdivice", 
+          size: 432,
+          profile: "phoneAdivice",
+          urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
+        },
+        {
+          id: 225,
+          name: "Pasdasd", 
+          followersCount: 542, 
+          urlProfile: "https://twitter.com/phoneAdivice", 
+          size: 231,
+          profile: "Pasdasd",
+          urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
+        },
+        {
+          id: 123,
+          name: "Pedrito",
+          followersCount: 543,
+          urlProfile: "https://twitter.com/Leonmarlon98", 
+          size: 123,
+          profile: "Pedrito",
+          urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
+        },
+        {
+          id: 225,
+          name: "Juanito", 
+          followersCount: 65, 
+          urlProfile: "https://twitter.com/phoneAdivice", 
+          size: 231,
+          profile: "Juanito",
+          urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
+          
+        },
+        ]
+      ],
     }),
 
     computed: {
       items () {
         return [
           {
-            name: 'Users',
-            children: this.users
+            name: 'Brands',
+            children: this.brandData
           }
         ]
       },
       selected () {
         if (!this.active.length) return undefined
-
         const id = this.active[0]
-
-        return this.users.find(user => user.id === id)
+        let algo = this.brandData.find(brand => brand.id === id)
+        return algo
       }
     },
-
-    watch: {
-      selected: 'randomAvatar'
-    },
-
     methods: {
-      async fetchUsers (item) {
-        // Remove in 6 months and say
-        // you've made optimizations! :)
-        await pause(1500)
-
-        return fetch('https://jsonplaceholder.typicode.com/users')
-          .then(res => res.json())
-          .then(json => (item.children.push(...json)))
-          .catch(err => console.warn(err))
-      },
-      randomAvatar () {
-        this.avatar = avatars[Math.floor(Math.random() * avatars.length)]
-      }
     }
   }
 </script>
