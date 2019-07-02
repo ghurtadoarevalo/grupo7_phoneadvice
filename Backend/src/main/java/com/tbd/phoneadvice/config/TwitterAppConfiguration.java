@@ -18,9 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-import twitter4j.TwitterObjectFactory;
-import twitter4j.TwitterStream;
-import twitter4j.TwitterStreamFactory;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.Map;
@@ -53,12 +51,31 @@ public class TwitterAppConfiguration {
                 .setJSONStoreEnabled(true);
         return new TwitterStreamFactory(configurationBuilder.build());
     }
+    @Bean
+    @ConditionalOnMissingBean
+    public TwitterFactory twitterFactory() {
+        ConfigurationBuilder configurationBuilder=new ConfigurationBuilder();
+        configurationBuilder
+                .setDebugEnabled(false)
+                .setOAuthConsumerKey(CONSUMER_KEY)
+                .setOAuthConsumerSecret(CONSUMER_SECRET)
+                .setOAuthAccessToken(ACCESS_TOKEN)
+                .setOAuthAccessTokenSecret(TOKEN_SECRET);
+        return new TwitterFactory(configurationBuilder.build());
+    }
 
     @Bean
     @ConditionalOnMissingBean
     public TwitterStream twitterStream(TwitterStreamFactory twitterStreamFactory) {
         return twitterStreamFactory.getInstance();
     }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public Twitter twitter(TwitterFactory twitterFactory) {
+        return twitterFactory.getInstance();
+    }
+
     @Bean
     @ConditionalOnMissingBean
     public TwitterListener twitterListener() {

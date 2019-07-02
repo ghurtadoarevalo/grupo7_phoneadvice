@@ -171,7 +171,7 @@
               style="height: 100%; width: 100%"
             >
             <div class = "a font-weight-light mb-2">
-              <b>¡Sección en construcción!</b>
+              <b>¡En esta sección podrá encontrar celulares según su bolsillo!</b>
             </div>
             </v-flex>
             </v-expand-transition> 
@@ -188,8 +188,9 @@
                 large
                 right
                 top
+                to = "/twittersForGamma"
               >
-                <v-icon>mdi-hammer</v-icon>
+                <v-icon>mdi-cash</v-icon>
               </v-btn>
   
               <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por Gama</h3>
@@ -211,29 +212,9 @@
     data(){
       return{
       dialog:false,
-      reviews: 413,
-      value: 4.5
       //query:[]
       }
-    },
-    mounted()
-    {
-        //Esto lo usé para un random, no borrar aún xD
-        //for (let index = 1; index < 11; index++) {
-            //for (let index2 = 1; index2 < 7; index2++) {
-                //let positive = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let negative = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let neutral = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let assessment = Math.floor(Math.random() * (7 - 1 + 1))+1;
-
-                //let query = "INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (" + positive + "," + negative + ","+ neutral+");";
-                //let query = "INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES ("+ index +","+ index2 + "," + assessment +");"
-                //this.query.push(query);
-            //}
-
-        //}
-    }
-    
+    },   
   }
 </script>
 

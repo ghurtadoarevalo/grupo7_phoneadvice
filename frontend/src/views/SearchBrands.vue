@@ -14,7 +14,7 @@
   import Charts from '../components/brands/Charts'
   import ChangeToolbar from '../components/brands/ChangeToolbar'
   import Maps from '../components/devices/Maps'
-  import {mapState} from 'vuex';
+  import {mapState,mapMutations} from 'vuex';
    
   export default {
     data() {
@@ -27,11 +27,17 @@
       Charts,
       Maps
     },
+    methods:
+    {
+        ...mapMutations(['changeActive'])
+
+    },
     computed:{
       ...mapState(['active'])
     },
     beforeMount(){
-      this.$store.dispatch('getBrands')
+      this.$store.dispatch('getBrands'),
+      this.changeActive('graph')      
     },
   }
 </script>

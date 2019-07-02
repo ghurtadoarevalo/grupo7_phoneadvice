@@ -14,7 +14,7 @@
   import ChangeToolbar from '../components/devices/ChangeToolbar'
   import Twitteros from '../components/devices/Twitteros'
   import Maps from '../components/devices/Maps'
-  import {mapState} from 'vuex';
+  import {mapState, mapMutations} from 'vuex';
    
   export default {
     data() {
@@ -23,6 +23,7 @@
       }
     },
     methods:{
+      ...mapMutations(['changeActive']),
       getData(){
         this.$store.dispatch('getAll')
       }
@@ -38,7 +39,8 @@
       ...mapState(['active','ready']),
     },
     mounted(){
-      this.getData()
+      this.getData(),
+      this.changeActive('graph')
     },
   }
 </script>
