@@ -1,5 +1,6 @@
 package com.tbd.phoneadvice.neo4j.models;
 
+import com.tbd.phoneadvice.mysql.models.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,16 @@ public class NodePhone {
     private Long phoneID;
 
     private Double size;
+
+    public Phone getPhoneSQL() {
+        return phoneSQL;
+    }
+
+    public void setPhoneSQL(Phone phoneSQL) {
+        this.phoneSQL = phoneSQL;
+    }
+
+    private Phone phoneSQL;
 
     public NodePhone(String model, Long phoneID) {
         this.model = model;
