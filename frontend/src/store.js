@@ -20,8 +20,10 @@ export default new Vuex.Store({
     neoPhoneSizes: [],
     neoPhoneNames: [],
     neoPhoneImgList: [],
+    neoPhoneSpecData: [],
+    neoPhoneDescription: [],
     neoPhoneData: [
-      { phoneID: 11, 
+      { phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -44,11 +46,8 @@ export default new Vuex.Store({
           name: 'Alta',
           min_price: 350001,
           max_price: 2000000,
-        },
-        
-       
-      },
-      { phoneID: 27, 
+        },     
+      },{ phoneId: 27, 
         model: 'iPhone XR', 
         description: 'El iPhone XR tiene el LCD más avanzado en un smartphone', 
         assessment: 61,
@@ -74,7 +73,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -100,7 +99,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -126,7 +125,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -152,7 +151,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -178,7 +177,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -204,7 +203,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -230,7 +229,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -256,7 +255,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -282,7 +281,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -308,7 +307,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -334,7 +333,7 @@ export default new Vuex.Store({
         },
         
        
-      },{ phoneID: 11, 
+      },{ phoneId: 11, 
         model: 'Galaxy s10', 
         description: 'El resultado de 10 años siendo pioneros en dispositivos móviles, Galaxy S10. La nueva generación Galaxy ha llegado.', 
         assessment: 98,
@@ -415,6 +414,13 @@ export default new Vuex.Store({
     /*Traer todo de la DB*/
     async getAllAll(state){
       try{
+
+        await Axios
+        .get('http://localhost:8081/brands/')
+        .then(response => (state.brandList = response.data))
+        
+        console.log('brandList con datos cargados')
+
         await Axios 
         .get('http://localhost:8081/phones/getall')
         .then(response => (state.phoneData = response.data))
@@ -431,11 +437,7 @@ export default new Vuex.Store({
         }
         console.log('phoneSpecification con datos cargados')
 
-        await Axios
-        .get('http://localhost:8081/brands/')
-        .then(response => (state.brandList = response.data))
         
-        console.log('brandList con datos cargados')
 
         /*
         await Axios
@@ -465,6 +467,7 @@ export default new Vuex.Store({
 
     /*Funciones para vista SearchDevices*/
     async getAll(state){
+      console.log('getall')
       var evalSpecification = []
       var names = []
       var imgList = []
@@ -513,6 +516,7 @@ export default new Vuex.Store({
           index ++
         } 
       }
+
       state.specData = specData;
       state.evalSpecification = evalSpecification
       state.names = names
@@ -520,8 +524,9 @@ export default new Vuex.Store({
       state.phonesDescription = phonesDescription
       state.topTen = topTen
     },
-
+      /*
       getNeoPhones(state){
+      console.log('getNeoPhones')
       var names = []
       var imgList = []
       var specData = []
@@ -570,7 +575,7 @@ export default new Vuex.Store({
       console.log('PESOS')
       console.log(topTen.topTenSize)
 
-    },
+      },*/
 
     filterByGama(state,gammas){
       var names = []
@@ -822,6 +827,7 @@ export default new Vuex.Store({
 
     /*Funciones para vista SearchBrands*/
     async getBrands(state){
+      console.log('getBrands')
       var brandData = {
         brandImgList: [],
         brandNames:[],  
@@ -840,6 +846,7 @@ export default new Vuex.Store({
         brandData.evalNeutral.push(item.statistic.neutral_density)
       }
       state.brandData = brandData
+      console.log(brandData)
     },
 
     
