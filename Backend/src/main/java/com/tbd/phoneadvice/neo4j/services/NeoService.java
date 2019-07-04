@@ -28,12 +28,12 @@ import java.util.*;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    //private String uri = "bolt://178.128.227.134";
-    //private String user = "neo4j";
-    //private String password = "lolis123";
-    private String uri = "bolt://localhost";
+    private String uri = "bolt://178.128.227.134";
     private String user = "neo4j";
-    private String password = "canito123";
+    private String password = "lolis123";
+    //private String uri = "bolt://localhost";
+    //private String user = "neo4j";
+    //private String password = "canito123";
 
     @Autowired
     private UserRepository userRepository;
@@ -557,7 +557,8 @@ public class NeoService {
         while(result.hasNext())
         {
             Record record = result.next();
-            StatementResult resultAux = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
+            StatementResult resultAux = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser)"+" WHERE b.brandID="+record.get("brandID").asLong()+
+                    " RETURN distinct u.userID as userID,u.followersCount as followersCount ORDER BY followersCount DESC LIMIT 5");
             List<NodeUser> userList = new ArrayList<>();
 
             while(resultAux.hasNext()) {
@@ -565,27 +566,12 @@ public class NeoService {
                 NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
                 nodeUser.setBrands(null);
                 nodeUser.setPhones(null);
+                setUserValues(nodeUser);
                 userList.add(nodeUser);
             }
 
-            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
-                @Override
-                public int compare(NodeUser o1, NodeUser o2) {
-                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
-                }
-            };
-
-            Collections.sort(userList,compareByFollowers);
-            List<NodeUser> userListFinal = new ArrayList<>();
-            int max= userList.size();
-            if(max > 5) { max = 5; }
-            for(int i = 0 ; i < max; i++) {
-                NodeUser nodeUser = userList.get(i);
-                setUserValues(nodeUser);
-                userListFinal.add(nodeUser);
-            }
             NodeBrand nodeBrand = nodeBrandRepository.findByBrandID(record.get("brandID").asLong());
-            nodeBrand.setUsers(userListFinal);
+            nodeBrand.setUsers(userList);
             nodeBrand.setPhones(null);
             listBrand.add(nodeBrand);
         }
@@ -665,6 +651,8 @@ public class NeoService {
         User user = userRepository.findUserById(nodeUser.getUserID());
         nodeUser.setUrlProfile(user.getUrlProfile());
         nodeUser.setUrlPhoto(urlPhoto);
+        nodeUser.setLocation(user.getLocation());
+        nodeUser.setScreenName(user.getScreenName());
         nodeUser.setCreatedAt(createdAt);
         nodeUser.setDescription(description);
         nodeUser.setEmail(email);
