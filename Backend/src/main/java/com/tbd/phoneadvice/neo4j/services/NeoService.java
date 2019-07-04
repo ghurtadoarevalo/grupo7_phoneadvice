@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
+import javax.xml.soap.Node;
 import java.util.*;
 
 @RestController
@@ -28,12 +29,12 @@ import java.util.*;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    //private String uri = "bolt://178.128.227.134";
-    //private String user = "neo4j";
-    //private String password = "lolis123";
-    private String uri = "bolt://localhost";
+    private String uri = "bolt://178.128.227.134";
     private String user = "neo4j";
-    private String password = "canito123";
+    private String password = "lolis123";
+    //private String uri = "bolt://localhost";
+    //private String user = "neo4j";
+    //private String password = "canito123";
 
     @Autowired
     private UserRepository userRepository;
@@ -170,7 +171,7 @@ public class NeoService {
         Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
         Session session = driver.session();
 
-
+        /*
         //Pesos de los usuarios
         //Por cantidad de seguidores
         //Por pesos de los temas que habla -> Promedio de todos los temas
@@ -184,19 +185,25 @@ public class NeoService {
             nodeUser.setSize(relevancia);
             nodeUserRepository.save(nodeUser);
         }
-
+        */
 
         //Pesos de los celulares
         //Por cantidad de usuarios que hablan de ella
-
+        System.out.println("PESO CELULARES");
         StatementResult resultPhone = session.run( "MATCH (p:NodePhone) RETURN p.phoneID as phoneID");
+        int phoneA = 0;
         while(resultPhone.hasNext())
         {
+            int user = 0;
+            System.out.println("\nPHONEA = "+phoneA);
+            phoneA++;
             Record record = resultPhone.next();
             StatementResult resultAux = session.run( "MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p)<-[TWEET_ABOUT]-(u:NodeUser) RETURN u.followersCount as followersCount, u.phoneID as phoneID");
             Double relevancia = 0.0;
             while(resultAux.hasNext())
             {
+                System.out.println("\nUSER "+user);
+                user++;
                 Record recordAux = resultAux.next();
                 int followersCount = recordAux.get("followersCount").asInt();
                 relevancia = relevancia + (long)followersCount*0.3;
@@ -206,18 +213,23 @@ public class NeoService {
             nodePhoneRepository.save(nodePhone);
         }
 
-
+        System.out.println("PESOS MARCAS");
 
         //Pesos de la marca
         //Por cantidad de usuarios que hablan de ella, y de sus celulares
+        int marcaA = 0;
         StatementResult resultBrand = session.run( "MATCH (b:NodeBrand) RETURN b.brandID as brandID");
         while(resultBrand.hasNext())
         {
+            int celular = 0;
+            System.out.println("\nMARCAA = "+marcaA);
+            marcaA++;
             Record record = resultBrand.next();
             StatementResult resultAuxA = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b)-[HAS]->(p:NodePhone) RETURN p.size as size");
             Double sizesPhones = 0.0;
             while(resultAuxA.hasNext())
             {
+                System.out.println("\n CELULAR "+celular);
                 Record recordAux = resultAuxA.next();
                 Double size = recordAux.get("size").asDouble();
                 sizesPhones = sizesPhones + size;
@@ -225,8 +237,11 @@ public class NeoService {
 
             StatementResult resultAuxB = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b)<-[TWEET_ABOUT]-(u:NodeUser) RETURN u.followersCount as followersCount");
             Double usersCount = 0.0;
+            int usuario = 0;
             while(resultAuxB.hasNext())
             {
+                System.out.println("\nUsuario = "+usuario);
+                usuario++;
                 Record recordAux = resultAuxB.next();
                 int followersCount = recordAux.get("followersCount").asInt();
                 usersCount = followersCount*0.3 + usersCount;
@@ -323,8 +338,10 @@ public class NeoService {
     @ResponseBody
     public void loadTweetsRelations()
     {
+        /*
 
         List<Phone> phoneList = phoneRepository.findAll();
+
         for(int i = 0 ; i < phoneList.size();i++)
         {
             Phone phone = phoneList.get(i);
@@ -337,28 +354,33 @@ public class NeoService {
                 bagWords.add(contenido.replace("_"," "));
             }
 
+            System.out.println("\nI = "+i);
+
             List<Tweet> listTweets = new ArrayList<>();
             obtenerTweets(bagWords,listTweets);
-
             for(int j = 0 ; j < listTweets.size();j++)
             {
                 Tweet tweet = listTweets.get(j);
                 Long userID = tweet.getUser().getId();
+
                 NodeUser nodeUser = nodeUserRepository.findByUserID(userID);
-
-                System.out.println(tweet.getUser().getId()+"\n");
-
+                if(nodeUser == null) {
+                    User user = userRepository.findUserById(userID);
+                    nodeUser = new NodeUser(user.getName(), user.getFollowersCount(), user.getId());
+                }
                 NodePhone nodePhone = nodePhoneRepository.findByPhoneID(phone.getPhoneId());
                 List<NodePhone> list = nodeUser.getPhones();
                 list.add(nodePhone);
                 nodeUserRepository.save(nodeUser);
 
-
             }
         }
 
+
+        System.out.println("\n\nFIN CELULAR\n\n");
+        */
         List<Brand> brandList = brandRepository.findAll();
-        for(int i = 0 ; i < brandList.size();i++)
+        for(int i = 3 ; i < brandList.size();i++)
         {
             Brand brand = brandList.get(i);
             List<WordBrand> wordBrandList = word_brandRepository.findByBrand_BrandId(brand.getBrandId());
@@ -369,20 +391,28 @@ public class NeoService {
                 String contenido = wordBrandList.get(j).getContent();
                 bagWords.add(contenido.replace("_"," "));
             }
-
             List<Tweet> listTweets = new ArrayList<>();
             obtenerTweets(bagWords,listTweets);
 
+            System.out.println("\nI = "+i);
+
             for(int j = 0 ; j < listTweets.size();j++)
             {
+                System.out.println("\nJ = "+j);
                 Tweet tweet = listTweets.get(j);
                 NodeUser nodeUser = nodeUserRepository.findByUserID(tweet.getUser().getId());
                 NodeBrand nodeBrand = nodeBrandRepository.findByBrandID(brand.getBrandId());
+                if(nodeUser == null) {
+                    User user = userRepository.findUserById(tweet.getUser().getId());
+                    nodeUser = new NodeUser(user.getName(), user.getFollowersCount(), user.getId());
+                }
                 List<NodeBrand> list = nodeUser.getBrands();
                 list.add(nodeBrand);
                 nodeUserRepository.save(nodeUser);
             }
         }
+        System.out.println("\nTERMINO");
+        cargarPesos();
     }
 
 
@@ -414,49 +444,32 @@ public class NeoService {
             Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
             Session session = driver.session();
             List<NodeUser> list = new ArrayList<>();
-            StatementResult result = session.run("MATCH (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" MATCH (g) -[RELATED]-> (n:NodePhone) RETURN n.phoneID as phoneID");
+            StatementResult result = session.run("MATCH (g:NodeGamma) -[RELATED]-> (n:NodePhone) " +
+                    "WHERE g.gammaID= "+gammaA.getGammaId() +
+                    " MATCH (n) -[k:TWEET_ABOUT]- (u:NodeUser) " +
+                    "RETURN distinct u.userID as userID,u.followersCount as followersCount ORDER BY followersCount DESC LIMIT 5");
             while(result.hasNext())
             {
-                Record record = result.next();
-                StatementResult resultAux = session.run("MATCH (p:NodePhone) WHERE p.phoneID="+record.get("phoneID").asLong()+" MATCH (p) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID,u.size as size");
-                while(resultAux.hasNext())
+                Record recordAux = result.next();
+                NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
+                StatementResult result1 = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p.phoneID as phoneID");
+                List<NodePhone> listPhones = new ArrayList<>();
+                while(result1.hasNext())
                 {
-                    Record recordAux = resultAux.next();
-                    NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
-                    StatementResult resultAuxAux = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p.phoneID as phoneID");
-                    List<Phone> listPhones = new ArrayList<>();
-                    while(resultAuxAux.hasNext())
-                    {
-                        resultAuxAux.next();
-                        listPhones.add(phoneRepository.findByPhoneId(record.get("phoneID").asLong()));
-                    }
-                    nodeUser.setPhones(null);
-                    nodeUser.setBrands(null);
-                    nodeUser.setPhonesSQL(listPhones);
-                    list.add(nodeUser);
+                    Record record = result1.next();
+                    NodePhone nodePhone = nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong());
+                    Phone phone = phoneRepository.findByPhoneId(record.get("phoneID").asLong());
+                    nodePhone.setPhoneSQL(phone);
+                    listPhones.add(nodePhone);
                 }
-            }
-
-            Comparator<NodeUser> compareBySize = new Comparator<NodeUser>() {
-                @Override
-                public int compare(NodeUser o1, NodeUser o2) {
-                    return Double.compare(o2.getSize(),o1.getSize());
-                }
-            };
-
-            Collections.sort(list,compareBySize);
-
-            List<NodeUser> listFinal = new ArrayList<>();
-            int max= list.size();
-            if(max > 5) { max = 5; }
-            for(int i = 0 ; i < max; i++) {
-                NodeUser nodeUser = list.get(i);
+                nodeUser.setPhones(listPhones);
+                nodeUser.setBrands(null);
                 setUserValues(nodeUser);
-                listFinal.add(nodeUser);
+                list.add(nodeUser);
             }
             session.close();
             driver.close();
-            return listFinal;
+            return list;
         }
     }
 
@@ -547,7 +560,8 @@ public class NeoService {
         while(result.hasNext())
         {
             Record record = result.next();
-            StatementResult resultAux = session.run("MATCH (b:NodeBrand) WHERE b.brandID="+record.get("brandID").asLong()+" MATCH (b) <-[TWEET_ABOUT]- (u:NodeUser) RETURN u.userID as userID");
+            StatementResult resultAux = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser)"+" WHERE b.brandID="+record.get("brandID").asLong()+
+                    " RETURN distinct u.userID as userID,u.followersCount as followersCount ORDER BY followersCount DESC LIMIT 5");
             List<NodeUser> userList = new ArrayList<>();
 
             while(resultAux.hasNext()) {
@@ -555,27 +569,12 @@ public class NeoService {
                 NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
                 nodeUser.setBrands(null);
                 nodeUser.setPhones(null);
+                setUserValues(nodeUser);
                 userList.add(nodeUser);
             }
 
-            Comparator<NodeUser> compareByFollowers = new Comparator<NodeUser>() {
-                @Override
-                public int compare(NodeUser o1, NodeUser o2) {
-                    return Integer.compare(o2.getFollowersCount(),o1.getFollowersCount());
-                }
-            };
-
-            Collections.sort(userList,compareByFollowers);
-            List<NodeUser> userListFinal = new ArrayList<>();
-            int max= userList.size();
-            if(max > 5) { max = 5; }
-            for(int i = 0 ; i < max; i++) {
-                NodeUser nodeUser = userList.get(i);
-                setUserValues(nodeUser);
-                userListFinal.add(nodeUser);
-            }
             NodeBrand nodeBrand = nodeBrandRepository.findByBrandID(record.get("brandID").asLong());
-            nodeBrand.setUsers(userListFinal);
+            nodeBrand.setUsers(userList);
             nodeBrand.setPhones(null);
             listBrand.add(nodeBrand);
         }
@@ -655,8 +654,11 @@ public class NeoService {
         User user = userRepository.findUserById(nodeUser.getUserID());
         nodeUser.setUrlProfile(user.getUrlProfile());
         nodeUser.setUrlPhoto(urlPhoto);
+        nodeUser.setLocation(user.getLocation());
+        nodeUser.setScreenName(user.getScreenName());
         nodeUser.setCreatedAt(createdAt);
         nodeUser.setDescription(description);
         nodeUser.setEmail(email);
     }
+
 }

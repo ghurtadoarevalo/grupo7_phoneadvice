@@ -42,7 +42,7 @@ public class KafkaConsumer {
 
     private boolean status;
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    //@Scheduled(cron = "0 0/1 * * * ?")
     public void run() {
         this.status = true;
         while(status) {

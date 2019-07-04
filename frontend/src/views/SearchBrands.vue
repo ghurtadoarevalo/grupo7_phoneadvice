@@ -18,7 +18,7 @@
   import ChartsForWeight from '../components/brands/ChartsForWeight'
   import BrandListForWeight from '../components/brands/BrandListForWeight'
   import Maps from '../components/devices/Maps'
-  import {mapState} from 'vuex';
+  import {mapState,mapMutations} from 'vuex';
    
   export default {
     data() {
@@ -34,10 +34,17 @@
       BrandListForWeight,
       Maps
     },
+    methods:
+    {
+        ...mapMutations(['changeActive'])
+
+    },
     computed:{
       ...mapState(['active','brandData'])
     },
     beforeMount(){
+      this.$store.dispatch('getBrands'),
+      this.changeActive('graph')      
       this.$store.dispatch('resetActive')
     },
     watch: {

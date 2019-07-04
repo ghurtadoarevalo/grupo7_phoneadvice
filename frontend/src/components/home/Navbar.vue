@@ -32,7 +32,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn
+        <v-btn 
           flat
           v-for="item in menuItems"
           :key="item.title"
@@ -62,6 +62,7 @@ export default {
           {title: 'Marcas', path: '/searchForBrands', icon: 'mdi-android' },
           { title: 'Especificaciones', path: '/searchForSpecifications', icon: 'settings' },
           { title: 'Grafo', path: '/networkGraph', icon: 'mdi-graphql' },
+          { title: 'Gama', path: '/twittersForGamma', icon: 'mdi-cash' },
      ]
     }
   }
