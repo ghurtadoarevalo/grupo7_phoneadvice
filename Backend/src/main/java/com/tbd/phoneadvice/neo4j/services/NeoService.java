@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
+import javax.xml.soap.Node;
 import java.util.*;
 
 @RestController
@@ -452,15 +453,17 @@ public class NeoService {
                 Record recordAux = result.next();
                 NodeUser nodeUser = nodeUserRepository.findByUserID(recordAux.get("userID").asLong());
                 StatementResult result1 = session.run("MATCH (p:NodePhone) <-[TWEET_ABOUT]- (u:NodeUser) WHERE u.userID= "+recordAux.get("userID").asLong()+" MATCH (p) <-[RELATED]- (g:NodeGamma) WHERE g.gammaID="+gammaA.getGammaId()+" RETURN p.phoneID as phoneID");
-                List<Phone> listPhones = new ArrayList<>();
+                List<NodePhone> listPhones = new ArrayList<>();
                 while(result1.hasNext())
                 {
                     Record record = result1.next();
-                    listPhones.add(phoneRepository.findByPhoneId(record.get("phoneID").asLong()));
+                    NodePhone nodePhone = nodePhoneRepository.findByPhoneID(record.get("phoneID").asLong());
+                    Phone phone = phoneRepository.findByPhoneId(record.get("phoneID").asLong());
+                    nodePhone.setPhoneSQL(phone);
+                    listPhones.add(nodePhone);
                 }
-                nodeUser.setPhones(null);
+                nodeUser.setPhones(listPhones);
                 nodeUser.setBrands(null);
-                nodeUser.setPhonesSQL(listPhones);
                 setUserValues(nodeUser);
                 list.add(nodeUser);
             }
