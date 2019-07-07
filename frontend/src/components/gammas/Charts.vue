@@ -11,7 +11,7 @@
         <v-icon large color="white">monetization_on</v-icon>
       </VBtn>
       Gama
-      <v-radio-group v-model="column" column @change="getTwittersByGamma(column)">
+      <v-radio-group :disabled="disabled" v-model="column" column @change="getTwittersByGamma(column)">
         <v-radio  value="1" label="Baja"  color="#0E318A"></v-radio>          
         <v-radio  value="2" label="Media" color="#0E318A"></v-radio>          
         <v-radio  value="3" label="Alta" color="#0E318A"></v-radio>   
@@ -31,7 +31,7 @@ export default {
     ...mapState(['gammaData']),
   },
   methods: {
-    ...mapMutations(['getTwittersByGamma']), 
+    ...mapMutations(['getTwittersByGamma','usersGamma']), 
     getData(){
       var chartOptions = {
           responsive: {
@@ -91,13 +91,18 @@ export default {
       return chartOptions;
     },
   },
-  /*mounted(){
-    this.$store.dispatch('getAll')
-  },*/
   data () {
     return{
       column: "3",
       gamas: [true,true,true],
+      disabled: true
+
+    }
+  },
+  watch: {
+    usersGamma: function(){
+      if(this.usersGamma.length>0 && this.disabled)
+        this.disabled = false
     }
   },
  

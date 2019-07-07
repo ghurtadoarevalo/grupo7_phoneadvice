@@ -19,13 +19,16 @@
   export default {
     data() {
       return {
-        showNavbar: true
+        showNavbar: true,
+        ready:0,
       }
     },
     methods:{
       ...mapMutations(['changeActive']),
       getData(){
-        this.$store.dispatch('getAll')
+        if(this.phoneData.length>0 && this.ready == 0)
+          this.$store.dispatch('getAll')
+          this.ready = 1
       }
     },
     components: {
@@ -36,14 +39,18 @@
       Maps
     },
     computed:{
-      ...mapState(['active','ready']),
+      ...mapState(['active','phoneData']),
     },
     mounted(){
-      this.getData(),
-      this.changeActive('graph')
-    },
-    beforeMount(){
       this.$store.dispatch('resetActive')
+      this.changeActive('graph')
+      this.getData()
     },
+    watch:{
+      phoneData: function(){
+        this.getData()
+      }
+    },
+
   }
 </script>

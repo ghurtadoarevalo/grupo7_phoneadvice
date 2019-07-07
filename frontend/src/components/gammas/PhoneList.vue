@@ -68,7 +68,7 @@
 
     <!--DIALOGO 1 X_X-->
 
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog v-if="gammaData.topTen.topTenImgList.length > 0" v-model="dialog" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Tabla de especificaciones</v-toolbar-title>
@@ -219,12 +219,16 @@ import { mapState } from 'vuex';
     },
     computed:{
       ...mapState(['gammaData','headers'])
-    /*...mapState(['imgList','names','headers','specData','topTen','evalSpecification','phonesDescription'])*/
     },
     watch: {
       dialog: function(){
         if(!this.dialog){
           this.indice = 0
+        }
+      },
+      dialog3: function(){
+        if(!this.dialog){
+          this.indice2 = 0
         }
       }
     },

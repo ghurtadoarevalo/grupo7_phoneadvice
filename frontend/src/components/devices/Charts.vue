@@ -26,7 +26,7 @@ import { mapState,mapMutations, Store } from 'vuex';
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['evalP','evalN','evalNeutral','evalSpecification','names', 'topTen']),
+    ...mapState(['topTen']),
   },
   methods: {
     ...mapMutations(['filterByGama']), 
@@ -113,9 +113,6 @@ export default {
       return chartOptions;
     },
   },
-  /*mounted(){
-    this.$store.dispatch('getAll')
-  },*/
   data () {
     return{
       gamas: [true,true,true],
