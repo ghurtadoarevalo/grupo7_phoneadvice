@@ -70,7 +70,7 @@
               text-xs-left
               wrap
             >
-              <v-flex mt-1 v-for="(user, index) in brandUsers[0]" :key="index">
+              <v-flex mt-1 v-for="(user, index) in brandUsers[selected.id]" :key="index">
                 <v-card
                   color="#26c6da"
                   dark
@@ -138,81 +138,15 @@ content_copy
 
 
 <script>
+import { constants } from 'crypto';
+import {mapState} from 'vuex';
 
   export default {
-    data: () => ({
-      active: [0],
-      avatar: null,
-      users: [],
-      brandData:[
-        {id: 0, name: 'Apple',img:'AppleLogo'},
-        {id: 1, name: 'Asus',img:'AsusLogo'},
-        {id: 2, name: 'Huawei',img:'HuaweiLogo'},
-        {id: 3, name: 'LG',img:'LGLogo'},
-        {id: 4, name: 'Motorola',img:'MotorolaLogo'},
-        {id: 5, name: 'Nokia',img:'NokiaLogo'},
-        {id: 6, name: 'Samsung',img:'SamsungLogo'},
-        {id: 7, name: 'Xiaomi',img:'XiaomiLogo'},
-      ],
-          
-      brandUsers:       
-      [
-        [
-        {
-            id: 123,
-            name: "Tato",
-            followersCount: 123,
-            urlProfile: "https://twitter.com/Leonmarlon98", 
-            size: 123,
-            profile: "The word-break 22222",
-            urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
-        },
-        {
-          id: 125,
-          name: "PAdivice", 
-          followersCount: 296, 
-          urlProfile: "https://twitter.com/phoneAdivice", 
-          size: 432,
-          profile: "phoneAdivice",
-          urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
-        },
-        {
-          id: 225,
-          name: "Pasdasd", 
-          followersCount: 542, 
-          urlProfile: "https://twitter.com/phoneAdivice", 
-          size: 231,
-          profile: "Pasdasd",
-          urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
-        },
-        {
-          id: 123,
-          name: "Pedrito",
-          followersCount: 543,
-          urlProfile: "https://twitter.com/Leonmarlon98", 
-          size: 123,
-          profile: "Pedrito",
-          urlPhoto: "https://pbs.twimg.com/profile_images/720727499693539328/YNu-yWWF_bigger.jpg",
-        },
-        {
-          id: 225,
-          name: "Juanito", 
-          followersCount: 65, 
-          urlProfile: "https://twitter.com/phoneAdivice", 
-          size: 231,
-          profile: "Juanito",
-          urlPhoto: "https://pbs.twimg.com/profile_images/1132408647521320960/gBdOVTb5_bigger.jpg",
-          
-        },
-        ]
-      ],
-    }),
-
     computed: {
+      ...mapState(['neoBrandData']),
       items () {
         return [
           {
-            name: 'Brands',
             children: this.brandData
           }
         ]
@@ -221,10 +155,47 @@ content_copy
         if (!this.active.length) return undefined
         const id = this.active[0]
         let algo = this.brandData.find(brand => brand.id === id)
+        console.log(algo)
         return algo
       }
     },
     methods: {
-    }
+    },
+    watch: {
+      neoBrandData: function(){
+        if(this.neoBrandData.length!=0){
+        this.neoBrandData.sort(function (a, b) {
+          return (a.brandID - b.brandID)
+        })
+        
+        for(var data of this.neoBrandData)
+        {
+          var brandInfo = {id: data.brandID-1, name: data.brandName, img:this.imgData[data.brandID-1], weight: data.size}
+          this.brandData.push(brandInfo)
+          var users_brand = []
+          for(var user of data.users)
+            users_brand.push(user)
+
+          this.brandUsers.push(users_brand)
+        }
+        this.brandData.sort(function (a, b) {
+          return (b.weight - a.weight)
+        })
+        console.log('Aqui va el test')
+        console.log(this.brandData)
+      }
+      }
+    },
+    mounted() {
+    },
+    
+    data: () => ({
+      active: [0],
+      avatar: null,
+      imgData:['LGLogo','SamsungLogo','XiaomiLogo','MotorolaLogo','HuaweiLogo','AsusLogo','AppleLogo','NokiaLogo'],
+      brandData:[],
+      brand_test:[],
+      brandUsers: [],
+    }),
   }
 </script>

@@ -47,7 +47,7 @@ export default new Vuex.Store({
         evalNeutral:[],
     },
     allGraphData:{nodes:[], links: []},
-    graphData: {brandNodes:[], links: []},
+    neoBrandData: [],
     link:[],
     usersGammaData: [],
     gammaData:    {
@@ -109,32 +109,20 @@ export default new Vuex.Store({
         //Se obtienen todos los tweeteros y los celulares de los que hablan por gama
         for (let id = 1; id < 4; id++)
         {
-            await Axios 
-            .get('http://localhost:8081/neo/getRelevantGamma/'+id)
-            .then(response => (state.usersGamma[id-1] = response.data))
+          await Axios 
+          .get('http://localhost:8081/neo/getRelevantGamma/'+id)
+          .then(response => (state.usersGamma[id-1] = response.data))
         }
+        console.log('lo hizo')
+        await Axios
+        .get('http://localhost:8081/neo/getBrands')
+        .then(response => (state.neoBrandData = response.data))
+        console.log('lo hizo x2')
 
-        console.log(state.usersGamma[0])
-        console.log(state.usersGamma[1])
-        console.log(state.usersGamma[2])
-
-        state.ready = 1
         /*
         await Axios
         .get('http://localhost:8081/neo/fullNodos/')
         .then(response => (state.allGraphData.nodes = response.data))
-
-        await Axios
-        .get('http://localhost:8081/neo/fullAristas/')
-        .then(response => (state.allGraphData.links = response.data))
-
-        await Axios
-        .get('http://localhost:8081/neo/getBrands')
-        .then(response => (state.graphData.brandNodes = response.data))
-
-        await Axios
-        .get('http://localhost:8081/neo/fullAristas/')
-        .then(response => (state.allGraphData.links = response.data))
         */
 
       }catch(err){console.log("En get all all " + err)}

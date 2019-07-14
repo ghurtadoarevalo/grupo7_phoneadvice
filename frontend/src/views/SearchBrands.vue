@@ -44,7 +44,7 @@
           this.$store.dispatch('getBrands')
           this.ready = 1
         }
-      }
+      },
     },
     computed:{
       ...mapState(['active','brandList'])
