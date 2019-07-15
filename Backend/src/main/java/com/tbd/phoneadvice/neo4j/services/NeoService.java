@@ -36,6 +36,7 @@ public class NeoService {
     //private String user = "neo4j";
     //private String password = "canito123";
     List<nodo> listaNeo = new ArrayList<>();
+    List<nodo> listaNeoAux = new ArrayList<>();
 
     @Autowired
     private UserRepository userRepository;
@@ -103,7 +104,7 @@ public class NeoService {
         List<nodo> list = new ArrayList<>();
         for(int i=1; i<39; i++){
             Phone equipo = phoneRepository.findByPhoneId((long) i);
-            StatementResult result = session.run("MATCH (p:NodePhone) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE p.phoneID = " + equipo.getPhoneId() + "  RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 3");
+            StatementResult result = session.run("MATCH (p:NodePhone) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE p.phoneID = " + equipo.getPhoneId() + "  RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 2");
             System.out.println("estoy fuera del for");
             while(result.hasNext())
             {
@@ -121,7 +122,7 @@ public class NeoService {
 
         for(int i=1; i<9; i++){
             Brand marca = brandRepository.findBrandByBrandId((long) i);
-            StatementResult result = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE b.brandID = "+ marca.getBrandId() +" RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 3");
+            StatementResult result = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE b.brandID = "+ marca.getBrandId() +" RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 2");
             System.out.println("segundo for");
             while(result.hasNext())
             {
@@ -175,6 +176,9 @@ public class NeoService {
             list.add(nuevoNodo);
         }
     */
+        for(nodo nodoI : list){
+            listaNeoAux.add(nodoI);
+        }
         System.out.println("Numero de nodos: " + list.size());
         return list;
     }
@@ -190,8 +194,23 @@ public class NeoService {
             Record record = result.next();
             boolean flag = false;
             for(nodo nodoI : listaNeo){
-                if(record.get("source").asLong() == nodoI.getId() | record.get("target").asLong() == nodoI.getId()){
-                    flag = true;
+                if(record.get("source").asLong() == nodoI.getId() && nodoI.getLimit() <= 4 ){
+                    for(nodo nodoX : listaNeoAux){
+                        if(record.get("target").asLong() == nodoX.getId() && nodoX.getLimit() <= 4){
+                            flag = true;
+                            nodoI.setLimit(nodoI.getLimit()+1);
+                            nodoX.setLimit(nodoX.getLimit()+1);
+                        }
+                    }
+                }
+                if(record.get("target").asLong() == nodoI.getId() && nodoI.getLimit() <= 4 ){
+                    for(nodo nodoX : listaNeoAux){
+                        if(record.get("source").asLong() == nodoX.getId() && nodoX.getLimit() <= 4)  {
+                            flag = true;
+                            nodoI.setLimit(nodoI.getLimit()+1);
+                            nodoX.setLimit(nodoX.getLimit()+1);
+                        }
+                    }
                 }
             }
             if(flag){
