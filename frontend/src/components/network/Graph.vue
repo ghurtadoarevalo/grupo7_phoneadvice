@@ -1,15 +1,8 @@
 <template>
 <v-container
-  fluid
-  grid-list-xl
-  id="scroll-target"
-  class="scroll-y">
-  <v-layout row wrap>
-    <h2>Grafo de conexiones entre twitteros marcas y teléfonos</h2>
-    
-  </v-layout>
+  fluid>
 
-  <v-layout row wrap>
+  <v-layout class="xd" row wrap>
       <v-slider 
       v-model="zoom"
       min="-50" 
@@ -38,11 +31,17 @@
         </template>
         </v-slider>
   </v-layout>
+  <v-container
+  fluid
+  grid-list-xl
+  id="scroll-target"
+  class="scroll-y">
   <v-layout 
     :style="{height:h,width:w}"
     >
         <d3-network style="margin-left:-10%" :net-nodes="nodes" :net-links="links" :options="options"></d3-network>
   </v-layout>
+</v-container>
 </v-container>
 </template>
 
@@ -82,7 +81,8 @@ import { userInfo } from 'os';
           offset:this.offset,
           nodeSize: this.nodeSize,
           nodeLabels: true,
-          linkWidth:2
+          linkWidth:2,
+          strLinks: true,
         }
       },
     },
@@ -98,10 +98,10 @@ import { userInfo } from 'os';
           this.offset.y = this.y_i - this.zoom
         }
         else{
-          this.offset.x = this.x_i + this.zoom*3.5
-          this.offset.y = this.y_i + this.zoom*5.5
-          this.w = this.w_i + this.zoom*3.5
-          this.h = this.h_i + this.zoom*20
+          this.offset.x = this.x_i - this.zoom*1.5
+          this.offset.y = this.y_i - this.zoom*0.1
+          this.w = this.w_i + this.zoom*8
+          this.h = this.h_i + this.zoom*12.5
         }
         console.log('x: '+this.offset.x.toString())
         console.log('y: '+this.offset.y.toString())
@@ -156,14 +156,14 @@ import { userInfo } from 'os';
       force:2000,
       zoomA:0,
       zoom:0,
-      h_i: 2000,
-      w_i: 2000,
+      h_i: 1700,
+      w_i: 1900,
       x_i: 1,
-      y_i:-100,
+      y_i:-70,
 
-      h:2000,
-      w:2000,
-      offset:{x:1,y:-100},
+      h:1700,
+      w:1900,
+      offset:{x:1,y:-70},
 
       slider: true,
       pre_nodes:[
@@ -2683,5 +2683,8 @@ import { userInfo } from 'os';
     -webkit-transform:translateY(-.5em);
     transform:translateY(-.5em);
     text-anchor:middle
+}
+.xd{
+  position: fixed;
 }
 </style>
