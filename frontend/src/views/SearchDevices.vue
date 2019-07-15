@@ -2,19 +2,21 @@
   <v-container grid-list-xl>
     <ChangeToolbar/>
     <Charts v-if="active ==='graph'"/>
+    <PhoneList v-if="active ==='graph'" style="margin-left:-5%"/>
     <Twitteros v-if="active ==='twitter'"/>
-    <PhoneList v-if="active ==='graph' || 'twitter' " style="margin-left:-5%"/>
+    <PhoneListTwitteros v-if="active == 'twitter'" style="margin-left:-4.5%"/>
     <Maps v-if="active ==='maps'"/>
   </v-container>
 </template>
         
 <script>
-  import PhoneList from '../components/devices/PhoneList'
-  import Charts from '../components/devices/Charts'
-  import ChangeToolbar from '../components/devices/ChangeToolbar'
-  import Twitteros from '../components/devices/Twitteros'
-  import Maps from '../components/devices/Maps'
-  import {mapState, mapMutations} from 'vuex';
+    import PhoneList from '../components/devices/PhoneList'
+    import PhoneListTwitteros from '../components/devices/PhoneListTwitteros'
+    import Charts from '../components/devices/Charts'
+    import ChangeToolbar from '../components/devices/ChangeToolbar'
+    import Twitteros from '../components/devices/Twitteros'
+    import Maps from '../components/devices/Maps'
+    import {mapState, mapMutations} from 'vuex';
    
   export default {
     data() {
@@ -26,8 +28,8 @@
     methods:{
       ...mapMutations(['changeActive']),
       getData(){
-        if(this.phoneData.length>0 && this.ready == 0)
           this.$store.dispatch('getAll')
+          this.$store.dispatch('getPhoneTwitters')
           this.ready = 1
       }
     },
@@ -36,14 +38,16 @@
       ChangeToolbar,
       Charts,
       Twitteros,
-      Maps
+      Maps,
+      PhoneListTwitteros,
     },
     computed:{
       ...mapState(['active','phoneData']),
     },
+    beforeMount(){
+        this.changeActive('graph')
+    },
     mounted(){
-      this.$store.dispatch('resetActive')
-      this.changeActive('graph')
       this.getData()
     },
     watch:{

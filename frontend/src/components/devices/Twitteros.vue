@@ -10,9 +10,9 @@
         <v-icon large color="white">monetization_on</v-icon>
       </VBtn>
       Gama
-      <v-switch v-model="gamas[0]" @change="filterByGama(gamas)" label="Baja"  color="#0E318A"></v-switch>          
-      <v-switch v-model="gamas[1]" @change="filterByGama(gamas)" label="Media" color="#0E318A"></v-switch>          
-      <v-switch v-model="gamas[2]" @change="filterByGama(gamas)" label="Alta" color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[0]" @change="filterPhoneTwitters(gamas)" label="Baja"  color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[1]" @change="filterPhoneTwitters(gamas)" label="Media" color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[2]" @change="filterPhoneTwitters(gamas)" label="Alta" color="#0E318A"></v-switch>          
     </v-flex>
     </v-layout>
   </v-container>   
@@ -30,79 +30,80 @@ import TwitterIcon from "vue-material-design-icons/Twitter.vue"
       TwitterIcon,
     },
     methods:{
-      ...mapMutations(['filterByGama']),
+      ...mapMutations(['filterPhoneTwitters']),
       allGamma(){
       this.gamas = [true,true,true]
-      this.filterByGama(this.gamas);
+      this.filterPhoneTwitters(this.gamas);
 
     },
 
-      getData(){
-      var chartOptions = {
-          responsive: {
-        rules: [{
-            condition: {
-            maxWidth: 500
+    getData(){
+        var chartOptions = {
+            responsive: {
+            rules: [{
+                condition: {
+                maxWidth: 500
+                },
+                chartOptions: {
+                legend: {
+                    enabled: false
+                }
+                }
+            }]
             },
-            chartOptions: {
+            chart: {
+            //styledMode: true,
+            renderTo: 'cointainer',
+            type: 'column'
+            },
+            title: {
+            text: 'Evaluación celulares según peso',
+            x:0,
+            y:7
+            },
+            xAxis: {
+            categories: this.neoPhonesData.topTen.topTenNames,
+        
+            },
+            yAxis:{
+            title: {
+                text: 'Peso'
+            }
+
+            },
             legend: {
-                enabled: false
+            align: 'top',
+            verticalAlign: 'top',
+            layout: 'horizontal',
+            x: 100,
+            y: 20
+            },
+            plotOptions: {
+            column:{
+                borderRadius: 4
+            },
+            series: {
+                //stacking: 'normal'
             }
-            }
-        }]
+            },
+            series: [
+            {
+            data: this.neoPhonesData.topTen.topTenSize,
+            name:'Peso de celulares',
+            color: 'orange'
+            },]
+        }
+        return chartOptions;
         },
-        chart: {
-          //styledMode: true,
-          renderTo: 'cointainer',
-          type: 'column'
-        },
-        title: {
-          text: 'Peso de Celulares',
-          x:0,
-          y:7
-        },
-        xAxis: {
-          categories: ['1','2','3','4','5','6','7','8','9','10'],
-    
-        },
-        yAxis:{
-          title: {
-            text: 'Peso'
-          }
-
-        },
-        legend: {
-          align: 'center',
-          verticalAlign: 'top',
-          layout: 'horizontal',
-          x: 50,
-          y: 20
-        },
-        plotOptions: {
-          column:{
-            borderRadius: 4
-          },
-          series: {
-              //stacking: 'normal'
-          }
-        },
-        series: [
-          {
-          data: [1,2,3,4,5,6,7,8,9,10],
-          name:'Peso de celulares',
-          color: 'orange'
-          
-        }]
-      }
-      return chartOptions;
-    },
-
-
     },
     data(){
 			return{
 			gamas:[true,true,true]
 			}
+    },
+        computed:
+    {
+        ...mapState(['neoPhonesData'])
     }
   }
 </script>
