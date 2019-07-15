@@ -137,6 +137,10 @@ public class NeoService {
         }
         System.out.println("fin segundo for");
 
+        for(nodo nodoI : list){
+            listaNeo.add(nodoI);
+        }
+
         StatementResult result2 = session.run("MATCH (p:NodePhone) RETURN id(p) as id, p.model as name, p.size as size");
         while(result2.hasNext())
         {
@@ -171,9 +175,7 @@ public class NeoService {
             list.add(nuevoNodo);
         }
     */
-        for(nodo nodoI : list){
-            listaNeo.add(nodoI);
-        }
+        System.out.println("Numero de nodos: " + list.size());
         return list;
     }
 
