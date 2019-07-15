@@ -112,6 +112,7 @@ public class NeoService {
                 nuevoNodo.setId(record.get("id").asLong());
                 nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
+                nuevoNodo.setType(0);
                 System.out.println("estoy en el for");
                 list.add(nuevoNodo);
             }
@@ -130,6 +131,7 @@ public class NeoService {
                 nuevoNodo.setId(record.get("id").asLong());
                 nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
+                nuevoNodo.setType(0);
                 list.add(nuevoNodo);
             }
         }
@@ -143,6 +145,7 @@ public class NeoService {
             nuevoNodo.setId(record.get("id").asLong());
             nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
+            nuevoNodo.setType(1);
             list.add(nuevoNodo);
         }
         StatementResult result3 = session.run("MATCH (b:NodeBrand) RETURN id(b) as id, b.brandName as name, b.size as size");
@@ -153,8 +156,10 @@ public class NeoService {
             nuevoNodo.setId(record.get("id").asLong());
             nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
+            nuevoNodo.setType(2);
             list.add(nuevoNodo);
         }
+        /*
         StatementResult result4 = session.run("MATCH (g:NodeGamma) RETURN id(g) as id, g.gammaName as name, g.size as size");
         while(result4.hasNext())
         {
@@ -165,7 +170,7 @@ public class NeoService {
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
-
+    */
         for(nodo nodoI : list){
             listaNeo.add(nodoI);
         }
