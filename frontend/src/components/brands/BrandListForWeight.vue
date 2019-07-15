@@ -62,7 +62,7 @@
                 {{ selected.name }}
               </h3>
               <div class="blue--text mb-2">Peso: {{ Math.round(selected.weight)}}</div>
-              <div class="primary--text subheading font-weight-bold">Top 5 usuarios que hablan de {{selected.name}}</div>
+              <div class="black--text subheading font-weight-bold">Top 5 usuarios más influyenyes que hablan de {{selected.name}}</div>
             </v-card-text>
             <v-divider></v-divider>
             <v-layout
@@ -155,43 +155,44 @@ import {mapState} from 'vuex';
         if (!this.active.length) return undefined
         const id = this.active[0]
         let algo = this.brandData.find(brand => brand.id === id)
-        console.log(algo)
         return algo
       }
     },
     methods: {
+      putData(){
+        if(this.neoBrandData.length>0 && this.ready == 0){
+          this.neoBrandData.sort(function (a, b) {
+            return (a.brandID - b.brandID)
+          })
+          
+          for(var data of this.neoBrandData)
+          {
+            var brandInfo = {id: data.brandID-1, name: data.brandName, img:this.imgData[data.brandID-1], weight: data.size}
+            this.brandData.push(brandInfo)
+            var users_brand = []
+            for(var user of data.users)
+              users_brand.push(user)
+
+            this.brandUsers.push(users_brand)
+          }
+          this.brandData.sort(function (a, b) {
+            return (b.weight - a.weight)
+          })
+          this.ready = 1
+        }
+      }
     },
     watch: {
       neoBrandData: function(){
-        if(this.neoBrandData.length>0 && this.ready == 0){
-        this.neoBrandData.sort(function (a, b) {
-          return (a.brandID - b.brandID)
-        })
-        
-        for(var data of this.neoBrandData)
-        {
-          var brandInfo = {id: data.brandID-1, name: data.brandName, img:this.imgData[data.brandID-1], weight: data.size}
-          this.brandData.push(brandInfo)
-          var users_brand = []
-          for(var user of data.users)
-            users_brand.push(user)
-
-          this.brandUsers.push(users_brand)
-        }
-        this.brandData.sort(function (a, b) {
-          return (b.weight - a.weight)
-        })
-        console.log('Aqui va el test')
-        console.log(this.brandData)
-        this.ready = 1
-      }
+        this.putData()
       }
     },
     mounted() {
+      this.putData()
     },
     
     data: () => ({
-      active: [0],
+      active: [4],
       ready : 0,
       avatar: null,
       imgData:['LGLogo','SamsungLogo','XiaomiLogo','MotorolaLogo','HuaweiLogo','AsusLogo','AppleLogo','NokiaLogo'],
