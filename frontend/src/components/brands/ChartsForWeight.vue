@@ -1,22 +1,10 @@
-
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
-      <v-flex md11 style="margin-left:-5%">
+      <v-flex md12>
         <highcharts :options="getData()"></highcharts>
       </v-flex>
-
-    <v-flex md1>      
-      <VBtn fab dark color="#0E318A">
-        <v-icon large color="white">monetization_on</v-icon>
-      </VBtn>
-      Gama
-      <v-radio-group :disabled="disabled" v-model="column" column @change="getTwittersByGamma(column)">
-        <v-radio  value="1" label="Baja"  color="#0E318A"></v-radio>          
-        <v-radio  value="2" label="Media" color="#0E318A"></v-radio>          
-        <v-radio  value="3" label="Alta" color="#0E318A"></v-radio>   
-      </v-radio-group>       
-    </v-flex>
+      
     </v-layout>
   </v-container>
 </template>
@@ -24,17 +12,17 @@
 <script>
 import { mapState,mapMutations, Store } from 'vuex';
 
-
 export default {
   name: 'Charts',
   computed:{
-    ...mapState(['gammaData']),
+    ...mapState(['brandData']),
   },
   methods: {
-    ...mapMutations(['getTwittersByGamma','usersGamma']), 
+    ...mapMutations(['filterByGama']), 
+
     getData(){
       var chartOptions = {
-          responsive: {
+        responsive: {
         rules: [{
             condition: {
             maxWidth: 500
@@ -52,17 +40,17 @@ export default {
           type: 'column'
         },
         title: {
-          text: 'Celulares según el top 5 de twitteros más populares',
+          text: 'Evaluación de Marcas',
           x:0,
           y:7
         },
         xAxis: {
-          categories: this.gammaData.topTen.topTenNames,
+          categories: this.brandData.brandNames,
     
         },
         yAxis:{
           title: {
-            text: 'Peso'
+            text: 'Nota / Numero de Tweets'
           }
 
         },
@@ -83,29 +71,40 @@ export default {
         },
         series: [
           {
-          data: this.gammaData.topTen.topTenSize,
-          name:'Peso de celulares',
+          data: this.brandData.evalBrand,
+          name:'Evaluación de marcas',
           color: 'orange'
-          },]
+          },
+          {
+          data: this.brandData.evalP,
+          visible: false,
+          name:'Comentarios Positivos',
+          color: '#90ed7d'
+          },
+          {
+          data: this.brandData.evalNeutral,
+          visible: false,
+          name:'Comentarios Neutrales',
+          color: 'Grey'
+          }, 
+          {
+          data: this.brandData.evalN,
+          visible: false,
+          name:'Comentarios Negativos',
+          color: 'Red'
+        }]
       }
       return chartOptions;
     },
   },
+  /*mounted(){
+    this.$store.dispatch('getAll')
+  },*/
   data () {
     return{
-      column: "3",
       gamas: [true,true,true],
-      disabled: false
-
     }
-  },
-  watch: {
-    usersGamma: function(){
-      if(this.usersGamma.length>0 && this.disabled)
-        this.disabled = false
-    }
-  },
- 
+  }
   
 }
 </script>

@@ -1,63 +1,109 @@
 <template>
-    <VLayout row wrap class>
-    <v-flex xs12 md4 v-for="(aux, index) in listaaux" :key="index">
-  <v-card
-    class="mx-auto; mt-4"
-    color="#26c6da"
-    dark
-    
-  >
-    <v-card-title>
-      <twitter-icon
-      large
-      left/>
-      <span class="title font-weight-light">Twitter</span>
-    </v-card-title>
+    <v-container grid-list-xl>
+    <v-layout row wrap>
+      <v-flex md11 style="margin-left:-5%">
+        <highcharts :options="getData()"></highcharts>
+      </v-flex>
 
-    <v-card-text class="headline font-weight-bold">
-      "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-    </v-card-text>
-
-    <v-card-actions>
-      <v-list-tile class="grow">
-        <v-list-tile-avatar color="grey darken-3">
-          <v-img
-            class="elevation-6"
-            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-          ></v-img>
-        </v-list-tile-avatar>
-
-        <v-list-tile-content>
-          <v-list-tile-title>Evan You</v-list-tile-title>
-        </v-list-tile-content>
-
-        <v-layout
-          align-center
-          justify-end
-          ma-1
-        >
-          <v-icon class="mr-1">favorite</v-icon>
-          <span class="subheading mr-2">256</span>
-          <v-icon class="mr-1">share</v-icon>
-          <span class="subheading">45</span>
-        </v-layout>
-      </v-list-tile>
-    </v-card-actions>
-  </v-card>
+    <v-flex md1>      
+      <VBtn fab dark color="#0E318A" @click="allGamma">
+        <v-icon large color="white">monetization_on</v-icon>
+      </VBtn>
+      Gama
+      <v-switch v-model="gamas[0]" @change="filterPhoneTwitters(gamas)" label="Baja"  color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[1]" @change="filterPhoneTwitters(gamas)" label="Media" color="#0E318A"></v-switch>          
+      <v-switch v-model="gamas[2]" @change="filterPhoneTwitters(gamas)" label="Alta" color="#0E318A"></v-switch>          
     </v-flex>
-    </VLayout>   
+    </v-layout>
+  </v-container>   
 </template>
 
 <script>
+import { mapState,mapMutations, Store } from 'vuex'
 import TwitterIcon from "vue-material-design-icons/Twitter.vue"
   export default {
+    name: 'Charts',
+    computed:{
+      //...mapState([]),
+    },
     components:{
       TwitterIcon,
     },
+    methods:{
+      ...mapMutations(['filterPhoneTwitters']),
+      allGamma(){
+      this.gamas = [true,true,true]
+      this.filterPhoneTwitters(this.gamas);
+
+    },
+
+    getData(){
+        var chartOptions = {
+            responsive: {
+            rules: [{
+                condition: {
+                maxWidth: 500
+                },
+                chartOptions: {
+                legend: {
+                    enabled: false
+                }
+                }
+            }]
+            },
+            chart: {
+            //styledMode: true,
+            renderTo: 'cointainer',
+            type: 'column'
+            },
+            title: {
+            text: 'Evaluación celulares según peso',
+            x:0,
+            y:7
+            },
+            xAxis: {
+            categories: this.neoPhonesData.topTen.topTenNames,
+        
+            },
+            yAxis:{
+            title: {
+                text: 'Peso'
+            }
+
+            },
+            legend: {
+            align: 'top',
+            verticalAlign: 'top',
+            layout: 'horizontal',
+            x: 100,
+            y: 20
+            },
+            plotOptions: {
+            column:{
+                borderRadius: 4
+            },
+            series: {
+                //stacking: 'normal'
+            }
+            },
+            series: [
+            {
+            data: this.neoPhonesData.topTen.topTenSize,
+            name:'Peso de celulares',
+            color: 'orange'
+            },]
+        }
+        return chartOptions;
+        },
+    },
     data(){
 			return{
-			listaaux:[1,2,3,4,5]
+			gamas:[true,true,true]
 			}
+    },
+        computed:
+    {
+        ...mapState(['neoPhonesData'])
     }
   }
 </script>

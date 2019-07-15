@@ -20,13 +20,17 @@
   export default {
     data() {
       return {
-        showNavbar: true
+        showNavbar: true,
+        ready:0
       }
     },
     methods:{
         ...mapMutations(['changeActive']),
         getData(){
-        this.$store.dispatch('getAllTwitters')
+          if(this.usersGamma.length > 0 && this.ready == 0){
+            this.$store.dispatch('getAllTwitters')
+            this.ready = 1
+        }
       }
     },
     components: {
@@ -38,13 +42,18 @@
 
     },
     computed:{
-      ...mapState(['active']),
+      ...mapState(['active','usersGamma']),
     },
     beforeMount(){
         this.changeActive('twitter')
     },
     mounted(){
       this.getData()
+    },
+    watch: {
+      usersGamma: function(){
+        this.getData()
+      }
     },
   }
 </script>

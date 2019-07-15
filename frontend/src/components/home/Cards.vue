@@ -1,9 +1,10 @@
 <template>
+
+
   <v-container grid-list-xl>
-                      <!-- No borrar, lo usé para un random 
-                          <li v-for="(k,index) in query">{{k}}</li>
-                        -->
-    <VLayout row wrap class="mt-2">
+  <v-progress-linear v-if="ready < 100" v-model="ready"></v-progress-linear>
+
+    <VLayout v-if="ready == 100"  row wrap class="mt-2">
       <v-flex xs12 md3>
         <v-hover>
           <v-card
@@ -208,14 +209,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
   export default {
     data(){
       return{
       dialog:false,
-      //query:[]
+      valueDeterminate: 0
       }
     },   
+    computed:{
+      ...mapState(['ready']),
+    },
   }
+  
 </script>
 
 <style lang="css">
