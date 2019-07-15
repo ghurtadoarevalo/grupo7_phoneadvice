@@ -42,7 +42,7 @@
 
                                 <v-list-tile-content>
                                 <v-list-tile-title class="ml-2 hide_100" style="margin-top:-18%">  
-                                        <a :href= userGammaData.urlProfile>
+                                        <a style="color: white" :href= userGammaData.urlProfile>
                                             @{{userGammaData.screenName}}
                                         </a>         
                                     </v-list-tile-title>

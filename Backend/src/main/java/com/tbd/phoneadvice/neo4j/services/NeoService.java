@@ -110,7 +110,7 @@ public class NeoService {
                 Record record = result.next();
                 nodo nuevoNodo = new nodo();
                 nuevoNodo.setId(record.get("id").asLong());
-                nuevoNodo.setNombre(record.get("name").asString());
+                nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
                 System.out.println("estoy en el for");
                 list.add(nuevoNodo);
@@ -128,16 +128,12 @@ public class NeoService {
                 Record record = result.next();
                 nodo nuevoNodo = new nodo();
                 nuevoNodo.setId(record.get("id").asLong());
-                nuevoNodo.setNombre(record.get("name").asString());
+                nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
                 list.add(nuevoNodo);
             }
         }
         System.out.println("fin segundo for");
-
-        for(nodo nodoI : list){
-            listaNeo.add(nodoI);
-        }
 
         StatementResult result2 = session.run("MATCH (p:NodePhone) RETURN id(p) as id, p.model as name, p.size as size");
         while(result2.hasNext())
@@ -145,7 +141,7 @@ public class NeoService {
             Record record = result2.next();
             nodo nuevoNodo = new nodo();
             nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
@@ -155,7 +151,7 @@ public class NeoService {
             Record record = result3.next();
             nodo nuevoNodo = new nodo();
             nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
@@ -165,9 +161,13 @@ public class NeoService {
             Record record = result4.next();
             nodo nuevoNodo = new nodo();
             nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
+        }
+
+        for(nodo nodoI : list){
+            listaNeo.add(nodoI);
         }
         return list;
     }

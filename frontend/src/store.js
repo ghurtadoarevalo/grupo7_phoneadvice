@@ -48,9 +48,28 @@ export default new Vuex.Store({
     },
     allGraphData:{nodes:[], links: []},
     neoBrandData: [],
+    neoPhones: [],
+    neoPhonesData: 
+    {
+        phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+            },
+    },
     link:[],
     usersGammaData: [],
-    gammaData:    {
+    gammaData:    
+    {
         phonesDescription: [],
         topTen:
         {
@@ -68,6 +87,7 @@ export default new Vuex.Store({
     },
 
     usersGamma: [],
+    ready: 0,
     },
   mutations: {
     /*Verificacion de elemento activo en ChangeToolbar*/
@@ -86,7 +106,8 @@ export default new Vuex.Store({
         await Axios 
         .get('http://localhost:8081/phones/getall')
         .then(response => (state.phoneData = response.data))
-        
+        state.ready += 5
+
         console.log('phoneData con datos cargados')
 
         //Se obtienen todos los teléfonos según cada especificación
@@ -98,13 +119,14 @@ export default new Vuex.Store({
           state.phoneSpecification.push(listFilter);
         }
         console.log('phoneSpecification con datos cargados')
+        state.ready += 5
 
         //Se obtienen todas las marcas
         await Axios
         .get('http://localhost:8081/brands/')
         .then(response => (state.brandList = response.data))
-        
         console.log('brandList con datos cargados')
+        state.ready += 5
 
         //Se obtienen todos los tweeteros y los celulares de los que hablan por gama
         for (let id = 1; id < 4; id++)
@@ -114,16 +136,27 @@ export default new Vuex.Store({
           .then(response => (state.usersGamma[id-1] = response.data))
         }
         console.log('lo hizo')
+        state.ready += 40
+
         await Axios
         .get('http://localhost:8081/neo/getBrands')
         .then(response => (state.neoBrandData = response.data))
         console.log('lo hizo x2')
+        state.ready+= 15
 
+        await Axios
+        .get('http://localhost:8081/neo/getPhones')
+        .then(response => (state.neoPhones = response.data))
+        console.log('lo hizo x3')
+        state.ready+=15
         /*
         await Axios
         .get('http://localhost:8081/neo/fullNodos/')
         .then(response => (state.allGraphData.nodes = response.data))
+        console.log('lo hizo x4')
         */
+       state.ready+=15
+
 
       }catch(err){console.log("En get all all " + err)}
     }, 
@@ -184,7 +217,6 @@ export default new Vuex.Store({
       state.imgList = imgList
       state.phonesDescription = phonesDescription
       state.topTen = topTen
-
     },
     filterByGama(state,gammas){
       var names = []
@@ -722,9 +754,125 @@ export default new Vuex.Store({
         state.usersGammaData = users
 
         console.log(gammaData)
-
-
     },
+
+    getPhoneTwitters(state)
+    {
+        var phoneData = {
+            phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+                othersSize:[],
+
+            }
+        }
+
+        var index = 0
+
+        for(var phone of state.neoPhones)
+        {
+            var dataSheet = []
+            dataSheet.push(phone.phoneSQL.data_sheet.cpu)
+            dataSheet.push(phone.phoneSQL.data_sheet.ram)
+            dataSheet.push(phone.phoneSQL.data_sheet.operative_s)
+            dataSheet.push(phone.phoneSQL.data_sheet.dimensions)
+            dataSheet.push(phone.phoneSQL.data_sheet.front_cam)
+            dataSheet.push(phone.phoneSQL.data_sheet.back_cam)
+            dataSheet.push(phone.phoneSQL.data_sheet.screen)
+            dataSheet.push(phone.phoneSQL.data_sheet.storage)
+            dataSheet.push(phone.phoneSQL.data_sheet.batery)
+            phoneData.phonesDescription.push(phone.phoneSQL.description)
+    
+            if(index > 9){
+                phoneData.others.othersSpecData.push(dataSheet);
+                phoneData.others.othersNames.push(phone.phoneSQL.model)
+                phoneData.others.othersSize.push(phone.size)
+                phoneData.others.othersImgList.push(phone.phoneSQL.image)
+            }
+            else{
+                phoneData.topTen.topTenSize.push(phone.size)
+                phoneData.topTen.topTenNames.push(phone.phoneSQL.model)
+                phoneData.topTen.topTenImgList.push(phone.phoneSQL.image)
+                phoneData.topTen.topTenSpecData.push(dataSheet)
+                index ++
+            } 
+        }
+
+        state.neoPhonesData = phoneData
+        console.log(phoneData)
+    },
+
+    filterPhoneTwitters(state,gamas)
+    {
+
+        var phoneData = {
+            phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+                othersSize:[],
+
+            }
+        }
+
+
+        var index = 0
+
+        for(var phone of state.neoPhones)
+        {
+            if(gamas[phone.phoneSQL.gamma.gammaId -1])
+            {
+                var dataSheet = []
+                dataSheet.push(phone.phoneSQL.data_sheet.cpu)
+                dataSheet.push(phone.phoneSQL.data_sheet.ram)
+                dataSheet.push(phone.phoneSQL.data_sheet.operative_s)
+                dataSheet.push(phone.phoneSQL.data_sheet.dimensions)
+                dataSheet.push(phone.phoneSQL.data_sheet.front_cam)
+                dataSheet.push(phone.phoneSQL.data_sheet.back_cam)
+                dataSheet.push(phone.phoneSQL.data_sheet.screen)
+                dataSheet.push(phone.phoneSQL.data_sheet.storage)
+                dataSheet.push(phone.phoneSQL.data_sheet.batery)
+                phoneData.phonesDescription.push(phone.phoneSQL.description)
+        
+                if(index > 9){
+                    phoneData.others.othersSpecData.push(dataSheet);
+                    phoneData.others.othersNames.push(phone.phoneSQL.model)
+                    phoneData.others.othersSize.push(phone.size)
+                    phoneData.others.othersImgList.push(phone.phoneSQL.image)
+                }
+                else{
+                    phoneData.topTen.topTenSize.push(phone.size)
+                    phoneData.topTen.topTenNames.push(phone.phoneSQL.model)
+                    phoneData.topTen.topTenImgList.push(phone.phoneSQL.image)
+                    phoneData.topTen.topTenSpecData.push(dataSheet)
+                    index ++
+                } 
+            }
+        }
+
+        state.neoPhonesData = phoneData
+
+        console.log(phoneData)
+    }
 
 
     /*Funciones para vista NetworkGraph*/
@@ -750,6 +898,10 @@ export default new Vuex.Store({
     },
     getAllTwitters(context){
         context.commit('getAllTwitters')
-      },
+    },
+    getPhoneTwitters(context)
+    {
+        context.commit('getPhoneTwitters')
+    }
   },
 })

@@ -95,7 +95,7 @@ export default {
     return{
       column: "3",
       gamas: [true,true,true],
-      disabled: true
+      disabled: false
 
     }
   },
