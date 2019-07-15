@@ -49,6 +49,7 @@
 <script >
   import D3Network from 'vue-d3-network'
   import { mapState } from 'vuex';
+import { userInfo } from 'os';
 
   const userIcon = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 53 53" style="enable-background:new 0 0 53 53;" xml:space="preserve" width="512px" height="512px" class=""><g><path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53  c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322  c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546  c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126  c-0.54,0.488-0.886,1.185-0.886,1.965v3.546c0,0.934,0.491,1.756,1.226,2.231c0.886,3.857,3.206,6.633,3.206,6.633v3.24  C20.296,39.899,19.65,40.986,18.613,41.552z" data-original="#E7ECED" class=""/><g><path style="fill:#0E318A" d="M26.953,0.004C12.32-0.246,0.254,11.414,0.004,26.047C-0.138,34.344,3.56,41.801,9.448,46.76   c0.385-0.336,0.798-0.644,1.257-0.894l7.907-4.313c1.037-0.566,1.683-1.653,1.683-2.835v-3.24c0,0-2.321-2.776-3.206-6.633   c-0.734-0.475-1.226-1.296-1.226-2.231v-3.546c0-0.78,0.347-1.477,0.886-1.965v-5.126c0,0-1.053-7.977,9.75-7.977   s9.75,7.977,9.75,7.977v5.126c0.54,0.488,0.886,1.185,0.886,1.965v3.546c0,1.192-0.8,2.195-1.886,2.53   c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233   c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z" data-original="#556080" class="active-path" data-old_color="#0E318A"/></g></g> </svg>`
   const phoneIcon = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve" width="512px" height="512px" class=""><g><path style="fill:#0E318A" d="M41.595,58H16.405C14.525,58,13,56.475,13,54.595V3.405C13,1.525,14.525,0,16.405,0h25.189  C43.475,0,45,1.525,45,3.405v51.189C45,56.475,43.475,58,41.595,58z" data-original="#424A60" class="active-path" data-old_color="#0E318A"/><rect x="13" y="6" style="fill:#FFFFFF" width="32" height="40" data-original="#E7ECED" class="" data-old_color="#010101"/><circle style="fill:#FCFDFF" cx="29" cy="52" r="3" data-original="#262B35" class="" data-old_color="#262B35"/><path style="fill:#FCFDFF" d="M29,4h-4c-0.553,0-1-0.447-1-1s0.447-1,1-1h4c0.553,0,1,0.447,1,1S29.553,4,29,4z" data-original="#262B35" class="" data-old_color="#262B35"/><path style="fill:#FCFDFF" d="M33,4h-1c-0.553,0-1-0.447-1-1s0.447-1,1-1h1c0.553,0,1,0.447,1,1S33.553,4,33,4z" data-original="#262B35" class="" data-old_color="#262B35"/></g> </svg>`
@@ -99,6 +100,8 @@
         else{
           this.offset.x = this.x_i + this.zoom*3.5
           this.offset.y = this.y_i + this.zoom*5.5
+          this.w = this.w_i + this.zoom*3.5
+          this.h = this.h_i + this.zoom*20
         }
         console.log('x: '+this.offset.x.toString())
         console.log('y: '+this.offset.y.toString())
@@ -111,7 +114,8 @@
      {
         this.slider = false
         for(var node of this.pre_nodes){
-          var peso = 0
+          var sym = ""
+          /*var peso = 0
           if(node.peso>=1000000)
             peso = node.peso/700000
           else if(node.peso>=100000 && node.peso <1000000)  
@@ -123,8 +127,13 @@
           else if(node.peso>=100 && node.peso <1000)  
             peso = node.peso/70 
           else
-            peso = node.peso/70  
-          var nodo = {id: node.id, name: node.name, _size:peso}
+            peso = node.peso/70  */
+          if(node.type == 0)
+            sym = userIcon
+          else if(node.type == 1)
+            sym = phoneIcon
+
+          var nodo = {id: node.id, name: node.name, svgSym:sym/*, _size:peso*/}
           this.nodes.push(nodo)
         }
 
@@ -161,804 +170,946 @@
         {
             id: 3360,
             name: "Chollistas.com",
-            peso: 25540.0
+            peso: 25540.0,
+            type: 0
         },
         {
             id: 3488,
             name: "cholloschina",
-            peso: 20608.0
+            peso: 20608.0,
+            type: 0
         },
         {
             id: 5091,
             name: "Gangas Xiaomi y Mas",
-            peso: 16829.0
+            peso: 16829.0,
+            type: 0
         },
         {
             id: 5420,
             name: "MovilZona",
-            peso: 74440.0
+            peso: 74440.0,
+            type: 0
         },
         {
             id: 2269,
             name: "Xiaomi4Mi",
-            peso: 9623.0
+            peso: 9623.0,
+            type: 0
         },
         {
             id: 3444,
             name: "ᴊᴜʟɪᴏ ᴄʜᴀᴠᴇᴢ",
-            peso: 2970.0
+            peso: 2970.0,
+            type: 0
         },
         {
             id: 35695,
             name: "Lucero",
-            peso: 8676880.0
+            peso: 8676880.0,
+            type: 0
         },
         {
             id: 5581,
             name: "xataka",
-            peso: 1369890.0
+            peso: 1369890.0,
+            type: 0
         },
         {
             id: 19365,
             name: "Noticiero de Verdad",
-            peso: 881923.0
+            peso: 881923.0,
+            type: 0
         },
         {
             id: 6434,
             name: "TODO SOBRE MOVIL",
-            peso: 16609.0
+            peso: 16609.0,
+            type: 0
         },
         {
             id: 408,
             name: "Todochollos",
-            peso: 15579.0
+            peso: 15579.0,
+            type: 0
         },
         {
             id: 2269,
             name: "Xiaomi4Mi",
-            peso: 9623.0
+            peso: 9623.0,
+            type: 0
         },
         {
             id: 5431,
             name: "Hipertextual",
-            peso: 991571.0
+            peso: 991571.0,
+            type: 0
         },
         {
             id: 8279,
             name: "Xataka Android",
-            peso: 204017.0
+            peso: 204017.0,
+            type: 0
         },
         {
             id: 9457,
             name: "Xiaomi España",
-            peso: 77231.0
+            peso: 77231.0,
+            type: 0
         },
         {
             id: 6017,
             name: "Pamella",
-            peso: 2169.0
+            peso: 2169.0,
+            type: 0
         },
         {
             id: 845,
             name: "CholloComponentes",
-            peso: 30338.0
+            peso: 30338.0,
+            type: 0
         },
         {
             id: 21826,
             name: "DolarToday®",
-            peso: 3537276.0
+            peso: 3537276.0,
+            type: 0
         },
         {
             id: 5581,
             name: "xataka",
-            peso: 1369890.0
+            peso: 1369890.0,
+            type: 0
         },
         {
             id: 7203,
             name: "Topes de Gama",
-            peso: 463277.0
+            peso: 463277.0,
+            type: 0
         },
         {
             id: 8279,
             name: "Xataka Android",
-            peso: 204017.0
+            peso: 204017.0,
+            type: 0
         },
         {
             id: 1642,
             name: "Futbol de Bolivia",
-            peso: 200404.0
+            peso: 200404.0,
+            type: 0
         },
         {
             id: 2768,
             name: "CNET en Español",
-            peso: 62701.0
+            peso: 62701.0,
+            type: 0
         },
         {
             id: 7203,
             name: "Topes de Gama",
-            peso: 463277.0
+            peso: 463277.0,
+            type: 0
         },
         {
             id: 4370,
             name: "Raúl ERdC",
-            peso: 48064.0
+            peso: 48064.0,
+            type: 0
         },
         {
             id: 9988,
             name: "Carlos Vassan",
-            peso: 36774.0
+            peso: 36774.0,
+            type: 0
         },
         {
             id: 34676,
             name: "Rádio Sagres 730",
-            peso: 118941.0
+            peso: 118941.0,
+            type: 0
         },
         {
             id: 30495,
             name: "IZHAN🚀",
-            peso: 63636.0
+            peso: 63636.0,
+            type: 0
         },
         {
             id: 16326,
             name: "Jose Mercado Foto",
-            peso: 19446.0
+            peso: 19446.0,
+            type: 0
         },
         {
             id: 9226,
             name: "Alvaro Martin",
-            peso: 213104.0
+            peso: 213104.0,
+            type: 0
         },
         {
             id: 23239,
             name: "Samsung Responde",
-            peso: 133451.0
+            peso: 133451.0,
+            type: 0
         },
         {
             id: 27076,
             name: "Básquet Plus",
-            peso: 52680.0
+            peso: 52680.0,
+            type: 0
         },
         {
             id: 7355,
             name: "decosleo",
-            peso: 720.0
+            peso: 720.0,
+            type: 0
         },
         {
             id: 9695,
             name: "TarjetaLocal&Msjz",
-            peso: 299.0
+            peso: 299.0,
+            type: 0
         },
         {
             id: 5731,
             name: "Steven Rodrigo 🇵🇾⚫⚪⚫⚪⚫",
-            peso: 211.0
+            peso: 211.0,
+            type: 0
         },
         {
             id: 35895,
             name: "Uniforme Neutro alv 🏳️‍🌈🦄",
-            peso: 1048.0
+            peso: 1048.0,
+            type: 0
         },
         {
             id: 28135,
             name: "tumblr case 18k",
-            peso: 0.0
+            peso: 0.0,
+            type: 0
         },
         {
             id: 9822,
             name: "Markos González 🇵🇾",
-            peso: 35503.0
+            peso: 35503.0,
+            type: 0
         },
         {
             id: 26147,
             name: "Planeta Red",
-            peso: 7953.0
+            peso: 7953.0,
+            type: 0
         },
         {
             id: 7567,
             name: "El estado Sucre Dice",
-            peso: 4788.0
+            peso: 4788.0,
+            type: 0
         },
         {
             id: 9822,
             name: "Markos González 🇵🇾",
-            peso: 35503.0
+            peso: 35503.0,
+            type: 0
         },
         {
             id: 5104,
             name: "William Francx",
-            peso: 819.0
+            peso: 819.0,
+            type: 0
         },
         {
             id: 10126,
             name: "Alexis Jacquet 🚲",
-            peso: 89.0
+            peso: 89.0,
+            type: 0
         },
         {
             id: 4265,
             name: "Apps & News iOS",
-            peso: 12315.0
+            peso: 12315.0,
+            type: 0
         },
         {
             id: 16936,
             name: "Jose Miguel Fredes",
-            peso: 1701.0
+            peso: 1701.0,
+            type: 0
         },
         {
             id: 4361,
             name: "SETEMCA MOBILE",
-            peso: 394.0
+            peso: 394.0,
+            type: 0
         },
         {
             id: 14064,
             name: "LG Mobile CA",
-            peso: 6237.0
+            peso: 6237.0,
+            type: 0
         },
         {
             id: 32537,
             name: "anabella ramirez bravo",
-            peso: 405.0
+            peso: 405.0,
+            type: 0
         },
         {
             id: 35988,
             name: "Lucas",
-            peso: 262.0
+            peso: 262.0,
+            type: 0
         },
         {
             id: 29534,
             name: "#ElMásGrandeDeLaHistoria",
-            peso: 224539.0
+            peso: 224539.0,
+            type: 0
         },
         {
             id: 29536,
             name: "Leonardo Ponzio",
-            peso: 192050.0
+            peso: 192050.0,
+            type: 0
         },
         {
             id: 26842,
             name: "Reporte Fútbol",
-            peso: 159239.0
+            peso: 159239.0,
+            type: 0
         },
         {
             id: 4831,
             name: "Xataka Móvil",
-            peso: 198862.0
+            peso: 198862.0,
+            type: 0
         },
         {
             id: 5221,
             name: "LaComparacion.com",
-            peso: 128978.0
+            peso: 128978.0,
+            type: 0
         },
         {
             id: 5591,
             name: "Andro4all",
-            peso: 90051.0
+            peso: 90051.0,
+            type: 0
         },
         {
             id: 5581,
             name: "xataka",
-            peso: 1369890.0
+            peso: 1369890.0,
+            type: 0
         },
         {
             id: 4746,
             name: "Applesfera",
-            peso: 882819.0
+            peso: 882819.0,
+            type: 0
         },
         {
             id: 5221,
             name: "LaComparacion.com",
-            peso: 128978.0
+            peso: 128978.0,
+            type: 0
         },
         {
             id: 29534,
             name: "#ElMásGrandeDeLaHistoria",
-            peso: 224539.0
+            peso: 224539.0,
+            type: 0
         },
         {
             id: 29536,
             name: "Leonardo Ponzio",
-            peso: 192050.0
+            peso: 192050.0,
+            type: 0
         },
         {
             id: 26842,
             name: "Reporte Fútbol",
-            peso: 159239.0
+            peso: 159239.0,
+            type: 0
         },
         {
             id: 4831,
             name: "Xataka Móvil",
-            peso: 198862.0
+            peso: 198862.0,
+            type: 0
         },
         {
             id: 2768,
             name: "CNET en Español",
-            peso: 62701.0
+            peso: 62701.0,
+            type: 0
         },
         {
             id: 26771,
             name: "Iberopost",
-            peso: 36642.0
+            peso: 36642.0,
+            type: 0
         },
         {
             id: 36931,
             name: "Smartphone Ecuador",
-            peso: 7793.0
+            peso: 7793.0,
+            type: 0
         },
         {
             id: 37286,
             name: "Reparación De Celulares Hamecell",
-            peso: 941.0
+            peso: 941.0,
+            type: 0
         },
         {
             id: 26809,
             name: "Tw_coscase",
-            peso: 280.0
+            peso: 280.0,
+            type: 0
         },
         {
             id: 9667,
             name: "HuaweiMobileCo",
-            peso: 130702.0
+            peso: 130702.0,
+            type: 0
         },
         {
             id: 30935,
             name: "cata",
-            peso: 18581.0
+            peso: 18581.0,
+            type: 0
         },
         {
             id: 15567,
             name: "Jonathan Munizaga",
-            peso: 4291.0
+            peso: 4291.0,
+            type: 0
         },
         {
             id: 9667,
             name: "HuaweiMobileCo",
-            peso: 130702.0
+            peso: 130702.0,
+            type: 0
         },
         {
             id: 4936,
             name: "Meh",
-            peso: 16795.0
+            peso: 16795.0,
+            type: 0
         },
         {
             id: 36931,
             name: "Smartphone Ecuador",
-            peso: 7793.0
+            peso: 7793.0,
+            type: 0
         },
         {
             id: 7203,
             name: "Topes de Gama",
-            peso: 463277.0
+            peso: 463277.0,
+            type: 0
         },
         {
             id: 4526,
             name: "Pro Android 🥝",
-            peso: 341657.0
+            peso: 341657.0,
+            type: 0
         },
         {
             id: 4831,
             name: "Xataka Móvil",
-            peso: 198862.0
+            peso: 198862.0,
+            type: 0
         },
         {
             id: 10061,
             name: "Huawei Mobile Chile",
-            peso: 96014.0
+            peso: 96014.0,
+            type: 0
         },
         {
             id: 3444,
             name: "ᴊᴜʟɪᴏ ᴄʜᴀᴠᴇᴢ",
-            peso: 2970.0
+            peso: 2970.0,
+            type: 0
         },
         {
             id: 37180,
             name: "DETIROCONARCO",
-            peso: 2667.0
+            peso: 2667.0,
+            type: 0
         },
         {
             id: 25929,
             name: "Julián Gutiérrez",
-            peso: 2505.0
+            peso: 2505.0,
+            type: 0
         },
         {
             id: 11571,
             name: "Leonel🌑",
-            peso: 1266.0
+            peso: 1266.0,
+            type: 0
         },
         {
             id: 35867,
             name: "🤖Mr. Meeseeks🤖",
-            peso: 516.0
+            peso: 516.0,
+            type: 0
         },
         {
             id: 2768,
             name: "CNET en Español",
-            peso: 62701.0
+            peso: 62701.0,
+            type: 0
         },
         {
             id: 30538,
             name: "Edú Ortega Ibarra.",
-            peso: 32936.0
+            peso: 32936.0,
+            type: 0
         },
         {
             id: 6434,
             name: "TODO SOBRE MOVIL",
-            peso: 16609.0
+            peso: 16609.0,
+            type: 0
         },
         {
             id: 5581,
             name: "xataka",
-            peso: 1369890.0
+            peso: 1369890.0,
+            type: 0
         },
         {
             id: 30223,
             name: "Portafolio",
-            peso: 1318299.0
+            peso: 1318299.0,
+            type: 0
         },
         {
             id: 11033,
             name: "Noticias SIN",
-            peso: 1145905.0
+            peso: 1145905.0,
+            type: 0
         },
         {
             id: 21826,
             name: "DolarToday®",
-            peso: 3537276.0
+            peso: 3537276.0,
+            type: 0
         },
         {
             id: 3971,
             name: "Noticias24",
-            peso: 3232849.0
+            peso: 3232849.0,
+            type: 0
         },
         {
             id: 3716,
             name: "RT en Español",
-            peso: 3025918.0
+            peso: 3025918.0,
+            type: 0
         },
         {
             id: 5527,
             name: "ABC.es",
-            peso: 1690585.0
+            peso: 1690585.0,
+            type: 0
         },
         {
             id: 5581,
             name: "xataka",
-            peso: 1369890.0
+            peso: 1369890.0,
+            type: 0
         },
         {
             id: 5431,
             name: "Hipertextual",
-            peso: 991571.0
+            peso: 991571.0,
+            type: 0
         },
         {
             id: 8073,
             name: "Personal Argentina",
-            peso: 554564.0
+            peso: 554564.0,
+            type: 0
         },
         {
             id: 7203,
             name: "Topes de Gama",
-            peso: 463277.0
+            peso: 463277.0,
+            type: 0
         },
         {
             id: 9616,
             name: "Samsung Chile",
-            peso: 394863.0
+            peso: 394863.0,
+            type: 0
         },
         {
             id: 15152,
             name: "CNN en Español",
-            peso: 1.727304E7
+            peso: 17273040,
+            type: 0
         },
         {
             id: 22239,
             name: "Noticias Caracol",
-            peso: 8272167.0
+            peso: 8272167.0,
+            type: 0
         },
         {
             id: 26951,
             name: "Noticias RCN",
-            peso: 7625136.0
+            peso: 7625136.0,
+            type: 0
         },
         {
             id: 5527,
             name: "ABC.es",
-            peso: 1690585.0
+            peso: 1690585.0,
+            type: 0
         },
         {
             id: 7607,
             name: "Sin Embargo MX",
-            peso: 1314510.0
+            peso: 1314510.0,
+            type: 0
         },
         {
             id: 7203,
             name: "Topes de Gama",
-            peso: 463277.0
+            peso: 463277.0,
+            type: 0
         },
         {
             id: 15152,
             name: "CNN en Español",
-            peso: 1.727304E7
+            peso: 17273040,
+            type: 0
         },
         {
             id: 1108,
             name: "El Universal",
-            peso: 5030046.0
+            peso: 5030046.0,
+            type: 0
         },
         {
             id: 10370,
             name: "Chilango",
-            peso: 3773766.0
+            peso: 3773766.0,
+            type: 0
         },
         {
             id: 36677,
             name: "ENTER.CO",
-            peso: 457549.0
+            peso: 457549.0,
+            type: 0
         },
         {
             id: 10024,
             name: "ElDoce",
-            peso: 385402.0
+            peso: 385402.0,
+            type: 0
         },
         {
             id: 5461,
             name: "Chincheto",
-            peso: 342885.0
+            peso: 342885.0,
+            type: 0
         },
         {
             id: 37125,
             name: "Redmi GO",
-            peso: 38632.5
+            peso: 38632.5,
+            type: 1
         },
         {
             id: 37126,
             name: "Mi Mix 3",
-            peso: 28851.600000000002
+            peso: 28851.600000000002,
+            type: 1
         },
         {
             id: 37127,
             name: "Mi 9",
-            peso: 4475312.1000000015
+            peso: 4475312.1000000015,
+            type: 1
         },
         {
             id: 37128,
             name: "Redmi 6",
-            peso: 29421.899999999983
+            peso: 29421.899999999983,
+            type: 1
         },
         {
             id: 37129,
             name: "Zenfone 5z",
-            peso: 650.6999999999999
+            peso: 650.6999999999999,
+            type: 1
         },
         {
             id: 37130,
             name: "Galaxy s10",
-            peso: 2733682.2000000007
+            peso: 2733682.2000000007,
+            type: 1
         },
         {
             id: 37131,
             name: "Galaxy note 9",
-            peso: 186510.59999999998
+            peso: 186510.59999999998,
+            type: 1
         },
         {
             id: 37132,
             name: "Galaxy A70",
-            peso: 192639.90000000002
+            peso: 192639.90000000002,
+            type: 1
         },
         {
             id: 37133,
             name: "Galaxy A9",
-            peso: 71037.59999999999
+            peso: 71037.59999999999,
+            type: 1
         },
         {
             id: 37134,
             name: "Galaxy J4",
-            peso: 166028.39999999997
+            peso: 166028.39999999997,
+            type: 1
         },
         {
             id: 37135,
             name: "9 PureView",
-            peso: 305.7
+            peso: 305.7,
+            type: 1
         },
         {
             id: 37136,
             name: "Nokia 7.1",
-            peso: 63.3
+            peso: 63.3,
+            type: 1
         },
         {
             id: 37137,
             name: "Nokia 6.1",
-            peso: 314.4
+            peso: 314.4,
+            type: 1
         },
         {
             id: 37138,
             name: "Nokia 3.1",
-            peso: 16415.1
+            peso: 16415.1,
+            type: 1
         },
         {
             id: 37139,
             name: "Nokia 2.1",
-            peso: 10923.3
+            peso: 10923.3,
+            type: 1
         },
         {
             id: 37140,
             name: "G7 ThinQ",
-            peso: 4426.5
+            peso: 4426.5,
+            type: 1
         },
         {
             id: 37141,
             name: "870",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37142,
             name: "K11",
-            peso: 2145.0
+            peso: 2145.0,
+            type: 1
         },
         {
             id: 37143,
             name: "K9",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37144,
             name: "Q7",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37145,
             name: "Redmi note 7",
-            peso: 550699.7999999997
+            peso: 550699.7999999997,
+            type: 1
         },
         {
             id: 37146,
             name: "Zenfone Max Pro",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37147,
             name: "Zenfone 5",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37148,
             name: "Zenfone 3",
-            peso: 9101.4
+            peso: 9101.4,
+            type: 1
         },
         {
             id: 37149,
             name: "Zenfone Pegasus 4A",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37165,
             name: "iPhone XS",
-            peso: 468369.29999999993
+            peso: 468369.29999999993,
+            type: 1
         },
         {
             id: 37166,
             name: "iPhone XR",
-            peso: 222433.19999999998
+            peso: 222433.19999999998,
+            type: 1
         },
         {
             id: 37167,
             name: "iPhone 8",
-            peso: 779009.9999999998
+            peso: 779009.9999999998,
+            type: 1
         },
         {
             id: 37168,
             name: "iPhone 8 Plus",
-            peso: 458716.4999999999
+            peso: 458716.4999999999,
+            type: 1
         },
         {
             id: 37169,
             name: "iPhone XS Max",
-            peso: 117061.19999999998
+            peso: 117061.19999999998,
+            type: 1
         },
         {
             id: 37170,
             name: "Y6",
-            peso: 2724.3
+            peso: 2724.3,
+            type: 1
         },
         {
             id: 37171,
             name: "P Smart",
-            peso: 47396.700000000004
+            peso: 47396.700000000004,
+            type: 1
         },
         {
             id: 37172,
             name: "Y9",
-            peso: 56366.399999999994
+            peso: 56366.399999999994,
+            type: 1
         },
         {
             id: 37173,
             name: "P30",
-            peso: 654249.5999999997
+            peso: 654249.5999999997,
+            type: 1
         },
         {
             id: 37174,
             name: "Mate 20",
-            peso: 34321.80000000002
+            peso: 34321.80000000002,
+            type: 1
         },
         {
             id: 37175,
             name: "Moto E5",
-            peso: 0.0
+            peso: 0.0,
+            type: 1
         },
         {
             id: 37176,
             name: "Moto One",
-            peso: 1286.1
+            peso: 1286.1,
+            type: 1
         },
         {
             id: 37177,
             name: "Moto G7",
-            peso: 36507.3
+            peso: 36507.3,
+            type: 1
         },
         {
             id: 37178,
             name: "Moto G6",
-            peso: 6245.099999999999
+            peso: 6245.099999999999,
+            type: 1
         },
         {
             id: 37179,
             name: "Moto Z3 Play",
-            peso: 1636.8
+            peso: 1636.8,
+            type: 1
         },
         {
             id: 37105,
             name: "Lg",
-            peso: 851222.3999999997
+            peso: 851222.3999999997,
+            type: 2
         },
         {
             id: 37106,
             name: "Samsung",
-            peso: 5253951.299999999
+            peso: 5253951.299999999,
+            type: 2
         },
         {
             id: 37107,
             name: "Xiaomi",
-            peso: 5162457.900000001
+            peso: 5162457.900000001,
+            type: 2
         },
         {
             id: 37108,
             name: "Motorola",
-            peso: 393759.59999999986
+            peso: 393759.59999999986,
+            type: 2
         },
         {
             id: 37109,
             name: "Huawei",
-            peso: 1.697334284999994E7
+            peso: 16973342.84999994,
+            type: 2
         },
         {
             id: 37110,
             name: "Asus",
-            peso: 1178191.2000000018
+            peso: 1178191.2000000018,
+            type: 2
         },
         {
             id: 37111,
             name: "Apple",
-            peso: 9621741.52500002
+            peso: 9621741.52500002,
+            type: 2
         },
         {
             id: 37112,
             name: "Nokia",
-            peso: 375549.2999999994
-        },
-        {
-            id: 37113,
-            name: "Baja",
-            peso: 0.0
-        },
-        {
-            id: 37114,
-            name: "Media",
-            peso: 0.0
-        },
-        {
-            id: 37115,
-            name: "Alta",
-            peso: 0.0
+            peso: 375549.2999999994,
+            type: 2
         }
-      ],
+        ],
       pre_links:[
         {
             source: 408,
@@ -2508,7 +2659,8 @@
     stroke:#60b5e6
 }
 .link{
-    stroke:#0E318A
+    stroke:#60b5e6;
+    stroke-width:1px
 }
 .link,.node{
     stroke-linecap:round
@@ -2524,7 +2676,8 @@
     fill:none
 }
 .link-label,.node-label{
-    fill:#127862
+    fill:#0E318A;
+    font-weight: bold
 }
 .link-label{
     -webkit-transform:translateY(-.5em);

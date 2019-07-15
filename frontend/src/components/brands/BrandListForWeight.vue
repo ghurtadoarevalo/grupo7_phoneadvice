@@ -9,7 +9,7 @@
       pa-3
     >
       <v-flex xs5>
-        <v-treeview
+        <v-treeview v-if="ready == 1"
           :active.sync="active"
           :items="items"
           activatable
@@ -61,8 +61,8 @@
               <h3 class="headline mb-2">
                 {{ selected.name }}
               </h3>
-              <div class="blue--text mb-2">{{ selected.name }}</div>
-              <div class="blue--text subheading font-weight-bold">{{ selected.name }}</div>
+              <div class="blue--text mb-2">Peso: {{ Math.round(selected.weight)}}</div>
+              <div class="primary--text subheading font-weight-bold">Top 5 usuarios que hablan de {{selected.name}}</div>
             </v-card-text>
             <v-divider></v-divider>
             <v-layout
@@ -163,7 +163,7 @@ import {mapState} from 'vuex';
     },
     watch: {
       neoBrandData: function(){
-        if(this.neoBrandData.length!=0){
+        if(this.neoBrandData.length>0 && this.ready == 0){
         this.neoBrandData.sort(function (a, b) {
           return (a.brandID - b.brandID)
         })
@@ -183,6 +183,7 @@ import {mapState} from 'vuex';
         })
         console.log('Aqui va el test')
         console.log(this.brandData)
+        this.ready = 1
       }
       }
     },
@@ -191,6 +192,7 @@ import {mapState} from 'vuex';
     
     data: () => ({
       active: [0],
+      ready : 0,
       avatar: null,
       imgData:['LGLogo','SamsungLogo','XiaomiLogo','MotorolaLogo','HuaweiLogo','AsusLogo','AppleLogo','NokiaLogo'],
       brandData:[],

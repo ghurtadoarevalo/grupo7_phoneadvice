@@ -142,6 +142,7 @@ export default new Vuex.Store({
         .get('http://localhost:8081/neo/getBrands')
         .then(response => (state.neoBrandData = response.data))
         console.log('lo hizo x2')
+        console.log(state.neoBrandData)
         state.ready+= 15
 
         await Axios
