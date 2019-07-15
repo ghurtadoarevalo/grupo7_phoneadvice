@@ -35,6 +35,7 @@ public class NeoService {
     //private String uri = "bolt://localhost";
     //private String user = "neo4j";
     //private String password = "canito123";
+    List<nodo> listaNeo = new ArrayList<>();
 
     @Autowired
     private UserRepository userRepository;
@@ -100,16 +101,44 @@ public class NeoService {
         Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
         Session session = driver.session();
         List<nodo> list = new ArrayList<>();
-        StatementResult result = session.run("MATCH (u:NodeUser) RETURN id(u) as id, u.name as name, u.size as size");
-        while(result.hasNext())
-        {
-            Record record = result.next();
-            nodo nuevoNodo = new nodo();
-            nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
-            nuevoNodo.setPeso(record.get("size").asDouble());
-            list.add(nuevoNodo);
+        for(int i=1; i<39; i++){
+            Phone equipo = phoneRepository.findByPhoneId((long) i);
+            StatementResult result = session.run("MATCH (p:NodePhone) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE p.phoneID = " + equipo.getPhoneId() + "  RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 3");
+            System.out.println("estoy fuera del for");
+            while(result.hasNext())
+            {
+                Record record = result.next();
+                nodo nuevoNodo = new nodo();
+                nuevoNodo.setId(record.get("id").asLong());
+                nuevoNodo.setNombre(record.get("name").asString());
+                nuevoNodo.setPeso(record.get("size").asDouble());
+                System.out.println("estoy en el for");
+                list.add(nuevoNodo);
+            }
         }
+        System.out.println("termino el for");
+
+        for(int i=1; i<9; i++){
+            Brand marca = brandRepository.findBrandByBrandId((long) i);
+            StatementResult result = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE b.brandID = "+ marca.getBrandId() +" RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 3");
+            System.out.println("segundo for");
+            while(result.hasNext())
+            {
+                System.out.println("tengo algo");
+                Record record = result.next();
+                nodo nuevoNodo = new nodo();
+                nuevoNodo.setId(record.get("id").asLong());
+                nuevoNodo.setNombre(record.get("name").asString());
+                nuevoNodo.setPeso(record.get("size").asDouble());
+                list.add(nuevoNodo);
+            }
+        }
+        System.out.println("fin segundo for");
+
+        for(nodo nodoI : list){
+            listaNeo.add(nodoI);
+        }
+
         StatementResult result2 = session.run("MATCH (p:NodePhone) RETURN id(p) as id, p.model as name, p.size as size");
         while(result2.hasNext())
         {
@@ -140,7 +169,6 @@ public class NeoService {
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
-
         return list;
     }
 
@@ -153,12 +181,21 @@ public class NeoService {
         StatementResult result = session.run("MATCH (a)-[r]->(b) RETURN id(a) as source, id(b) as target, type(r) as caption");
         while(result.hasNext()){
             Record record = result.next();
-            Arista nuevaArista = new Arista();
-            nuevaArista.setSource(record.get("source").asLong());
-            nuevaArista.setTarget(record.get("target").asLong());
-            nuevaArista.setType(record.get("caption").asString());
-            list.add(nuevaArista);
+            boolean flag = false;
+            for(nodo nodoI : listaNeo){
+                if(record.get("source").asLong() == nodoI.getId() | record.get("target").asLong() == nodoI.getId()){
+                    flag = true;
+                }
+            }
+            if(flag){
+                Arista nuevaArista = new Arista();
+                nuevaArista.setSource(record.get("source").asLong());
+                nuevaArista.setTarget(record.get("target").asLong());
+                nuevaArista.setType(record.get("caption").asString());
+                list.add(nuevaArista);
+            }
         }
+        System.out.println("largo arreglo aristas: " + list.size());
         return list;
     }
 
