@@ -3,7 +3,7 @@ package com.tbd.phoneadvice.neo4j.models;
 public class nodo {
 
     private long id;
-    private String nombre;
+    private String name;
     private double peso;
 
 
@@ -15,12 +15,12 @@ public class nodo {
         this.peso = peso;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getId() {

@@ -110,7 +110,7 @@ public class NeoService {
                 Record record = result.next();
                 nodo nuevoNodo = new nodo();
                 nuevoNodo.setId(record.get("id").asLong());
-                nuevoNodo.setNombre(record.get("name").asString());
+                nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
                 System.out.println("estoy en el for");
                 list.add(nuevoNodo);
@@ -128,7 +128,7 @@ public class NeoService {
                 Record record = result.next();
                 nodo nuevoNodo = new nodo();
                 nuevoNodo.setId(record.get("id").asLong());
-                nuevoNodo.setNombre(record.get("name").asString());
+                nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
                 list.add(nuevoNodo);
             }
@@ -141,7 +141,7 @@ public class NeoService {
             Record record = result2.next();
             nodo nuevoNodo = new nodo();
             nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
@@ -151,7 +151,7 @@ public class NeoService {
             Record record = result3.next();
             nodo nuevoNodo = new nodo();
             nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
@@ -161,7 +161,7 @@ public class NeoService {
             Record record = result4.next();
             nodo nuevoNodo = new nodo();
             nuevoNodo.setId(record.get("id").asLong());
-            nuevoNodo.setNombre(record.get("name").asString());
+            nuevoNodo.setName(record.get("name").asString());
             nuevoNodo.setPeso(record.get("size").asDouble());
             list.add(nuevoNodo);
         }
