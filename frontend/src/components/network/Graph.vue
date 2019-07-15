@@ -1,5 +1,6 @@
 <template>
 <v-container
+  fluid
   grid-list-xl
   id="scroll-target"
   class="scroll-y">
@@ -67,38 +68,7 @@
     components: {
       D3Network,
     },
-    data() {
-      return {
-        nodes: [
-        ],
-        
-        links: [
-        /*{ sid: 6, tid: 14},
-        { sid: 6, tid: 15},
-        { sid: 6, tid: 16},
-        { sid: 6, tid: 17},
-        { sid: 6, tid: 18},
-        { sid: 1, tid: 6},
-        { sid: 1, tid: 7},
-        { sid: 1, tid: 10},
-        { sid: 2, tid: 7},
-        { sid: 3, tid: 8},
-        { sid: 3, tid: 11},
-        { sid: 3, tid: 12},
-        { sid: 4, tid: 9},
-        { sid: 4, tid: 13},
-        { sid: 5, tid: 7},
-        { sid: 5, tid: 12},*/
-      ],
-      nodeSize:20,
-      force:3500,
-      zoom:0,
-      h:1200,
-      w:1200,
-      offset:{x:70,y:-100},
-      slider: true,
-      }
-    },
+    
     methods: {
       
     },
@@ -118,33 +88,2403 @@
     watch: {
       zoom: function(){
         this.nodeSize = 20 + this.nodeSize*(this.zoom/70)
-        this.force = 3500 + this.force*(this.zoom/60)
+        this.force = 2000 + this.force*(this.zoom/60)
+
         if(this.zoom>0){
-          this.h = 1200 + this.h*(this.zoom/70)
-          this.w = 1200 + this.w*(this.zoom/70)
-          this.offset.x = 70 - this.w*(this.zoom/400)
-          this.offset.y = -100 - this.w*(this.zoom/400)
+          this.w = this.w_i + this.zoom*35
+          this.h = this.h_i + this.zoom*35
+          this.offset.x = this.y_i - this.zoom*0.1
+          this.offset.y = this.y_i - this.zoom
         }
+        else{
+          this.offset.x = this.x_i + this.zoom*3.5
+          this.offset.y = this.y_i + this.zoom*5.5
+        }
+        console.log('x: '+this.offset.x.toString())
+        console.log('y: '+this.offset.y.toString())
+        console.log('h: '+this.h.toString())
+        console.log('w: '+this.w.toString())
       },
-      phoneData: function (){
-        //var cellNodes = []
-        for(var phone of this.phoneData){
-          var node = {id: phone.phoneId, name: phone.model, svgSym:phoneIcon}
-          this.nodes.push(node)
-        }
+    },
+    mounted(){
+     if(this.pre_links.length>0 && this.pre_nodes.length>0)
+     {
         this.slider = false
+        for(var node of this.pre_nodes){
+          var peso = 0
+          if(node.peso>=1000000)
+            peso = node.peso/700000
+          else if(node.peso>=100000 && node.peso <1000000)  
+            peso = node.peso/70000
+          else if(node.peso>=10000 && node.peso <100000)  
+            peso = node.peso/7000
+          else if(node.peso>=1000 && node.peso <10000)  
+            peso = node.peso/700
+          else if(node.peso>=100 && node.peso <1000)  
+            peso = node.peso/70 
+          else
+            peso = node.peso/70  
+          var nodo = {id: node.id, name: node.name, _size:peso}
+          this.nodes.push(nodo)
+        }
+
+        for(var link of this.pre_links){
+         var node = {sid: link.source, tid:link.target}
+         this.links.push(node)
+        }
+
+     }
+
+
+      
+    },
+    data() {
+      return {
+        
+      links: [],
+      nodes:[],
+      nodeSize:20,
+      force:2000,
+      zoomA:0,
+      zoom:0,
+      h_i: 2000,
+      w_i: 2000,
+      x_i: 1,
+      y_i:-100,
+
+      h:2000,
+      w:2000,
+      offset:{x:1,y:-100},
+
+      slider: true,
+      pre_nodes:[
+        {
+            id: 3360,
+            name: "Chollistas.com",
+            peso: 25540.0
+        },
+        {
+            id: 3488,
+            name: "cholloschina",
+            peso: 20608.0
+        },
+        {
+            id: 5091,
+            name: "Gangas Xiaomi y Mas",
+            peso: 16829.0
+        },
+        {
+            id: 5420,
+            name: "MovilZona",
+            peso: 74440.0
+        },
+        {
+            id: 2269,
+            name: "Xiaomi4Mi",
+            peso: 9623.0
+        },
+        {
+            id: 3444,
+            name: "ᴊᴜʟɪᴏ ᴄʜᴀᴠᴇᴢ",
+            peso: 2970.0
+        },
+        {
+            id: 35695,
+            name: "Lucero",
+            peso: 8676880.0
+        },
+        {
+            id: 5581,
+            name: "xataka",
+            peso: 1369890.0
+        },
+        {
+            id: 19365,
+            name: "Noticiero de Verdad",
+            peso: 881923.0
+        },
+        {
+            id: 6434,
+            name: "TODO SOBRE MOVIL",
+            peso: 16609.0
+        },
+        {
+            id: 408,
+            name: "Todochollos",
+            peso: 15579.0
+        },
+        {
+            id: 2269,
+            name: "Xiaomi4Mi",
+            peso: 9623.0
+        },
+        {
+            id: 5431,
+            name: "Hipertextual",
+            peso: 991571.0
+        },
+        {
+            id: 8279,
+            name: "Xataka Android",
+            peso: 204017.0
+        },
+        {
+            id: 9457,
+            name: "Xiaomi España",
+            peso: 77231.0
+        },
+        {
+            id: 6017,
+            name: "Pamella",
+            peso: 2169.0
+        },
+        {
+            id: 845,
+            name: "CholloComponentes",
+            peso: 30338.0
+        },
+        {
+            id: 21826,
+            name: "DolarToday®",
+            peso: 3537276.0
+        },
+        {
+            id: 5581,
+            name: "xataka",
+            peso: 1369890.0
+        },
+        {
+            id: 7203,
+            name: "Topes de Gama",
+            peso: 463277.0
+        },
+        {
+            id: 8279,
+            name: "Xataka Android",
+            peso: 204017.0
+        },
+        {
+            id: 1642,
+            name: "Futbol de Bolivia",
+            peso: 200404.0
+        },
+        {
+            id: 2768,
+            name: "CNET en Español",
+            peso: 62701.0
+        },
+        {
+            id: 7203,
+            name: "Topes de Gama",
+            peso: 463277.0
+        },
+        {
+            id: 4370,
+            name: "Raúl ERdC",
+            peso: 48064.0
+        },
+        {
+            id: 9988,
+            name: "Carlos Vassan",
+            peso: 36774.0
+        },
+        {
+            id: 34676,
+            name: "Rádio Sagres 730",
+            peso: 118941.0
+        },
+        {
+            id: 30495,
+            name: "IZHAN🚀",
+            peso: 63636.0
+        },
+        {
+            id: 16326,
+            name: "Jose Mercado Foto",
+            peso: 19446.0
+        },
+        {
+            id: 9226,
+            name: "Alvaro Martin",
+            peso: 213104.0
+        },
+        {
+            id: 23239,
+            name: "Samsung Responde",
+            peso: 133451.0
+        },
+        {
+            id: 27076,
+            name: "Básquet Plus",
+            peso: 52680.0
+        },
+        {
+            id: 7355,
+            name: "decosleo",
+            peso: 720.0
+        },
+        {
+            id: 9695,
+            name: "TarjetaLocal&Msjz",
+            peso: 299.0
+        },
+        {
+            id: 5731,
+            name: "Steven Rodrigo 🇵🇾⚫⚪⚫⚪⚫",
+            peso: 211.0
+        },
+        {
+            id: 35895,
+            name: "Uniforme Neutro alv 🏳️‍🌈🦄",
+            peso: 1048.0
+        },
+        {
+            id: 28135,
+            name: "tumblr case 18k",
+            peso: 0.0
+        },
+        {
+            id: 9822,
+            name: "Markos González 🇵🇾",
+            peso: 35503.0
+        },
+        {
+            id: 26147,
+            name: "Planeta Red",
+            peso: 7953.0
+        },
+        {
+            id: 7567,
+            name: "El estado Sucre Dice",
+            peso: 4788.0
+        },
+        {
+            id: 9822,
+            name: "Markos González 🇵🇾",
+            peso: 35503.0
+        },
+        {
+            id: 5104,
+            name: "William Francx",
+            peso: 819.0
+        },
+        {
+            id: 10126,
+            name: "Alexis Jacquet 🚲",
+            peso: 89.0
+        },
+        {
+            id: 4265,
+            name: "Apps & News iOS",
+            peso: 12315.0
+        },
+        {
+            id: 16936,
+            name: "Jose Miguel Fredes",
+            peso: 1701.0
+        },
+        {
+            id: 4361,
+            name: "SETEMCA MOBILE",
+            peso: 394.0
+        },
+        {
+            id: 14064,
+            name: "LG Mobile CA",
+            peso: 6237.0
+        },
+        {
+            id: 32537,
+            name: "anabella ramirez bravo",
+            peso: 405.0
+        },
+        {
+            id: 35988,
+            name: "Lucas",
+            peso: 262.0
+        },
+        {
+            id: 29534,
+            name: "#ElMásGrandeDeLaHistoria",
+            peso: 224539.0
+        },
+        {
+            id: 29536,
+            name: "Leonardo Ponzio",
+            peso: 192050.0
+        },
+        {
+            id: 26842,
+            name: "Reporte Fútbol",
+            peso: 159239.0
+        },
+        {
+            id: 4831,
+            name: "Xataka Móvil",
+            peso: 198862.0
+        },
+        {
+            id: 5221,
+            name: "LaComparacion.com",
+            peso: 128978.0
+        },
+        {
+            id: 5591,
+            name: "Andro4all",
+            peso: 90051.0
+        },
+        {
+            id: 5581,
+            name: "xataka",
+            peso: 1369890.0
+        },
+        {
+            id: 4746,
+            name: "Applesfera",
+            peso: 882819.0
+        },
+        {
+            id: 5221,
+            name: "LaComparacion.com",
+            peso: 128978.0
+        },
+        {
+            id: 29534,
+            name: "#ElMásGrandeDeLaHistoria",
+            peso: 224539.0
+        },
+        {
+            id: 29536,
+            name: "Leonardo Ponzio",
+            peso: 192050.0
+        },
+        {
+            id: 26842,
+            name: "Reporte Fútbol",
+            peso: 159239.0
+        },
+        {
+            id: 4831,
+            name: "Xataka Móvil",
+            peso: 198862.0
+        },
+        {
+            id: 2768,
+            name: "CNET en Español",
+            peso: 62701.0
+        },
+        {
+            id: 26771,
+            name: "Iberopost",
+            peso: 36642.0
+        },
+        {
+            id: 36931,
+            name: "Smartphone Ecuador",
+            peso: 7793.0
+        },
+        {
+            id: 37286,
+            name: "Reparación De Celulares Hamecell",
+            peso: 941.0
+        },
+        {
+            id: 26809,
+            name: "Tw_coscase",
+            peso: 280.0
+        },
+        {
+            id: 9667,
+            name: "HuaweiMobileCo",
+            peso: 130702.0
+        },
+        {
+            id: 30935,
+            name: "cata",
+            peso: 18581.0
+        },
+        {
+            id: 15567,
+            name: "Jonathan Munizaga",
+            peso: 4291.0
+        },
+        {
+            id: 9667,
+            name: "HuaweiMobileCo",
+            peso: 130702.0
+        },
+        {
+            id: 4936,
+            name: "Meh",
+            peso: 16795.0
+        },
+        {
+            id: 36931,
+            name: "Smartphone Ecuador",
+            peso: 7793.0
+        },
+        {
+            id: 7203,
+            name: "Topes de Gama",
+            peso: 463277.0
+        },
+        {
+            id: 4526,
+            name: "Pro Android 🥝",
+            peso: 341657.0
+        },
+        {
+            id: 4831,
+            name: "Xataka Móvil",
+            peso: 198862.0
+        },
+        {
+            id: 10061,
+            name: "Huawei Mobile Chile",
+            peso: 96014.0
+        },
+        {
+            id: 3444,
+            name: "ᴊᴜʟɪᴏ ᴄʜᴀᴠᴇᴢ",
+            peso: 2970.0
+        },
+        {
+            id: 37180,
+            name: "DETIROCONARCO",
+            peso: 2667.0
+        },
+        {
+            id: 25929,
+            name: "Julián Gutiérrez",
+            peso: 2505.0
+        },
+        {
+            id: 11571,
+            name: "Leonel🌑",
+            peso: 1266.0
+        },
+        {
+            id: 35867,
+            name: "🤖Mr. Meeseeks🤖",
+            peso: 516.0
+        },
+        {
+            id: 2768,
+            name: "CNET en Español",
+            peso: 62701.0
+        },
+        {
+            id: 30538,
+            name: "Edú Ortega Ibarra.",
+            peso: 32936.0
+        },
+        {
+            id: 6434,
+            name: "TODO SOBRE MOVIL",
+            peso: 16609.0
+        },
+        {
+            id: 5581,
+            name: "xataka",
+            peso: 1369890.0
+        },
+        {
+            id: 30223,
+            name: "Portafolio",
+            peso: 1318299.0
+        },
+        {
+            id: 11033,
+            name: "Noticias SIN",
+            peso: 1145905.0
+        },
+        {
+            id: 21826,
+            name: "DolarToday®",
+            peso: 3537276.0
+        },
+        {
+            id: 3971,
+            name: "Noticias24",
+            peso: 3232849.0
+        },
+        {
+            id: 3716,
+            name: "RT en Español",
+            peso: 3025918.0
+        },
+        {
+            id: 5527,
+            name: "ABC.es",
+            peso: 1690585.0
+        },
+        {
+            id: 5581,
+            name: "xataka",
+            peso: 1369890.0
+        },
+        {
+            id: 5431,
+            name: "Hipertextual",
+            peso: 991571.0
+        },
+        {
+            id: 8073,
+            name: "Personal Argentina",
+            peso: 554564.0
+        },
+        {
+            id: 7203,
+            name: "Topes de Gama",
+            peso: 463277.0
+        },
+        {
+            id: 9616,
+            name: "Samsung Chile",
+            peso: 394863.0
+        },
+        {
+            id: 15152,
+            name: "CNN en Español",
+            peso: 1.727304E7
+        },
+        {
+            id: 22239,
+            name: "Noticias Caracol",
+            peso: 8272167.0
+        },
+        {
+            id: 26951,
+            name: "Noticias RCN",
+            peso: 7625136.0
+        },
+        {
+            id: 5527,
+            name: "ABC.es",
+            peso: 1690585.0
+        },
+        {
+            id: 7607,
+            name: "Sin Embargo MX",
+            peso: 1314510.0
+        },
+        {
+            id: 7203,
+            name: "Topes de Gama",
+            peso: 463277.0
+        },
+        {
+            id: 15152,
+            name: "CNN en Español",
+            peso: 1.727304E7
+        },
+        {
+            id: 1108,
+            name: "El Universal",
+            peso: 5030046.0
+        },
+        {
+            id: 10370,
+            name: "Chilango",
+            peso: 3773766.0
+        },
+        {
+            id: 36677,
+            name: "ENTER.CO",
+            peso: 457549.0
+        },
+        {
+            id: 10024,
+            name: "ElDoce",
+            peso: 385402.0
+        },
+        {
+            id: 5461,
+            name: "Chincheto",
+            peso: 342885.0
+        },
+        {
+            id: 37125,
+            name: "Redmi GO",
+            peso: 38632.5
+        },
+        {
+            id: 37126,
+            name: "Mi Mix 3",
+            peso: 28851.600000000002
+        },
+        {
+            id: 37127,
+            name: "Mi 9",
+            peso: 4475312.1000000015
+        },
+        {
+            id: 37128,
+            name: "Redmi 6",
+            peso: 29421.899999999983
+        },
+        {
+            id: 37129,
+            name: "Zenfone 5z",
+            peso: 650.6999999999999
+        },
+        {
+            id: 37130,
+            name: "Galaxy s10",
+            peso: 2733682.2000000007
+        },
+        {
+            id: 37131,
+            name: "Galaxy note 9",
+            peso: 186510.59999999998
+        },
+        {
+            id: 37132,
+            name: "Galaxy A70",
+            peso: 192639.90000000002
+        },
+        {
+            id: 37133,
+            name: "Galaxy A9",
+            peso: 71037.59999999999
+        },
+        {
+            id: 37134,
+            name: "Galaxy J4",
+            peso: 166028.39999999997
+        },
+        {
+            id: 37135,
+            name: "9 PureView",
+            peso: 305.7
+        },
+        {
+            id: 37136,
+            name: "Nokia 7.1",
+            peso: 63.3
+        },
+        {
+            id: 37137,
+            name: "Nokia 6.1",
+            peso: 314.4
+        },
+        {
+            id: 37138,
+            name: "Nokia 3.1",
+            peso: 16415.1
+        },
+        {
+            id: 37139,
+            name: "Nokia 2.1",
+            peso: 10923.3
+        },
+        {
+            id: 37140,
+            name: "G7 ThinQ",
+            peso: 4426.5
+        },
+        {
+            id: 37141,
+            name: "870",
+            peso: 0.0
+        },
+        {
+            id: 37142,
+            name: "K11",
+            peso: 2145.0
+        },
+        {
+            id: 37143,
+            name: "K9",
+            peso: 0.0
+        },
+        {
+            id: 37144,
+            name: "Q7",
+            peso: 0.0
+        },
+        {
+            id: 37145,
+            name: "Redmi note 7",
+            peso: 550699.7999999997
+        },
+        {
+            id: 37146,
+            name: "Zenfone Max Pro",
+            peso: 0.0
+        },
+        {
+            id: 37147,
+            name: "Zenfone 5",
+            peso: 0.0
+        },
+        {
+            id: 37148,
+            name: "Zenfone 3",
+            peso: 9101.4
+        },
+        {
+            id: 37149,
+            name: "Zenfone Pegasus 4A",
+            peso: 0.0
+        },
+        {
+            id: 37165,
+            name: "iPhone XS",
+            peso: 468369.29999999993
+        },
+        {
+            id: 37166,
+            name: "iPhone XR",
+            peso: 222433.19999999998
+        },
+        {
+            id: 37167,
+            name: "iPhone 8",
+            peso: 779009.9999999998
+        },
+        {
+            id: 37168,
+            name: "iPhone 8 Plus",
+            peso: 458716.4999999999
+        },
+        {
+            id: 37169,
+            name: "iPhone XS Max",
+            peso: 117061.19999999998
+        },
+        {
+            id: 37170,
+            name: "Y6",
+            peso: 2724.3
+        },
+        {
+            id: 37171,
+            name: "P Smart",
+            peso: 47396.700000000004
+        },
+        {
+            id: 37172,
+            name: "Y9",
+            peso: 56366.399999999994
+        },
+        {
+            id: 37173,
+            name: "P30",
+            peso: 654249.5999999997
+        },
+        {
+            id: 37174,
+            name: "Mate 20",
+            peso: 34321.80000000002
+        },
+        {
+            id: 37175,
+            name: "Moto E5",
+            peso: 0.0
+        },
+        {
+            id: 37176,
+            name: "Moto One",
+            peso: 1286.1
+        },
+        {
+            id: 37177,
+            name: "Moto G7",
+            peso: 36507.3
+        },
+        {
+            id: 37178,
+            name: "Moto G6",
+            peso: 6245.099999999999
+        },
+        {
+            id: 37179,
+            name: "Moto Z3 Play",
+            peso: 1636.8
+        },
+        {
+            id: 37105,
+            name: "Lg",
+            peso: 851222.3999999997
+        },
+        {
+            id: 37106,
+            name: "Samsung",
+            peso: 5253951.299999999
+        },
+        {
+            id: 37107,
+            name: "Xiaomi",
+            peso: 5162457.900000001
+        },
+        {
+            id: 37108,
+            name: "Motorola",
+            peso: 393759.59999999986
+        },
+        {
+            id: 37109,
+            name: "Huawei",
+            peso: 1.697334284999994E7
+        },
+        {
+            id: 37110,
+            name: "Asus",
+            peso: 1178191.2000000018
+        },
+        {
+            id: 37111,
+            name: "Apple",
+            peso: 9621741.52500002
+        },
+        {
+            id: 37112,
+            name: "Nokia",
+            peso: 375549.2999999994
+        },
+        {
+            id: 37113,
+            name: "Baja",
+            peso: 0.0
+        },
+        {
+            id: 37114,
+            name: "Media",
+            peso: 0.0
+        },
+        {
+            id: 37115,
+            name: "Alta",
+            peso: 0.0
+        }
+      ],
+      pre_links:[
+        {
+            source: 408,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37128,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 408,
+            target: 37125,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 845,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 845,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 845,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 845,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 845,
+            target: 37148,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 1108,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 1642,
+            target: 37131,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2269,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2269,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2269,
+            target: 37128,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2269,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2269,
+            target: 37126,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2269,
+            target: 37125,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37177,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37169,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37166,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37131,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 2768,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3360,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3360,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3360,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3360,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3360,
+            target: 37125,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37174,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37131,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3444,
+            target: 37126,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3488,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3488,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3488,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3488,
+            target: 37125,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3716,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3716,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3971,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 3971,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37140,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37131,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4265,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4361,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4361,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4361,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4361,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4361,
+            target: 37140,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4361,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4370,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4370,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4370,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4370,
+            target: 37132,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4370,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4526,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4526,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4526,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4526,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4526,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4526,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4746,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4746,
+            target: 37167,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37169,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37166,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4831,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 4936,
+            target: 37172,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5091,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5091,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5091,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5091,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5091,
+            target: 37125,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5104,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5104,
+            target: 37139,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5104,
+            target: 37138,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37167,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37166,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5221,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5420,
+            target: 37126,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5431,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5431,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5431,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5431,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5461,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5527,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5527,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5527,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37167,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5581,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5591,
+            target: 37166,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5731,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 5731,
+            target: 37136,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6017,
+            target: 37129,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37177,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 6434,
+            target: 37128,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37132,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7203,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37178,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37177,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37167,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37165,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37135,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37132,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7355,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7567,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7567,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7567,
+            target: 37138,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7607,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 7607,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8073,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37131,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 8279,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9226,
+            target: 37134,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9457,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9457,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9616,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9616,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9667,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9667,
+            target: 37172,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9667,
+            target: 37171,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9695,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9695,
+            target: 37177,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9695,
+            target: 37135,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9695,
+            target: 37134,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9822,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9822,
+            target: 37139,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9822,
+            target: 37138,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9988,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9988,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9988,
+            target: 37132,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 9988,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10024,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10061,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10061,
+            target: 37174,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10126,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10126,
+            target: 37139,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10126,
+            target: 37138,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 10370,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 11033,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 11033,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 11033,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 11571,
+            target: 37176,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 11571,
+            target: 37134,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 14064,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 14064,
+            target: 37142,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 15152,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 15152,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 15567,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 15567,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 15567,
+            target: 37171,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 15567,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16326,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16326,
+            target: 37133,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37167,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37140,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37131,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37145,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 16936,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 19365,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 19365,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 21826,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 21826,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 21826,
+            target: 37130,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 22239,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 23239,
+            target: 37134,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 25929,
+            target: 37177,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 25929,
+            target: 37176,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26147,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26147,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26147,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26147,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26147,
+            target: 37138,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26771,
+            target: 37111,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26771,
+            target: 37169,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26771,
+            target: 37166,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26809,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26809,
+            target: 37174,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26809,
+            target: 37173,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26809,
+            target: 37172,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26809,
+            target: 37170,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26842,
+            target: 37168,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26842,
+            target: 37165,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 26951,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 27076,
+            target: 37134,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37172,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37170,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37167,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37166,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37165,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37138,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 28135,
+            target: 37137,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 29534,
+            target: 37168,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 29534,
+            target: 37165,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 29536,
+            target: 37168,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 29536,
+            target: 37165,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 30223,
+            target: 37105,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 30495,
+            target: 37110,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 30495,
+            target: 37133,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 30538,
+            target: 37108,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 30538,
+            target: 37177,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 30935,
+            target: 37171,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 32537,
+            target: 37142,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 34676,
+            target: 37133,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 35695,
+            target: 37127,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 35867,
+            target: 37176,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 35895,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 35895,
+            target: 37137,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 35988,
+            target: 37142,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 36677,
+            target: 37112,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 36931,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 36931,
+            target: 37172,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 36931,
+            target: 37170,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37180,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37180,
+            target: 37107,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37180,
+            target: 37106,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37180,
+            target: 37174,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37180,
+            target: 37128,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37286,
+            target: 37109,
+            type: "TWEET_ABOUT"
+        },
+        {
+            source: 37286,
+            target: 37170,
+            type: "TWEET_ABOUT"
+        }
+      ]
+      
       }
     },
-    beforeMount(){
-      if(Object.keys(this.phoneData).length > 0){
-        this.nodes = []
-        for(var phone of this.phoneData){
-            var node = {id: phone.phoneId, name: phone.model, svgSym:phoneIcon}
-            this.nodes.push(node)
-        }
-        this.slider = false
-      }
-    }
+
   }
 </script>
 <style>
