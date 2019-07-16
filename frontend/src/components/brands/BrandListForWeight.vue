@@ -95,7 +95,7 @@
                       <v-tooltip bottom>
                       <template v-slot:activator="{ on }">
                           <v-icon v-on="on" class="mr-1">people</v-icon>
-                          <span  v-on="on" class="subheading mr-2">{{user.followersCount}}</span>
+                          <span  v-on="on"  class="subheading mr-2">{{user.followersCount}}</span>
                       </template>
                       <span>Seguidores</span>
                       </v-tooltip>
@@ -135,6 +135,24 @@
   </v-card>
 </template>
 content_copy
+
+<style>
+.hide_80
+{
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hide_100
+{
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
 
 
 <script>
