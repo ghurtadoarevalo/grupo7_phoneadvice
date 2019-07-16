@@ -11,6 +11,7 @@ public class nodo {
     private String name;
     private double peso;
     private int type;
+    private int limit = 0;
 
 
 }
