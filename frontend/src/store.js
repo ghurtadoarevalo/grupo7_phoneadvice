@@ -85,7 +85,12 @@ export default new Vuex.Store({
             othersSpecData: [], 
         }
     },
-
+    neoGraph: 
+    {
+      nodes: [], 
+      links: []
+    },
+    neoState : 0,
     usersGamma: [],
     ready: 0,
     },
@@ -128,6 +133,18 @@ export default new Vuex.Store({
         console.log('brandList con datos cargados')
         state.ready += 5
 
+        await Axios
+        .get('http://localhost:8081/neo/fullNodos/')
+        .then(response => (state.neoGraph.nodes = response.data))
+
+         await Axios
+        .get('http://localhost:8081/neo/fullAristas/')
+        .then(response => (state.neoGraph.links = response.data))
+        state.neoState = 1
+        console.log('lo hizo')
+        
+        state.ready+=15
+
         //Se obtienen todos los tweeteros y los celulares de los que hablan por gama
         for (let id = 1; id < 4; id++)
         {
@@ -135,29 +152,21 @@ export default new Vuex.Store({
           .get('http://localhost:8081/neo/getRelevantGamma/'+id)
           .then(response => (state.usersGamma[id-1] = response.data))
         }
-        console.log('lo hizo')
+        console.log('lo hizo x2')
         state.ready += 40
 
         await Axios
         .get('http://localhost:8081/neo/getBrands')
         .then(response => (state.neoBrandData = response.data))
-        console.log('lo hizo x2')
+        console.log('lo hizo x3')
         console.log(state.neoBrandData)
         state.ready+= 15
 
         await Axios
         .get('http://localhost:8081/neo/getPhones')
         .then(response => (state.neoPhones = response.data))
-        console.log('lo hizo x3')
-        state.ready+=15
-        /*
-        await Axios
-        .get('http://localhost:8081/neo/fullNodos/')
-        .then(response => (state.allGraphData.nodes = response.data))
         console.log('lo hizo x4')
-        */
-       state.ready+=15
-
+        state.ready+=15
 
       }catch(err){console.log("En get all all " + err)}
     }, 
