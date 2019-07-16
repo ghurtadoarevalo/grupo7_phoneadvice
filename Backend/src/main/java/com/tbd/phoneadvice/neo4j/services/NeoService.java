@@ -108,13 +108,21 @@ public class NeoService {
             while(result.hasNext())
             {
                 Record record = result.next();
-                nodo nuevoNodo = new nodo();
-                nuevoNodo.setId(record.get("idu").asLong());
-                nuevoNodo.setName(record.get("name").asString());
-                nuevoNodo.setPeso(record.get("size").asDouble());
-                nuevoNodo.setType(0);
-                System.out.println("estoy en el for");
-                list.add(nuevoNodo);
+                boolean flag = true;
+                for(nodo nodoaux : list){
+                    if(nodoaux.getId() == record.get("idu").asLong()){
+                        flag = false;
+                    }
+                }
+                if(flag){
+                    nodo nuevoNodo = new nodo();
+                    nuevoNodo.setId(record.get("idu").asLong());
+                    nuevoNodo.setName(record.get("name").asString());
+                    nuevoNodo.setPeso(record.get("size").asDouble());
+                    nuevoNodo.setType(0);
+                    System.out.println("estoy en el for");
+                    list.add(nuevoNodo);
+                }
 
 
                 Arista nuevaArista = new Arista();
@@ -136,12 +144,20 @@ public class NeoService {
             {
                 System.out.println("tengo algo");
                 Record record = result.next();
-                nodo nuevoNodo = new nodo();
-                nuevoNodo.setId(record.get("idu").asLong());
-                nuevoNodo.setName(record.get("name").asString());
-                nuevoNodo.setPeso(record.get("size").asDouble());
-                nuevoNodo.setType(0);
-                list.add(nuevoNodo);
+                boolean flag = true;
+                for(nodo nodoaux : list){
+                    if(nodoaux.getId() == record.get("idu").asLong()){
+                        flag = false;
+                    }
+                }
+                if(flag){
+                    nodo nuevoNodo = new nodo();
+                    nuevoNodo.setId(record.get("idu").asLong());
+                    nuevoNodo.setName(record.get("name").asString());
+                    nuevoNodo.setPeso(record.get("size").asDouble());
+                    nuevoNodo.setType(0);
+                    list.add(nuevoNodo);
+                }
 
 
                 Arista nuevaArista = new Arista();
