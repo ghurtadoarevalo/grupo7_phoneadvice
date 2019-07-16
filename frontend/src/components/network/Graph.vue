@@ -11,6 +11,9 @@
       thumb-color="#0E318A"
       thumb-label="always"
       :disabled="slider"
+      step="10"
+      ticks="always"
+      tick-size="2"
       >
       <template v-slot:prepend>
           <v-icon
@@ -1065,317 +1068,48 @@ import { userInfo } from 'os';
             "peso": 375549.2999999994,
             "type": 2,
             "limit": 0
-        }],
+        }
+      ],      
       
       pre_links:[
         {
-            "source": 408,
-            "target": 37111,
+            "source": 3360,
+            "target": 37125,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 408,
-            "target": 37110,
+            "source": 3488,
+            "target": 37125,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 408,
-            "target": 37108,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 408,
-            "target": 37107,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 408,
-            "target": 37106,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 845,
-            "target": 37110,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 845,
-            "target": 37108,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 845,
-            "target": 37107,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 845,
-            "target": 37106,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 845,
-            "target": 37148,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 1108,
-            "target": 37111,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 1642,
-            "target": 37131,
+            "source": 5420,
+            "target": 37126,
             "type": "TWEET_ABOUT"
         },
         {
             "source": 2269,
-            "target": 37107,
+            "target": 37126,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 2269,
-            "target": 37145,
+            "source": 35695,
+            "target": 37127,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 2269,
+            "source": 5581,
+            "target": 37127,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 6434,
             "target": 37128,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 2269,
-            "target": 37127,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 2269,
-            "target": 37126,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 2768,
-            "target": 37111,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 2768,
-            "target": 37109,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 2768,
-            "target": 37108,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 2768,
-            "target": 37106,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 2768,
-            "target": 37177,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3360,
-            "target": 37110,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3360,
-            "target": 37107,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3360,
-            "target": 37145,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3360,
-            "target": 37127,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3360,
-            "target": 37125,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3444,
-            "target": 37112,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3444,
-            "target": 37111,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3444,
-            "target": 37109,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3444,
-            "target": 37107,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3444,
-            "target": 37106,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3488,
-            "target": 37109,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3488,
-            "target": 37127,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3488,
-            "target": 37125,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 3971,
-            "target": 37109,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4265,
-            "target": 37105,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4265,
-            "target": 37173,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4265,
-            "target": 37140,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4265,
-            "target": 37131,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4265,
-            "target": 37130,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4370,
-            "target": 37112,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4370,
-            "target": 37132,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4370,
-            "target": 37127,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4526,
-            "target": 37173,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4526,
-            "target": 37127,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4746,
-            "target": 37167,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4831,
-            "target": 37112,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4831,
-            "target": 37173,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4831,
-            "target": 37169,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4831,
-            "target": 37166,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4831,
-            "target": 37130,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 4936,
-            "target": 37172,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5104,
-            "target": 37112,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5104,
-            "target": 37139,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5104,
-            "target": 37138,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5221,
-            "target": 37167,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5221,
-            "target": 37166,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5221,
-            "target": 37130,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5420,
-            "target": 37105,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5420,
-            "target": 37173,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5420,
-            "target": 37126,
+            "source": 408,
+            "target": 37128,
             "type": "TWEET_ABOUT"
         },
         {
@@ -1384,28 +1118,8 @@ import { userInfo } from 'os';
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 5527,
-            "target": 37110,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5581,
-            "target": 37105,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5581,
-            "target": 37167,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5581,
-            "target": 37130,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 5731,
-            "target": 37136,
+            "source": 8279,
+            "target": 37145,
             "type": "TWEET_ABOUT"
         },
         {
@@ -1414,18 +1128,28 @@ import { userInfo } from 'os';
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 6434,
-            "target": 37108,
+            "source": 845,
+            "target": 37148,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 6434,
-            "target": 37177,
+            "source": 21826,
+            "target": 37130,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 6434,
-            "target": 37128,
+            "source": 5581,
+            "target": 37130,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 8279,
+            "target": 37131,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 1642,
+            "target": 37131,
             "type": "TWEET_ABOUT"
         },
         {
@@ -1434,183 +1158,8 @@ import { userInfo } from 'os';
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 7355,
-            "target": 37178,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 7355,
-            "target": 37177,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 7355,
-            "target": 37165,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 7355,
-            "target": 37135,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 7355,
+            "source": 4370,
             "target": 37132,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 8279,
-            "target": 37131,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 8279,
-            "target": 37145,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9226,
-            "target": 37134,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9667,
-            "target": 37172,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9667,
-            "target": 37171,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9695,
-            "target": 37177,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9695,
-            "target": 37135,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9695,
-            "target": 37134,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9822,
-            "target": 37139,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 9822,
-            "target": 37138,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 10061,
-            "target": 37174,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 11571,
-            "target": 37176,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 11571,
-            "target": 37134,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 14064,
-            "target": 37142,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 16936,
-            "target": 37140,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 16936,
-            "target": 37131,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 23239,
-            "target": 37134,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 25929,
-            "target": 37176,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 26147,
-            "target": 37138,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 28135,
-            "target": 37172,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 28135,
-            "target": 37170,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 28135,
-            "target": 37166,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 28135,
-            "target": 37165,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 28135,
-            "target": 37138,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 29534,
-            "target": 37168,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 29534,
-            "target": 37165,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 29536,
-            "target": 37168,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 29536,
-            "target": 37165,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 30495,
-            "target": 37133,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 30935,
-            "target": 37171,
-            "type": "TWEET_ABOUT"
-        },
-        {
-            "source": 32537,
-            "target": 37142,
             "type": "TWEET_ABOUT"
         },
         {
@@ -1619,13 +1168,133 @@ import { userInfo } from 'os';
             "type": "TWEET_ABOUT"
         },
         {
+            "source": 30495,
+            "target": 37133,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 9226,
+            "target": 37134,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 23239,
+            "target": 37134,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 7355,
+            "target": 37135,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 9695,
+            "target": 37135,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5731,
+            "target": 37136,
+            "type": "TWEET_ABOUT"
+        },
+        {
             "source": 35895,
             "target": 37137,
             "type": "TWEET_ABOUT"
         },
         {
-            "source": 36931,
-            "target": 37172,
+            "source": 28135,
+            "target": 37137,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 9822,
+            "target": 37138,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 26147,
+            "target": 37138,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 9822,
+            "target": 37139,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5104,
+            "target": 37139,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 4265,
+            "target": 37140,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 16936,
+            "target": 37140,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 14064,
+            "target": 37142,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 32537,
+            "target": 37142,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 29534,
+            "target": 37165,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 29536,
+            "target": 37165,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 4831,
+            "target": 37166,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5221,
+            "target": 37166,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5581,
+            "target": 37167,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 4746,
+            "target": 37167,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 29534,
+            "target": 37168,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 29536,
+            "target": 37168,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 4831,
+            "target": 37169,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 2768,
+            "target": 37169,
             "type": "TWEET_ABOUT"
         },
         {
@@ -1637,6 +1306,346 @@ import { userInfo } from 'os';
             "source": 37286,
             "target": 37170,
             "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 9667,
+            "target": 37171,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 30935,
+            "target": 37171,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 9667,
+            "target": 37172,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 4936,
+            "target": 37172,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 7203,
+            "target": 37173,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 4526,
+            "target": 37173,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 10061,
+            "target": 37174,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 3444,
+            "target": 37174,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 25929,
+            "target": 37176,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 11571,
+            "target": 37176,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 2768,
+            "target": 37177,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 30538,
+            "target": 37177,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5581,
+            "target": 37105,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 30223,
+            "target": 37105,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 21826,
+            "target": 37106,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 3971,
+            "target": 37106,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5527,
+            "target": 37107,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5581,
+            "target": 37107,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 8073,
+            "target": 37108,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 7203,
+            "target": 37108,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 15152,
+            "target": 37109,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 22239,
+            "target": 37109,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 5527,
+            "target": 37110,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 7607,
+            "target": 37110,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 15152,
+            "target": 37111,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 1108,
+            "target": 37111,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 36677,
+            "target": 37112,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 10024,
+            "target": 37112,
+            "type": "TWEET_ABOUT"
+        },
+        {
+            "source": 37107,
+            "target": 37125,
+            "type": "HAS"
+        },
+        {
+            "source": 37107,
+            "target": 37126,
+            "type": "HAS"
+        },
+        {
+            "source": 37107,
+            "target": 37127,
+            "type": "HAS"
+        },
+        {
+            "source": 37107,
+            "target": 37128,
+            "type": "HAS"
+        },
+        {
+            "source": 37110,
+            "target": 37129,
+            "type": "HAS"
+        },
+        {
+            "source": 37106,
+            "target": 37130,
+            "type": "HAS"
+        },
+        {
+            "source": 37106,
+            "target": 37131,
+            "type": "HAS"
+        },
+        {
+            "source": 37106,
+            "target": 37132,
+            "type": "HAS"
+        },
+        {
+            "source": 37106,
+            "target": 37133,
+            "type": "HAS"
+        },
+        {
+            "source": 37106,
+            "target": 37134,
+            "type": "HAS"
+        },
+        {
+            "source": 37112,
+            "target": 37135,
+            "type": "HAS"
+        },
+        {
+            "source": 37112,
+            "target": 37136,
+            "type": "HAS"
+        },
+        {
+            "source": 37112,
+            "target": 37137,
+            "type": "HAS"
+        },
+        {
+            "source": 37112,
+            "target": 37138,
+            "type": "HAS"
+        },
+        {
+            "source": 37112,
+            "target": 37139,
+            "type": "HAS"
+        },
+        {
+            "source": 37105,
+            "target": 37140,
+            "type": "HAS"
+        },
+        {
+            "source": 37105,
+            "target": 37141,
+            "type": "HAS"
+        },
+        {
+            "source": 37105,
+            "target": 37142,
+            "type": "HAS"
+        },
+        {
+            "source": 37105,
+            "target": 37143,
+            "type": "HAS"
+        },
+        {
+            "source": 37105,
+            "target": 37144,
+            "type": "HAS"
+        },
+        {
+            "source": 37107,
+            "target": 37145,
+            "type": "HAS"
+        },
+        {
+            "source": 37110,
+            "target": 37146,
+            "type": "HAS"
+        },
+        {
+            "source": 37110,
+            "target": 37147,
+            "type": "HAS"
+        },
+        {
+            "source": 37110,
+            "target": 37148,
+            "type": "HAS"
+        },
+        {
+            "source": 37110,
+            "target": 37149,
+            "type": "HAS"
+        },
+        {
+            "source": 37111,
+            "target": 37165,
+            "type": "HAS"
+        },
+        {
+            "source": 37111,
+            "target": 37166,
+            "type": "HAS"
+        },
+        {
+            "source": 37111,
+            "target": 37167,
+            "type": "HAS"
+        },
+        {
+            "source": 37111,
+            "target": 37168,
+            "type": "HAS"
+        },
+        {
+            "source": 37111,
+            "target": 37169,
+            "type": "HAS"
+        },
+        {
+            "source": 37109,
+            "target": 37170,
+            "type": "HAS"
+        },
+        {
+            "source": 37109,
+            "target": 37171,
+            "type": "HAS"
+        },
+        {
+            "source": 37109,
+            "target": 37172,
+            "type": "HAS"
+        },
+        {
+            "source": 37109,
+            "target": 37173,
+            "type": "HAS"
+        },
+        {
+            "source": 37109,
+            "target": 37174,
+            "type": "HAS"
+        },
+        {
+            "source": 37108,
+            "target": 37175,
+            "type": "HAS"
+        },
+        {
+            "source": 37108,
+            "target": 37176,
+            "type": "HAS"
+        },
+        {
+            "source": 37108,
+            "target": 37177,
+            "type": "HAS"
+        },
+        {
+            "source": 37108,
+            "target": 37178,
+            "type": "HAS"
+        },
+        {
+            "source": 37108,
+            "target": 37179,
+            "type": "HAS"
         }
       ]
       
