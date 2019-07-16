@@ -163,7 +163,7 @@
           >
             <v-img
               :aspect-ratio="9/15"
-              :src="require('@/assets/home/build.png')"
+              :src="require('@/assets/home/gamma.png')"
             >
               <v-expand-transition>
               <v-flex
