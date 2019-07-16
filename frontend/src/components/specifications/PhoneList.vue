@@ -52,7 +52,7 @@
       </v-flex>
     </v-layout>
 
-  <v-dialog v-model="dialog" width="500">
+    <v-dialog v-if="topTen.topTenImgList.length > 0" v-model="dialog" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Tabla de especificaciones</v-toolbar-title>
@@ -98,7 +98,7 @@
       </v-card>
     </v-dialog>
 
-     <v-dialog v-model="dialog3" width="500">
+    <v-dialog v-if="imgList.length > 0" v-model="dialog3" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
 
@@ -145,10 +145,10 @@
           <v-btn dark color="#0E318A" @click="dialog3=false">Cerrar</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+  </v-dialog>
 
 
-    <v-dialog v-model="dialog2" width="500">
+    <v-dialog v-if="imgList.length > 0" v-model="dialog2" width="500">
       <v-card>
         <v-toolbar color="#0E318A" dark>
           <v-toolbar-title>Ranking</v-toolbar-title>
@@ -198,7 +198,19 @@ import { mapState } from 'vuex';
     },
     computed:{
       ...mapState(['imgList','names','headers','specData','topTen','evalSpecification','phonesDescription'])
-    }
+    },
+    watch: {
+      dialog: function(){
+        if(!this.dialog){
+          this.indice = 0
+        }
+      },
+      dialog3: function(){
+        if(!this.dialog){
+          this.indice2 = 0
+        }
+      }
+    },
   }
 </script>
 

@@ -15,8 +15,17 @@
   export default {
     data() {
       return {
-        showNavbar: true
+        showNavbar: true,
+        ready: 0
       } 
+    },
+    methods: {
+      getData(){
+        if(this.phoneSpecification.length>0){
+          this.$store.dispatch('getAllSpecification')
+          this.ready = 1
+      }
+      }
     },
     components: {
       PhoneList,
@@ -24,13 +33,17 @@
       specificationsList
     },
     computed:{
-      ...mapMutations(['changeActive','ready']),
+      ...mapMutations(['changeActive']),
+      ...mapState(['phoneSpecification'])
     },
     mounted(){
-        this.$store.dispatch('getAllSpecification'),
-        this.$store.dispatch('resetActive')
-	},
-
-    
+      this.$store.dispatch('resetActive')
+      this.getData()
+    },
+    watch: {
+      phoneSpecification: function(){
+        this.getData()
+      }
+    },
   }
 </script>

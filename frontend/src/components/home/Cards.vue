@@ -1,9 +1,10 @@
 <template>
+
+
   <v-container grid-list-xl>
-                      <!-- No borrar, lo usé para un random 
-                          <li v-for="(k,index) in query">{{k}}</li>
-                        -->
-    <VLayout row wrap class="mt-2">
+  <v-progress-linear v-if="ready < 100" v-model="ready"></v-progress-linear>
+
+    <VLayout v-if="ready == 100"  row wrap class="mt-2">
       <v-flex xs12 md3>
         <v-hover>
           <v-card
@@ -171,7 +172,7 @@
               style="height: 100%; width: 100%"
             >
             <div class = "a font-weight-light mb-2">
-              <b>¡Sección en construcción!</b>
+              <b>¡En esta sección podrá encontrar celulares según su bolsillo!</b>
             </div>
             </v-flex>
             </v-expand-transition> 
@@ -188,8 +189,9 @@
                 large
                 right
                 top
+                to = "/twittersForGamma"
               >
-                <v-icon>mdi-hammer</v-icon>
+                <v-icon>mdi-cash</v-icon>
               </v-btn>
   
               <h3 class="display-1 font-weight-light orange--text mb-2">Busqueda por Gama</h3>
@@ -207,34 +209,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
   export default {
     data(){
       return{
       dialog:false,
-      reviews: 413,
-      value: 4.5
-      //query:[]
+      valueDeterminate: 0
       }
+    },   
+    computed:{
+      ...mapState(['ready']),
     },
-    mounted()
-    {
-        //Esto lo usé para un random, no borrar aún xD
-        //for (let index = 1; index < 11; index++) {
-            //for (let index2 = 1; index2 < 7; index2++) {
-                //let positive = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let negative = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let neutral = Math.floor(Math.random() * (100 - 1 + 1))+1;
-                //let assessment = Math.floor(Math.random() * (7 - 1 + 1))+1;
-
-                //let query = "INSERT INTO `phoneadvice`.`statistic` (`negative_density`, `neutral_density`, `positive_density`) VALUES (" + positive + "," + negative + ","+ neutral+");";
-                //let query = "INSERT INTO `phoneadvice`.`phone_specification` (`phone_id`, `specification_id`, `assessment`) VALUES ("+ index +","+ index2 + "," + assessment +");"
-                //this.query.push(query);
-            //}
-
-        //}
-    }
-    
   }
+  
 </script>
 
 <style lang="css">

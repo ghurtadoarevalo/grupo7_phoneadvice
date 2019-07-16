@@ -1,9 +1,5 @@
 package com.tbd.phoneadvice.config;
 
-
-//PROFE
-
-
 import java.util.Collections;
 import java.util.Properties;
 

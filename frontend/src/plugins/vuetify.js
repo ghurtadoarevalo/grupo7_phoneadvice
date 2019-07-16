@@ -5,7 +5,7 @@ import es from 'vuetify/es5/locale/es'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#ee44aa',
+    primary: '#0E318A',
     secondary: '#424242',
     accent: '#82B1FF',
     error: '#FF5252',

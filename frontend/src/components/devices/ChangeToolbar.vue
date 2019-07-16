@@ -7,7 +7,7 @@
         color="#0E318A"
         flat
         value="graph"
-        @click="changeActive('graph')"
+        @click="changeActive('graph',1)"
       >
         <span>Gráficos</span>
         <chart-icon/>
@@ -17,7 +17,7 @@
         color="#0E318A"
         flat
         value="twitter"
-        @click="changeActive('twitter')"
+        @click="changeActive('twitter',1)"
       >
         <span>Twitteros</span>
         <twitter-icon/>
@@ -27,7 +27,7 @@
         color="#0E318A"
         flat
         value="maps"
-        @click="changeActive('maps')"
+        @click="changeActive('maps',1)"
       >
         <span>Mapas</span>
         <v-icon>place</v-icon>

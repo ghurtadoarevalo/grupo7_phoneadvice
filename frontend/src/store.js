@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios';
+import { STATUS_CODES } from 'http';
 
 Vue.use(Vuex, Axios); 
 
@@ -36,34 +37,85 @@ export default new Vuex.Store({
         topTenImgList: [],
         topTenEvalSpecification: [],
         topTenSpecData:[]
-      },
-    brandData: {
-      brandImgList: [],
-      brandNames:[],  
-      evalBrand: [],
-      evalP:[],
-      evalN:[],
-      evalNeutral:[],
     },
-    ready:0,
-  },
+    brandData: {
+        brandImgList: [],
+        brandNames:[],  
+        evalBrand: [],
+        evalP:[],
+        evalN:[],
+        evalNeutral:[],
+    },
+    allGraphData:{nodes:[], links: []},
+    neoBrandData: [],
+    neoPhones: [],
+    neoPhonesData: 
+    {
+        phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+            },
+    },
+    link:[],
+    usersGammaData: [],
+    gammaData:    
+    {
+        phonesDescription: [],
+        topTen:
+        {
+            topTenNames:[],
+            topTenImgList:[],
+            topTenSize:[],
+            topTenSpecData: [],
+        },
+        others:
+        {
+            othersNames:[],
+            othersImgList:[],
+            othersSpecData: [], 
+        }
+    },
+    neoGraph: 
+    {
+      nodes: [], 
+      links: []
+    },
+    neoState : 0,
+    usersGamma: [],
+    ready: 0,
+    },
   mutations: {
-    //Button bar
-    changeActive(state, newStatus){
-      state.active = newStatus
+    /*Verificacion de elemento activo en ChangeToolbar*/
+    changeActive(state, newStatus, view){
+        state.active = newStatus
     },
     resetActive(state)
     {
         state.active = 'graph'
     },
-    
+    /*Traer todo de la DB*/
     async getAllAll(state){
       try{
         var phoneSpecification = []
+        //Se obtienen todos los teléfonos
         await Axios 
         .get('http://localhost:8081/phones/getall')
         .then(response => (state.phoneData = response.data))
+        state.ready += 5
 
+        console.log('phoneData con datos cargados')
+
+        //Se obtienen todos los teléfonos según cada especificación
         for (let index = 1; index < 7; index++) {
           var listFilter = []
           await Axios
@@ -71,16 +123,236 @@ export default new Vuex.Store({
           .then(response => (listFilter = response.data))   
           state.phoneSpecification.push(listFilter);
         }
-        console.log(state.phoneSpecification)
+        console.log('phoneSpecification con datos cargados')
+        state.ready += 5
 
+        //Se obtienen todas las marcas
         await Axios
         .get('http://localhost:8081/brands/')
         .then(response => (state.brandList = response.data))
+        console.log('brandList con datos cargados')
+        state.ready += 5
 
-        state.ready = 1
+        await Axios
+        .get('http://localhost:8081/neo/fullNodos/')
+        .then(response => (state.neoGraph.nodes = response.data))
+
+         await Axios
+        .get('http://localhost:8081/neo/fullAristas/')
+        .then(response => (state.neoGraph.links = response.data))
+        state.neoState = 1
+        console.log('lo hizo')
+        
+        state.ready+=15
+
+        //Se obtienen todos los tweeteros y los celulares de los que hablan por gama
+        for (let id = 1; id < 4; id++)
+        {
+          await Axios 
+          .get('http://localhost:8081/neo/getRelevantGamma/'+id)
+          .then(response => (state.usersGamma[id-1] = response.data))
+        }
+        console.log('lo hizo x2')
+        state.ready += 40
+
+        await Axios
+        .get('http://localhost:8081/neo/getBrands')
+        .then(response => (state.neoBrandData = response.data))
+        console.log('lo hizo x3')
+        console.log(state.neoBrandData)
+        state.ready+= 15
+
+        await Axios
+        .get('http://localhost:8081/neo/getPhones')
+        .then(response => (state.neoPhones = response.data))
+        console.log('lo hizo x4')
+        state.ready+=15
+
       }catch(err){console.log("En get all all " + err)}
+    }, 
+
+    /*Funciones para vista SearchDevices*/
+    getAll(state){
+      var evalSpecification = []
+      var names = []
+      var imgList = []
+      var specData = []
+      var phonesDescription = []
+      var topTen = {
+        evalP:[],
+        evalN:[],
+        evalNeutral:[],
+        topTenNames: [],
+        topTenImgList: [],
+        topTenEvalSpecification: [],
+        topTenSpecData:[]
+      }
+      var index = 0
+
+      for(var item of state.phoneData )
+      {
+        var dataSheet = []
+        dataSheet.push(item.data_sheet.cpu)
+        dataSheet.push(item.data_sheet.ram)
+        dataSheet.push(item.data_sheet.operative_s)
+        dataSheet.push(item.data_sheet.dimensions)
+        dataSheet.push(item.data_sheet.front_cam)
+        dataSheet.push(item.data_sheet.back_cam)
+        dataSheet.push(item.data_sheet.screen)
+        dataSheet.push(item.data_sheet.storage)
+        dataSheet.push(item.data_sheet.batery)
+        phonesDescription.push(item.description)
+
+        if(index > 9){
+          specData.push(dataSheet);
+          evalSpecification.push(item.assessment)
+          names.push(item.model)
+          imgList.push(item.image)
+
+        }
+        else{
+          topTen.evalP.push(item.statistic.positive_density)
+          topTen.evalN.push(item.statistic.negative_density)
+          topTen.evalNeutral.push(item.statistic.neutral_density)
+          topTen.topTenEvalSpecification.push(item.assessment)
+          topTen.topTenNames.push(item.model)
+          topTen.topTenImgList.push(item.image)
+          topTen.topTenSpecData.push(dataSheet)
+          index ++
+        } 
+      }
+      state.specData = specData;
+      state.evalSpecification = evalSpecification
+      state.names = names
+      state.imgList = imgList
+      state.phonesDescription = phonesDescription
+      state.topTen = topTen
     },
-    async filterBySpecification(state, specification_id)
+    filterByGama(state,gammas){
+      var names = []
+      var imgList = []
+      var evalSpecification = []
+      var specData = []
+      var phonesDescription = []
+
+      var topTen = {
+        evalP:[],
+        evalN:[],
+        evalNeutral:[],
+        topTenNames: [],
+        topTenImgList: [],
+        topTenEvalSpecification: [],
+        topTenSpecData:[]
+      }
+      
+      var index = 0
+      for(var item of state.phoneData)
+      {
+        var dataSheet = []
+        if(gammas[item.gamma.gammaId - 1])
+        {
+          dataSheet.push(item.data_sheet.cpu)
+          dataSheet.push(item.data_sheet.ram)
+          dataSheet.push(item.data_sheet.operative_s)
+          dataSheet.push(item.data_sheet.dimensions)
+          dataSheet.push(item.data_sheet.front_cam)
+          dataSheet.push(item.data_sheet.back_cam)
+          dataSheet.push(item.data_sheet.screen)
+          dataSheet.push(item.data_sheet.storage)
+          dataSheet.push(item.data_sheet.batery)
+          phonesDescription.push(item.description)
+
+          if(index > 9){
+            specData.push(dataSheet)
+            evalSpecification.push(item.assessment)
+            names.push(item.model)
+            imgList.push(item.image)
+
+          }
+          else
+          {
+            topTen.evalP.push(item.statistic.positive_density)
+            topTen.evalN.push(item.statistic.negative_density)
+            topTen.evalNeutral.push(item.statistic.neutral_density)
+            topTen.topTenEvalSpecification.push(item.assessment)
+            topTen.topTenNames.push(item.model)
+            topTen.topTenImgList.push(item.image)
+            topTen.topTenSpecData.push(dataSheet)
+          }
+          index ++
+        }
+      }
+
+      state.evalSpecification = evalSpecification
+      state.names = names
+      state.imgList = imgList
+      state.specData = specData
+      state.dataSheet = dataSheet
+      state.phonesDescription = phonesDescription
+      state.topTen = topTen
+    },
+
+
+    /*Funciones para vista SearchSpecification*/
+    getAllSpecification(state)
+    {
+      var names = []
+      var imgList = []
+      var evalSpecification = []
+      var specData = []
+      var phonesDescription = []
+      var topTen = {
+        evalP:[],
+        evalN:[],
+        evalNeutral:[],
+        topTenNames: [],
+        topTenImgList: [],
+        topTenEvalSpecification: [],
+        topTenSpecData:[]
+      }
+      var index = 0
+       
+      for(var item of state.phoneSpecification[0] ){
+        var dataSheet = []
+        dataSheet.push(item.phone.data_sheet.cpu)
+        dataSheet.push(item.phone.data_sheet.ram)
+        dataSheet.push(item.phone.data_sheet.operative_s)
+        dataSheet.push(item.phone.data_sheet.dimensions)
+        dataSheet.push(item.phone.data_sheet.front_cam)
+        dataSheet.push(item.phone.data_sheet.back_cam)
+        dataSheet.push(item.phone.data_sheet.screen)
+        dataSheet.push(item.phone.data_sheet.storage)
+        dataSheet.push(item.phone.data_sheet.batery)
+        phonesDescription.push(item.phone.description)
+
+        if (index > 9){
+          specData.push(dataSheet);
+          evalSpecification.push(item.assessment)
+          names.push(item.phone.model)
+          imgList.push(item.phone.image)
+
+        }
+        else{
+          topTen.evalP.push(item.statistic.positive_density)
+          topTen.evalN.push(item.statistic.negative_density)
+          topTen.evalNeutral.push(item.statistic.neutral_density)
+          topTen.topTenEvalSpecification.push(item.assessment)
+          topTen.topTenNames.push(item.phone.model)
+          topTen.topTenImgList.push(item.phone.image)
+          topTen.topTenSpecData.push(dataSheet)
+          index++
+        }
+      }
+      state.activeSpecification = state.phoneSpecification[0][0].specification.name
+      state.activeSpecificationIndex = 0
+      state.evalSpecification = evalSpecification
+      state.names = names
+      state.imgList = imgList
+      state.specData = specData;
+      state.phonesDescription = phonesDescription
+      state.topTen = topTen
+    }, 
+    filterBySpecification(state, specification_id)
     {
       var names = []
       var imgList = []
@@ -139,142 +411,6 @@ export default new Vuex.Store({
       state.topTen = topTen
         
     },
-    async getAllSpecification(state)
-    {
-      var names = []
-      var imgList = []
-      var evalSpecification = []
-      var specData = []
-      var phonesDescription = []
-      var topTen = {
-        evalP:[],
-        evalN:[],
-        evalNeutral:[],
-        topTenNames: [],
-        topTenImgList: [],
-        topTenEvalSpecification: [],
-        topTenSpecData:[]
-      }
-      var index = 0
-       
-      for(var item of state.phoneSpecification[0] ){
-        var dataSheet = []
-        dataSheet.push(item.phone.data_sheet.cpu)
-        dataSheet.push(item.phone.data_sheet.ram)
-        dataSheet.push(item.phone.data_sheet.operative_s)
-        dataSheet.push(item.phone.data_sheet.dimensions)
-        dataSheet.push(item.phone.data_sheet.front_cam)
-        dataSheet.push(item.phone.data_sheet.back_cam)
-        dataSheet.push(item.phone.data_sheet.screen)
-        dataSheet.push(item.phone.data_sheet.storage)
-        dataSheet.push(item.phone.data_sheet.batery)
-        phonesDescription.push(item.phone.description)
-
-        if (index > 9){
-          specData.push(dataSheet);
-          evalSpecification.push(item.assessment)
-          names.push(item.phone.model)
-          imgList.push(item.phone.image)
-
-        }
-        else{
-          topTen.evalP.push(item.statistic.positive_density)
-          topTen.evalN.push(item.statistic.positive_density)
-          topTen.evalNeutral.push(item.statistic.positive_density)
-          topTen.topTenEvalSpecification.push(item.assessment)
-          topTen.topTenNames.push(item.phone.model)
-          topTen.topTenImgList.push(item.phone.image)
-          topTen.topTenSpecData.push(dataSheet)
-          index++
-        }
-      }
-      state.activeSpecification = state.phoneSpecification[0][0].specification.name
-      state.activeSpecificationIndex = 0
-      state.evalSpecification = evalSpecification
-      state.names = names
-      state.imgList = imgList
-      state.specData = specData;
-      state.phonesDescription = phonesDescription
-      state.topTen = topTen
-    },
-    
-    async getAll(state){
-      var evalSpecification = []
-      var names = []
-      var imgList = []
-      var specData = []
-      var phonesDescription = []
-      var topTen = {
-        evalP:[],
-        evalN:[],
-        evalNeutral:[],
-        topTenNames: [],
-        topTenImgList: [],
-        topTenEvalSpecification: [],
-        topTenSpecData:[]
-      }
-      var index = 0
-
-      for(var item of state.phoneData )
-      {
-        var dataSheet = []
-        dataSheet.push(item.data_sheet.cpu)
-        dataSheet.push(item.data_sheet.ram)
-        dataSheet.push(item.data_sheet.operative_s)
-        dataSheet.push(item.data_sheet.dimensions)
-        dataSheet.push(item.data_sheet.front_cam)
-        dataSheet.push(item.data_sheet.back_cam)
-        dataSheet.push(item.data_sheet.screen)
-        dataSheet.push(item.data_sheet.storage)
-        dataSheet.push(item.data_sheet.batery)
-        phonesDescription.push(item.description)
-
-        if(index > 9){
-          specData.push(dataSheet);
-          evalSpecification.push(item.assessment)
-          names.push(item.model)
-          imgList.push(item.image)
-
-        }
-        else{
-          topTen.evalP.push(item.statistic.positive_density)
-          topTen.evalN.push(item.statistic.positive_density)
-          topTen.evalNeutral.push(item.statistic.positive_density)
-          topTen.topTenEvalSpecification.push(item.assessment)
-          topTen.topTenNames.push(item.model)
-          topTen.topTenImgList.push(item.image)
-          topTen.topTenSpecData.push(dataSheet)
-          index ++
-        } 
-      }
-      state.specData = specData;
-      state.evalSpecification = evalSpecification
-      state.names = names
-      state.imgList = imgList
-      state.phonesDescription = phonesDescription
-      state.topTen = topTen
-
-      },
-    async getBrands(state){
-      var brandData = {
-        brandImgList: [],
-        brandNames:[],  
-        evalBrand: [],
-        evalP:[],
-        evalN:[],
-        evalNeutral:[],
-      }
-
-      for(var item of state.brandList){
-        brandData.evalBrand.push(item.assessment)
-        brandData.brandNames.push(item.name)
-        brandData.brandImgList.push(item.image)
-        brandData.evalP.push(item.statistic.positive_density)
-        brandData.evalN.push(item.statistic.negative_density)
-        brandData.evalNeutral.push(item.statistic.neutral_density)
-      }
-      state.brandData = brandData
-    },
     filterByGammaSpecification(state,gammas){
       var evalSpecification = []
       var names = []
@@ -317,8 +453,8 @@ export default new Vuex.Store({
             }
             else{
               topTen.evalP.push(item.statistic.positive_density)
-              topTen.evalN.push(item.statistic.positive_density)
-              topTen.evalNeutral.push(item.statistic.positive_density)
+              topTen.evalN.push(item.statistic.negative_density)
+              topTen.evalNeutral.push(item.statistic.neutral_density)
               topTen.topTenEvalSpecification.push(item.assessment)
               topTen.topTenNames.push(item.phone.model)
               topTen.topTenImgList.push(item.phone.image)
@@ -336,69 +472,420 @@ export default new Vuex.Store({
         state.phonesDescription = phonesDescription
         state.topTen = topTen
     },
-    filterByGama(state,gammas){
-      var names = []
-      var imgList = []
-      var evalSpecification = []
-      var specData = []
-      var phonesDescription = []
 
-      var topTen = {
+
+    /*Funciones para vista SearchBrands*/
+    getBrands(state){
+      var brandData = {
+        brandImgList: [],
+        brandNames:[],  
+        evalBrand: [],
         evalP:[],
         evalN:[],
         evalNeutral:[],
-        topTenNames: [],
-        topTenImgList: [],
-        topTenEvalSpecification: [],
-        topTenSpecData:[]
       }
-      var index = 0
 
-      for(var item of state.phoneData)
-      {
-        var dataSheet = []
-        if(gammas[item.gamma.gammaId - 1])
-        {
-          dataSheet.push(item.data_sheet.cpu)
-          dataSheet.push(item.data_sheet.ram)
-          dataSheet.push(item.data_sheet.operative_s)
-          dataSheet.push(item.data_sheet.dimensions)
-          dataSheet.push(item.data_sheet.front_cam)
-          dataSheet.push(item.data_sheet.back_cam)
-          dataSheet.push(item.data_sheet.screen)
-          dataSheet.push(item.data_sheet.storage)
-          dataSheet.push(item.data_sheet.batery)
-          phonesDescription.push(item.description)
-
-          if(index > 9){
-            specData.push(dataSheet)
-            evalSpecification.push(item.assessment)
-            names.push(item.model)
-            imgList.push(item.image)
-
-          }
-          else
-          {
-            topTen.evalP.push(item.statistic.positive_density)
-            topTen.evalN.push(item.statistic.positive_density)
-            topTen.evalNeutral.push(item.statistic.positive_density)
-            topTen.topTenEvalSpecification.push(item.assessment)
-            topTen.topTenNames.push(item.model)
-            topTen.topTenImgList.push(item.image)
-            topTen.topTenSpecData.push(dataSheet)
-          }
-          index ++
-        }
+      for(var item of state.brandList){
+        brandData.evalBrand.push(item.assessment)
+        brandData.brandNames.push(item.name)
+        brandData.brandImgList.push(item.image)
+        brandData.evalP.push(item.statistic.positive_density)
+        brandData.evalN.push(item.statistic.negative_density)
+        brandData.evalNeutral.push(item.statistic.neutral_density)
       }
-      console.log(topTen)
-      state.evalSpecification = evalSpecification
-      state.names = names
-      state.imgList = imgList
-      state.specData = specData
-      state.dataSheet = dataSheet
-      state.phonesDescription = phonesDescription
-      state.topTen = topTen
+      state.brandData = brandData
     },
+    
+
+    /*Funciones para la vista TwittersForGamma*/
+    getAllTwitters(state)
+    {
+        var gammaData = {
+            phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+                othersSize:[],
+
+            }
+        }
+
+        var users = []
+        var phones = []
+
+        let usersGamma = JSON.parse(JSON.stringify(state.usersGamma[2]))
+        for(var userGamma of usersGamma) //Se piden los de gamma alta en primera instancia)
+        {
+            var user = 
+            {
+                name: "",
+                followersCount: 0,
+                urlProfile: "",
+                screenName: "",
+                urlPhoto: ""
+            }
+
+            user.name = userGamma.name
+            user.followersCount = userGamma.followersCount
+            user.urlProfile = userGamma.urlProfile
+            user.screenName = userGamma.screenName
+            user.urlPhoto = userGamma.urlPhoto
+
+            users.push(user)
+
+
+            for(let phone of userGamma.phones)
+            {
+
+                let phone_base =
+                {
+                    phoneId: 0,
+                    model: "",
+                    size: 0,
+                    description: "",
+                    image: "",
+                    data_sheet: {},
+                }
+
+                phone_base.phoneId = phone.id
+                phone_base.model = phone.model,
+                phone_base.size = phone.size,
+                phone_base.description = phone.phoneSQL.description
+                phone_base.image = phone.phoneSQL.image,
+                phone_base.data_sheet = phone.phoneSQL.data_sheet
+
+                console.log(phone_base)
+
+                if(phones.length == 0)
+                {
+                    phone_base.model += " Recomendado por: @" + userGamma.screenName
+                    phones.push(phone_base)
+                    break 
+                }
+                let repeated = 0;
+
+                for(var i = 0; i < phones.length; i++)
+                {
+                    if( phone_base.phoneId == phones[i].phoneId)
+                    {
+                        repeated = 1
+                        phones[i].model += " @" + userGamma.screenName
+                    }
+                }
+
+                if(repeated != 1)
+                {
+                    phone_base.model += " Recomendado por: @" + userGamma.screenName
+                    phones.push(phone_base)                
+                }
+
+            }
+        }
+
+        phones.sort(function(a, b){
+            return b.size - a.size;
+        }); 
+
+        var index = 0
+
+        for(var phone of phones)
+        {
+            var dataSheet = []
+            dataSheet.push(phone.data_sheet.cpu)
+            dataSheet.push(phone.data_sheet.ram)
+            dataSheet.push(phone.data_sheet.operative_s)
+            dataSheet.push(phone.data_sheet.dimensions)
+            dataSheet.push(phone.data_sheet.front_cam)
+            dataSheet.push(phone.data_sheet.back_cam)
+            dataSheet.push(phone.data_sheet.screen)
+            dataSheet.push(phone.data_sheet.storage)
+            dataSheet.push(phone.data_sheet.batery)
+            gammaData.phonesDescription.push(phone.description)
+    
+            if(index > 9){
+                gammaData.others.othersSpecData.push(dataSheet);
+                gammaData.others.othersNames.push(phone.model)
+                gammaData.others.othersSize.push(phone.size)
+                gammaData.others.othersImgList.push(phone.image)
+            }
+            else{
+                gammaData.topTen.topTenSize.push(phone.size)
+                gammaData.topTen.topTenNames.push(phone.model)
+                gammaData.topTen.topTenImgList.push(phone.image)
+                gammaData.topTen.topTenSpecData.push(dataSheet)
+                index ++
+            } 
+        }
+
+        state.gammaData = gammaData
+        state.usersGammaData = users
+
+        console.log(gammaData)
+
+    },
+    getTwittersByGamma(state,gamma)
+    {
+        var gammaData = {
+            phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+                othersSize:[],
+
+            }
+        }
+
+        var users = []
+        var phones = []
+
+        let usersGamma = JSON.parse(JSON.stringify(state.usersGamma[gamma-1]))
+        for(var userGamma of usersGamma) //Se piden los de gamma alta en primera instancia)
+        {
+            var user = 
+            {
+                name: "",
+                followersCount: 0,
+                urlProfile: "",
+                screenName: "",
+                urlPhoto: ""
+            }
+
+            user.name = userGamma.name
+            user.followersCount = userGamma.followersCount
+            user.urlProfile = userGamma.urlProfile
+            user.screenName = userGamma.screenName
+            user.urlPhoto = userGamma.urlPhoto
+
+            users.push(user)
+
+
+            for(let phone of userGamma.phones)
+            {
+
+                let phone_base =
+                {
+                    phoneId: 0,
+                    model: "",
+                    size: 0,
+                    description: "",
+                    image: "",
+                    data_sheet: {},
+                }
+
+                phone_base.phoneId = phone.id
+                phone_base.model = phone.model,
+                phone_base.size = phone.size,
+                phone_base.description = phone.phoneSQL.description
+                phone_base.image = phone.phoneSQL.image,
+                phone_base.data_sheet = phone.phoneSQL.data_sheet
+
+                console.log(phone_base)
+
+                if(phones.length == 0)
+                {
+                    phone_base.model += " Recomendado por: @" + userGamma.screenName
+                    phones.push(phone_base)
+                    break 
+                }
+                let repeated = 0;
+
+                for(var i = 0; i < phones.length; i++)
+                {
+                    if( phone_base.phoneId == phones[i].phoneId)
+                    {
+                        repeated = 1
+                        phones[i].model += " @" + userGamma.screenName
+                    }
+                }
+
+                if(repeated != 1)
+                {
+                    phone_base.model += " Recomendado por: @" + userGamma.screenName
+                    phones.push(phone_base)                
+                }
+
+            }
+        }
+
+        phones.sort(function(a, b){
+            return b.size - a.size;
+        }); 
+
+        var index = 0
+
+        for(var phone of phones)
+        {
+            var dataSheet = []
+            dataSheet.push(phone.data_sheet.cpu)
+            dataSheet.push(phone.data_sheet.ram)
+            dataSheet.push(phone.data_sheet.operative_s)
+            dataSheet.push(phone.data_sheet.dimensions)
+            dataSheet.push(phone.data_sheet.front_cam)
+            dataSheet.push(phone.data_sheet.back_cam)
+            dataSheet.push(phone.data_sheet.screen)
+            dataSheet.push(phone.data_sheet.storage)
+            dataSheet.push(phone.data_sheet.batery)
+            gammaData.phonesDescription.push(phone.description)
+    
+            if(index > 9){
+                gammaData.others.othersSpecData.push(dataSheet);
+                gammaData.others.othersNames.push(phone.model)
+                gammaData.others.othersSize.push(phone.size)
+                gammaData.others.othersImgList.push(phone.image)
+            }
+            else{
+                gammaData.topTen.topTenSize.push(phone.size)
+                gammaData.topTen.topTenNames.push(phone.model)
+                gammaData.topTen.topTenImgList.push(phone.image)
+                gammaData.topTen.topTenSpecData.push(dataSheet)
+                index ++
+            } 
+        }
+
+        state.gammaData = gammaData
+        state.usersGammaData = users
+
+        console.log(gammaData)
+    },
+
+    getPhoneTwitters(state)
+    {
+        var phoneData = {
+            phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+                othersSize:[],
+
+            }
+        }
+
+        var index = 0
+
+        for(var phone of state.neoPhones)
+        {
+            var dataSheet = []
+            dataSheet.push(phone.phoneSQL.data_sheet.cpu)
+            dataSheet.push(phone.phoneSQL.data_sheet.ram)
+            dataSheet.push(phone.phoneSQL.data_sheet.operative_s)
+            dataSheet.push(phone.phoneSQL.data_sheet.dimensions)
+            dataSheet.push(phone.phoneSQL.data_sheet.front_cam)
+            dataSheet.push(phone.phoneSQL.data_sheet.back_cam)
+            dataSheet.push(phone.phoneSQL.data_sheet.screen)
+            dataSheet.push(phone.phoneSQL.data_sheet.storage)
+            dataSheet.push(phone.phoneSQL.data_sheet.batery)
+            phoneData.phonesDescription.push(phone.phoneSQL.description)
+    
+            if(index > 9){
+                phoneData.others.othersSpecData.push(dataSheet);
+                phoneData.others.othersNames.push(phone.phoneSQL.model)
+                phoneData.others.othersSize.push(phone.size)
+                phoneData.others.othersImgList.push(phone.phoneSQL.image)
+            }
+            else{
+                phoneData.topTen.topTenSize.push(phone.size)
+                phoneData.topTen.topTenNames.push(phone.phoneSQL.model)
+                phoneData.topTen.topTenImgList.push(phone.phoneSQL.image)
+                phoneData.topTen.topTenSpecData.push(dataSheet)
+                index ++
+            } 
+        }
+
+        state.neoPhonesData = phoneData
+        console.log(phoneData)
+    },
+
+    filterPhoneTwitters(state,gamas)
+    {
+
+        var phoneData = {
+            phonesDescription: [],
+            topTen:
+            {
+                topTenNames:[],
+                topTenImgList:[],
+                topTenSize:[],
+                topTenSpecData: [],
+            },
+            others:
+            {
+                othersNames:[],
+                othersImgList:[],
+                othersSpecData: [], 
+                othersSize:[],
+
+            }
+        }
+
+
+        var index = 0
+
+        for(var phone of state.neoPhones)
+        {
+            if(gamas[phone.phoneSQL.gamma.gammaId -1])
+            {
+                var dataSheet = []
+                dataSheet.push(phone.phoneSQL.data_sheet.cpu)
+                dataSheet.push(phone.phoneSQL.data_sheet.ram)
+                dataSheet.push(phone.phoneSQL.data_sheet.operative_s)
+                dataSheet.push(phone.phoneSQL.data_sheet.dimensions)
+                dataSheet.push(phone.phoneSQL.data_sheet.front_cam)
+                dataSheet.push(phone.phoneSQL.data_sheet.back_cam)
+                dataSheet.push(phone.phoneSQL.data_sheet.screen)
+                dataSheet.push(phone.phoneSQL.data_sheet.storage)
+                dataSheet.push(phone.phoneSQL.data_sheet.batery)
+                phoneData.phonesDescription.push(phone.phoneSQL.description)
+        
+                if(index > 9){
+                    phoneData.others.othersSpecData.push(dataSheet);
+                    phoneData.others.othersNames.push(phone.phoneSQL.model)
+                    phoneData.others.othersSize.push(phone.size)
+                    phoneData.others.othersImgList.push(phone.phoneSQL.image)
+                }
+                else{
+                    phoneData.topTen.topTenSize.push(phone.size)
+                    phoneData.topTen.topTenNames.push(phone.phoneSQL.model)
+                    phoneData.topTen.topTenImgList.push(phone.phoneSQL.image)
+                    phoneData.topTen.topTenSpecData.push(dataSheet)
+                    index ++
+                } 
+            }
+        }
+
+        state.neoPhonesData = phoneData
+
+        console.log(phoneData)
+    }
+
+
+    /*Funciones para vista NetworkGraph*/
   },
   actions: {
     getAll (context){
@@ -419,5 +906,12 @@ export default new Vuex.Store({
     getBrands(context){
       context.commit('getBrands')
     },
+    getAllTwitters(context){
+        context.commit('getAllTwitters')
+    },
+    getPhoneTwitters(context)
+    {
+        context.commit('getPhoneTwitters')
+    }
   },
 })

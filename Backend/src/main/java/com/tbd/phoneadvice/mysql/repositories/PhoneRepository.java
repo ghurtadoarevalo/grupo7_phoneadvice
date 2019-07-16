@@ -12,8 +12,11 @@ import java.util.List;
 
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone,Long> {
-    //Phone findByPhone_id(int id);
+    Phone findByPhoneId(Long id);
     List<Phone>  findAllByOrderByAssessmentDesc();
+
+    List<Phone>  findAllByGammaGammaId(Long gammaId);
+    List<Phone>  findAllByBrandBrandId(Long brandId);
 
     //List<Phone> findByPsId_SpecificationId(Long specification_id);
 }

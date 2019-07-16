@@ -28,6 +28,7 @@ public class Tweet {
     private Double geoLatitude;
     private Double geoLongitude;
     private String sentiment;
+    private int inElastic;
 
     @SerializedName("retweet_count")
     private int retweetCount;
