@@ -92,21 +92,19 @@ import { userInfo } from 'os';
         this.force = 2000 + this.force*(this.zoom/60)
 
         if(this.zoom>0){
-          this.w = this.w_i + this.zoom*35
-          this.h = this.h_i + this.zoom*35
           this.offset.x = this.y_i - this.zoom*0.1
           this.offset.y = this.y_i - this.zoom
+          this.w = this.w_i + this.zoom*20
+          this.h = this.h_i + this.zoom*35
+         
         }
         else{
           this.offset.x = this.x_i - this.zoom*1.5
-          this.offset.y = this.y_i - this.zoom*0.1
+          this.offset.y = this.y_i - this.zoom
           this.w = this.w_i + this.zoom*8
           this.h = this.h_i + this.zoom*12.5
         }
-        console.log('x: '+this.offset.x.toString())
-        console.log('y: '+this.offset.y.toString())
-        console.log('h: '+this.h.toString())
-        console.log('w: '+this.w.toString())
+
       },
       /*nodes: function(){
         this.nodos = this.nodes
@@ -148,10 +146,6 @@ import { userInfo } from 'os';
         peso0.sort(function (a, b) {return (a.peso - b.peso)})
         peso1.sort(function (a, b) {return (a.peso - b.peso)})
         peso2.sort(function (a, b) {return (a.peso - b.peso)})
-        console.log(peso0)
-        console.log(peso1)
-        console.log(peso2)
-        
 
         var int0 = 40.0/peso0.length
         var int1 = 40.0/peso1.length
@@ -197,16 +191,16 @@ import { userInfo } from 'os';
       nodos:[],
       nodes:[],
       nodeSize:20,
-      force:2000,
+      force:1900,
       zoomA:0,
       zoom:0,
-      h_i: 1700,
-      w_i: 1900,
+      h_i: 1600,
+      w_i: 1800,
       x_i: 1,
       y_i:-70,
 
-      h:1700,
-      w:1900,
+      h:1600,
+      w:1800,
       offset:{x:1,y:-70},
 
       slider: true,
