@@ -35,8 +35,7 @@ public class NeoService {
     //private String uri = "bolt://localhost";
     //private String user = "neo4j";
     //private String password = "canito123";
-    List<nodo> listaNeo = new ArrayList<>();
-    List<nodo> listaNeoAux = new ArrayList<>();
+    List<Arista> listaNeoAux = new ArrayList<>();
 
     @Autowired
     private UserRepository userRepository;
@@ -104,43 +103,57 @@ public class NeoService {
         List<nodo> list = new ArrayList<>();
         for(int i=1; i<39; i++){
             Phone equipo = phoneRepository.findByPhoneId((long) i);
-            StatementResult result = session.run("MATCH (p:NodePhone) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE p.phoneID = " + equipo.getPhoneId() + "  RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 2");
+            StatementResult result = session.run("MATCH (p:NodePhone) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE p.phoneID = " + equipo.getPhoneId() + "  RETURN distinct id(u) as idu, id(p) as idp , type(k) as caption, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 2");
             System.out.println("estoy fuera del for");
             while(result.hasNext())
             {
                 Record record = result.next();
                 nodo nuevoNodo = new nodo();
-                nuevoNodo.setId(record.get("id").asLong());
+                nuevoNodo.setId(record.get("idu").asLong());
                 nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
                 nuevoNodo.setType(0);
                 System.out.println("estoy en el for");
                 list.add(nuevoNodo);
+
+
+                Arista nuevaArista = new Arista();
+                nuevaArista.setSource(record.get("idu").asLong());
+                nuevaArista.setTarget(record.get("idp").asLong());
+                nuevaArista.setType(record.get("caption").asString());
+                listaNeoAux.add(nuevaArista);
+
+
             }
         }
         System.out.println("termino el for");
 
         for(int i=1; i<9; i++){
             Brand marca = brandRepository.findBrandByBrandId((long) i);
-            StatementResult result = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE b.brandID = "+ marca.getBrandId() +" RETURN distinct id(u) as id, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 2");
+            StatementResult result = session.run("MATCH (b:NodeBrand) -[k:TWEET_ABOUT]- (u:NodeUser) WHERE b.brandID = "+ marca.getBrandId() +" RETURN distinct id(u) as idu, id(b) as idp , type(k) as caption, u.name as name ,u.followersCount as size ORDER BY size DESC LIMIT 2");
             System.out.println("segundo for");
             while(result.hasNext())
             {
                 System.out.println("tengo algo");
                 Record record = result.next();
                 nodo nuevoNodo = new nodo();
-                nuevoNodo.setId(record.get("id").asLong());
+                nuevoNodo.setId(record.get("idu").asLong());
                 nuevoNodo.setName(record.get("name").asString());
                 nuevoNodo.setPeso(record.get("size").asDouble());
                 nuevoNodo.setType(0);
                 list.add(nuevoNodo);
+
+
+                Arista nuevaArista = new Arista();
+                nuevaArista.setSource(record.get("idu").asLong());
+                nuevaArista.setTarget(record.get("idp").asLong());
+                nuevaArista.setType(record.get("caption").asString());
+                listaNeoAux.add(nuevaArista);
+
             }
         }
         System.out.println("fin segundo for");
 
-        for(nodo nodoI : list){
-            listaNeo.add(nodoI);
-        }
 
         StatementResult result2 = session.run("MATCH (p:NodePhone) RETURN id(p) as id, p.model as name, p.size as size");
         while(result2.hasNext())
@@ -164,6 +177,7 @@ public class NeoService {
             nuevoNodo.setType(2);
             list.add(nuevoNodo);
         }
+
         /*
         StatementResult result4 = session.run("MATCH (g:NodeGamma) RETURN id(g) as id, g.gammaName as name, g.size as size");
         while(result4.hasNext())
@@ -176,10 +190,8 @@ public class NeoService {
             list.add(nuevoNodo);
         }
     */
-        for(nodo nodoI : list){
-            listaNeoAux.add(nodoI);
-        }
         System.out.println("Numero de nodos: " + list.size());
+        System.out.println("numero de aristas sin marca-equipo"+ listaNeoAux.size());
         return list;
     }
 
@@ -188,44 +200,21 @@ public class NeoService {
     public List<Arista> aristasCompletas() {
         Driver driver = GraphDatabase.driver( this.uri, AuthTokens.basic( this.user,this.password ) );
         Session session = driver.session();
-        List<Arista> list = new ArrayList<>();
-        StatementResult result = session.run("MATCH (a)-[r]->(b) RETURN id(a) as source, id(b) as target, type(r) as caption");
+        StatementResult result = session.run("MATCH (s)-[r:HAS]->(t) RETURN id(s) as ids, id(t) as idt, type(r) as caption");
         while(result.hasNext()){
             Record record = result.next();
-            boolean flag = false;
-            for(nodo nodoI : listaNeo){
-                if(record.get("source").asLong() == nodoI.getId() && nodoI.getLimit() <= 4 ){
-                    for(nodo nodoX : listaNeoAux){
-                        if(record.get("target").asLong() == nodoX.getId() && nodoX.getLimit() <= 4){
-                            flag = true;
-                            nodoI.setLimit(nodoI.getLimit()+1);
-                            nodoX.setLimit(nodoX.getLimit()+1);
-                        }
-                    }
-                }
-                if(record.get("target").asLong() == nodoI.getId() && nodoI.getLimit() <= 4 ){
-                    for(nodo nodoX : listaNeoAux){
-                        if(record.get("source").asLong() == nodoX.getId() && nodoX.getLimit() <= 4)  {
-                            flag = true;
-                            nodoI.setLimit(nodoI.getLimit()+1);
-                            nodoX.setLimit(nodoX.getLimit()+1);
-                        }
-                    }
-                }
-            }
-            if(flag){
+
                 Arista nuevaArista = new Arista();
-                nuevaArista.setSource(record.get("source").asLong());
-                nuevaArista.setTarget(record.get("target").asLong());
+                nuevaArista.setSource(record.get("ids").asLong());
+                nuevaArista.setTarget(record.get("idt").asLong());
                 nuevaArista.setType(record.get("caption").asString());
-                list.add(nuevaArista);
-            }
+                listaNeoAux.add(nuevaArista);
         }
-        System.out.println("largo arreglo aristas: " + list.size());
-        return list;
-    }
+        System.out.println("largo arreglo aristas: " + listaNeoAux.size());
 
 
+        return listaNeoAux;
+}
 
 
     @RequestMapping(value = "/cargarPesos", method = RequestMethod.GET)
